@@ -1,0 +1,1730 @@
+{
+  "program": {
+    "fileInfos": {
+      "../../node_modules/typescript/lib/lib.es5.d.ts": {
+        "version": "9622e8bd7cc72a7dab819a8011ecbf81d443638082e5cb99ecf2e75ff56ffc9d",
+        "signature": "9622e8bd7cc72a7dab819a8011ecbf81d443638082e5cb99ecf2e75ff56ffc9d",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.d.ts": {
+        "version": "dc47c4fa66b9b9890cf076304de2a9c5201e94b740cffdf09f87296d877d71f6",
+        "signature": "dc47c4fa66b9b9890cf076304de2a9c5201e94b740cffdf09f87296d877d71f6",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/typescript/lib/lib.es2016.d.ts": {
+        "version": "7a387c58583dfca701b6c85e0adaf43fb17d590fb16d5b2dc0a2fbd89f35c467",
+        "signature": "7a387c58583dfca701b6c85e0adaf43fb17d590fb16d5b2dc0a2fbd89f35c467",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/typescript/lib/lib.es2017.d.ts": {
+        "version": "8a12173c586e95f4433e0c6dc446bc88346be73ffe9ca6eec7aa63c8f3dca7f9",
+        "signature": "8a12173c586e95f4433e0c6dc446bc88346be73ffe9ca6eec7aa63c8f3dca7f9",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/typescript/lib/lib.es2018.d.ts": {
+        "version": "5f4e733ced4e129482ae2186aae29fde948ab7182844c3a5a51dd346182c7b06",
+        "signature": "5f4e733ced4e129482ae2186aae29fde948ab7182844c3a5a51dd346182c7b06",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/typescript/lib/lib.dom.d.ts": {
+        "version": "abadddbf660adeec27e9a56584907d52fa1d6e1e1dc49f639a921baa951b7a84",
+        "signature": "abadddbf660adeec27e9a56584907d52fa1d6e1e1dc49f639a921baa951b7a84",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts": {
+        "version": "46ee15e9fefa913333b61eaf6b18885900b139867d89832a515059b62cf16a17",
+        "signature": "46ee15e9fefa913333b61eaf6b18885900b139867d89832a515059b62cf16a17",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts": {
+        "version": "43fb1d932e4966a39a41b464a12a81899d9ae5f2c829063f5571b6b87e6d2f9c",
+        "signature": "43fb1d932e4966a39a41b464a12a81899d9ae5f2c829063f5571b6b87e6d2f9c",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts": {
+        "version": "cdccba9a388c2ee3fd6ad4018c640a471a6c060e96f1232062223063b0a5ac6a",
+        "signature": "cdccba9a388c2ee3fd6ad4018c640a471a6c060e96f1232062223063b0a5ac6a",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts": {
+        "version": "8b2a5df1ce95f78f6b74f1a555ccdb6baab0486b42d8345e0871dd82811f9b9a",
+        "signature": "8b2a5df1ce95f78f6b74f1a555ccdb6baab0486b42d8345e0871dd82811f9b9a",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts": {
+        "version": "2bb4b3927299434052b37851a47bf5c39764f2ba88a888a107b32262e9292b7c",
+        "signature": "2bb4b3927299434052b37851a47bf5c39764f2ba88a888a107b32262e9292b7c",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts": {
+        "version": "7207e317a2cb07a177e7d963ab7b8c0e85dde7f9ddb50351f830239bf597569e",
+        "signature": "7207e317a2cb07a177e7d963ab7b8c0e85dde7f9ddb50351f830239bf597569e",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts": {
+        "version": "cb609802a8698aa28b9c56331d4b53f590ca3c1c3a255350304ae3d06017779d",
+        "signature": "cb609802a8698aa28b9c56331d4b53f590ca3c1c3a255350304ae3d06017779d",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts": {
+        "version": "3013574108c36fd3aaca79764002b3717da09725a36a6fc02eac386593110f93",
+        "signature": "3013574108c36fd3aaca79764002b3717da09725a36a6fc02eac386593110f93",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts": {
+        "version": "9d122b7e8c1a5c72506eea50c0973cba55b92b5532d5cafa8a6ce2c547d57551",
+        "signature": "9d122b7e8c1a5c72506eea50c0973cba55b92b5532d5cafa8a6ce2c547d57551",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2016.array.include.d.ts": {
+        "version": "3be5a1453daa63e031d266bf342f3943603873d890ab8b9ada95e22389389006",
+        "signature": "3be5a1453daa63e031d266bf342f3943603873d890ab8b9ada95e22389389006",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2017.object.d.ts": {
+        "version": "17bb1fc99591b00515502d264fa55dc8370c45c5298f4a5c2083557dccba5a2a",
+        "signature": "17bb1fc99591b00515502d264fa55dc8370c45c5298f4a5c2083557dccba5a2a",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts": {
+        "version": "7ce9f0bde3307ca1f944119f6365f2d776d281a393b576a18a2f2893a2d75c98",
+        "signature": "7ce9f0bde3307ca1f944119f6365f2d776d281a393b576a18a2f2893a2d75c98",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2017.string.d.ts": {
+        "version": "6a6b173e739a6a99629a8594bfb294cc7329bfb7b227f12e1f7c11bc163b8577",
+        "signature": "6a6b173e739a6a99629a8594bfb294cc7329bfb7b227f12e1f7c11bc163b8577",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2017.intl.d.ts": {
+        "version": "12a310447c5d23c7d0d5ca2af606e3bd08afda69100166730ab92c62999ebb9d",
+        "signature": "12a310447c5d23c7d0d5ca2af606e3bd08afda69100166730ab92c62999ebb9d",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2017.typedarrays.d.ts": {
+        "version": "b0124885ef82641903d232172577f2ceb5d3e60aed4da1153bab4221e1f6dd4e",
+        "signature": "b0124885ef82641903d232172577f2ceb5d3e60aed4da1153bab4221e1f6dd4e",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2018.asyncgenerator.d.ts": {
+        "version": "0eb85d6c590b0d577919a79e0084fa1744c1beba6fd0d4e951432fa1ede5510a",
+        "signature": "0eb85d6c590b0d577919a79e0084fa1744c1beba6fd0d4e951432fa1ede5510a",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2018.asynciterable.d.ts": {
+        "version": "a40c4d82bf13fcded295ac29f354eb7d40249613c15e07b53f2fc75e45e16359",
+        "signature": "a40c4d82bf13fcded295ac29f354eb7d40249613c15e07b53f2fc75e45e16359",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2018.intl.d.ts": {
+        "version": "df9c8a72ca8b0ed62f5470b41208a0587f0f73f0a7db28e5a1272cf92537518e",
+        "signature": "df9c8a72ca8b0ed62f5470b41208a0587f0f73f0a7db28e5a1272cf92537518e",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2018.promise.d.ts": {
+        "version": "bb2d3fb05a1d2ffbca947cc7cbc95d23e1d053d6595391bd325deb265a18d36c",
+        "signature": "bb2d3fb05a1d2ffbca947cc7cbc95d23e1d053d6595391bd325deb265a18d36c",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2018.regexp.d.ts": {
+        "version": "c80df75850fea5caa2afe43b9949338ce4e2de086f91713e9af1a06f973872b8",
+        "signature": "c80df75850fea5caa2afe43b9949338ce4e2de086f91713e9af1a06f973872b8",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.es2020.bigint.d.ts": {
+        "version": "7b5a10e3c897fabece5a51aa85b4111727d7adb53c2734b5d37230ff96802a09",
+        "signature": "7b5a10e3c897fabece5a51aa85b4111727d7adb53c2734b5d37230ff96802a09",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/typescript/lib/lib.esnext.intl.d.ts": {
+        "version": "89bf2b7a601b73ea4311eda9c41f86a58994fec1bee3b87c4a14d68d9adcdcbd",
+        "signature": "89bf2b7a601b73ea4311eda9c41f86a58994fec1bee3b87c4a14d68d9adcdcbd",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/@types/node/globals.d.ts": {
+        "version": "215d8d9a2c480fd460127edc048d68d9931d3b27f95132253a6e71975f060bb1",
+        "signature": "215d8d9a2c480fd460127edc048d68d9931d3b27f95132253a6e71975f060bb1",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/@types/node/async_hooks.d.ts": {
+        "version": "c438b413e94ff76dfa20ae005f33a1c84f2480d1d66e0fd687501020d0de9b50",
+        "signature": "c438b413e94ff76dfa20ae005f33a1c84f2480d1d66e0fd687501020d0de9b50",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/buffer.d.ts": {
+        "version": "bc6a78961535181265845bf9b9e8a147ffd0ca275097ceb670a9b92afa825152",
+        "signature": "bc6a78961535181265845bf9b9e8a147ffd0ca275097ceb670a9b92afa825152",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/child_process.d.ts": {
+        "version": "987249e7b75023387c5fd9dc2f959ee777cb8989b7900f5a9eb4a67d290f2cba",
+        "signature": "987249e7b75023387c5fd9dc2f959ee777cb8989b7900f5a9eb4a67d290f2cba",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/cluster.d.ts": {
+        "version": "123ec69e4b3a686eb49afd94ebe3292a5c84a867ecbcb6bb84bdd720a12af803",
+        "signature": "123ec69e4b3a686eb49afd94ebe3292a5c84a867ecbcb6bb84bdd720a12af803",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/console.d.ts": {
+        "version": "eb5197aade83cb0e360ac407289c53a8009e8fdae7939892a0240d30444496b6",
+        "signature": "eb5197aade83cb0e360ac407289c53a8009e8fdae7939892a0240d30444496b6",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/@types/node/constants.d.ts": {
+        "version": "90c85ddbb8de82cd19198bda062065fc51b7407c0f206f2e399e65a52e979720",
+        "signature": "90c85ddbb8de82cd19198bda062065fc51b7407c0f206f2e399e65a52e979720",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/crypto.d.ts": {
+        "version": "2636f61a2d5f76d4039c7110f65c407a028ec5265e03d855fc2cf62b198ac415",
+        "signature": "2636f61a2d5f76d4039c7110f65c407a028ec5265e03d855fc2cf62b198ac415",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/dgram.d.ts": {
+        "version": "7e050b767ed10c7ffbc01f314defbf420bf0b5d54ce666e1c87507c035dfc191",
+        "signature": "7e050b767ed10c7ffbc01f314defbf420bf0b5d54ce666e1c87507c035dfc191",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/dns.d.ts": {
+        "version": "7db7569fbb3e2b01ba8751c761cdd3f0debd104170d5665b7dc20a11630df3a9",
+        "signature": "7db7569fbb3e2b01ba8751c761cdd3f0debd104170d5665b7dc20a11630df3a9",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/domain.d.ts": {
+        "version": "cde4d7f6274468180fa39847b183aec22626e8212ff885d535c53f4cd7c225fd",
+        "signature": "cde4d7f6274468180fa39847b183aec22626e8212ff885d535c53f4cd7c225fd",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/@types/node/events.d.ts": {
+        "version": "365e8358843a23944be84b810b1f774ea0223adfccc085f30fd7f4c13dc8a09f",
+        "signature": "365e8358843a23944be84b810b1f774ea0223adfccc085f30fd7f4c13dc8a09f",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/@types/node/fs.d.ts": {
+        "version": "f87f95c015900102a5c0edcdebb17596de1382510e6cc17ab79f375d3505bb12",
+        "signature": "f87f95c015900102a5c0edcdebb17596de1382510e6cc17ab79f375d3505bb12",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/fs/promises.d.ts": {
+        "version": "05b5679a897598ebe556ee93415b3af1f456e674ea82e4d7afcd716bfe43aa98",
+        "signature": "05b5679a897598ebe556ee93415b3af1f456e674ea82e4d7afcd716bfe43aa98",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/http.d.ts": {
+        "version": "35fe02b2c10616cc7ac3db9c15778df7ed9c99276889efdd9be31f342841cfcd",
+        "signature": "35fe02b2c10616cc7ac3db9c15778df7ed9c99276889efdd9be31f342841cfcd",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/http2.d.ts": {
+        "version": "1c3fe66943f587685aa4a42f664f794655da1767401d2f85910177dac78aa45d",
+        "signature": "1c3fe66943f587685aa4a42f664f794655da1767401d2f85910177dac78aa45d",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/https.d.ts": {
+        "version": "c969bf4c7cdfe4d5dd28aa09432f99d09ad1d8d8b839959646579521d0467d1a",
+        "signature": "c969bf4c7cdfe4d5dd28aa09432f99d09ad1d8d8b839959646579521d0467d1a",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/inspector.d.ts": {
+        "version": "6c3857edaeeaaf43812f527830ebeece9266b6e8eb5271ab6d2f0008306c9947",
+        "signature": "6c3857edaeeaaf43812f527830ebeece9266b6e8eb5271ab6d2f0008306c9947",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/module.d.ts": {
+        "version": "bc6a77e750f4d34584e46b1405b771fb69a224197dd6bafe5b0392a29a70b665",
+        "signature": "bc6a77e750f4d34584e46b1405b771fb69a224197dd6bafe5b0392a29a70b665",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/net.d.ts": {
+        "version": "8de97668870cfb20fc9d355d2ef379e897bdd8a98c889c7d8a6de40ee408ad52",
+        "signature": "8de97668870cfb20fc9d355d2ef379e897bdd8a98c889c7d8a6de40ee408ad52",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/os.d.ts": {
+        "version": "ed4ae81196cccc10f297d228bca8d02e31058e6d723a3c5bc4be5fb3c61c6a34",
+        "signature": "ed4ae81196cccc10f297d228bca8d02e31058e6d723a3c5bc4be5fb3c61c6a34",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/path.d.ts": {
+        "version": "84044697c8b3e08ef24e4b32cfe6440143d07e469a5e34bda0635276d32d9f35",
+        "signature": "84044697c8b3e08ef24e4b32cfe6440143d07e469a5e34bda0635276d32d9f35",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/perf_hooks.d.ts": {
+        "version": "4982d94cb6427263c8839d8d6324a8bbe129e931deb61a7380f8fad17ba2cfc0",
+        "signature": "4982d94cb6427263c8839d8d6324a8bbe129e931deb61a7380f8fad17ba2cfc0",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/process.d.ts": {
+        "version": "ae4bc1dd4d9de7bbea6ce419db45af82a81358e6014c9e1235b5d252e06f8ab8",
+        "signature": "ae4bc1dd4d9de7bbea6ce419db45af82a81358e6014c9e1235b5d252e06f8ab8",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/@types/node/punycode.d.ts": {
+        "version": "3f6a1fd73c9dc3bd7f4b79bc075297ca6527904df69b0f2c2c94e4c4c7d9a32c",
+        "signature": "3f6a1fd73c9dc3bd7f4b79bc075297ca6527904df69b0f2c2c94e4c4c7d9a32c",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/querystring.d.ts": {
+        "version": "884560fda6c3868f925f022adc3a1289fe6507bbb45adb10fa1bbcc73a941bb0",
+        "signature": "884560fda6c3868f925f022adc3a1289fe6507bbb45adb10fa1bbcc73a941bb0",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/readline.d.ts": {
+        "version": "6b2bb67b0942bcfce93e1d6fad5f70afd54940a2b13df7f311201fba54b2cbe9",
+        "signature": "6b2bb67b0942bcfce93e1d6fad5f70afd54940a2b13df7f311201fba54b2cbe9",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/repl.d.ts": {
+        "version": "acbed967a379b3e9f73237ba9473f8b337eeea14b7dc64d445430b5d695751da",
+        "signature": "acbed967a379b3e9f73237ba9473f8b337eeea14b7dc64d445430b5d695751da",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/stream.d.ts": {
+        "version": "272a46cc8f494677af587d17939e61e7db2b1925633e4da0c186ba17f6732521",
+        "signature": "272a46cc8f494677af587d17939e61e7db2b1925633e4da0c186ba17f6732521",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/string_decoder.d.ts": {
+        "version": "d67e08745494b000da9410c1ae2fdc9965fc6d593fe0f381a47491f75417d457",
+        "signature": "d67e08745494b000da9410c1ae2fdc9965fc6d593fe0f381a47491f75417d457",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/timers.d.ts": {
+        "version": "b40652bf8ce4a18133b31349086523b219724dca8df3448c1a0742528e7ad5b9",
+        "signature": "b40652bf8ce4a18133b31349086523b219724dca8df3448c1a0742528e7ad5b9",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/tls.d.ts": {
+        "version": "c52eb62e3388a01b966c57bd14ca0ee9d5f6e656d6a18f6ce6b7cdece63734a3",
+        "signature": "c52eb62e3388a01b966c57bd14ca0ee9d5f6e656d6a18f6ce6b7cdece63734a3",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/trace_events.d.ts": {
+        "version": "a77fdb357c78b70142b2fdbbfb72958d69e8f765fd2a3c69946c1018e89d4638",
+        "signature": "a77fdb357c78b70142b2fdbbfb72958d69e8f765fd2a3c69946c1018e89d4638",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/tty.d.ts": {
+        "version": "3c2ac350c3baa61fd2b1925844109e098f4376d0768a4643abc82754fd752748",
+        "signature": "3c2ac350c3baa61fd2b1925844109e098f4376d0768a4643abc82754fd752748",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/url.d.ts": {
+        "version": "80ffc1786a5dab91b4aa59a72720f02f25df8b7c76b593e04d5e381aec284ccb",
+        "signature": "80ffc1786a5dab91b4aa59a72720f02f25df8b7c76b593e04d5e381aec284ccb",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/util.d.ts": {
+        "version": "f5b9d446783f075eed9e93dfba1a5055b3fd61aab285fef3bbc761eadf598204",
+        "signature": "f5b9d446783f075eed9e93dfba1a5055b3fd61aab285fef3bbc761eadf598204",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/v8.d.ts": {
+        "version": "289be113bad7ee27ee7fa5b1e373c964c9789a5e9ed7db5ddcb631371120b953",
+        "signature": "289be113bad7ee27ee7fa5b1e373c964c9789a5e9ed7db5ddcb631371120b953",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/vm.d.ts": {
+        "version": "baf0b82ffc5d2616f44a6fb1f81e8d798545bebf0c30f5d8b003a1dba1acfb3f",
+        "signature": "baf0b82ffc5d2616f44a6fb1f81e8d798545bebf0c30f5d8b003a1dba1acfb3f",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/worker_threads.d.ts": {
+        "version": "c6a5b34f1e725019445754f1e733585f113e0dced75f137bd3c4af5853d3f6ab",
+        "signature": "c6a5b34f1e725019445754f1e733585f113e0dced75f137bd3c4af5853d3f6ab",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/zlib.d.ts": {
+        "version": "15fbe50526244954eb2f933546bca6cdcf0db16c9428d099b3b386c1db5799ab",
+        "signature": "15fbe50526244954eb2f933546bca6cdcf0db16c9428d099b3b386c1db5799ab",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/ts3.4/base.d.ts": {
+        "version": "d44028ae0127eb3e9fcfa5f55a8b81d64775ce15aca1020fe25c511bbb055834",
+        "signature": "d44028ae0127eb3e9fcfa5f55a8b81d64775ce15aca1020fe25c511bbb055834",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/globals.global.d.ts": {
+        "version": "2708349d5a11a5c2e5f3a0765259ebe7ee00cdcc8161cb9990cb4910328442a1",
+        "signature": "2708349d5a11a5c2e5f3a0765259ebe7ee00cdcc8161cb9990cb4910328442a1",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/@types/node/wasi.d.ts": {
+        "version": "4e0a4d84b15692ea8669fe4f3d05a4f204567906b1347da7a58b75f45bae48d3",
+        "signature": "4e0a4d84b15692ea8669fe4f3d05a4f204567906b1347da7a58b75f45bae48d3",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/ts3.6/base.d.ts": {
+        "version": "ad1ae5ae98eceb9af99061e83e867b9897d267aebc8f3b938c9424deabadf4bb",
+        "signature": "ad1ae5ae98eceb9af99061e83e867b9897d267aebc8f3b938c9424deabadf4bb",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/assert.d.ts": {
+        "version": "6fbe72eed85e363ad83b763e03be824558c6ea7456c7259a48bcf0afdeb9d7e4",
+        "signature": "6fbe72eed85e363ad83b763e03be824558c6ea7456c7259a48bcf0afdeb9d7e4",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/base.d.ts": {
+        "version": "e61a21e9418f279bc480394a94d1581b2dee73747adcbdef999b6737e34d721b",
+        "signature": "e61a21e9418f279bc480394a94d1581b2dee73747adcbdef999b6737e34d721b",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/node/index.d.ts": {
+        "version": "5825520e2099309182c6e2a2b3061b060d42a098c58f67d1754880a7e2cce99a",
+        "signature": "5825520e2099309182c6e2a2b3061b060d42a098c58f67d1754880a7e2cce99a",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/cookiejar/index.d.ts": {
+        "version": "8d48b8f8a377ade8dd1f000625bc276eea067f2529cc9cafdf082d17142107d6",
+        "signature": "8d48b8f8a377ade8dd1f000625bc276eea067f2529cc9cafdf082d17142107d6",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/superagent/index.d.ts": {
+        "version": "022bb15c2fb40bb465a4511476b1796b9977e2bab463ffd8b2b3d1d1a56b00d1",
+        "signature": "022bb15c2fb40bb465a4511476b1796b9977e2bab463ffd8b2b3d1d1a56b00d1",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts": {
+        "version": "ad4b96b8eef3fbd8505ef2c5c7a7a83aa396b1c88898abb50149b13120e20ba5",
+        "signature": "ad4b96b8eef3fbd8505ef2c5c7a7a83aa396b1c88898abb50149b13120e20ba5",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/types.d.ts": {
+        "version": "0d7e9837879fc0b55cc7f9378ab4d3d3abd4eef1213c1e359438776a6352e56e",
+        "signature": "0d7e9837879fc0b55cc7f9378ab4d3d3abd4eef1213c1e359438776a6352e56e",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/index.d.ts": {
+        "version": "9298da37deb725a63f0e28b4b6fdbb35baab807a3339e0d58141cb2c9f416946",
+        "signature": "9298da37deb725a63f0e28b4b6fdbb35baab807a3339e0d58141cb2c9f416946",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/types.d.ts": {
+        "version": "58c57e7b990e1392776133b647c8d663278de5a2b2f9257bdebfca7a4927a528",
+        "signature": "58c57e7b990e1392776133b647c8d663278de5a2b2f9257bdebfca7a4927a528",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/index.d.ts": {
+        "version": "933331f041db9d65f57734811b71fd11a1238623cc6b0f0947b1239810c49af5",
+        "signature": "933331f041db9d65f57734811b71fd11a1238623cc6b0f0947b1239810c49af5",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/types.d.ts": {
+        "version": "9ae71dad9e6ed4e35924263d7489c944a9ece609f562a6e3009e295ecf85cd10",
+        "signature": "9ae71dad9e6ed4e35924263d7489c944a9ece609f562a6e3009e295ecf85cd10",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/index.d.ts": {
+        "version": "d0d991853703f1c6dd84b9e026ddd19b63269c2e04d9d4e8469aceff6fdce50a",
+        "signature": "d0d991853703f1c6dd84b9e026ddd19b63269c2e04d9d4e8469aceff6fdce50a",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/displaytypes.d.ts": {
+        "version": "3402e1449a6f0ec8bcd168e6531f2a544c970125c931e9084183247bacb8b78f",
+        "signature": "3402e1449a6f0ec8bcd168e6531f2a544c970125c931e9084183247bacb8b78f",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts": {
+        "version": "8a98b7df10b23e9a7d3148d9745bb5245abd4397912aedeba22f8e2c957d7a1b",
+        "signature": "8a98b7df10b23e9a7d3148d9745bb5245abd4397912aedeba22f8e2c957d7a1b",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/types.d.ts": {
+        "version": "6037dc69cddd88673e68c5c25cc1920a843390f8b5496064379e940c88c0b83e",
+        "signature": "6037dc69cddd88673e68c5c25cc1920a843390f8b5496064379e940c88c0b83e",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts": {
+        "version": "eadeedabc4446bcfbce4e080daf51ba423c94f1c9d313211a3e24e7dfdfc9d6a",
+        "signature": "eadeedabc4446bcfbce4e080daf51ba423c94f1c9d313211a3e24e7dfdfc9d6a",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/search/types.d.ts": {
+        "version": "5d95c67249e57b33492238e7308f7e8b2c07a3713f4358929242a4e85635d0e8",
+        "signature": "5d95c67249e57b33492238e7308f7e8b2c07a3713f4358929242a4e85635d0e8",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/search/index.d.ts": {
+        "version": "7c98bda418e543a8d7248342e9d394d7bcc71d0e9d87a3d6ce1d679c461844ac",
+        "signature": "7c98bda418e543a8d7248342e9d394d7bcc71d0e9d87a3d6ce1d679c461844ac",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts": {
+        "version": "024b971a8231bf0abb6ce9dc50687cfb80ea0cac3d7992c7d256324c33538600",
+        "signature": "024b971a8231bf0abb6ce9dc50687cfb80ea0cac3d7992c7d256324c33538600",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts": {
+        "version": "a418cafc38156a4740d01b1445b10e2e5fe5ba14c9eeeece55e6610808b6d24e",
+        "signature": "a418cafc38156a4740d01b1445b10e2e5fe5ba14c9eeeece55e6610808b6d24e",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/range-parser/index.d.ts": {
+        "version": "4e88b833be14c7f384e0dcd57bb30acd799e8e34d212635d693e41a75a71164b",
+        "signature": "4e88b833be14c7f384e0dcd57bb30acd799e8e34d212635d693e41a75a71164b",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/qs/index.d.ts": {
+        "version": "c236451df6139a965bb9b8fba15a43a8bebf4400ca589998e2bdc5e1291fa0f9",
+        "signature": "c236451df6139a965bb9b8fba15a43a8bebf4400ca589998e2bdc5e1291fa0f9",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/express-serve-static-core/index.d.ts": {
+        "version": "ae8d1b919cc922283c52b0c5a3404ef4ffd9eeda1202254b6295e4a87acb8fee",
+        "signature": "ae8d1b919cc922283c52b0c5a3404ef4ffd9eeda1202254b6295e4a87acb8fee",
+        "affectsGlobalScope": true
+      },
+      "../../node_modules/@types/mime/index.d.ts": {
+        "version": "be27a64e821a3e5af838650e4aa25805c60f057d0c37a9762c378d19d364b3e6",
+        "signature": "be27a64e821a3e5af838650e4aa25805c60f057d0c37a9762c378d19d364b3e6",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/serve-static/index.d.ts": {
+        "version": "3b02517f9be71f255eadab9892406055d069167891f1e1ea16c96c4ff1ddda01",
+        "signature": "3b02517f9be71f255eadab9892406055d069167891f1e1ea16c96c4ff1ddda01",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/connect/index.d.ts": {
+        "version": "81c14b89fa607b86dd726e2e3e91360cf8155ce97468404324d404a5bd65b2eb",
+        "signature": "81c14b89fa607b86dd726e2e3e91360cf8155ce97468404324d404a5bd65b2eb",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/body-parser/index.d.ts": {
+        "version": "ebddbd167c2fabd0151f50e5df94ca6d845149c47521280d8867afe3429dd078",
+        "signature": "ebddbd167c2fabd0151f50e5df94ca6d845149c47521280d8867afe3429dd078",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/node_modules/@types/express/index.d.ts": {
+        "version": "af43f1d20a34fa56542ce2093fd9af37cb4f3076a648b63fd46b1ffac8948c9e",
+        "signature": "af43f1d20a34fa56542ce2093fd9af37cb4f3076a648b63fd46b1ffac8948c9e",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/types.d.ts": {
+        "version": "f7b1f31bba3a90d4e2da561e3d4677eff552acaf87c3cb1383e33a16da4660d8",
+        "signature": "f7b1f31bba3a90d4e2da561e3d4677eff552acaf87c3cb1383e33a16da4660d8",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/index.d.ts": {
+        "version": "9e259d897acc81eb13dd7c56a93ed9469ab213e61172f53f6335f198f94b56ac",
+        "signature": "9e259d897acc81eb13dd7c56a93ed9469ab213e61172f53f6335f198f94b56ac",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/config/types.d.ts": {
+        "version": "ed568937795474425246c5b2be39897ac31432a3606b3fc9f6d43a2c1cb52436",
+        "signature": "ed568937795474425246c5b2be39897ac31432a3606b3fc9f6d43a2c1cb52436",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/config/index.d.ts": {
+        "version": "1afa11a645d5ec6d04eda2ca25eee02cf6b1a6582ba18195bbb895b1aa23890d",
+        "signature": "1afa11a645d5ec6d04eda2ca25eee02cf6b1a6582ba18195bbb895b1aa23890d",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/user/types.d.ts": {
+        "version": "dcac8503a3c251dc03444f09ade4c79ca132941e550fcf085a3d58dcaa7f3fc9",
+        "signature": "dcac8503a3c251dc03444f09ade4c79ca132941e550fcf085a3d58dcaa7f3fc9",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts": {
+        "version": "a68853eb78799c194a1b2f98cabf7eac7fe82aa2113732e5ad550e8e59a983e1",
+        "signature": "a68853eb78799c194a1b2f98cabf7eac7fe82aa2113732e5ad550e8e59a983e1",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/types.d.ts": {
+        "version": "bb4a69470bce89b76d62cdf6760ba0890fe4d213e25b3f2ab5cf909463f9437b",
+        "signature": "bb4a69470bce89b76d62cdf6760ba0890fe4d213e25b3f2ab5cf909463f9437b",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/index.d.ts": {
+        "version": "889dd466af274d9b02f5a95219426a33981ab4b5ca9f71ccf74565206b653035",
+        "signature": "889dd466af274d9b02f5a95219426a33981ab4b5ca9f71ccf74565206b653035",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/errorlistener.d.ts": {
+        "version": "0424e3d83b84533e98dabce3be0569490a301bd437e4308fb4e28faf95864f05",
+        "signature": "0424e3d83b84533e98dabce3be0569490a301bd437e4308fb4e28faf95864f05",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/http/types.d.ts": {
+        "version": "68008dcc21340eb230f3ec114881ce42d64d2e917fc1c5f1cc317fd62459a0d9",
+        "signature": "68008dcc21340eb230f3ec114881ce42d64d2e917fc1c5f1cc317fd62459a0d9",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/alert/types.d.ts": {
+        "version": "4024b7762cc9b2e8b9e7489f267414611f83936c5a4a189606e72f715cc37074",
+        "signature": "4024b7762cc9b2e8b9e7489f267414611f83936c5a4a189606e72f715cc37074",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/alert/index.d.ts": {
+        "version": "b6eb17e73cc221df869e13b4f9c8d52c290401da1d4932605c7f9713bb5513bc",
+        "signature": "b6eb17e73cc221df869e13b4f9c8d52c290401da1d4932605c7f9713bb5513bc",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/application/types.d.ts": {
+        "version": "5b8a0b325c0797b9894d9553e3f7cb3478124c76cd1406c770ffa6617a5429b5",
+        "signature": "5b8a0b325c0797b9894d9553e3f7cb3478124c76cd1406c770ffa6617a5429b5",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/application/index.d.ts": {
+        "version": "05fe9566e485f2d74663e1199974cc78e129f8c27070896e44b677a720833465",
+        "signature": "05fe9566e485f2d74663e1199974cc78e129f8c27070896e44b677a720833465",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/auth/types.d.ts": {
+        "version": "8022086911629c11a313aa6ef136ca6771ffdcff68b3bcb5c8088049ec5fe763",
+        "signature": "8022086911629c11a313aa6ef136ca6771ffdcff68b3bcb5c8088049ec5fe763",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/auth/index.d.ts": {
+        "version": "3afa8a3c26aba81a14cc52689d87abe688979d730c7777f2ead44b05bda3ae53",
+        "signature": "3afa8a3c26aba81a14cc52689d87abe688979d730c7777f2ead44b05bda3ae53",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphedge/types.d.ts": {
+        "version": "074f34ae1af3d08b2ccc407baae796eedc1b47b5a4a689ea8ff1ce32c3e74748",
+        "signature": "074f34ae1af3d08b2ccc407baae796eedc1b47b5a4a689ea8ff1ce32c3e74748",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphedge/index.d.ts": {
+        "version": "7838023b74fc6265be15c11ccbd65606faf88256d923955c3e9cf4486702fdf4",
+        "signature": "7838023b74fc6265be15c11ccbd65606faf88256d923955c3e9cf4486702fdf4",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphnode/types.d.ts": {
+        "version": "956aadc4a07cc60a2bbdac91fb24bd2e3b95428ceeeb159ef24c18988627f48a",
+        "signature": "956aadc4a07cc60a2bbdac91fb24bd2e3b95428ceeeb159ef24c18988627f48a",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphnode/index.d.ts": {
+        "version": "3562b0d472ac679964895386845f32a11a9e0cc7f64fb9b613487f3bc83cd9b9",
+        "signature": "3562b0d472ac679964895386845f32a11a9e0cc7f64fb9b613487f3bc83cd9b9",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/linkurious/types.d.ts": {
+        "version": "273b0558e697d1da09784c9127b6cb8d340c08ec29a1c64e8420ba917fb6827c",
+        "signature": "273b0558e697d1da09784c9127b6cb8d340c08ec29a1c64e8420ba917fb6827c",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/linkurious/index.d.ts": {
+        "version": "ffa235cdc279b935fcc6f4f9028b5172c047036af1dd49748a75029e5e168839",
+        "signature": "ffa235cdc279b935fcc6f4f9028b5172c047036af1dd49748a75029e5e168839",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/visualization/types.d.ts": {
+        "version": "0c883ba054a17b3f9584eabca3ce5edb129ba03c9b466073f941a31cb3cfc9e9",
+        "signature": "0c883ba054a17b3f9584eabca3ce5edb129ba03c9b466073f941a31cb3cfc9e9",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/api/visualization/index.d.ts": {
+        "version": "23bb55f3fcefa0ae27de7d0797c3acab4565e357e299067cea250ff44f686886",
+        "signature": "23bb55f3fcefa0ae27de7d0797c3acab4565e357e299067cea250ff44f686886",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/src/index.d.ts": {
+        "version": "0c2f18fbf17c5347128c771b16a2a448a6cec092ae432497cc2705201cd61fbb",
+        "signature": "0c2f18fbf17c5347128c771b16a2a448a6cec092ae432497cc2705201cd61fbb",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@linkurious/rest-client/dist/index.d.ts": {
+        "version": "9ceda7e6c3929972bf0cc21d4912274344f6e817cf9466e95225a7ce2858e3ae",
+        "signature": "9ceda7e6c3929972bf0cc21d4912274344f6e817cf9466e95225a7ce2858e3ae",
+        "affectsGlobalScope": false
+      },
+      "../../node_modules/@types/express/index.d.ts": {
+        "version": "924732dfbdfd120ee07cf733c7c65018f24ce9ddf06ed9ccf3cad8fdc2e33585",
+        "signature": "924732dfbdfd120ee07cf733c7c65018f24ce9ddf06ed9ccf3cad8fdc2e33585",
+        "affectsGlobalScope": false
+      },
+      "../../src/@types/plugin.d.ts": {
+        "version": "219c235330cffa344b6f1a7122997827372560969bc0d11777a8599b23de2bd0",
+        "signature": "219c235330cffa344b6f1a7122997827372560969bc0d11777a8599b23de2bd0",
+        "affectsGlobalScope": false
+      },
+      "../../src/backend/routehandler.ts": {
+        "version": "e6b1b52c04759aeeb07f6c39dd1f3d58b5331f1659cd9d9bf6f0d4095f14719a",
+        "signature": "97013fd01e821751e2e9a545270ffaa1b761c5b604f6285335c088393430ca42",
+        "affectsGlobalScope": false
+      }
+    },
+    "options": {
+      "composite": true,
+      "incremental": true,
+      "module": 1,
+      "target": 2,
+      "outDir": "../backend",
+      "tsBuildInfoFile": "./backend.tsbuildinfo",
+      "esModuleInterop": true,
+      "lib": [
+        "lib.dom.d.ts",
+        "lib.es2018.d.ts",
+        "lib.es2015.d.ts"
+      ],
+      "sourceMap": false,
+      "inlineSourceMap": true,
+      "inlineSources": true,
+      "declaration": true,
+      "declarationDir": "../backend",
+      "removeComments": true,
+      "alwaysStrict": true,
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "strict": true,
+      "strictBindCallApply": true,
+      "strictFunctionTypes": true,
+      "strictNullChecks": true,
+      "strictPropertyInitialization": true,
+      "noFallthroughCasesInSwitch": true,
+      "noImplicitReturns": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "typeRoots": [
+        "../../src/src/@types/custom",
+        "../../src/node_modules/@types"
+      ],
+      "moduleResolution": 2,
+      "configFilePath": "../../src/backend/tsconfig.json"
+    },
+    "referencedMap": {
+      "../../node_modules/@linkurious/rest-client/dist/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/alert/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/application/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/auth/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/config/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/displaytypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphedge/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphnode/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/linkurious/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/search/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/visualization/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/errorlistener.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/alert/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/alert/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/alert/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/application/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/application/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/application/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/auth/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/auth/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/auth/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/config/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/config/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/config/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/displaytypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/index.d.ts",
+        "../../node_modules/@types/node/index.d.ts",
+        "../../node_modules/@types/node/tls.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/config/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/displaytypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/displaytypes.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphedge/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphedge/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphedge/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/displaytypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphnode/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphnode/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphnode/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/linkurious/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/linkurious/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/node_modules/@types/express/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/search/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/search/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/search/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/user/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/config/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/visualization/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/visualization/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/visualization/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/displaytypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/errorlistener.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/types.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/types.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/search/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/types.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/http/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/errorlistener.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts",
+        "../../node_modules/@types/superagent/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/alert/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/application/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/auth/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/config/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphedge/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphnode/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/linkurious/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/search/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/visualization/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/errorlistener.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/types.d.ts",
+        "../../node_modules/@types/superagent/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/node_modules/@types/express/index.d.ts": [
+        "../../node_modules/@types/body-parser/index.d.ts",
+        "../../node_modules/@types/express-serve-static-core/index.d.ts",
+        "../../node_modules/@types/serve-static/index.d.ts"
+      ],
+      "../../node_modules/@types/body-parser/index.d.ts": [
+        "../../node_modules/@types/connect/index.d.ts",
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/index.d.ts"
+      ],
+      "../../node_modules/@types/connect/index.d.ts": [
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/index.d.ts"
+      ],
+      "../../node_modules/@types/express-serve-static-core/index.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/index.d.ts",
+        "../../node_modules/@types/qs/index.d.ts",
+        "../../node_modules/@types/range-parser/index.d.ts"
+      ],
+      "../../node_modules/@types/express/index.d.ts": [
+        "../../node_modules/@types/body-parser/index.d.ts",
+        "../../node_modules/@types/express-serve-static-core/index.d.ts",
+        "../../node_modules/@types/qs/index.d.ts",
+        "../../node_modules/@types/serve-static/index.d.ts"
+      ],
+      "../../node_modules/@types/node/base.d.ts": [
+        "../../node_modules/@types/node/assert.d.ts",
+        "../../node_modules/@types/node/ts3.6/base.d.ts"
+      ],
+      "../../node_modules/@types/node/child_process.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/fs.d.ts",
+        "../../node_modules/@types/node/net.d.ts",
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../node_modules/@types/node/cluster.d.ts": [
+        "../../node_modules/@types/node/child_process.d.ts",
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/net.d.ts"
+      ],
+      "../../node_modules/@types/node/console.d.ts": [
+        "../../node_modules/@types/node/util.d.ts"
+      ],
+      "../../node_modules/@types/node/constants.d.ts": [
+        "../../node_modules/@types/node/crypto.d.ts",
+        "../../node_modules/@types/node/fs.d.ts",
+        "../../node_modules/@types/node/os.d.ts"
+      ],
+      "../../node_modules/@types/node/crypto.d.ts": [
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../node_modules/@types/node/dgram.d.ts": [
+        "../../node_modules/@types/node/dns.d.ts",
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/net.d.ts"
+      ],
+      "../../node_modules/@types/node/domain.d.ts": [
+        "../../node_modules/@types/node/events.d.ts"
+      ],
+      "../../node_modules/@types/node/fs.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/fs/promises.d.ts",
+        "../../node_modules/@types/node/stream.d.ts",
+        "../../node_modules/@types/node/url.d.ts"
+      ],
+      "../../node_modules/@types/node/fs/promises.d.ts": [
+        "../../node_modules/@types/node/fs.d.ts"
+      ],
+      "../../node_modules/@types/node/http.d.ts": [
+        "../../node_modules/@types/node/net.d.ts",
+        "../../node_modules/@types/node/stream.d.ts",
+        "../../node_modules/@types/node/url.d.ts"
+      ],
+      "../../node_modules/@types/node/http2.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/fs.d.ts",
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/net.d.ts",
+        "../../node_modules/@types/node/stream.d.ts",
+        "../../node_modules/@types/node/tls.d.ts",
+        "../../node_modules/@types/node/url.d.ts"
+      ],
+      "../../node_modules/@types/node/https.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/tls.d.ts",
+        "../../node_modules/@types/node/url.d.ts"
+      ],
+      "../../node_modules/@types/node/index.d.ts": [
+        "../../node_modules/@types/node/base.d.ts"
+      ],
+      "../../node_modules/@types/node/inspector.d.ts": [
+        "../../node_modules/@types/node/events.d.ts"
+      ],
+      "../../node_modules/@types/node/module.d.ts": [
+        "../../node_modules/@types/node/url.d.ts"
+      ],
+      "../../node_modules/@types/node/net.d.ts": [
+        "../../node_modules/@types/node/dns.d.ts",
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../node_modules/@types/node/perf_hooks.d.ts": [
+        "../../node_modules/@types/node/async_hooks.d.ts"
+      ],
+      "../../node_modules/@types/node/process.d.ts": [
+        "../../node_modules/@types/node/tty.d.ts"
+      ],
+      "../../node_modules/@types/node/readline.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../node_modules/@types/node/repl.d.ts": [
+        "../../node_modules/@types/node/readline.d.ts",
+        "../../node_modules/@types/node/util.d.ts",
+        "../../node_modules/@types/node/vm.d.ts"
+      ],
+      "../../node_modules/@types/node/stream.d.ts": [
+        "../../node_modules/@types/node/events.d.ts"
+      ],
+      "../../node_modules/@types/node/tls.d.ts": [
+        "../../node_modules/@types/node/crypto.d.ts",
+        "../../node_modules/@types/node/dns.d.ts",
+        "../../node_modules/@types/node/net.d.ts",
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../node_modules/@types/node/ts3.4/base.d.ts": [
+        "../../node_modules/@types/node/async_hooks.d.ts",
+        "../../node_modules/@types/node/buffer.d.ts",
+        "../../node_modules/@types/node/child_process.d.ts",
+        "../../node_modules/@types/node/cluster.d.ts",
+        "../../node_modules/@types/node/console.d.ts",
+        "../../node_modules/@types/node/constants.d.ts",
+        "../../node_modules/@types/node/crypto.d.ts",
+        "../../node_modules/@types/node/dgram.d.ts",
+        "../../node_modules/@types/node/dns.d.ts",
+        "../../node_modules/@types/node/domain.d.ts",
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/fs.d.ts",
+        "../../node_modules/@types/node/fs/promises.d.ts",
+        "../../node_modules/@types/node/globals.d.ts",
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/http2.d.ts",
+        "../../node_modules/@types/node/https.d.ts",
+        "../../node_modules/@types/node/inspector.d.ts",
+        "../../node_modules/@types/node/module.d.ts",
+        "../../node_modules/@types/node/net.d.ts",
+        "../../node_modules/@types/node/os.d.ts",
+        "../../node_modules/@types/node/path.d.ts",
+        "../../node_modules/@types/node/perf_hooks.d.ts",
+        "../../node_modules/@types/node/process.d.ts",
+        "../../node_modules/@types/node/punycode.d.ts",
+        "../../node_modules/@types/node/querystring.d.ts",
+        "../../node_modules/@types/node/readline.d.ts",
+        "../../node_modules/@types/node/repl.d.ts",
+        "../../node_modules/@types/node/stream.d.ts",
+        "../../node_modules/@types/node/string_decoder.d.ts",
+        "../../node_modules/@types/node/timers.d.ts",
+        "../../node_modules/@types/node/tls.d.ts",
+        "../../node_modules/@types/node/trace_events.d.ts",
+        "../../node_modules/@types/node/tty.d.ts",
+        "../../node_modules/@types/node/url.d.ts",
+        "../../node_modules/@types/node/util.d.ts",
+        "../../node_modules/@types/node/v8.d.ts",
+        "../../node_modules/@types/node/vm.d.ts",
+        "../../node_modules/@types/node/worker_threads.d.ts",
+        "../../node_modules/@types/node/zlib.d.ts"
+      ],
+      "../../node_modules/@types/node/ts3.6/base.d.ts": [
+        "../../node_modules/@types/node/globals.global.d.ts",
+        "../../node_modules/@types/node/ts3.4/base.d.ts",
+        "../../node_modules/@types/node/wasi.d.ts"
+      ],
+      "../../node_modules/@types/node/tty.d.ts": [
+        "../../node_modules/@types/node/net.d.ts"
+      ],
+      "../../node_modules/@types/node/url.d.ts": [
+        "../../node_modules/@types/node/querystring.d.ts"
+      ],
+      "../../node_modules/@types/node/v8.d.ts": [
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../node_modules/@types/node/worker_threads.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/fs/promises.d.ts",
+        "../../node_modules/@types/node/stream.d.ts",
+        "../../node_modules/@types/node/url.d.ts",
+        "../../node_modules/@types/node/vm.d.ts"
+      ],
+      "../../node_modules/@types/node/zlib.d.ts": [
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../node_modules/@types/serve-static/index.d.ts": [
+        "../../node_modules/@types/mime/index.d.ts",
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/index.d.ts"
+      ],
+      "../../node_modules/@types/superagent/index.d.ts": [
+        "../../node_modules/@types/cookiejar/index.d.ts",
+        "../../node_modules/@types/node/fs.d.ts",
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/index.d.ts",
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../src/@types/plugin.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/index.d.ts",
+        "../../node_modules/@types/express/index.d.ts"
+      ],
+      "../../src/backend/routehandler.ts": [
+        "../../node_modules/@types/body-parser/index.d.ts",
+        "../../src/@types/plugin.d.ts"
+      ]
+    },
+    "exportedModulesMap": {
+      "../../node_modules/@linkurious/rest-client/dist/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/alert/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/application/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/auth/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/config/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/displaytypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphedge/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphnode/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/linkurious/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/search/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/visualization/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/errorlistener.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/alert/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/alert/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/alert/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/application/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/application/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/application/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/auth/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/auth/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/auth/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/config/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/config/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/config/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/displaytypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/index.d.ts",
+        "../../node_modules/@types/node/index.d.ts",
+        "../../node_modules/@types/node/tls.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/config/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/displaytypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/displaytypes.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphedge/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphedge/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphedge/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/displaytypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphnode/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphnode/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphnode/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/linkurious/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/linkurious/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/node_modules/@types/express/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/search/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/search/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/search/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/user/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/config/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/visualization/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/visualization/types.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/api/visualization/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/displaytypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/errorlistener.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/types.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/types.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/search/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/types.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/http/types.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/errorlistener.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts",
+        "../../node_modules/@types/superagent/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/dist/src/index.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/alert/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/application/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/auth/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/config/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphedge/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphnode/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/linkurious/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/search/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/api/visualization/index.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/errorlistener.d.ts",
+        "../../node_modules/@linkurious/rest-client/dist/src/http/types.d.ts",
+        "../../node_modules/@types/superagent/index.d.ts"
+      ],
+      "../../node_modules/@linkurious/rest-client/node_modules/@types/express/index.d.ts": [
+        "../../node_modules/@types/body-parser/index.d.ts",
+        "../../node_modules/@types/express-serve-static-core/index.d.ts",
+        "../../node_modules/@types/serve-static/index.d.ts"
+      ],
+      "../../node_modules/@types/body-parser/index.d.ts": [
+        "../../node_modules/@types/connect/index.d.ts",
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/index.d.ts"
+      ],
+      "../../node_modules/@types/connect/index.d.ts": [
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/index.d.ts"
+      ],
+      "../../node_modules/@types/express-serve-static-core/index.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/index.d.ts",
+        "../../node_modules/@types/qs/index.d.ts",
+        "../../node_modules/@types/range-parser/index.d.ts"
+      ],
+      "../../node_modules/@types/express/index.d.ts": [
+        "../../node_modules/@types/body-parser/index.d.ts",
+        "../../node_modules/@types/express-serve-static-core/index.d.ts",
+        "../../node_modules/@types/qs/index.d.ts",
+        "../../node_modules/@types/serve-static/index.d.ts"
+      ],
+      "../../node_modules/@types/node/base.d.ts": [
+        "../../node_modules/@types/node/assert.d.ts",
+        "../../node_modules/@types/node/ts3.6/base.d.ts"
+      ],
+      "../../node_modules/@types/node/child_process.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/fs.d.ts",
+        "../../node_modules/@types/node/net.d.ts",
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../node_modules/@types/node/cluster.d.ts": [
+        "../../node_modules/@types/node/child_process.d.ts",
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/net.d.ts"
+      ],
+      "../../node_modules/@types/node/console.d.ts": [
+        "../../node_modules/@types/node/util.d.ts"
+      ],
+      "../../node_modules/@types/node/constants.d.ts": [
+        "../../node_modules/@types/node/crypto.d.ts",
+        "../../node_modules/@types/node/fs.d.ts",
+        "../../node_modules/@types/node/os.d.ts"
+      ],
+      "../../node_modules/@types/node/crypto.d.ts": [
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../node_modules/@types/node/dgram.d.ts": [
+        "../../node_modules/@types/node/dns.d.ts",
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/net.d.ts"
+      ],
+      "../../node_modules/@types/node/domain.d.ts": [
+        "../../node_modules/@types/node/events.d.ts"
+      ],
+      "../../node_modules/@types/node/fs.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/fs/promises.d.ts",
+        "../../node_modules/@types/node/stream.d.ts",
+        "../../node_modules/@types/node/url.d.ts"
+      ],
+      "../../node_modules/@types/node/fs/promises.d.ts": [
+        "../../node_modules/@types/node/fs.d.ts"
+      ],
+      "../../node_modules/@types/node/http.d.ts": [
+        "../../node_modules/@types/node/net.d.ts",
+        "../../node_modules/@types/node/stream.d.ts",
+        "../../node_modules/@types/node/url.d.ts"
+      ],
+      "../../node_modules/@types/node/http2.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/fs.d.ts",
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/net.d.ts",
+        "../../node_modules/@types/node/stream.d.ts",
+        "../../node_modules/@types/node/tls.d.ts",
+        "../../node_modules/@types/node/url.d.ts"
+      ],
+      "../../node_modules/@types/node/https.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/tls.d.ts",
+        "../../node_modules/@types/node/url.d.ts"
+      ],
+      "../../node_modules/@types/node/index.d.ts": [
+        "../../node_modules/@types/node/base.d.ts"
+      ],
+      "../../node_modules/@types/node/inspector.d.ts": [
+        "../../node_modules/@types/node/events.d.ts"
+      ],
+      "../../node_modules/@types/node/module.d.ts": [
+        "../../node_modules/@types/node/url.d.ts"
+      ],
+      "../../node_modules/@types/node/net.d.ts": [
+        "../../node_modules/@types/node/dns.d.ts",
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../node_modules/@types/node/perf_hooks.d.ts": [
+        "../../node_modules/@types/node/async_hooks.d.ts"
+      ],
+      "../../node_modules/@types/node/process.d.ts": [
+        "../../node_modules/@types/node/tty.d.ts"
+      ],
+      "../../node_modules/@types/node/readline.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../node_modules/@types/node/repl.d.ts": [
+        "../../node_modules/@types/node/readline.d.ts",
+        "../../node_modules/@types/node/util.d.ts",
+        "../../node_modules/@types/node/vm.d.ts"
+      ],
+      "../../node_modules/@types/node/stream.d.ts": [
+        "../../node_modules/@types/node/events.d.ts"
+      ],
+      "../../node_modules/@types/node/tls.d.ts": [
+        "../../node_modules/@types/node/crypto.d.ts",
+        "../../node_modules/@types/node/dns.d.ts",
+        "../../node_modules/@types/node/net.d.ts",
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../node_modules/@types/node/ts3.4/base.d.ts": [
+        "../../node_modules/@types/node/async_hooks.d.ts",
+        "../../node_modules/@types/node/buffer.d.ts",
+        "../../node_modules/@types/node/child_process.d.ts",
+        "../../node_modules/@types/node/cluster.d.ts",
+        "../../node_modules/@types/node/console.d.ts",
+        "../../node_modules/@types/node/constants.d.ts",
+        "../../node_modules/@types/node/crypto.d.ts",
+        "../../node_modules/@types/node/dgram.d.ts",
+        "../../node_modules/@types/node/dns.d.ts",
+        "../../node_modules/@types/node/domain.d.ts",
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/fs.d.ts",
+        "../../node_modules/@types/node/fs/promises.d.ts",
+        "../../node_modules/@types/node/globals.d.ts",
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/http2.d.ts",
+        "../../node_modules/@types/node/https.d.ts",
+        "../../node_modules/@types/node/inspector.d.ts",
+        "../../node_modules/@types/node/module.d.ts",
+        "../../node_modules/@types/node/net.d.ts",
+        "../../node_modules/@types/node/os.d.ts",
+        "../../node_modules/@types/node/path.d.ts",
+        "../../node_modules/@types/node/perf_hooks.d.ts",
+        "../../node_modules/@types/node/process.d.ts",
+        "../../node_modules/@types/node/punycode.d.ts",
+        "../../node_modules/@types/node/querystring.d.ts",
+        "../../node_modules/@types/node/readline.d.ts",
+        "../../node_modules/@types/node/repl.d.ts",
+        "../../node_modules/@types/node/stream.d.ts",
+        "../../node_modules/@types/node/string_decoder.d.ts",
+        "../../node_modules/@types/node/timers.d.ts",
+        "../../node_modules/@types/node/tls.d.ts",
+        "../../node_modules/@types/node/trace_events.d.ts",
+        "../../node_modules/@types/node/tty.d.ts",
+        "../../node_modules/@types/node/url.d.ts",
+        "../../node_modules/@types/node/util.d.ts",
+        "../../node_modules/@types/node/v8.d.ts",
+        "../../node_modules/@types/node/vm.d.ts",
+        "../../node_modules/@types/node/worker_threads.d.ts",
+        "../../node_modules/@types/node/zlib.d.ts"
+      ],
+      "../../node_modules/@types/node/ts3.6/base.d.ts": [
+        "../../node_modules/@types/node/globals.global.d.ts",
+        "../../node_modules/@types/node/ts3.4/base.d.ts",
+        "../../node_modules/@types/node/wasi.d.ts"
+      ],
+      "../../node_modules/@types/node/tty.d.ts": [
+        "../../node_modules/@types/node/net.d.ts"
+      ],
+      "../../node_modules/@types/node/url.d.ts": [
+        "../../node_modules/@types/node/querystring.d.ts"
+      ],
+      "../../node_modules/@types/node/v8.d.ts": [
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../node_modules/@types/node/worker_threads.d.ts": [
+        "../../node_modules/@types/node/events.d.ts",
+        "../../node_modules/@types/node/fs/promises.d.ts",
+        "../../node_modules/@types/node/stream.d.ts",
+        "../../node_modules/@types/node/url.d.ts",
+        "../../node_modules/@types/node/vm.d.ts"
+      ],
+      "../../node_modules/@types/node/zlib.d.ts": [
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../node_modules/@types/serve-static/index.d.ts": [
+        "../../node_modules/@types/mime/index.d.ts",
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/index.d.ts"
+      ],
+      "../../node_modules/@types/superagent/index.d.ts": [
+        "../../node_modules/@types/cookiejar/index.d.ts",
+        "../../node_modules/@types/node/fs.d.ts",
+        "../../node_modules/@types/node/http.d.ts",
+        "../../node_modules/@types/node/index.d.ts",
+        "../../node_modules/@types/node/stream.d.ts"
+      ],
+      "../../src/@types/plugin.d.ts": [
+        "../../node_modules/@linkurious/rest-client/dist/index.d.ts",
+        "../../node_modules/@types/express/index.d.ts"
+      ],
+      "../../src/backend/routehandler.ts": [
+        "../../src/@types/plugin.d.ts"
+      ]
+    },
+    "semanticDiagnosticsPerFile": [
+      "../../node_modules/@linkurious/rest-client/dist/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/accessright/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/alert/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/alert/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/application/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/application/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/auth/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/auth/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/commontypes.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/config/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/config/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/customaction/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/datasource/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/displaytypes.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphedge/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphedge/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphitemtypes.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphnode/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphnode/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphquery/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/graphschema/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/linkurious/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/linkurious/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/plugin/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/search/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/search/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/user/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/user/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/visualization/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/api/visualization/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/errorlistener.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/http/request.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/http/response.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/http/types.d.ts",
+      "../../node_modules/@linkurious/rest-client/dist/src/index.d.ts",
+      "../../node_modules/@linkurious/rest-client/node_modules/@types/express/index.d.ts",
+      "../../node_modules/@types/body-parser/index.d.ts",
+      "../../node_modules/@types/connect/index.d.ts",
+      "../../node_modules/@types/cookiejar/index.d.ts",
+      "../../node_modules/@types/express-serve-static-core/index.d.ts",
+      "../../node_modules/@types/express/index.d.ts",
+      "../../node_modules/@types/mime/index.d.ts",
+      "../../node_modules/@types/node/assert.d.ts",
+      "../../node_modules/@types/node/async_hooks.d.ts",
+      "../../node_modules/@types/node/base.d.ts",
+      "../../node_modules/@types/node/buffer.d.ts",
+      "../../node_modules/@types/node/child_process.d.ts",
+      "../../node_modules/@types/node/cluster.d.ts",
+      "../../node_modules/@types/node/console.d.ts",
+      "../../node_modules/@types/node/constants.d.ts",
+      "../../node_modules/@types/node/crypto.d.ts",
+      "../../node_modules/@types/node/dgram.d.ts",
+      "../../node_modules/@types/node/dns.d.ts",
+      "../../node_modules/@types/node/domain.d.ts",
+      "../../node_modules/@types/node/events.d.ts",
+      "../../node_modules/@types/node/fs.d.ts",
+      "../../node_modules/@types/node/fs/promises.d.ts",
+      "../../node_modules/@types/node/globals.d.ts",
+      "../../node_modules/@types/node/globals.global.d.ts",
+      "../../node_modules/@types/node/http.d.ts",
+      "../../node_modules/@types/node/http2.d.ts",
+      "../../node_modules/@types/node/https.d.ts",
+      "../../node_modules/@types/node/index.d.ts",
+      "../../node_modules/@types/node/inspector.d.ts",
+      "../../node_modules/@types/node/module.d.ts",
+      "../../node_modules/@types/node/net.d.ts",
+      "../../node_modules/@types/node/os.d.ts",
+      "../../node_modules/@types/node/path.d.ts",
+      "../../node_modules/@types/node/perf_hooks.d.ts",
+      "../../node_modules/@types/node/process.d.ts",
+      "../../node_modules/@types/node/punycode.d.ts",
+      "../../node_modules/@types/node/querystring.d.ts",
+      "../../node_modules/@types/node/readline.d.ts",
+      "../../node_modules/@types/node/repl.d.ts",
+      "../../node_modules/@types/node/stream.d.ts",
+      "../../node_modules/@types/node/string_decoder.d.ts",
+      "../../node_modules/@types/node/timers.d.ts",
+      "../../node_modules/@types/node/tls.d.ts",
+      "../../node_modules/@types/node/trace_events.d.ts",
+      "../../node_modules/@types/node/ts3.4/base.d.ts",
+      "../../node_modules/@types/node/ts3.6/base.d.ts",
+      "../../node_modules/@types/node/tty.d.ts",
+      "../../node_modules/@types/node/url.d.ts",
+      "../../node_modules/@types/node/util.d.ts",
+      "../../node_modules/@types/node/v8.d.ts",
+      "../../node_modules/@types/node/vm.d.ts",
+      "../../node_modules/@types/node/wasi.d.ts",
+      "../../node_modules/@types/node/worker_threads.d.ts",
+      "../../node_modules/@types/node/zlib.d.ts",
+      "../../node_modules/@types/qs/index.d.ts",
+      "../../node_modules/@types/range-parser/index.d.ts",
+      "../../node_modules/@types/serve-static/index.d.ts",
+      "../../node_modules/@types/superagent/index.d.ts",
+      "../../node_modules/typescript/lib/lib.dom.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.collection.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.core.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.generator.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.iterable.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.promise.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.proxy.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.reflect.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.d.ts",
+      "../../node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts",
+      "../../node_modules/typescript/lib/lib.es2016.array.include.d.ts",
+      "../../node_modules/typescript/lib/lib.es2016.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.intl.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.object.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.sharedmemory.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.string.d.ts",
+      "../../node_modules/typescript/lib/lib.es2017.typedarrays.d.ts",
+      "../../node_modules/typescript/lib/lib.es2018.asyncgenerator.d.ts",
+      "../../node_modules/typescript/lib/lib.es2018.asynciterable.d.ts",
+      "../../node_modules/typescript/lib/lib.es2018.d.ts",
+      "../../node_modules/typescript/lib/lib.es2018.intl.d.ts",
+      "../../node_modules/typescript/lib/lib.es2018.promise.d.ts",
+      "../../node_modules/typescript/lib/lib.es2018.regexp.d.ts",
+      "../../node_modules/typescript/lib/lib.es2020.bigint.d.ts",
+      "../../node_modules/typescript/lib/lib.es5.d.ts",
+      "../../node_modules/typescript/lib/lib.esnext.intl.d.ts",
+      "../../src/@types/plugin.d.ts",
+      "../../src/backend/routehandler.ts"
+    ]
+  },
+  "version": "4.1.3"
+}
