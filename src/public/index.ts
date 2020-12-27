@@ -11,6 +11,7 @@ class LKEImageExport {
   public ogmaConfiguration!: IOgmaConfig;
   public ogma!: LKOgma;
   public visualizationConfiguration!: PopulatedVisualization | undefined;
+  public showCaptions: boolean = true;
 
   constructor() {
 
@@ -23,9 +24,15 @@ class LKEImageExport {
     this.ogma = new LKOgma(this.ogmaConfiguration);
     this.ogma.setContainer('graph-container');
     this.ogma.initVisualization(this.visualizationConfiguration as PopulatedVisualization);
-    this.ogma.view.locateGraph({duration: 300});
+    document.getElementById('show-captions__checkbox')?.addEventListener('change', this.updateShowCaptionsValue.bind(this))
+    this.ogma.view.locateGraph({duration: 750});
     // init button events
     document.getElementById('export-btn')?.addEventListener('click', this.exportGraph.bind(this))
+  }
+
+  public updateShowCaptionsValue(event: Event) {
+    console.log(event)
+    this.showCaptions = !this.showCaptions;
   }
 
   public exportGraph() {
@@ -34,7 +41,7 @@ class LKEImageExport {
       clip: true,
       images: true,
       legend: true,
-      texts: true
+      texts: this.showCaptions
     })
 
   }
