@@ -12,6 +12,9 @@ class LKEImageExport {
   public ogma!: LKOgma;
   public visualizationConfiguration!: PopulatedVisualization | undefined;
   public showCaptions: boolean = true;
+  private _captionSize: number = 14;
+  // type is StyleRule<LkNodeData, LkEdgeData>: need to export it from ogma-helper
+  private captionsSizeRule!: any;
 
   constructor() {
 
@@ -24,19 +27,56 @@ class LKEImageExport {
     this.ogma = new LKOgma(this.ogmaConfiguration);
     this.ogma.setContainer('graph-container');
     this.ogma.initVisualization(this.visualizationConfiguration as PopulatedVisualization);
-    document.getElementById('show-captions__checkbox')?.addEventListener('change', this.updateShowCaptionsValue.bind(this))
     this.ogma.view.locateGraph({duration: 750});
-    // init button events
-    document.getElementById('export-btn')?.addEventListener('click', this.exportGraph.bind(this))
+    this.initUIElements();
   }
 
-  public updateShowCaptionsValue(event: Event) {
-    console.log(event)
+  public get captionSize() {
+    return this._captionSize
+  }
+
+  public set captionSize(size: number) {
+    this._captionSize = size
+  }
+
+  private initUIElements() {
+    document.getElementById('show-captions__checkbox')?.addEventListener('change', this.updateShowCaptionsValue.bind(this));
+    document.getElementById('caption-size')?.addEventListener('change', this.updateCaptionSize.bind(this));
+    document.getElementById('export-btn')?.addEventListener('click', this.exportGraph.bind(this));
+  }
+
+  public updateShowCaptionsValue() {
     this.showCaptions = !this.showCaptions;
+    this.ogma.styles.setEdgeTextsVisibility(this.showCaptions);
+    this.ogma.styles.setNodeTextsVisibility(this.showCaptions);
+  }
+
+  public updateCaptionSize(event: Event) {
+    this.captionSize = parseInt((event?.target as any).value);
+    if (this.captionsSizeRule === undefined) {
+      this.captionsSizeRule = this.ogma.styles.addRule({
+        nodeAttributes: {
+          text: {
+            size: () => {
+              return this.captionSize;
+            }
+          }
+        },
+        edgeAttributes: {
+          text: {
+            size: () => {
+              return this.captionSize;
+            }
+          }
+        },
+      });
+    } else {
+      this.captionsSizeRule.refresh()
+    }
+
   }
 
   public exportGraph() {
-    console.log('clicked')
     this.ogma.export.png({
       clip: true,
       images: true,
