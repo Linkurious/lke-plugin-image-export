@@ -13,7 +13,7 @@ export = function configureRoutes(options: PluginRouteOptions<PluginConfig>): vo
         res.send(JSON.stringify(LKEConfiguration.body.ogma));
       } else {
         res.status(412);
-        res.send(JSON.stringify({status: 412, body: {message: 'there was an error ogma config'}}));
+        res.send(JSON.stringify({status: 412, body: {message: LKEConfiguration.body.message}}));
       }
     } catch (e) {
       res.status(412);
@@ -32,7 +32,7 @@ export = function configureRoutes(options: PluginRouteOptions<PluginConfig>): vo
         res.send(JSON.stringify(visualizationConfiguration.body));
       } else {
         res.status(412);
-        res.send(JSON.stringify({status: 412, body: {message: 'there was an error gettting the viz config'}}));
+        res.send(JSON.stringify({status: 412, body: {message: visualizationConfiguration.body.message}}));
       }
     } catch (e) {
       res.status(412);
