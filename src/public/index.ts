@@ -24,9 +24,12 @@ class LKEImageExport {
     this.ogmaConfiguration = await LKEImageExport.getOgmaConfiguration();
     this.visualizationConfiguration = await LKEImageExport.getVizConfiguration();
 
-    this.ogma = new LKOgma(this.ogmaConfiguration);
+    this.ogma = new LKOgma({
+      ...this.ogmaConfiguration, options: {...this.ogmaConfiguration.options, backgroundColor: "rgba(240, 240, 240)"}
+    });
     this.ogma.setContainer('graph-container');
     this.ogma.initVisualization(this.visualizationConfiguration as PopulatedVisualization);
+    this.ogma.getNodes().setAttribute('layoutable', true);
     this.ogma.view.locateGraph({duration: 750});
     this.initUIElements();
   }

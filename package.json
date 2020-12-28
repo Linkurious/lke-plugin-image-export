@@ -32,6 +32,6 @@
   "dependencies": {
     "@linkurious/rest-client": "^2.10.3",
     "body-parser": "^1.19.0",
-    "ogma-helper": "0.0.1-develop-stable.7"
+    "ogma-helper": "0.0.1-PR-6.4"
   }
 }
