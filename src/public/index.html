@@ -1,0 +1,52 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Image export plugin</title>
+    <meta name="description" content="Allow custom image export of a graph">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <base href="/">
+
+    <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+
+<!--------------------Header-------------------->
+<div class="pg-header">
+    <div class="pg-title">CUSTOM VISUALIZATION EXPORT</div>
+    <button class="primaryButton" id="export-btn">Export</button>
+</div>
+<!--------------------Body-------------------->
+<div class="pg-body">
+    <!--------------------Canvas-------------------->
+    <div class="graph-container" id="graph-container"></div>
+    <!--------------------Options-------------------->
+    <div class="export-options">
+        <div class="caption-options">
+            <div class="caption-options-title">Captions</div>
+            <div class="caption-options-visibility">
+                <span>Visibility</span>
+                <label class="switch">
+                    <input type="checkbox" class="input-checkbox" id="show-captions__checkbox" checked>
+                    <span class="switch__slider switch__slider--round"></span>
+                </label>
+            </div>
+            <div class="caption-options-size">
+                <label for="caption-size">Size</label>
+                <input id="caption-size" class="size-input" type="number" min="1" value="14">
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--------------------Script-------------------->
+<script src="index.js"></script>
+
+</body>
+
+</html>

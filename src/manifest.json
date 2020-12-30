@@ -1,0 +1,10 @@
+{
+  "name": "custom-image-export",
+  "version": "0.0.1",
+  "pluginApiVersion": "1.0.0",
+  "publicRoute": "public",
+  "singlePageAppIndex": "index.html",
+  "backendFiles": [
+    "backend/routeHandler.js"
+  ]
+}

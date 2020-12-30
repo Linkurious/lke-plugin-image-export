@@ -1,0 +1,7 @@
+{
+    "include": [], // DO NOT DELETE: mandatory to keep even if empty
+    "references": [
+        { "path": "src/public" },
+        { "path": "src/backend" }
+    ]
+}
