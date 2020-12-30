@@ -6,11 +6,12 @@
   "scripts": {
     "tsc": "tsc -b",
     "clean": "rm -rf custom-image-export.lke",
-    "build": "npm-run-all build:public build:backend copy-modules",
-    "copy-modules": "cp -R node_modules custom-image-export.lke/node_modules",
+    "build": "npm-run-all clean build:public build:backend copyManifest",
     "build:public": "tsc -b src/public && cd src/public/dist && browserify *.js --debug -o ../../../custom-image-export.lke/public/index.js && npm run copy-assets",
-    "copy-assets": "cp -R src/public/assets custom-image-export.lke/public && cp src/public/index.html custom-image-export.lke/public && cp -R src/manifest.json custom-image-export.lke/",
-    "build:backend": "tsc -b src/backend",
+    "copy-assets": "cp -R src/public/assets custom-image-export.lke/public && cp src/public/index.html custom-image-export.lke/public",
+    "build:backend": "tsc -b src/backend && npm run installProduction",
+    "installProduction": "cp package.json custom-image-export.lke && cd custom-image-export.lke && npm install --production",
+    "copyManifest": "cp -R src/manifest.json custom-image-export.lke/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,11 +31,11 @@
     "browserify": "^17.0.0",
     "express": "^4.17.1",
     "npm-run-all": "^4.1.5",
-    "typescript": "^4.1.3"
+    "typescript": "^4.1.3",
+    "@linkurious/rest-client": "^2.10.3",
+    "ogma-helper": "0.0.1-PR-6.4"
   },
   "dependencies": {
-    "@linkurious/rest-client": "^2.10.3",
-    "body-parser": "^1.19.0",
-    "ogma-helper": "0.0.1-PR-6.4"
+    "body-parser": "^1.19.0"
   }
 }
