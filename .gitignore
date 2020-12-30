@@ -1,4 +1,4 @@
-.npmrc
 node_modules
 .idea
-custom-image-export.lke
+*.lke
+dist

@@ -1,7 +1,7 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "../../custom-image-export.lke/public",
+    "outDir": "dist",
     "tsBuildInfoFile": "../../custom-image-export.lke/buildcache/public.tsbuildinfo",
     "declarationDir": "../../custom-image-export.lke/public"
   },

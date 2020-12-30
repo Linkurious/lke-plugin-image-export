@@ -6,9 +6,9 @@
   "scripts": {
     "tsc": "tsc -b",
     "clean": "rm -rf custom-image-export.lke",
-    "build": "npm-run-all clean build:public build:backend copy-modules",
+    "build": "npm-run-all build:public build:backend copy-modules",
     "copy-modules": "cp -R node_modules custom-image-export.lke/node_modules",
-    "build:public": "tsc -b src/public && cd custom-image-export.lke/public && browserify *.js --debug -o index.js && npm run copy-assets",
+    "build:public": "tsc -b src/public && cd src/public/dist && browserify *.js --debug -o ../../../custom-image-export.lke/public/index.js && npm run copy-assets",
     "copy-assets": "cp -R src/public/assets custom-image-export.lke/public && cp src/public/index.html custom-image-export.lke/public && cp -R src/manifest.json custom-image-export.lke/",
     "build:backend": "tsc -b src/backend",
     "test": "echo \"Error: no test specified\" && exit 1"
