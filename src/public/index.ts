@@ -93,7 +93,8 @@ class LKEImageExport {
       clip: true,
       images: true,
       legend: true,
-      texts: this.showCaptions
+      texts: this.showCaptions,
+      background: "rgba(240, 240, 240)"
     })
 
   }

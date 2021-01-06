@@ -218,11 +218,11 @@ button.primaryButton:hover {
     justify-content: space-between;
 }
 
-input[type='number'] {
+.size-input {
     border: 1px solid #d9d9d9;
     background-color: #fff;
     border-radius: 8px;
     display: inline-block;
-    height: 20px;
-    width: 32px;
+    height: 24px;
+    width: 42px;
 }
