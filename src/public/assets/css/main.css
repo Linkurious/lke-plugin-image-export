@@ -56,19 +56,19 @@
 
 body {
     background-color: #FDFDFD;
+    margin: 0;
+    font-family: 'Open Sans', 'Roboto', sans-serif, serif;
 }
 
 
 .pg-header {
     display: flex;
-    padding: 23px 32px 23px 32px;
+    padding: 24px 32px;
     flex-wrap: nowrap;
     justify-content: space-between;
-
 }
 
 .pg-title {
-    font-family: 'Open Sans', 'Roboto', sans-serif, serif;
     font-size: 24px;
     font-weight: 600;
 }
@@ -87,6 +87,7 @@ button.primaryButton {
     border: 1px solid #378EF0;
     cursor: pointer;
     color: #fff;
+    width: 160px;
 }
 
 button.primaryButton:hover {
@@ -98,31 +99,40 @@ button.primaryButton:hover {
     display: flex;
     flex-wrap: nowrap;
     padding: 0 32px;
+    justify-content: space-between;
 }
 
-#graph-container {
+.graph-container {
     height: 639px;
-    width: 100%;
+    width: 80%;
     border-color: #D9D9D9;
     border-radius: 8px;
     border-width: 1px;
+    padding: 5px;
+    background-color: #F0F0F0;
+}
 
+#graph-container {
+    height: 100%;
+    width: 100%;
 }
 
 .export-options {
-    width: 200px;
     border: 1px solid #D9D9D9;
     border-radius: 8px;
     padding: 16px;
     height: fit-content;
     margin-left: 32px;
     background-color: #FFFFFF;
+    min-width: 160px;
+    width: 160px;
+    box-sizing: border-box;
 }
 
 .caption-options-title {
-    font-family: 'Open Sans', 'Roboto', sans-serif, serif;
     font-size: 16px;
     font-weight: 600;
+    margin-bottom: 8px;
 }
 
 .caption-options-visibility {
@@ -208,11 +218,11 @@ button.primaryButton:hover {
     justify-content: space-between;
 }
 
-input[type='number'] {
+.size-input {
     border: 1px solid #d9d9d9;
     background-color: #fff;
     border-radius: 8px;
     display: inline-block;
-    height: 20px;
-    width: 32px;
+    height: 24px;
+    width: 42px;
 }
