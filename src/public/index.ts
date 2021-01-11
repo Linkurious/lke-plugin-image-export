@@ -61,6 +61,8 @@ class LKEImageExport {
     this.showCaptions = !this.showCaptions;
     this.ogma.styles.setEdgeTextsVisibility(this.showCaptions);
     this.ogma.styles.setNodeTextsVisibility(this.showCaptions);
+    // @ts-ignore
+    document.getElementById('caption-size')?.disabled = !this.showCaptions;
   }
 
   public updateCaptionSize(event: Event) {
