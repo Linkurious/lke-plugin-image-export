@@ -104,7 +104,7 @@ button.primaryButton:hover {
 
 .graph-container {
     height: 639px;
-    width: 80%;
+    width: 100%;
     border-color: #D9D9D9;
     border-radius: 8px;
     border-width: 1px;
