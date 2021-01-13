@@ -6,13 +6,14 @@
   "scripts": {
     "tsc": "tsc -b",
     "clean": "rm -rf custom-image-export.lke",
-    "build": "npm-run-all clean build:public build:backend copyManifest",
+    "build": "npm-run-all clean build:public build:backend copyManifest createArtifact",
     "build:public": "tsc -b src/public && cd src/public/dist && browserify *.js --debug -o ../../../custom-image-export.lke/public/index.js && npm run copy-assets",
     "copy-assets": "cp -R src/public/assets custom-image-export.lke/public && cp src/public/index.html custom-image-export.lke/public",
     "build:backend": "tsc -b src/backend && npm run installProduction",
     "installProduction": "cp package.json custom-image-export.lke && cd custom-image-export.lke && npm install --production",
     "copyManifest": "cp -R src/manifest.json custom-image-export.lke/",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "createArtifact": "cd custom-image-export.lke && npm pack",
     "postpack": "../scripts/postpack.js"
   },
   "repository": {
