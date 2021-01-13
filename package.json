@@ -12,7 +12,8 @@
     "build:backend": "tsc -b src/backend && npm run installProduction",
     "installProduction": "cp package.json custom-image-export.lke && cd custom-image-export.lke && npm install --production",
     "copyManifest": "cp -R src/manifest.json custom-image-export.lke/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postpack": "../scripts/postpack.js"
   },
   "repository": {
     "type": "git",
