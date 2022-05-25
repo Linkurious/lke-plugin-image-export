@@ -1,21 +1,9 @@
 import { LKOgma } from "@linkurious/ogma-linkurious-parser";
+import { PopulatedVisualization, IOgmaConfig } from "@linkurious/rest-client";
 import * as api from "./api";
 
-/**
- * get url params
- */
-function getURLParams(): { [key: string]: string } {
-  const url = location.search;
-  const query = url.substr(1);
-  const result: { [key: string]: string } = {};
-  query.split("&").forEach((param) => {
-    const item = param.split("=");
-    result[item[0]] = item[1];
-  });
-  return result;
-}
-
 export default class {
+  private container: HTMLDivElement;
   public ogmaConfiguration!: IOgmaConfig;
   public ogma!: LKOgma;
   public visualizationConfiguration!: PopulatedVisualization | undefined;
@@ -25,14 +13,19 @@ export default class {
   private captionsSizeRule!: any;
 
   constructor() {
+    this.createContainer();
     this.init();
+  }
+
+  private createContainer() {
+    this.container = document.createElement("div");
+    this.container.id = "ogma-container";
+    document.body.appendChild(this.container);
   }
 
   public async init() {
     this.ogmaConfiguration = await api.getOgmaConfiguration();
     this.visualizationConfiguration = await api.getVis();
-
-    console.log(this);
 
     this.ogma = new LKOgma({
       ...this.ogmaConfiguration,
@@ -41,7 +34,7 @@ export default class {
         backgroundColor: "rgba(240, 240, 240)",
       },
     });
-    this.ogma.setContainer("graph-container");
+    this.ogma.setContainer(this.container);
     this.ogma.initVisualization(
       this.visualizationConfiguration as PopulatedVisualization
     );
