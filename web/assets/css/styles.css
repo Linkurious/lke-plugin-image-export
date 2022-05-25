@@ -96,7 +96,8 @@ body {
   font-family: "Open Sans", "Roboto", sans-serif, serif;
 }
 
-#ogma-container {
+#ogma-container,
+#root {
   height: 100%;
   display: flex;
   flex-direction: column;

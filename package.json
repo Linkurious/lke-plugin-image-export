@@ -52,6 +52,8 @@
     "@types/express": "^4.17.13",
     "@types/jest": "^27.5.0",
     "@types/node": "^17.0.32",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "axios": "^0.27.2",
@@ -81,6 +83,8 @@
     "canvas": "^2.9.0",
     "express-async-handler": "^1.2.0",
     "ogma": "3.3.19",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "xmldom": "^0.6.0"
   },
   "bundleDependencies": [

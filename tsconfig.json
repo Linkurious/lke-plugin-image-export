@@ -5,6 +5,7 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "target": "es6",
+    "jsx": "react",
     "module": "commonjs",
     "esModuleInterop": true,
     "lib": ["es6", "dom"],
