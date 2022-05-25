@@ -54,6 +54,7 @@ export const AppContextProvider = ({ children }: Props) => {
       }
     );
   }, []);
+
   return (
     <AppContext.Provider
       value={

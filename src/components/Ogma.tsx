@@ -7,10 +7,9 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import { LKOgma, LKOgma as OgmaLib } from "@linkurious/ogma-linkurious-parser";
+import { LKOgma as OgmaLib } from "@linkurious/ogma-linkurious-parser";
 import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
-
-console.log(LKOgma.build);
+import { useAppContext } from "../context";
 
 interface OgmaProps {
   options?: Partial<IOgmaConfig>;
@@ -29,10 +28,11 @@ export const OgmaComponent = (
   ref?: Ref<OgmaLib>
 ) => {
   const [ready, setReady] = useState(false);
-  const [ogma, setOgma] = useState<OgmaLib | undefined>();
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const [graphData, setGraphData] = useState<PopulatedVisualization>();
   const [ogmaOptions, setOgmaOptions] = useState<IOgmaConfig>(defaultOptions);
+
+  const { ogma, setOgma } = useAppContext();
 
   useImperativeHandle(ref, () => ogma as OgmaLib, [ogma]);
 

@@ -4,6 +4,6 @@ import { useAppContext } from "../context";
 import { Ogma } from "./Ogma";
 
 export function Visualisation() {
-  const { visualisation, configuration, ogma, setOgma } = useAppContext();
+  const { visualisation, configuration } = useAppContext();
   return <Ogma graph={visualisation} options={configuration} />;
 }

@@ -2,18 +2,23 @@ import React from "react";
 import { Layout, Button } from "antd";
 import "antd/dist/antd.css";
 import { useAppContext } from "../context";
-import { Visualisation } from "./Visualisation";
-import { Panel } from "./Panel";
+import { Visualisation, Panel, Spinner, Minimap } from "../components";
 
 export function Dashboard() {
   const { loading } = useAppContext();
-  if (loading) return <div>Loading...</div>;
   return (
     <Layout>
       <Layout.Content>
-        <Visualisation />
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>
+            <Visualisation />
+            <Minimap />
+            <Panel />
+          </>
+        )}
       </Layout.Content>
-      <Panel />
     </Layout>
   );
 }
