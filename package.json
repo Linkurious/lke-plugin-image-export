@@ -80,6 +80,7 @@
   "dependencies": {
     "@linkurious/ogma-linkurious-parser": "3.1.1",
     "@linkurious/rest-client": "3.1.1",
+    "antd": "^4.20.6",
     "canvas": "^2.9.0",
     "express-async-handler": "^1.2.0",
     "ogma": "3.3.19",
