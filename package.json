@@ -78,8 +78,8 @@
     "xmldom": "^0.6.0"
   },
   "dependencies": {
-    "@linkurious/ogma-linkurious-parser": "3.0.12",
-    "@linkurious/rest-client": "3.0.12",
+    "@linkurious/ogma-linkurious-parser": "3.1.1",
+    "@linkurious/rest-client": "3.1.1",
     "canvas": "^2.9.0",
     "express-async-handler": "^1.2.0",
     "ogma": "3.3.19",

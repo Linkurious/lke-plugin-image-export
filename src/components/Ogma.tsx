@@ -7,8 +7,10 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import { LKOgma as OgmaLib } from "@linkurious/ogma-linkurious-parser";
+import { LKOgma, LKOgma as OgmaLib } from "@linkurious/ogma-linkurious-parser";
 import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
+
+console.log(LKOgma.build);
 
 interface OgmaProps {
   options?: Partial<IOgmaConfig>;
