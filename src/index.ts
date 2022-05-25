@@ -1,36 +1,5 @@
 import { LKOgma } from "@linkurious/ogma-linkurious-parser";
-import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
-import xhr from "axios";
-
-async function getOgmaConfiguration(): Promise<IOgmaConfig> {
-  try {
-    return (await xhr.get<IOgmaConfig>(`api/getOgmaConfiguration`)).data;
-  } catch (e) {
-    console.error(e);
-    return {};
-  }
-}
-
-/**
- * make a request to get viz configuration
- * @returns {Promise<void>}
- */
-async function getVizConfiguration(): Promise<
-  PopulatedVisualization | undefined
-> {
-  try {
-    const params = getURLParams();
-    return (
-      await xhr.get<PopulatedVisualization>(
-        `api/getVisualizationConfiguration/`,
-        { params }
-      )
-    ).data;
-  } catch (e) {
-    console.error(e);
-    return;
-  }
-}
+import * as api from "./api";
 
 /**
  * get url params
@@ -55,11 +24,15 @@ export default class {
   // type is StyleRule<LkNodeData, LkEdgeData>: need to export it from ogma-helper
   private captionsSizeRule!: any;
 
-  constructor() {}
+  constructor() {
+    this.init();
+  }
 
   public async init() {
-    this.ogmaConfiguration = await getOgmaConfiguration();
-    this.visualizationConfiguration = await getVizConfiguration();
+    this.ogmaConfiguration = await api.getOgmaConfiguration();
+    this.visualizationConfiguration = await api.getVis();
+
+    console.log(this);
 
     this.ogma = new LKOgma({
       ...this.ogmaConfiguration,
@@ -110,7 +83,7 @@ export default class {
     this.ogma.styles.setEdgeTextsVisibility(this.showCaptions);
     this.ogma.styles.setNodeTextsVisibility(this.showCaptions);
     // @ts-ignore
-    document.getElementById("caption-size")?.disabled = !this.showCaptions;
+    //document.getElementById("caption-size")?.disabled = !this.showCaptions;
   }
 
   public updateCaptionSize(event: Event) {
@@ -146,9 +119,4 @@ export default class {
       background: "rgba(240, 240, 240)",
     });
   }
-
-  /**
-   * make a request to get ogma configuration
-   * @returns {Promise<void>}
-   */
 }
