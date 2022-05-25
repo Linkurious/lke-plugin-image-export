@@ -1,8 +1,13 @@
-const nock = require("nock");
+const jsonServer = require("json-server");
+const server = jsonServer.create();
 
-const scope = nock("http://localhost:5001/api")
-  .get("/getVisualizationConfiguration")
-  .reply(200, {})
-  .get("/getOgmaConfiguration")
-  .reply(200, {})
-  .persist();
+const router = jsonServer.router("scripts/db.json");
+const middlewares = jsonServer.defaults();
+
+// GET '/api/configuration'
+// GET '/api/vis/:id'
+server.use(middlewares);
+server.use("/api", router);
+server.listen(3000, () => {
+  console.log("JSON Server is running");
+});
