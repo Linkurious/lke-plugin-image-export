@@ -1,7 +1,16 @@
 {
-    "include": [], // DO NOT DELETE: mandatory to keep even if empty
-    "references": [
-        { "path": "src/public" },
-        { "path": "src/backend" }
-    ]
+  "compilerOptions": {
+    "outDir": "./dist",
+    "allowJs": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "target": "es6",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "lib": ["es6", "dom"],
+    "types": ["node", "jest"]
+  },
+  "typeRoots": ["./src/types"],
+  "include": ["./src/**/*", "./lib/**/*"],
+  "exclude": ["node_modules"]
 }
