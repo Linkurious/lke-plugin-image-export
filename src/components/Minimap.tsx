@@ -14,10 +14,8 @@ export function Minimap() {
         .json({ download: false, nodeData: () => null, edgeData: () => null })
         .then((json) => {
           const svgString = preview(json, { size: 150 });
-          setSvg(svgString);
-          // const div = document.createElement("div");
-          // div.innerHTML = svgString;
-          // setSvg(div.firstChild as SVGSVGElement);
+          // encodeURIComponent is heavy, so do it only on change
+          setSvg(encodeURIComponent(svgString));
         });
     });
   }, [ogma]);
@@ -25,7 +23,7 @@ export function Minimap() {
   if (!ogma) return null;
   return (
     <div className="minimap">
-      <img src={`data:image/svg+xml;utf8,${encodeURIComponent(svg)}`} />
+      <img src={`data:image/svg+xml;utf8,${svg}`} />
     </div>
   );
 }
