@@ -114,7 +114,7 @@ body {
   padding: 2em;
 }
 
-.minimap {
+.ogma-mini-map {
   position: absolute;
   right: 20px;
   bottom: 20px;

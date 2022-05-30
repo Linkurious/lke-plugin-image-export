@@ -79,8 +79,8 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@linkurious/mini-svg-exporter": "^0.0.4",
     "@linkurious/ogma-linkurious-parser": "3.1.1",
+    "@linkurious/ogma-mini-map": "^0.0.6",
     "@linkurious/rest-client": "3.1.1",
     "antd": "^4.20.6",
     "canvas": "^2.9.0",

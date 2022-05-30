@@ -1,29 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { svg as preview } from "@linkurious/mini-svg-exporter";
+import MinimapControl from "@linkurious/ogma-mini-map";
 import { useAppContext } from "../context";
 
 export function Minimap() {
   const { ogma } = useAppContext();
 
-  const [svg, setSvg] = useState<string>("");
-
   useEffect(() => {
-    if (!ogma) return;
-    ogma.events.on(["addNodes", "addEdges"], () => {
-      ogma.export
-        .json({ download: false, nodeData: () => null, edgeData: () => null })
-        .then((json) => {
-          const svgString = preview(json, { size: 150 });
-          // encodeURIComponent is heavy, so do it only on change
-          setSvg(encodeURIComponent(svgString));
-        });
-    });
+    let minimap: MinimapControl;
+    if (ogma)
+      minimap = new MinimapControl(ogma, {
+        width: 150,
+        height: 150,
+      });
+    return () => {
+      if (minimap) minimap.destroy();
+    };
   }, [ogma]);
 
-  if (!ogma) return null;
-  return (
-    <div className="minimap">
-      <img src={`data:image/svg+xml;utf8,${svg}`} />
-    </div>
-  );
+  return null;
 }
