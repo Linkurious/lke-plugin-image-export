@@ -4,7 +4,7 @@ import { FormatType } from "../types/formats";
 
 export const FormatInfo: FC<FormatType> = ({ label, value }) => {
   const { ogma, boundingBox } = useAppContext();
-  const [zoom, setZoom] = useState(1);
+  const [, setZoom] = useState(1);
   let dimensions = "";
 
   useEffect(() => {

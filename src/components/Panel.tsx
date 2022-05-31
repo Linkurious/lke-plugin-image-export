@@ -12,15 +12,19 @@ import {
 import { fontSizes, formats } from "../constants";
 import { FormatType } from "../types/formats";
 import { FormatInfo } from "./FormatInfo";
+import { useAppContext } from "../context";
 
 type SizeType = Parameters<typeof Form>[0]["size"];
 
 export function Panel() {
+  const { ogma } = useAppContext();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
   );
   const [currentFormat, setCurrentFormat] = useState<FormatType>(formats[0]);
+  const [textsVisible, setTextsVisible] = useState(true);
+  const [overlapRemoval, setOverlapRemoval] = useState(true);
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(size);
   };
@@ -57,13 +61,30 @@ export function Panel() {
           >
             <Typography.Title level={5}>Captions</Typography.Title>
             <Form.Item label="Visibility" valuePropName="checked">
-              <Switch size="small" checked />
+              <Switch
+                size="small"
+                checked={textsVisible}
+                onChange={() => {
+                  ogma.styles.setEdgeTextsVisibility(!textsVisible);
+                  ogma.styles.setNodeTextsVisibility(!textsVisible);
+                  setTextsVisible(!textsVisible);
+                }}
+              />
             </Form.Item>
             <Form.Item label="Text wrapping" valuePropName="checked">
               <Switch size="small" />
             </Form.Item>
             <Form.Item label="Collision removal" valuePropName="checked">
-              <Switch size="small" checked />
+              <Switch
+                size="small"
+                checked={overlapRemoval}
+                onChange={() => {
+                  ogma.setOptions({
+                    texts: { preventOverlap: !overlapRemoval },
+                  });
+                  setOverlapRemoval(!overlapRemoval);
+                }}
+              />
             </Form.Item>
             <Form.Item label="Size" valuePropName="checked">
               <Select
