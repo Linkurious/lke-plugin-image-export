@@ -30,9 +30,8 @@ export const OgmaComponent = (
   const [ready, setReady] = useState(false);
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const [graphData, setGraphData] = useState<PopulatedVisualization>();
-  const [ogmaOptions, setOgmaOptions] = useState<IOgmaConfig>(defaultOptions);
 
-  const { ogma, setOgma } = useAppContext();
+  const { ogma, setBoundingBox } = useAppContext();
 
   useImperativeHandle(ref, () => ogma as OgmaLib, [ogma]);
 
@@ -40,11 +39,10 @@ export const OgmaComponent = (
     if (container) {
       const instance = new OgmaLib(options);
       instance.setContainer(container);
-      setOgma(instance);
       setReady(true);
       if (onReady) onReady(instance);
     }
-  }, [setOgma, container]);
+  }, [container]);
 
   // resize handler
   useLayoutEffect(() => {
@@ -63,12 +61,23 @@ export const OgmaComponent = (
         ogma.view.locateGraph();
         ogma.view.forceResize();
       }
-      // if (options && ogmaOptions !== options) {
-      //   setOgmaOptions(options);
-      //   ogma.setOptions(options);
-      // }
     }
   }, [graph, options, ogma]);
+
+  useEffect(() => {
+    const updateBbox = () => {
+      if (ogma) setBoundingBox(ogma.view.getGraphBoundingBox());
+    };
+    if (ogma) {
+      ogma.events.on(
+        ["addNodes", "addEdges", "layoutEnd", "nodesDragEnd"],
+        updateBbox
+      );
+    }
+    return () => {
+      ogma?.events.off(updateBbox);
+    };
+  }, [ogma]);
 
   return (
     <div

@@ -9,4 +9,10 @@ const antIcon = (
   />
 );
 
-export const Spinner: FC = () => <Spin indicator={antIcon} />;
+export const Spinner: FC = () => (
+  <Spin
+    indicator={antIcon}
+    size="large"
+    style={{ position: "absolute", top: "50%", left: "50%" }}
+  />
+);

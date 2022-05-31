@@ -1,5 +1,6 @@
 import { LKOgma } from "@linkurious/ogma-linkurious-parser";
 import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
+import { BoundingBox } from "ogma";
 import React, {
   createContext,
   useContext,
@@ -17,6 +18,8 @@ interface IAppContext {
   loading: boolean;
   ogma: LKOgma;
   setOgma: (ogma: LKOgma) => void;
+  boundingBox: BoundingBox;
+  setBoundingBox: (boundingBox: BoundingBox) => void;
 
   // TODO: export configuration to the app
 }
@@ -44,6 +47,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [loading, setLoading] = useState(true);
   const [configuration, setConfig] = useState<IOgmaConfig>();
   const [ogma, setOgma] = useState<LKOgma>();
+  const [boundingBox, setBoundingBox] = useState<BoundingBox>();
 
   useEffect(() => {
     Promise.all([api.getVisualisation(), api.getConfiguration()]).then(
@@ -58,7 +62,15 @@ export const AppContextProvider = ({ children }: Props) => {
   return (
     <AppContext.Provider
       value={
-        { visualisation, configuration, loading, ogma, setOgma } as IAppContext
+        {
+          visualisation,
+          configuration,
+          loading,
+          ogma,
+          setOgma,
+          boundingBox,
+          setBoundingBox,
+        } as IAppContext
       }
     >
       {children}

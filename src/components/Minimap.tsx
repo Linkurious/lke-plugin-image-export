@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import MinimapControl from "@linkurious/ogma-mini-map";
 import { useAppContext } from "../context";
 
