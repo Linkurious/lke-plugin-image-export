@@ -134,3 +134,47 @@ body {
 .panel--controls {
   padding: 12px 16px;
 }
+
+.preview--modal {
+  top: 2em;
+}
+
+.preview--modal .ant-modal-body {
+  padding: 0;
+}
+
+.preview--progressbar {
+  padding: 2em;
+}
+
+.image-viewer {
+  max-width: 100%;
+  max-height: 70vh;
+}
+
+.image-viewer--wrapper {
+  margin: 0 auto !important;
+  height: 80vh;
+  min-width: 100%;
+  max-width: 100%;
+  background-color: #ddd;
+}
+
+.image-viewer--tools {
+  margin-top: -2em;
+  text-align: right;
+}
+
+.image-viewer--tools button {
+  color: #595959;
+}
+
+.image-viewer--tools button > .anticon {
+  font-size: 22px;
+}
+
+.image-viewer--content {
+  background-color: #fff;
+  /* width: 80vw;
+  text-align: center; */
+}

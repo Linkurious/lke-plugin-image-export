@@ -13,6 +13,7 @@ import { fontSizes, formats } from "../constants";
 import { FormatType } from "../types/formats";
 import { FormatInfo } from "./FormatInfo";
 import { useAppContext } from "../context";
+import { PreviewModal } from "./PreviewModal";
 
 type SizeType = Parameters<typeof Form>[0]["size"];
 
@@ -126,16 +127,12 @@ export function Panel() {
         <Button type="primary" onClick={showModal}>
           Preview
         </Button>
-        <Modal
-          title="Basic Modal"
+        <PreviewModal
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
-        >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </Modal>
+          format={currentFormat}
+        />
       </div>
     </div>
   );
