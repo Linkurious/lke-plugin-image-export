@@ -26,6 +26,7 @@ export function Panel() {
   const [currentFormat, setCurrentFormat] = useState<FormatType>(formats[0]);
   const [textsVisible, setTextsVisible] = useState(true);
   const [overlapRemoval, setOverlapRemoval] = useState(true);
+  const [snapping, setSnapping] = useState(false);
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(size);
   };
@@ -102,7 +103,17 @@ export function Panel() {
             </Form.Item>
             <Divider />
             <Form.Item label="Snapping" valuePropName="checked">
-              <Switch size="small" />
+              <Switch
+                size="small"
+                onChange={() => {
+                  if (!snapping)
+                    ogma.tools.snapping.enable({
+                      neighbours: {},
+                    });
+                  else ogma.tools.snapping.disable();
+                  setSnapping(!snapping);
+                }}
+              />
             </Form.Item>
             <Divider />
             <Typography.Title level={5}>Format</Typography.Title>
