@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { Modal, ModalFuncProps, Progress } from "antd";
+import { Button, Modal, ModalFuncProps, Progress } from "antd";
 import { FormatType } from "../types/formats";
 import { useAppContext } from "../context";
 import { svg } from "@linkurious/png-export-stitch";
@@ -50,6 +50,15 @@ export const PreviewModal: FC<Props> = ({
       onOk={onOk}
       onCancel={onCancel}
       width={"80vw"}
+      footer={[
+        <span key="info">Info</span>,
+        <Button key="ok" onClick={onOk}>
+          Save
+        </Button>,
+        <Button key="cancel" onClick={onCancel}>
+          Cancel
+        </Button>,
+      ]}
     >
       <div className="preview--container">
         {loading && (

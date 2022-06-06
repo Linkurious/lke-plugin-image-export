@@ -54,20 +54,23 @@ const ZoomWrapper: FC<{
             </TransformComponent>
             <div className="image-viewer--tools">
               <Button
+                onClick={() => resetTransform()}
+                size="small"
+                className="fit-button"
+                title="Reset"
+                icon={<ExpandOutlined />}
+              />
+              <Button
                 onClick={() => zoomIn()}
                 size="small"
+                title="Zoom in"
                 icon={<PlusSquareOutlined />}
               />
               <Button
                 onClick={() => zoomOut()}
                 size="small"
+                title="Zoom out"
                 icon={<MinusSquareOutlined />}
-              />
-              <Button
-                onClick={() => resetTransform()}
-                size="small"
-                color="grey-8"
-                icon={<ExpandOutlined />}
               />
             </div>
           </>
