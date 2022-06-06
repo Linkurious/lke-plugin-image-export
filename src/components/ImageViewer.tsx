@@ -1,53 +1,89 @@
+import React, { FC } from "react";
 import { Button } from "antd";
-import React from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import { PlusCircleFilled, MinusCircleFilled } from "@ant-design/icons";
+import {
+  ExpandOutlined,
+  MinusSquareOutlined,
+  PlusSquareOutlined,
+} from "@ant-design/icons";
 import { Size } from "@linkurious/ogma";
+import { useDimensions } from "../hooks";
 
-export const ImageViewer = ({ svg, size }: { svg: string; size: Size }) => {
+const ZoomWrapper: FC<{
+  size: Size;
+  dimensions: DOMRect;
+  svg: string;
+  zoomStep?: number;
+  minScale?: number;
+  maxScale?: number;
+}> = ({
+  svg,
+  size,
+  dimensions,
+  zoomStep = 0.05,
+  minScale = 0.01,
+  maxScale = 100,
+}) => {
+  const k = Math.min(
+    dimensions.width / size.width,
+    dimensions.height / size.height
+  );
+  const x = (dimensions.width - size.width * k) / 2;
+  const y = (dimensions.height - size.height * k) / 2;
   return (
     <TransformWrapper
-      wheel={{ step: 0.02 }}
-      minScale={0.01}
-      maxScale={100}
-      // initialPositionX={0.5 * size.width}
-      // initialPositionY={0.5 * size.height}
+      wheel={{ step: zoomStep }}
+      minScale={minScale}
+      maxScale={maxScale}
+      initialScale={k}
+      initialPositionX={x}
+      initialPositionY={y}
       limitToBounds={false}
-      centerOnInit={true}
     >
-      {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
-        <>
-          <TransformComponent
-            contentClass="image-viewer"
-            wrapperClass="image-viewer--wrapper"
-          >
-            <div
-              className="image-viewer--content"
-              dangerouslySetInnerHTML={{ __html: svg }}
-            />
-          </TransformComponent>
-          <div className="image-viewer--tools">
-            <Button
-              onClick={() => zoomIn()}
-              shape="circle"
-              size="small"
-              icon={<PlusCircleFilled />}
-            />
-            <Button
-              onClick={() => zoomOut()}
-              shape="circle"
-              size="small"
-              icon={<MinusCircleFilled />}
-            />
-            <Button
-              onClick={() => resetTransform()}
-              size="small"
-              shape="circle"
-              color="grey-8"
-            />
-          </div>
-        </>
-      )}
+      {({ zoomIn, zoomOut, resetTransform }) => {
+        return (
+          <>
+            <TransformComponent
+              contentClass="image-viewer"
+              wrapperClass="image-viewer--wrapper"
+            >
+              <div
+                className="image-viewer--content"
+                dangerouslySetInnerHTML={{ __html: svg }}
+              />
+            </TransformComponent>
+            <div className="image-viewer--tools">
+              <Button
+                onClick={() => zoomIn()}
+                size="small"
+                icon={<PlusSquareOutlined />}
+              />
+              <Button
+                onClick={() => zoomOut()}
+                size="small"
+                icon={<MinusSquareOutlined />}
+              />
+              <Button
+                onClick={() => resetTransform()}
+                size="small"
+                color="grey-8"
+                icon={<ExpandOutlined />}
+              />
+            </div>
+          </>
+        );
+      }}
     </TransformWrapper>
+  );
+};
+
+export const ImageViewer = ({ svg, size }: { svg: string; size: Size }) => {
+  const [ref, dimensions] = useDimensions();
+  return (
+    <div className="image-viewer--container" ref={ref} style={{ flex: 1 }}>
+      {dimensions && (
+        <ZoomWrapper size={size} dimensions={dimensions} svg={svg} />
+      )}
+    </div>
   );
 };

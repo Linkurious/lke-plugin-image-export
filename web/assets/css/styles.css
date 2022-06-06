@@ -141,6 +141,7 @@ body {
 
 .preview--modal .ant-modal-body {
   padding: 0;
+  min-height: 70vh;
 }
 
 .preview--progressbar {
@@ -160,9 +161,17 @@ body {
   background-color: #ddd;
 }
 
+.image-viewer--container {
+  display: flex;
+  min-height: 70vh;
+  flex-direction: column;
+}
+
 .image-viewer--tools {
-  margin-top: -2em;
-  text-align: right;
+  display: flex;
+  align-self: end;
+  margin-top: -3em;
+  margin-right: 1em;
 }
 
 .image-viewer--tools button {
