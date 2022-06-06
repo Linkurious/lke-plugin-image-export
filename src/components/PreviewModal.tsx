@@ -5,6 +5,7 @@ import { useAppContext } from "../context";
 import { svg } from "@linkurious/png-export-stitch";
 import { Size } from "@linkurious/ogma";
 import { ImageViewer } from "./ImageViewer";
+import { DownloadOutlined } from "@ant-design/icons";
 
 interface Props extends ModalFuncProps {
   format: FormatType;
@@ -51,8 +52,10 @@ export const PreviewModal: FC<Props> = ({
       onCancel={onCancel}
       width={"80vw"}
       footer={[
-        <span key="info">Info</span>,
-        <Button key="ok" onClick={onOk}>
+        <span key="preview-info" className="preview--info">
+          Info
+        </span>,
+        <Button key="ok" onClick={onOk} icon={<DownloadOutlined />}>
           Save
         </Button>,
         <Button key="cancel" onClick={onCancel}>

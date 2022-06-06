@@ -191,3 +191,7 @@ body {
   /* width: 80vw;
   text-align: center; */
 }
+
+.preview--info {
+  margin-right: 2em;
+}
