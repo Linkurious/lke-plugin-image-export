@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Modal,
   Button,
@@ -8,14 +8,26 @@ import {
   Form,
   Select,
   Switch,
+  Slider,
 } from "antd";
-import { fontSizes, formats } from "../constants";
+import { formats } from "../constants";
 import { FormatType } from "../types/formats";
 import { FormatInfo } from "./FormatInfo";
 import { useAppContext } from "../context";
 import { PreviewModal } from "./PreviewModal";
+import { StyleRule } from "@linkurious/ogma";
 
 type SizeType = Parameters<typeof Form>[0]["size"];
+
+const marks: Record<number, string> = {
+  10: "10%",
+  50: "50%",
+  100: "100%",
+  200: "200%",
+  300: "300%",
+};
+
+const fontSize = { ratio: 1 };
 
 export function Panel() {
   const { ogma } = useAppContext();
@@ -27,13 +39,15 @@ export function Panel() {
   const [textsVisible, setTextsVisible] = useState(true);
   const [overlapRemoval, setOverlapRemoval] = useState(true);
   const [snapping, setSnapping] = useState(false);
+
+  const [fontSizeRule, setFontSizeRule] = useState<StyleRule>();
   const onFormLayoutChange = ({ size }: { size: SizeType }) => {
     setComponentSize(size);
   };
 
-  const showModal = () => {
+  const showModal = useCallback(() => {
     setIsModalVisible(true);
-  };
+  }, []);
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -42,6 +56,32 @@ export function Panel() {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
+  useEffect(() => {
+    fontSize.ratio = 1;
+    if (ogma) {
+      const rule = ogma.styles.addRule({
+        nodeAttributes: {
+          text: {
+            size: (node) => {
+              if (node) return +node.getAttribute("text.size") * fontSize.ratio;
+            },
+          },
+        },
+        edgeAttributes: {
+          text: {
+            size: (edge) => {
+              if (edge) return +edge.getAttribute("text.size") * fontSize.ratio;
+            },
+          },
+        },
+      });
+      setFontSizeRule(rule);
+    }
+    return () => {
+      fontSize.ratio = 1;
+    };
+  }, [ogma]);
 
   return (
     <div className="panel">
@@ -88,8 +128,22 @@ export function Panel() {
                 }}
               />
             </Form.Item>
-            <Form.Item label="Size" valuePropName="checked">
-              <Select
+            <div>
+              <span>Text size</span>
+              <Slider
+                tipFormatter={(value) => `${value}%`}
+                marks={marks}
+                included={false}
+                min={1}
+                max={300}
+                defaultValue={100}
+                onChange={(value) => {
+                  fontSize.ratio = value / 100;
+                  if (fontSizeRule) fontSizeRule.refresh();
+                }}
+              />
+
+              {/* <Select
                 style={{ width: 130 }}
                 defaultValue={1}
                 onChange={(index) => console.log(fontSizes[index])}
@@ -99,8 +153,8 @@ export function Panel() {
                     {item.label}
                   </Select.Option>
                 ))}
-              </Select>
-            </Form.Item>
+              </Select> */}
+            </div>
             <Divider />
             <Form.Item label="Snapping" valuePropName="checked">
               <Switch
