@@ -81,7 +81,7 @@ export const OgmaComponent = (
 
   return (
     <div
-      style={{ width: "100%", height: "100%", flex: 1 }}
+      className="visualisation--container"
       ref={(containerRef) => setContainer(containerRef)}
     >
       {ready && children}
