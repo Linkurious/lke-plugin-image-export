@@ -113,9 +113,6 @@ export function Panel() {
                 }}
               />
             </Form.Item>
-            <Form.Item label="Text wrapping" valuePropName="checked">
-              <Switch size="small" />
-            </Form.Item>
             <Form.Item label="Collision removal" valuePropName="checked">
               <Switch
                 size="small"

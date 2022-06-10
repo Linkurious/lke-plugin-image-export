@@ -9,16 +9,18 @@ body {
   font-family: "roboto";
   font-style: normal;
   font-weight: 400;
-  src: url("fonts/roboto-v20-latin-regular.eot"); /* IE9 Compat Modes */
+  src: url("/assets/css/fonts/roboto-v20-latin-regular.eot"); /* IE9 Compat Modes */
   src: local("Roboto"), local("Roboto-Regular"),
-    url("fonts/roboto-v20-latin-regular.eot?#iefix") format("embedded-opentype"),
-    /* IE6-IE8 */ url("fonts/roboto-v20-latin-regular.woff2") format("woff2"),
-    /* Super Modern Browsers */ url("fonts/roboto-v20-latin-regular.woff")
-      format("woff"),
-    /* Modern Browsers */ url("fonts/roboto-v20-latin-regular.ttf")
+    url("/assets/css/fonts/roboto-v20-latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("/assets/css/fonts/roboto-v20-latin-regular.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("/assets/css/fonts/roboto-v20-latin-regular.woff") format("woff"),
+    /* Modern Browsers */ url("/assets/css/fonts/roboto-v20-latin-regular.ttf")
       format("truetype"),
-    /* Safari, Android, iOS */ url("fonts/roboto-v20-latin-regular.svg#Roboto")
-      format("svg"); /* Legacy iOS */
+    /* Safari, Android, iOS */
+      url("/assets/css/fonts/roboto-v20-latin-regular.svg#Roboto") format("svg"); /* Legacy iOS */
 }
 
 /* roboto-italic - latin */
@@ -26,16 +28,18 @@ body {
   font-family: "roboto";
   font-style: italic;
   font-weight: 400;
-  src: url("fonts/roboto-v20-latin-italic.eot"); /* IE9 Compat Modes */
+  src: url("/assets/css/fonts/roboto-v20-latin-italic.eot"); /* IE9 Compat Modes */
   src: local("Roboto Italic"), local("Roboto-Italic"),
-    url("fonts/roboto-v20-latin-italic.eot?#iefix") format("embedded-opentype"),
-    /* IE6-IE8 */ url("fonts/roboto-v20-latin-italic.woff2") format("woff2"),
-    /* Super Modern Browsers */ url("fonts/roboto-v20-latin-italic.woff")
-      format("woff"),
-    /* Modern Browsers */ url("fonts/roboto-v20-latin-italic.ttf")
+    url("/assets/css/fonts/roboto-v20-latin-italic.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("/assets/css/fonts/roboto-v20-latin-italic.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("/assets/css/fonts/roboto-v20-latin-italic.woff") format("woff"),
+    /* Modern Browsers */ url("/assets/css/fonts/roboto-v20-latin-italic.ttf")
       format("truetype"),
-    /* Safari, Android, iOS */ url("fonts/roboto-v20-latin-italic.svg#Roboto")
-      format("svg"); /* Legacy iOS */
+    /* Safari, Android, iOS */
+      url("/assets/css/fonts/roboto-v20-latin-italic.svg#Roboto") format("svg"); /* Legacy iOS */
 }
 
 /* roboto-500 - latin */
@@ -43,16 +47,18 @@ body {
   font-family: "roboto";
   font-style: normal;
   font-weight: 500;
-  src: url("fonts/roboto-v20-latin-500.eot"); /* IE9 Compat Modes */
+  src: url("/assets/css/fonts/roboto-v20-latin-500.eot"); /* IE9 Compat Modes */
   src: local("Roboto Medium"), local("Roboto-Medium"),
-    url("fonts/roboto-v20-latin-500.eot?#iefix") format("embedded-opentype"),
-    /* IE6-IE8 */ url("fonts/roboto-v20-latin-500.woff2") format("woff2"),
-    /* Super Modern Browsers */ url("fonts/roboto-v20-latin-500.woff")
-      format("woff"),
-    /* Modern Browsers */ url("fonts/roboto-v20-latin-500.ttf")
+    url("/assets/css/fonts/roboto-v20-latin-500.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("/assets/css/fonts/roboto-v20-latin-500.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("/assets/css/fonts/roboto-v20-latin-500.woff") format("woff"),
+    /* Modern Browsers */ url("/assets/css/fonts/roboto-v20-latin-500.ttf")
       format("truetype"),
-    /* Safari, Android, iOS */ url("fonts/roboto-v20-latin-500.svg#Roboto")
-      format("svg"); /* Legacy iOS */
+    /* Safari, Android, iOS */
+      url("/assets/css/fonts/roboto-v20-latin-500.svg#Roboto") format("svg"); /* Legacy iOS */
 }
 
 /* roboto-700 - latin */
@@ -60,16 +66,18 @@ body {
   font-family: "roboto";
   font-style: normal;
   font-weight: bold;
-  src: url("fonts/roboto-v20-latin-700.eot"); /* IE9 Compat Modes */
+  src: url("/assets/css/fonts/roboto-v20-latin-700.eot"); /* IE9 Compat Modes */
   src: local("Roboto Bold"), local("Roboto-Bold"),
-    url("fonts/roboto-v20-latin-700.eot?#iefix") format("embedded-opentype"),
-    /* IE6-IE8 */ url("fonts/roboto-v20-latin-700.woff2") format("woff2"),
-    /* Super Modern Browsers */ url("fonts/roboto-v20-latin-700.woff")
-      format("woff"),
-    /* Modern Browsers */ url("fonts/roboto-v20-latin-700.ttf")
+    url("/assets/css/fonts/roboto-v20-latin-700.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("/assets/css/fonts/roboto-v20-latin-700.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("/assets/css/fonts/roboto-v20-latin-700.woff") format("woff"),
+    /* Modern Browsers */ url("/assets/css/fonts/roboto-v20-latin-700.ttf")
       format("truetype"),
-    /* Safari, Android, iOS */ url("fonts/roboto-v20-latin-700.svg#Roboto")
-      format("svg"); /* Legacy iOS */
+    /* Safari, Android, iOS */
+      url("/assets/css/fonts/roboto-v20-latin-700.svg#Roboto") format("svg"); /* Legacy iOS */
 }
 
 /*
@@ -78,13 +86,13 @@ body {
  */
 @font-face {
   font-family: "FontAwesome";
-  src: url("fonts/fontawesome-webfont.eot?v=4.6.3");
-  src: url("fonts/fontawesome-webfont.eot?#iefix&v=4.6.3")
+  src: url("/assets/css/fonts/fontawesome-webfont.eot?v=4.6.3");
+  src: url("/assets/css/fonts/fontawesome-webfont.eot?#iefix&v=4.6.3")
       format("embedded-opentype"),
-    url("fonts/fontawesome-webfont.woff2?v=4.6.3") format("woff2"),
-    url("fonts/fontawesome-webfont.woff?v=4.6.3") format("woff"),
-    url("fonts/fontawesome-webfont.ttf?v=4.6.3") format("truetype"),
-    url("fonts/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular")
+    url("/assets/css/fonts/fontawesome-webfont.woff2?v=4.6.3") format("woff2"),
+    url("/assets/css/fonts/fontawesome-webfont.woff?v=4.6.3") format("woff"),
+    url("/assets/css/fonts/fontawesome-webfont.ttf?v=4.6.3") format("truetype"),
+    url("/assets/css/fonts/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular")
       format("svg");
   font-weight: normal;
   font-style: normal;
@@ -149,6 +157,10 @@ body {
 .preview--modal .ant-modal-body {
   padding: 0;
   min-height: 70vh;
+}
+
+.ant-modal-mask {
+  backdrop-filter: blur(10px);
 }
 
 .preview--progressbar {
