@@ -146,6 +146,10 @@ body {
   z-index: 100;
 }
 
+.overlay {
+  opacity: 0.5;
+  border: 2px solid red;
+}
 .panel--controls {
   padding: 12px 16px;
 }
