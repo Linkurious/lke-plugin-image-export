@@ -31,7 +31,8 @@ export const OgmaComponent = (
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const [graphData, setGraphData] = useState<PopulatedVisualization>();
 
-  const { ogma, setBoundingBox } = useAppContext();
+  const { ogma, setBoundingBox, format } = useAppContext();
+  const layers = [];
 
   useImperativeHandle(ref, () => ogma as OgmaLib, [ogma]);
 
@@ -43,6 +44,11 @@ export const OgmaComponent = (
       if (onReady) onReady(instance);
     }
   }, [container]);
+
+
+  useEffect(() => {
+    console.log('format change, update layers', format)
+  }, [format]);
 
   // resize handler
   useLayoutEffect(() => {
@@ -60,6 +66,11 @@ export const OgmaComponent = (
         ogma.initVisualization(graph);
         ogma.view.locateGraph();
         ogma.view.forceResize();
+        layers.push(...new Array(4).map((_, i) =>{
+          const div = document.createElement('div');
+          div.classList.add('overlay');
+          return ogma.layers.addLayer(div);
+        }))
       }
     }
   }, [graph, options, ogma]);

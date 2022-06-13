@@ -11,10 +11,14 @@ import React, {
 } from "react";
 
 import * as api from "../api";
+import { FormatType } from "../types/formats";
+import { formats } from "../constants";
 
 interface IAppContext {
   visualisation: PopulatedVisualization;
   configuration: IOgmaConfig;
+  format: FormatType;
+  setFormat: (format: FormatType) => void;
   loading: boolean;
   ogma: LKOgma;
   setOgma: (ogma: LKOgma) => void;
@@ -46,6 +50,8 @@ export const AppContextProvider = ({ children }: Props) => {
   const [visualisation, setVis] = useState<PopulatedVisualization>();
   const [loading, setLoading] = useState(true);
   const [configuration, setConfig] = useState<IOgmaConfig>();
+  const [format, setFormat] = useState<FormatType>(formats[0]);
+
   const [ogma, setOgma] = useState<LKOgma>();
   const [boundingBox, setBoundingBox] = useState<BoundingBox>();
 
@@ -68,6 +74,8 @@ export const AppContextProvider = ({ children }: Props) => {
           loading,
           ogma,
           setOgma,
+          format,
+          setFormat,
           boundingBox,
           setBoundingBox,
         } as IAppContext
