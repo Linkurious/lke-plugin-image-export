@@ -54,51 +54,46 @@ export const OgmaComponent = (
   useEffect(() => {
     if (!ogma || !format || !layers || !boundingBox) return;
     console.log('format change, update layers', format)
+    const height = ogma.getContainer()?.offsetHeight || 0;
+    const width = ogma.getContainer()?.offsetWidth || 0;
+    let min, max;
     if (format.value) {
       // fixed size
+      min = {
+        x: Math.max(0, (width - format.value.width) /2),
+        y: Math.max(0, (height - format.value.height) / 2)
+      };
+      max = {
+        x: (width + format.value.width) /2,
+        y: (height + format.value.height) / 2
+      };
     } else {
       // full size
       const {minX, minY, maxX, maxY } = boundingBox;
-      const min = ogma.view.graphToScreenCoordinates({x: minX,y: minY})
-      const max = ogma.view.graphToScreenCoordinates({x: maxX,y: maxY})
-      const height = ogma.getContainer()?.offsetHeight || 0;
-      const width = ogma.getContainer()?.offsetWidth || 0;
-
-      const heightTop = min.y;
-      const heightBottom = Math.max(0, height - max.y);
-      const offsetBottom = height - heightBottom;
-      const widthLeft = min.x;
-      const widthRight = Math.max(0 , width - max.x);
-      const offsetRight = width - widthRight;
-
-
-
-      layers[0].element.style.width = `100%`;
-      // layers[0].element.style.width = `${max.x-min.x}px`;
-      layers[0].element.style.height = `${heightTop}px`;
-      layers[1].element.style.width = `100%`;
-      layers[1].element.style.height = `${heightBottom}px`;
-      layers[1].element.style.top = `${offsetBottom}px`;
-
-      layers[2].element.style.width = `${widthLeft}px`;
-      layers[2].element.style.height = `${height - heightBottom - heightTop}px`;
-      layers[2].element.style.top = `${heightTop}px`;
-
-      layers[3].element.style.width = `${widthRight}px`;
-      layers[3].element.style.left = `${offsetRight}px`;
-      layers[3].element.style.height = `${height - heightBottom - heightTop}px`;
-      layers[3].element.style.top = `${heightTop}px`;
-
-
-
-      // layers[0].element.style.transform = `translate(${min.x}px, ${0}px)`;
-
-
-      // layers[0].setPosition({
-      //   x: boundingBox.minX,
-      //   y: boundingBox.minY
-      // })
+      min = ogma.view.graphToScreenCoordinates({x: minX,y: minY})
+      max = ogma.view.graphToScreenCoordinates({x: maxX,y: maxY})
     }
+    const heightTop = min.y;
+    const heightBottom = Math.max(0, height - max.y);
+    const offsetBottom = height - heightBottom;
+    const widthLeft = min.x;
+    const widthRight = Math.max(0 , width - max.x);
+    const offsetRight = width - widthRight;
+
+    layers[0].element.style.width = `100%`;
+    layers[0].element.style.height = `${heightTop}px`;
+    layers[1].element.style.width = `100%`;
+    layers[1].element.style.height = `${heightBottom}px`;
+    layers[1].element.style.top = `${offsetBottom}px`;
+
+    layers[2].element.style.width = `${widthLeft}px`;
+    layers[2].element.style.height = `${height - heightBottom - heightTop}px`;
+    layers[2].element.style.top = `${heightTop}px`;
+
+    layers[3].element.style.width = `${widthRight}px`;
+    layers[3].element.style.left = `${offsetRight}px`;
+    layers[3].element.style.height = `${height - heightBottom - heightTop}px`;
+    layers[3].element.style.top = `${heightTop}px`;
 
   }, [format, ogma, viewCenter, boundingBox, layers]);
 
