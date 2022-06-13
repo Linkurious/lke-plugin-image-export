@@ -1,0 +1,13 @@
+{
+  "reporterEnabled": "mocha-junit-reporter,mochawesome",
+  "mochaJunitReporterReporterOptions": {
+    "mochaFile": "../../reports/e2e/junit-test-results.xml",
+    "attachements": true,
+    "jenkinsMode": true
+  },
+  "mochawesomeReporterOptions": {
+    "reportDir": "../../reports/html/mochawesome",
+    "reportFilename": "index",
+    "json": false
+  }
+}
