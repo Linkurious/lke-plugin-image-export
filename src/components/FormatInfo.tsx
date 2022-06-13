@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { useAppContext } from "../context";
 import { FormatType } from "../types/formats";
+import { formatSize } from "../utils";
 
 export const FormatInfo: FC<FormatType> = ({ label, value }) => {
   const { ogma, boundingBox } = useAppContext();
@@ -9,7 +10,7 @@ export const FormatInfo: FC<FormatType> = ({ label, value }) => {
 
   useEffect(() => {
     if (ogma)
-      ogma.events.on("cameraMove", () => {
+      ogma.events.on("move", () => {
         setZoom(ogma.view.getZoom());
       });
   }, [ogma]);
@@ -30,8 +31,8 @@ export const FormatInfo: FC<FormatType> = ({ label, value }) => {
     });
     const width = Math.round(rt.x - lb.x);
     const height = Math.round(rt.y - lb.y);
-    dimensions = `${width} × ${height} px`;
-  } else dimensions = `${value.width} × ${value.height} px`;
+    dimensions = formatSize({ width, height });
+  } else dimensions = formatSize(value);
 
   return <div className="dimensions">{dimensions}</div>;
 };

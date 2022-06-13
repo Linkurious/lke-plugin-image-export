@@ -69,6 +69,11 @@ export const OgmaComponent = (
       if (ogma) setBoundingBox(ogma.view.getGraphBoundingBox());
     };
     if (ogma) {
+      ogma.setOptions({
+        interactions: {
+          selection: { enabled: false },
+        },
+      });
       ogma.events.on(
         ["addNodes", "addEdges", "layoutEnd", "nodesDragEnd"],
         updateBbox

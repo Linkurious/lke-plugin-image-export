@@ -7,6 +7,8 @@ import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "./ImageViewer";
 import { DownloadOutlined, DownOutlined } from "@ant-design/icons";
+import { formatSize } from "../utils";
+import { optimize } from "svgo/dist/svgo.browser";
 
 interface Props extends ModalFuncProps {
   format: FormatType;
@@ -28,6 +30,19 @@ const ExportTypes: ExportType[] = [
   },
 ];
 
+const ExportInfo: FC<{
+  loading: boolean;
+  result?: string;
+  size: Size;
+}> = ({ loading, result, size }) => {
+  if (loading || !result) return null;
+  return (
+    <span key="preview-info" className="preview--info">
+      {formatSize(size)}
+    </span>
+  );
+};
+
 export const PreviewModal: FC<Props> = ({
   visible,
   onCancel,
@@ -47,6 +62,8 @@ export const PreviewModal: FC<Props> = ({
   useEffect(() => {
     if (visible && !image && ogma) {
       setLoading(true);
+      ogma.getSelectedEdges().setSelected(false);
+      ogma.getSelectedNodes().setSelected(false);
       svg(ogma)
         .on("start", () => setProgress(0))
         .on("progress", (progress) => setProgress(progress))
@@ -58,8 +75,14 @@ export const PreviewModal: FC<Props> = ({
           setSize({ width, height });
 
           const svgString = new XMLSerializer().serializeToString(res);
+          // TODO: add progress bar
+          console.time("embed fonts");
           const result = embedFonts(svgString);
-          setImage(result);
+          console.timeEnd("embed fonts");
+          console.time("optimize");
+          const optimzed = optimize(result, {}).data;
+          console.timeEnd("optimize");
+          setImage(optimzed);
         });
     }
     return () => {
@@ -76,6 +99,17 @@ export const PreviewModal: FC<Props> = ({
     />
   );
 
+  const onDownloadPressed = () => {
+    const blob = new Blob([image as string], { type: "image/svg+xml" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "graph.svg";
+    a.click();
+    URL.revokeObjectURL(url);
+    if (onOk) onOk();
+  };
+
   return (
     <Modal
       title="Preview"
@@ -85,17 +119,22 @@ export const PreviewModal: FC<Props> = ({
       onCancel={onCancel}
       width={"80vw"}
       footer={[
-        <span key="preview-info" className="preview--info">
-          Info
-        </span>,
-        <Button key="ok" onClick={onOk} icon={<DownloadOutlined />}>
+        <ExportInfo key="info" loading={loading} result={image} size={size} />,
+        <Button
+          key="ok"
+          onClick={onDownloadPressed}
+          disabled={loading}
+          icon={<DownloadOutlined />}
+        >
           Export
         </Button>,
-        <Button key="cancel" onClick={onCancel}>
-          Cancel
-        </Button>,
-        <Dropdown key="type" overlay={menu} trigger={["click"]}>
-          <Button>
+        <Dropdown
+          disabled={loading}
+          key="type"
+          overlay={menu}
+          trigger={["click"]}
+        >
+          <Button disabled={loading}>
             {currentFormat.label} <DownOutlined />
           </Button>
         </Dropdown>,
