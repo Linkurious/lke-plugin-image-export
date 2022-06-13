@@ -2,12 +2,12 @@ import React, { FC, useEffect, useState } from "react";
 import { Button, Menu, Modal, ModalFuncProps, Progress, Dropdown } from "antd";
 import { FormatType } from "../types/formats";
 import { useAppContext } from "../context";
-import { svg } from "@linkurious/png-export-stitch";
+import { svg, svgToPng } from "@linkurious/png-export-stitch";
 import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "./ImageViewer";
 import { DownloadOutlined, DownOutlined } from "@ant-design/icons";
-import { formatSize } from "../utils";
+import { formatSize, downloadBlob } from "../utils";
 import { optimize } from "svgo/dist/svgo.browser";
 
 interface Props extends ModalFuncProps {
@@ -99,14 +99,16 @@ export const PreviewModal: FC<Props> = ({
     />
   );
 
-  const onDownloadPressed = () => {
-    const blob = new Blob([image as string], { type: "image/svg+xml" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "graph.svg";
-    a.click();
-    URL.revokeObjectURL(url);
+  const onDownloadPressed = async () => {
+    if (currentFormat.label === "SVG") {
+      downloadBlob(image as string, "image.svg", "image/svg+xml");
+    } else {
+      const data = await svgToPng(
+        new DOMParser().parseFromString(image as string, "image/svg+xml")
+          .documentElement as unknown as SVGSVGElement
+      );
+      downloadBlob(data, "image.png", "image/png");
+    }
     if (onOk) onOk();
   };
 
@@ -122,11 +124,13 @@ export const PreviewModal: FC<Props> = ({
         <ExportInfo key="info" loading={loading} result={image} size={size} />,
         <Button
           key="ok"
+          type="primary"
           onClick={onDownloadPressed}
           disabled={loading}
-          icon={<DownloadOutlined />}
+          className="download--button"
+          //icon={<DownloadOutlined />}
         >
-          Export
+          Download
         </Button>,
         <Dropdown
           disabled={loading}
@@ -134,7 +138,11 @@ export const PreviewModal: FC<Props> = ({
           overlay={menu}
           trigger={["click"]}
         >
-          <Button disabled={loading}>
+          <Button
+            type="primary"
+            disabled={loading}
+            className="download--dropdown-trigger"
+          >
             {currentFormat.label} <DownOutlined />
           </Button>
         </Dropdown>,

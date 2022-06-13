@@ -74,6 +74,11 @@ export const OgmaComponent = (
           selection: { enabled: false },
         },
       });
+
+      // items should not be highlighted
+      ogma.styles.setHoveredNodeAttributes(null);
+      ogma.styles.setHoveredEdgeAttributes(null);
+
       ogma.events.on(
         ["addNodes", "addEdges", "layoutEnd", "nodesDragEnd"],
         updateBbox

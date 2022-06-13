@@ -20,7 +20,7 @@ const ZoomWrapper: FC<{
   svg,
   size,
   dimensions,
-  zoomStep = 0.05,
+  zoomStep = 0.1,
   minScale = 0.01,
   maxScale = 100,
 }) => {

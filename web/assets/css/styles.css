@@ -165,6 +165,7 @@ body {
 
 .preview--progressbar {
   padding: 2em;
+  margin-top: 25%;
 }
 
 .image-viewer {
@@ -213,4 +214,15 @@ body {
 
 .preview--info {
   margin-right: 2em;
+}
+
+.download--button {
+  border-radius: 2px 0 0 2px;
+  margin-right: 1px;
+}
+
+.download--dropdown-trigger {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  border-radius: 0 2px 2px 0;
 }
