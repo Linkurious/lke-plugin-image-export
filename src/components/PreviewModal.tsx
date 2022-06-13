@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { Button, Modal, ModalFuncProps, Progress } from "antd";
 import { FormatType } from "../types/formats";
 import { useAppContext } from "../context";
-import { svg } from "@linkurious/png-export-stitch";
+import { png, svg } from "@linkurious/png-export-stitch";
 import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "./ImageViewer";
@@ -23,7 +23,6 @@ export const PreviewModal: FC<Props> = ({
   const [image, setImage] = useState<string>();
   const [progress, setProgress] = useState(0);
   const [size, setSize] = useState<Size>({ width: 0, height: 0 });
-
   useEffect(() => {
     if (visible && !image && ogma) {
       setLoading(true);
@@ -34,7 +33,11 @@ export const PreviewModal: FC<Props> = ({
         .on("start", () => setProgress(0))
         .on("progress", (progress) => setProgress(progress))
         .on("done", () => setLoading(false))
-        .run()
+        .run({
+          fullSize: format.value === undefined,
+          width: format.value ? format.value.width : 0,
+          height: format.value ? format.value.height : 0,
+        })
         .then((res) => {
           const width = parseFloat(res.getAttribute("width")!);
           const height = parseFloat(res.getAttribute("height")!);
