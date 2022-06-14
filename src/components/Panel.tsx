@@ -106,6 +106,7 @@ export function Panel() {
               <Switch
                 size="small"
                 checked={textsVisible}
+                className="caption-switch"
                 onChange={() => {
                   ogma.styles.setEdgeTextsVisibility(!textsVisible);
                   ogma.styles.setNodeTextsVisibility(!textsVisible);
@@ -117,6 +118,7 @@ export function Panel() {
               <Switch
                 size="small"
                 checked={overlapRemoval}
+                className="collision-switch"
                 onChange={() => {
                   ogma.setOptions({
                     texts: { preventOverlap: !overlapRemoval },

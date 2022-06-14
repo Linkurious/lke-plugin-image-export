@@ -55,6 +55,7 @@ export const OgmaComponent = (
 
   useEffect(() => {
     if (ogma) {
+      window.ogma = ogma;
       if (graph && ogma && graph !== graphData) {
         setGraphData(graph);
         ogma.initVisualization(graph);
