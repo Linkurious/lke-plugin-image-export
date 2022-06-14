@@ -2,9 +2,10 @@ Feature: Size Format
 
   @format
   Scenario Outline: Select format
-    Given I select format
-    Then I see it's size within the panel
-
+    Given I select format <format>
+    Then I see it's size within the panel <format>
+    And it updates on zoom <format>
   Examples:
-    | example   |
-    | generator |
+    | format |
+    | Square |
+    | Full size |

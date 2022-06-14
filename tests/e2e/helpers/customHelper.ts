@@ -18,6 +18,21 @@ class CustomHelper extends Helper {
       button: options.button
     });
   }
+  zoom(selector: string, value = 50): Promise<any> {
+    // https://playwright.dev/docs/api/class-page#page-click
+    // return this.page.evaluate(() => {
+    //   window.scroll(100, 0)
+    // });
+    return this.page.click(selector)
+    .then(() => {
+      this.page.mouse.wheel(value, 0);
+    })
+    .then(() => new Promise(resolve => setTimeout(resolve, 100)))
+    .catch(e => {
+      console.error('error', e);
+      return Promise.resolve();
+    })
+  }
 
   autoWaitClick(selector: string): Promise<void> {
     // https://playwright.dev/docs/api/class-page#page-click
