@@ -49,7 +49,7 @@ export const PreviewModal: FC<Props> = ({
   onOk,
   format,
 }) => {
-  const { ogma } = useAppContext();
+  const { ogma, textsVisible } = useAppContext();
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState<string>();
   const [progress, setProgress] = useState(0);
@@ -65,6 +65,9 @@ export const PreviewModal: FC<Props> = ({
       ogma.getSelectedEdges().setSelected(false);
       ogma.getSelectedNodes().setSelected(false);
       svg(ogma)
+        .setOptions({
+          texts: textsVisible,
+        })
         .on("start", () => setProgress(0))
         .on("progress", (progress) => setProgress(progress))
         .on("done", () => setLoading(false))
@@ -80,9 +83,9 @@ export const PreviewModal: FC<Props> = ({
           const result = embedFonts(svgString);
           console.timeEnd("embed fonts");
           console.time("optimize");
-          const optimzed = optimize(result, {}).data;
+          //const optimzed = optimize(result, {}).data;
           console.timeEnd("optimize");
-          setImage(optimzed);
+          setImage(result);
         });
     }
     return () => {
