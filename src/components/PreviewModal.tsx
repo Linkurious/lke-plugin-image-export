@@ -2,13 +2,15 @@ import React, { FC, useEffect, useState } from "react";
 import { Button, Menu, Modal, ModalFuncProps, Progress, Dropdown } from "antd";
 import { FormatType } from "../types/formats";
 import { useAppContext } from "../context";
-import { svg, svgToPng } from "@linkurious/png-export-stitch";
+import { svg, svgToPng } from "@linkurious/ogma-export-stitch";
 import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "./ImageViewer";
-import { DownloadOutlined, DownOutlined } from "@ant-design/icons";
+import { DownOutlined } from "@ant-design/icons";
 import { formatSize, downloadBlob } from "../utils";
-import { optimize } from "svgo/dist/svgo.browser";
+
+// TODO: add that, and through the webworker
+//import { optimize } from "svgo/dist/svgo.browser";
 
 interface Props extends ModalFuncProps {
   format: FormatType;

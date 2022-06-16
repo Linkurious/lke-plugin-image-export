@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Button } from "antd";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import {
@@ -20,7 +20,7 @@ const ZoomWrapper: FC<{
   svg,
   size,
   dimensions,
-  zoomStep = 0.1,
+  zoomStep = 0.05,
   minScale = 0.01,
   maxScale = 100,
 }) => {
@@ -30,6 +30,16 @@ const ZoomWrapper: FC<{
   );
   const x = (dimensions.width - size.width * k) / 2;
   const y = (dimensions.height - size.height * k) / 2;
+
+  const [encoded, setEncoded] = useState("");
+
+  useEffect(() => {
+    setEncoded(
+      `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svg)))}`
+    );
+  }, []);
+
+  if (encoded === "") return null;
   return (
     <TransformWrapper
       wheel={{ step: zoomStep }}
@@ -47,10 +57,11 @@ const ZoomWrapper: FC<{
               contentClass="image-viewer"
               wrapperClass="image-viewer--wrapper"
             >
-              <div
+              <img className="image-viewer--content" src={encoded} />
+              {/* <div
                 className="image-viewer--content"
                 dangerouslySetInnerHTML={{ __html: svg }}
-              />
+              /> */}
             </TransformComponent>
             <div className="image-viewer--tools">
               <Button
