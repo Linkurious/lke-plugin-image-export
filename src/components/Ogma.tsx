@@ -39,6 +39,8 @@ export const OgmaComponent = (
     if (container) {
       const instance = new OgmaLib(options);
       instance.setContainer(container);
+      // @ts-ignore
+      window.ogma = instance;
       setReady(true);
       if (onReady) onReady(instance);
     }
