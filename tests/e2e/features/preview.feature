@@ -32,3 +32,14 @@ Feature: Preview
   Examples:
     | dummy |
     | dummy |
+
+  @zoom
+  Scenario Outline: Reset zoom
+    Given I open preview
+    When I click zoomin
+    And I click zoomin
+    And I click reset
+    Then Preview resets zoom
+  Examples:
+    | dummy |
+    | dummy |
