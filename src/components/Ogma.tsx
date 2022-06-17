@@ -45,6 +45,8 @@ export const OgmaComponent = (
     if (container) {
       const instance = new OgmaLib(options);
       instance.setContainer(container);
+      // @ts-ignore
+      window.ogma = instance;
       setReady(true);
       if (onReady) onReady(instance);
     }
@@ -135,6 +137,16 @@ export const OgmaComponent = (
       if (ogma) setViewCenter(ogma.view.getCenter());
     };
     if (ogma) {
+      ogma.setOptions({
+        interactions: {
+          selection: { enabled: false },
+        },
+      });
+
+      // items should not be highlighted
+      ogma.styles.setHoveredNodeAttributes(null);
+      ogma.styles.setHoveredEdgeAttributes(null);
+
       ogma.events.on(
         ["addNodes", "addEdges", "layoutEnd", "nodesDragEnd"],
         updateBbox

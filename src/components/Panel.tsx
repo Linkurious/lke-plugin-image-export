@@ -29,12 +29,11 @@ const marks: Record<number, string> = {
 const fontSize = { ratio: 1 };
 
 export function Panel() {
-  const { ogma , format, setFormat} = useAppContext();
+  const { ogma , format, setFormat, textsVisible, setTextsVisible} = useAppContext();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
   );
-  const [textsVisible, setTextsVisible] = useState(true);
   const [overlapRemoval, setOverlapRemoval] = useState(true);
   const [snapping, setSnapping] = useState(false);
 
@@ -115,6 +114,7 @@ export function Panel() {
               <Switch
                 size="small"
                 checked={overlapRemoval}
+                disabled={!textsVisible}
                 onChange={() => {
                   ogma.setOptions({
                     texts: { preventOverlap: !overlapRemoval },
@@ -132,23 +132,12 @@ export function Panel() {
                 min={1}
                 max={300}
                 defaultValue={100}
+                disabled={!textsVisible}
                 onChange={(value) => {
                   fontSize.ratio = value / 100;
                   if (fontSizeRule) fontSizeRule.refresh();
                 }}
               />
-
-              {/* <Select
-                style={{ width: 130 }}
-                defaultValue={1}
-                onChange={(index) => console.log(fontSizes[index])}
-              >
-                {fontSizes.map((item, index) => (
-                  <Select.Option key={index} value={index}>
-                    {item.label}
-                  </Select.Option>
-                ))}
-              </Select> */}
             </div>
             <Divider />
             <Form.Item label="Snapping" valuePropName="checked">
