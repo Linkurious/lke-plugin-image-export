@@ -75,3 +75,16 @@ Then(/^text reapear$/, async () => {
     return ogma.modules.graphics._visibility['nodeTexts'] <= 0;
   }));
 });
+
+When(/^I toggle text collision$/, async () => {
+  I.click('.collision-switch');
+});
+
+Then(/^text collide accordingly (\w+)$/, async (shouldCollide) => {
+  const overlapRemoval = await I.executeScript(() => {
+    const overlapRemoval = ogma.getOptions().texts?.preventOverlap;
+    return overlapRemoval === undefined || overlapRemoval
+    ? true : false;
+  });
+  assert.equal(overlapRemoval, shouldCollide === 'true' ? true : false)
+});

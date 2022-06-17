@@ -31,3 +31,15 @@ Feature: Size Format
   Examples:
     | size |
     | 50% |
+
+  @collide-slider
+  Scenario Outline: Select text collision
+    Given I go to main page
+    When I toggle text collision
+    Then text collide accordingly false
+    And I toggle text collision
+    Then text collide accordingly true
+
+  Examples:
+    | size |
+    | 50% |
