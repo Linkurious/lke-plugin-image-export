@@ -21,3 +21,14 @@ Feature: Preview
   Examples:
     | dummy |
     | dummy |
+
+  @zoom
+  Scenario Outline: Zoom-in/out
+    Given I open preview
+    When I click zoomin
+    Then Preview zooms in
+    And I click zoomout
+    Then Preview zooms out
+  Examples:
+    | dummy |
+    | dummy |
