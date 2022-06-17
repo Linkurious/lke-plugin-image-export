@@ -9,6 +9,7 @@ When(/^I click preview$/, async () => {
   I.click('Preview');
 });
 Then(/^I see the preview modal$/, () => {
+  I.wait(0.2);
   I.seeElement('div[role="dialog"]')
 })
 Then(/^I click outside the modal$/, async () => {
@@ -16,6 +17,7 @@ Then(/^I click outside the modal$/, async () => {
 });
 
 Then(/^the modal closes$/, async () => {
+  I.wait(1);
   I.dontSeeElement('div[role="dialog"]')
 });
 
@@ -35,7 +37,7 @@ let previousZoom = 0;
 let startZoom;
 Given(/I open preview and wait for loading/, async () => {
   I.click('Preview');
-  I.waitForElement('.react-transform-component');
+  I.waitForElement('.react-transform-component',3);
   startZoom = await I.executeScript(getPreviewScale) as any as number;
 });
 When(/I click zoomin/, async () => {
@@ -63,5 +65,5 @@ When(/I click reset/, async () => {
 });
 Then(/Preview resets zoom/, async () => {
   const currentZoom = await I.executeScript(getPreviewScale) as any as number;
-  assert.equal(currentZoom, startZoom);
+  assert.closeTo(currentZoom, startZoom, 0.01);
 })

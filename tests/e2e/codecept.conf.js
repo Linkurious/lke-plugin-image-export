@@ -12,19 +12,20 @@ const baseUrl = `http://localhost:${process.env.PORT || 8000}`;
 
 const emulateOptions = process.env.TEST_RETINA
   ? { isMobile: false, deviceScaleFactor: 2 }
-  : undefined;
+  : { isMobile: false, deviceScaleFactor: 1 };
 
 exports.config = {
   output: '../../reports/html/e2e',
-  timeout: 5000,
+  timeout: 25,
   helpers: {
     Playwright: {
       url: baseUrl,
-      show: false,
+      show: true,
       browser: 'chromium',
       emulate: emulateOptions,
       chromium: {
-        chromiumSandbox: true, // https://playwright.dev/docs/ci/#docker
+        // slowMo: 800,
+        // chromiumSandbox: true, // https://playwright.dev/docs/ci/#docker
         args: []
       }
     },
