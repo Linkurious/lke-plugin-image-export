@@ -24,7 +24,8 @@ Feature: Preview
 
   @zoom
   Scenario Outline: Zoom-in/out
-    Given I open preview
+    Given I go to main page
+    And I open preview and wait for loading
     When I click zoomin
     Then Preview zooms in
     And I click zoomout
@@ -35,7 +36,8 @@ Feature: Preview
 
   @zoom
   Scenario Outline: Reset zoom
-    Given I open preview
+    Given I go to main page
+    And I open preview and wait for loading
     When I click zoomin
     And I click zoomin
     And I click reset

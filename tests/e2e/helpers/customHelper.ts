@@ -21,6 +21,12 @@ class CustomHelper extends Helper {
       return Promise.all([download, download.path()])
     })
   }
+  getImageSize(image: string): Promise<[number,number,number]> {
+    return this.page.evaluate((image) => {
+      const img = document.querySelector(image) as HTMLImageElement;
+      return [img.width, img.height, window.devicePixelRatio]
+    }, image)
+  }
 
   clickAtCoordinate(options: {
     x: number;

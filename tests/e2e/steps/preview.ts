@@ -33,8 +33,7 @@ const getPreviewScale = () => {
 
 let previousZoom = 0;
 let startZoom;
-Given(/I open preview/, async () => {
-  I.amOnPage('/');
+Given(/I open preview and wait for loading/, async () => {
   I.click('Preview');
   I.waitForElement('.react-transform-component');
   startZoom = await I.executeScript(getPreviewScale) as any as number;
