@@ -32,13 +32,25 @@ Feature: Size Format
     | size |
     | 50% |
 
-  @collide-slider
+  @collide-switch
   Scenario Outline: Select text collision
     Given I go to main page
     When I toggle text collision
     Then text collide accordingly false
     And I toggle text collision
     Then text collide accordingly true
+
+  Examples:
+    | size |
+    | 50% |
+
+  @snap-switch
+  Scenario Outline: Select snapping
+    Given I go to main page
+    When I toggle snapping
+    Then snapping toggles accordingly true
+    And I toggle snapping
+    Then snapping toggles accordingly false
 
   Examples:
     | size |

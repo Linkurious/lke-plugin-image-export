@@ -88,3 +88,13 @@ Then(/^text collide accordingly (\w+)$/, async (shouldCollide) => {
   });
   assert.equal(overlapRemoval, shouldCollide === 'true' ? true : false)
 });
+
+
+When(/^I toggle snapping$/, async () => {
+  I.click('.snap-switch');
+});
+
+Then(/^snapping toggles accordingly (\w+)$/, async (shouldSnap) => {
+  const snapEnabled = await I.executeScript(() => ogma.tools.snapping.enabled());
+  assert.equal(snapEnabled, shouldSnap === 'true' ? true : false)
+});

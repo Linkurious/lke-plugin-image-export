@@ -148,6 +148,7 @@ export function Panel() {
             <Form.Item label="Snapping" valuePropName="checked">
               <Switch
                 size="small"
+                className="snap-switch"
                 onChange={() => {
                   if (!snapping)
                     ogma.tools.snapping.enable({
