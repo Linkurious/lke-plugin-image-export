@@ -1,4 +1,4 @@
-import { Page } from 'playwright';
+import { Download, Page } from 'playwright';
 
 class CustomHelper extends Helper {
   get page(): Page {
@@ -7,6 +7,19 @@ class CustomHelper extends Helper {
 
   doubleClickAtCoordinate(coordinate: { x: number; y: number }): Promise<void> {
     return this.page.mouse.dblclick(coordinate.x, coordinate.y);
+  }
+
+  download(
+    button: string
+  ): Promise<[Download, string|null]> {
+    return Promise.all([
+      //@ts-ignore
+      this.page.waitForEvent('download'),
+      //@ts-ignore
+      this.page.locator(button).click(),
+    ]).then(([download]) => {
+      return Promise.all([download, download.path()])
+    })
   }
 
   clickAtCoordinate(options: {
