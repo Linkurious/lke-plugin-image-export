@@ -1,6 +1,6 @@
 import { LKOgma } from "@linkurious/ogma-linkurious-parser";
 import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
-import { BoundingBox } from "ogma";
+import { BoundingBox } from "@linkurious/ogma";
 import React, {
   createContext,
   useContext,
@@ -21,6 +21,9 @@ interface IAppContext {
   boundingBox: BoundingBox;
   setBoundingBox: (boundingBox: BoundingBox) => void;
 
+  // shared state
+  textsVisible: boolean;
+  setTextsVisible: (textsVisible: boolean) => void;
   // TODO: export configuration to the app
 }
 
@@ -48,6 +51,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [configuration, setConfig] = useState<IOgmaConfig>();
   const [ogma, setOgma] = useState<LKOgma>();
   const [boundingBox, setBoundingBox] = useState<BoundingBox>();
+  const [textsVisible, setTextsVisible] = useState(true);
 
   useEffect(() => {
     Promise.all([api.getVisualisation(), api.getConfiguration()]).then(
@@ -70,6 +74,8 @@ export const AppContextProvider = ({ children }: Props) => {
           setOgma,
           boundingBox,
           setBoundingBox,
+          textsVisible,
+          setTextsVisible,
         } as IAppContext
       }
     >

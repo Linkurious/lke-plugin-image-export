@@ -61,25 +61,6 @@ body {
       url("/assets/css/fonts/roboto-v20-latin-500.svg#Roboto") format("svg"); /* Legacy iOS */
 }
 
-/* roboto-700 - latin */
-@font-face {
-  font-family: "roboto";
-  font-style: normal;
-  font-weight: bold;
-  src: url("/assets/css/fonts/roboto-v20-latin-700.eot"); /* IE9 Compat Modes */
-  src: local("Roboto Bold"), local("Roboto-Bold"),
-    url("/assets/css/fonts/roboto-v20-latin-700.eot?#iefix")
-      format("embedded-opentype"),
-    /* IE6-IE8 */ url("/assets/css/fonts/roboto-v20-latin-700.woff2")
-      format("woff2"),
-    /* Super Modern Browsers */
-      url("/assets/css/fonts/roboto-v20-latin-700.woff") format("woff"),
-    /* Modern Browsers */ url("/assets/css/fonts/roboto-v20-latin-700.ttf")
-      format("truetype"),
-    /* Safari, Android, iOS */
-      url("/assets/css/fonts/roboto-v20-latin-700.svg#Roboto") format("svg"); /* Legacy iOS */
-}
-
 /*
  *  Font Awesome 4.6.3 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -165,6 +146,7 @@ body {
 
 .preview--progressbar {
   padding: 2em;
+  margin-top: 25%;
 }
 
 .image-viewer {
@@ -213,4 +195,15 @@ body {
 
 .preview--info {
   margin-right: 2em;
+}
+
+.download--button {
+  border-radius: 2px 0 0 2px;
+  margin-right: 1px;
+}
+
+.download--dropdown-trigger {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  border-radius: 0 2px 2px 0;
 }

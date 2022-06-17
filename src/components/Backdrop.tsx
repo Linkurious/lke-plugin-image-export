@@ -14,7 +14,7 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
     const updateSize = () => {
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
-      console.log({ windowWidth, windowHeight });
+      //console.log({ windowWidth, windowHeight });
       setWindowSize({ width: windowWidth, height: windowHeight });
     };
     updateSize();
