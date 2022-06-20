@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import {
   Modal,
   Button,
@@ -11,7 +11,6 @@ import {
   Slider,
 } from "antd";
 import { formats } from "../constants";
-import { FormatType } from "../types/formats";
 import { FormatInfo } from "./FormatInfo";
 import { useAppContext } from "../context";
 import { PreviewModal } from "./PreviewModal";
@@ -30,13 +29,11 @@ const marks: Record<number, string> = {
 const fontSize = { ratio: 1 };
 
 export function Panel() {
-  const { ogma, textsVisible, setTextsVisible } = useAppContext();
+  const { ogma , format, setFormat, textsVisible, setTextsVisible} = useAppContext();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
   );
-  const [currentFormat, setCurrentFormat] = useState<FormatType>(formats[0]);
-  //const [textsVisible, setTextsVisible] = useState(true);
   const [overlapRemoval, setOverlapRemoval] = useState(true);
   const [snapping, setSnapping] = useState(false);
 
@@ -162,7 +159,7 @@ export function Panel() {
               <Select
                 style={{ width: 130 }}
                 defaultValue={0}
-                onChange={(index) => setCurrentFormat(formats[index])}
+                onChange={(index) => setFormat(formats[index])}
               >
                 {formats.map((item, index) => (
                   <Select.Option value={index} key={index}>
@@ -171,7 +168,7 @@ export function Panel() {
                 ))}
               </Select>
             </Form.Item>
-            <FormatInfo {...currentFormat} />
+            <FormatInfo {...format} />
           </Form>
         </Collapse.Panel>
       </Collapse>
@@ -183,7 +180,7 @@ export function Panel() {
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
-          format={currentFormat}
+          format={format}
         />
       </div>
     </div>
