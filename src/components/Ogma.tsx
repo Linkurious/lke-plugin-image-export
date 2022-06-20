@@ -151,7 +151,7 @@ export const OgmaComponent = (
         ["addNodes", "addEdges", "layoutEnd", "nodesDragEnd"],
         updateBbox
       );
-      ogma.events.on('cameraMove', updateCenter)
+      ogma.events.on('move', updateCenter)
     }
     return () => {
       ogma?.events.off(updateBbox);

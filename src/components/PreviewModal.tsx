@@ -49,9 +49,8 @@ export const PreviewModal: FC<Props> = ({
   visible,
   onCancel,
   onOk,
-  format,
 }) => {
-  const { ogma, textsVisible } = useAppContext();
+  const { ogma, textsVisible, format } = useAppContext();
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState<string>();
   const [progress, setProgress] = useState(0);
