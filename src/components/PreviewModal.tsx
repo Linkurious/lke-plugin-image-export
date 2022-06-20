@@ -49,9 +49,8 @@ export const PreviewModal: FC<Props> = ({
   visible,
   onCancel,
   onOk,
-  format,
 }) => {
-  const { ogma, textsVisible } = useAppContext();
+  const { ogma, textsVisible, format } = useAppContext();
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState<string>();
   const [progress, setProgress] = useState(0);
@@ -73,7 +72,11 @@ export const PreviewModal: FC<Props> = ({
         .on("start", () => setProgress(0))
         .on("progress", (progress) => setProgress(progress))
         .on("done", () => setLoading(false))
-        .run()
+        .run({
+          fullSize: format.value === undefined,
+          width: format.value ? format.value.width : 0,
+          height: format.value ? format.value.height : 0,
+        })
         .then((res) => {
           const width = parseFloat(res.getAttribute("width")!);
           const height = parseFloat(res.getAttribute("height")!);
