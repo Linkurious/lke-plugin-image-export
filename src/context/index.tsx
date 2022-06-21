@@ -24,6 +24,8 @@ interface IAppContext {
   setOgma: (ogma: LKOgma) => void;
   boundingBox: BoundingBox;
   setBoundingBox: (boundingBox: BoundingBox) => void;
+  graphScale: number;
+  setGraphScale: (scale: number) => void;
 
   // shared state
   textsVisible: boolean;
@@ -58,6 +60,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [ogma, setOgma] = useState<LKOgma>();
   const [boundingBox, setBoundingBox] = useState<BoundingBox>();
   const [textsVisible, setTextsVisible] = useState(true);
+  const [graphScale, setGraphScale] = useState(1);
 
   useEffect(() => {
     Promise.all([api.getVisualisation(), api.getConfiguration()]).then(
@@ -84,6 +87,8 @@ export const AppContextProvider = ({ children }: Props) => {
           setBoundingBox,
           textsVisible,
           setTextsVisible,
+          graphScale,
+          setGraphScale,
         } as IAppContext
       }
     >
