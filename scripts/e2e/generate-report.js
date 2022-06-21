@@ -4,37 +4,28 @@ const rimraf = require('rimraf');
 const path = require('path');
 
 const resultJsonFile = 'export-results.json';
-const referencePath = './tests/e2e/ref-images';
 const reportRootDir = './reports/html/';
 const testOutputPath = path.join(reportRootDir, 'e2e/');
 const reportPath = path.join(reportRootDir, 'exports/');
-const templatePath = './scripts/tests/e2e/template.html';
+const templatePath = './scripts/e2e/template.html';
 
 function getReportContent(results) {
-  return fs
-    .readdir(referencePath)
-    .then(refs => {
-      const rows = refs
-        .filter(ref => ref.match(/\.png/))
-        .reduce((rows, ref) => {
-          const name = ref.replace('.png', '');
-          const style = `style="color: ${results[name] ? 'green' : 'red'}"`;
-          return (
-            rows +
-            `<tr><td colspan="3" align="center" ${style}><h3>${name}</h3></td></tr>` +
-            `<tr>
-              <td><img src=./screenshot/${ref} /></td>
-              <td><img src=./ref-images/${ref} /></td>
-              <td><img src=./diff/${ref} /></td>
-              </tr>`
-          );
-        }, '');
-      return `<table><tbody>${rows}<tbody></table>`;
-    })
-    .then(table => {
-      const intro = `<p>Images are displayed in the following order: actual result (left), expected result (middle), difference (right).</p>`;
-      return intro + table;
-    });
+  console.log('results', results)
+  const rows = results
+  .reduce((rows, {name, success}) => {
+    const testName = name.replace('.png', '');
+    const style = `style="color: ${success ? 'green' : 'red'}"`;
+    return (
+      rows +
+      `<tr><td colspan="3" align="center" ${style}><h3>${testName}</h3></td></tr>` +
+      `<tr>
+        <td><img src=./diff/${name} /></td>
+        </tr>`
+    );
+  }, '');
+  const table = `<table><tbody>${rows}<tbody></table>`;
+  const intro = `<p>Images are displayed in the following order: actual result (left), expected result (middle), difference (right).</p>`;
+  return intro + table;
 }
 
 function rm(path) {
@@ -51,7 +42,7 @@ function generateReport() {
     .then(() =>
       Promise.all([
         copyDir(testOutputPath, reportPath),
-        copyDir(referencePath, path.join(reportPath, 'ref-images'))
+        // copyDir(referencePath, path.join(reportPath, 'ref-images'))
       ])
     )
     .then(() =>

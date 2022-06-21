@@ -1,48 +1,101 @@
 #!/usr/bin/env node
-// const startServer = require('../../utility/start_server');
-const { exec } = require('child_process');
 const { green, red } = require('nanocolors');
-// const generateReport = require('./generate-report');
-const PORT = process.env.PORT;
+const { spawn, exec } = require('child_process');
+const generateReport = require('./generate-report');
 const REPLACE = process.env.REPLACE;
 const SMOKE = process.env.SMOKE;
-let exitCode = 0;
 
-// startServer({
-//   port: PORT,
-//   live: false
-// })
-//   .then(server => {
-    new Promise((resolve, reject) => {
-      console.log(`Serving examples at http://localhost:${green(PORT)}`);
-      // if you are replacing the export image references, only run
-      // the export tests
-      const args = process.argv.slice(2).join(' ');
-      let filter = REPLACE ? '--grep (image-test)' : '';
-      filter = SMOKE ? '--grep smoke' : `'(?=${filter})^(?!.*smoke)'`;
-      const testProcess = exec(
-        `TESTOMATIO=${
-          process.env.TESTOMATIO
-        } REPLACE=${!!REPLACE} ./scripts/e2e/run.js ${filter} ${args}`,
-        { maxBuffer: 1024 * 5000 },
-        error => {
-          if (error) return reject(error);
-          resolve();
-        }
-      );
-      testProcess.stdout.pipe(process.stdout);
-      //testProcess.stderr.pipe(process.stderr);
-    })
-      .then(() => {
-        console.log(green(' - all examples are fine'));
-        // server.close();
-      })
-      .catch(({ message }) => {
-        console.log(red(` - e2e test failed`));
-        console.log(message)
-        // server.close();
-        exitCode = 1;
-      });
-  // })
-  // .finally(() => (REPLACE ? Promise.resolve() : generateReport()))
-  // .then(() => process.exit(exitCode));
+
+
+function startServer(){
+  const server = spawn('npm', ['run', 'serve']);
+  return new Promise((resolve, reject) => {
+    server.stdout.on('data', (data) => {
+      const message = data.toString();
+      // console.log(message);
+      const matches = message.match(/Server available at http:\/\/127\.0\.0\.1:(\d+)/)
+      if(!matches || matches.length < 2)return;
+      resolve({server, port: matches[1]})
+    });
+    server.stderr.on('data', (data) => {
+      reject({server, error: data.toString()})
+    });
+  })
+}
+function startMockServer(){
+  const mockServer = spawn('node', ['scripts/mock-server.js']);
+  return new Promise((resolve, reject) => {
+    mockServer.stdout.on('data', (data) => {
+      const message = data.toString();
+      // console.log(message)
+      const matches = message.match(/JSON Server is running/);
+      if(!matches || !matches.length) return;
+      resolve({mockServer})
+    });
+    mockServer.stderr.on('data', (data) => {
+      console.error(data.toString)
+      reject({mockServer, error: data.toString()})
+    });
+  })
+}
+
+function runTests(PORT){
+  let testProcess;
+  return new Promise((resolve, reject) => {
+    // if you are replacing the export image references, only run
+    // the export tests
+    const args = process.argv.slice(2).join(' ');
+    let filter = REPLACE ? '--grep (download)' : '';
+    filter = '--grep download';
+    console.log(filter)
+    testProcess = exec(
+      `TESTOMATIO=${
+        process.env.TESTOMATIO
+      } REPLACE=${!!REPLACE} PORT=${PORT} ./scripts/e2e/run.js ${filter} ${args}`,
+      { maxBuffer: 1024 * 5000 },
+      error => {
+        if (error) return reject(error);
+        resolve();
+      }
+    );
+    testProcess.stdout.pipe(process.stdout);
+    testProcess.stderr.pipe(process.stderr);
+  })
+  .then(() => {
+    console.log(green(' - all examples are fine'));
+  })
+  .catch(({ message }) => {
+    console.log(red(` - e2e test failed`));
+    testProcess.kill('SIGINT');
+    throw(message)
+  })
+}
+
+let server, mockServer;
+let exitCode = 0;
+startMockServer()
+.then((data) => {
+  mockServer = data.mockServer;
+  return startServer()
+})
+.then((data) => {
+  server = data.server;
+  return runTests(data.port)
+})
+.then(() => (REPLACE ? Promise.resolve() : generateReport()))
+.catch(e => {
+  exitCode = 1;
+  if(e.server){
+    console.error(`problem starting server`, e.error)
+  }
+  if(e.mockServer){
+    console.error(`problem starting mock server`, e.error)
+  }
+  console.error(e)
+})
+.finally(() => {
+  console.log('killing server')
+  server.kill('SIGINT')
+  mockServer.kill('SIGINT')
+  process.exit(exitCode)
+})

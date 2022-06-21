@@ -1,5 +1,3 @@
-import { assert } from 'chai';
-import { BrowserContext, Page } from 'playwright';
 import Ogma, {
 } from '@linkurious/ogma';
 import fs from 'fs/promises';
@@ -13,26 +11,25 @@ const ogma = {} as Ogma;
 const rootFolder = '../../reports/html/e2e/';
 const screenshotFolder = path.join(rootFolder, 'screenshot/');
 const diffFolder = path.join(rootFolder, 'diff/');
-
 const baseFolder = './ref-images';
 let foldersCreated = false;
-const results = {};
+const results: any[] = [];
 
-const { I } = inject();
-const ogma = {} as Ogma;
+const shouldReplace = process.env.REPLACE === 'true' ? true: false;
+function getPaths(fileName: string){
+  return {
+    diffPath: path.join(diffFolder, fileName),
+    expectedPath: path.join(baseFolder, fileName),
+    actualPath: path.join(screenshotFolder, fileName), 
+  }
+}
 
-let download, downloadPath;
-
-
-function compareImages(expectedPath, actualPath, diffPath ){
+function compareImages(expectedPath: string, actualPath: string, diffPath: string ){
   const diff = new BlinkDiff({
     imageAPath:expectedPath,
-
     imageBPath: actualPath,
- 
     thresholdType: BlinkDiff.THRESHOLD_PERCENT,
     threshold: 0.01, // 1% threshold
- 
     imageOutputPath: diffPath,
   });
 
@@ -47,99 +44,10 @@ function compareImages(expectedPath, actualPath, diffPath ){
       }
     });
   });
-
 }
-When(/^I click download$/, async () => {
-  [ download, downloadPath ] = await I.download('text=Download');
-});
 
-Then(/^image is nice$/, () => {
-  fs.readFile(downloadPath)
-  .then(() => {
-    console.log('read image, what should we do ?')
-  })
-})
-
-//@ts-ignore
-Before(async ({ tags }) => {
-  if (!tags.includes('@image-test') || foldersCreated) return;
-  await mkdir(path.resolve(screenshotFolder));
-  await mkdir(path.resolve(diffFolder));
-  await mkdir(path.resolve(baseFolder));
-  foldersCreated = true;
-});
-//@ts-ignore
-After(() => {
-  // if (!tags.includes('@image-test')) return;
-  return fs.writeFile(
-    path.join(rootFolder, 'export-results.json'),
-    JSON.stringify(results)
-  );
-});
-
-When(
-  /^I export png with (\w+) (\d+) (\d+) (.+)$/,
-  async (clip, width, height, name) => {
-    const fileName = `${name}.png`;
-    await I.executeScript(
-      ({ clip, width, height }) =>
-        ogma.view.afterNextFrame().then(() =>
-          ogma.export.png({
-            clip,
-            width: +width > 0 ? width : undefined,
-            height: +height > 0 ? height : undefined,
-            download: false
-          })
-        ),
-      { clip, width, height }
-    )
-      .then(base64 => {
-        return fs.writeFile(
-          path.resolve(
-            process.env.REPLACE ? baseFolder : screenshotFolder,
-            fileName
-          ),
-          base64.replace(/^data:image\/\w+;base64,/, ''),
-          'base64'
-        );
-      })
-      .then(() => {
-        if (process.env.REPLACE) return;
-        return compareImages(
-          path.join(baseFolder, fileName),
-          path.join(screenshotFolder, fileName),
-          path.join(diffFolder, fileName),
-        )
-      })
-      .then(imagesMatch => {
-        if (process.env.REPLACE) return;
-        results[name] = imagesMatch;
-        assert.equal(imagesMatch, true);
-      });
-  }
-);
-
-// When(
-//   /^I export svg with (\w+) (\d+) (\d+) (\w+) (\w+) (\d+) (.+)$/,
-//   async (clip, width, height, embedFonts, groupSemantically, margin, name) => {
-//     const pngFilename = `${name}.png`;
-//     const svgFilename = `${name}.svg`;
-
-//     await I.executeScript(
-//       ({ clip, width, height, groupSemantically, margin, embedFonts }) =>
-//         ogma.view.afterNextFrame().then(() =>
-//           ogma.export
-//             .svg({
-//               clip,
-//               width: +width > 0 ? width : undefined,
-//               height: +height > 0 ? height : undefined,
-//               groupSemantically,
-//               margin,
-//               embedFonts,
-//               download: false
-//             })
-//             .then(svg => {
-//               // turn the svg into a png file, to get a
+// function convertToPng(){
+  // turn the svg into a png file, to get a
 //               // visual comparision
 //               const blobURL = URL.createObjectURL(
 //                 new Blob([svg], {
@@ -162,58 +70,62 @@ When(
 //                 });
 //                 img.src = blobURL;
 //               });
-//             })
-//         ),
-//       { clip, width, height, groupSemantically, margin, embedFonts }
-//     )
-//       .then(({ svg, data64 }) =>
-//         // write the png file in the root folder
-//         Promise.all([
-//           fs.writeFile(
-//             path.resolve(
-//               process.env.REPLACE ? baseFolder : screenshotFolder,
-//               pngFilename
-//             ),
-//             data64.replace(/^data:image\/\w+;base64,/, ''),
-//             {
-//               encoding: 'base64'
-//             }
-//           ),
-//           fs.writeFile(
-//             path.resolve(
-//               process.env.REPLACE ? baseFolder : screenshotFolder,
-//               svgFilename
-//             ),
-//             svg,
-//             {
-//               encoding: 'utf-8'
-//             }
-//           )
-//         ])
-//       )
-//       .then(async () => {
-//         if (process.env.REPLACE) return;
-//         // do a string comparision between svg files
-//         const base = await fs.readFile(path.resolve(baseFolder, svgFilename), {
-//           encoding: 'utf-8'
-//         });
-//         const reference = await fs.readFile(
-//           path.resolve(screenshotFolder, svgFilename),
-//           { encoding: 'utf-8' }
-//         );
-//         assert.equal(base, reference);
-//         // do a visual comparision between png files
-//         return compareImages(
-//           path.join(baseFolder, pngFilename),
-//           path.join(screenshotFolder, pngFilename),
-//           path.join(diffFolder, pngFilename),
-//           0
-//         );
-//       })
-//       .then(imagesMatch => {
-//         if (process.env.REPLACE) return;
-//         results[name] = imagesMatch;
-//         assert.equal(imagesMatch, true);
-//       });
-//   }
-// );
+// }
+
+When(/^I select output format (.+)$/, async (format) => {
+  if(format ==='svg')return;
+  await I.click('SVG');
+  await I.click('.ant-dropdown-menu-title-content');
+})
+
+When(/^I click download (.+)$/, async (name) => {
+  const [download, downloadPath] = await I.download('text=Download');
+  const {expectedPath, actualPath} = getPaths(name);
+  if(!downloadPath){
+    throw('download failed');
+  }
+  if(shouldReplace){
+    return await fs.copyFile(downloadPath, expectedPath);
+  }else{
+    return await fs.copyFile(downloadPath, actualPath);
+  }
+});
+
+Then(/^image is nice (.+)$/, (name) => {
+  const {expectedPath, actualPath, diffPath} = getPaths(name);
+  if(shouldReplace){
+    return;
+  }else{
+    return compareImages(
+      actualPath,
+      expectedPath,
+      diffPath,
+      )
+    .then(() => {
+      results.push({name, path: diffPath, success: true});
+      console.log("ICI", results)
+    })
+    .catch(e => {
+      results.push({name, path: diffPath, success: false});
+      throw(e);
+    });
+  }
+})
+
+//@ts-ignore
+Before(async ({ tags }) => {
+  if (!tags.includes('@download') || foldersCreated) return;
+  await mkdir(path.resolve(screenshotFolder));
+  await mkdir(path.resolve(diffFolder));
+  await mkdir(path.resolve(baseFolder));
+  foldersCreated = true;
+});
+//@ts-ignore
+After(({tags}) => {
+  // if (!tags.includes('@download')) return;
+  console.log("AFTER", results)
+  return fs.writeFile(
+    path.join(rootFolder, 'export-results.json'),
+    JSON.stringify(results)
+  );
+});

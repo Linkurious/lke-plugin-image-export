@@ -83,6 +83,7 @@
     "nanocolors": "^0.2.13",
     "playwright": "^1.22.2",
     "prettier": "^2.5.1",
+    "recursive-copy": "^2.0.14",
     "resq": "^1.10.2",
     "ts-jest": "^28.0.2",
     "ts-node": "^10.8.1",
