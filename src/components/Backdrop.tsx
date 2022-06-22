@@ -2,6 +2,7 @@ import React, { FC, useEffect, useLayoutEffect, useState } from "react";
 import Ogma, { Point, Size, StyleRule } from "@linkurious/ogma";
 import { FormatType } from "../types/formats";
 import { useAppContext } from "../context";
+import { scaleGraph } from "../utils";
 
 interface BackdropProps {
   format: FormatType;
@@ -14,23 +15,8 @@ interface BorderWidth {
   bottom: number;
 }
 
-function scaleGraph(ogma: Ogma, scale: number) {
-  const { cx, cy } = ogma.view.getGraphBoundingBox();
-  const positions = ogma.getNodes().getPosition();
-  return ogma.getNodes().setAttributes(
-    positions.map((pos, i) => {
-      const dx = pos.x - cx;
-      const dy = pos.y - cy;
-
-      return {
-        x: cx + dx * scale,
-        y: cy + dy * scale,
-      };
-    })
-  );
-}
-
-// we need it here for the style rule
+// we need it here for the style rule, it cannot be in the component state
+// otherwise it will not be updated
 let globalScale = 1;
 
 export const Backdrop: FC<BackdropProps> = ({ format }) => {

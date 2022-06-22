@@ -30,6 +30,8 @@ interface IAppContext {
   setGraphScale: (scale: number) => void;
   scalingStyleRule: StyleRule;
   setScalingStyleRule: (rule: StyleRule) => void;
+  scalingStyleEnabled: boolean;
+  setScalingStyleEnabled: (enabled: boolean) => void;
 
   // shared state
   textsVisible: boolean;
@@ -66,6 +68,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [textsVisible, setTextsVisible] = useState(true);
   const [graphScale, setGraphScale] = useState(1);
   const [scalingStyleRule, setScalingStyleRule] = useState<StyleRule>();
+  const [scalingStyleEnabled, setScalingStyleEnabled] = useState(false);
 
   useEffect(() => {
     Promise.all([api.getVisualisation(), api.getConfiguration()]).then(
@@ -96,6 +99,8 @@ export const AppContextProvider = ({ children }: Props) => {
           setGraphScale,
           scalingStyleRule,
           setScalingStyleRule,
+          scalingStyleEnabled,
+          setScalingStyleEnabled,
         } as IAppContext
       }
     >
