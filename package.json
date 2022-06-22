@@ -43,7 +43,7 @@
     "types": "tsc --declaration --emitDeclarationOnly --outDir dist/types",
     "test": "jest",
     "e2e:tests": "./scripts/e2e/index.js",
-    "test:unit": "jest --ci --testResultsProcessor='jest-junit'",
+    "test:unit": "jest --ci --passWithNoTests",
     "lint": "eslint --ext .js,.ts --fix"
   },
   "devDependencies": {
