@@ -1,4 +1,4 @@
-Feature: Size Format
+Feature: Left Panel
 
   @format
   Scenario Outline: Select format
