@@ -19,3 +19,4 @@ Feature: Download
     | square-2.png    |     png      |  Square   | true   | 200% |  true       |   false          |
     | square-3.png    |     png      |  Square   | false  | 100% |  false      |   true           |
 
+

@@ -13,7 +13,6 @@ function getFormat(selectedFormat){
   return formats.find(f => f.label === selectedFormat);
 }
 When(/^I select format (.*)$/, async (format) => {
-  I.amOnPage('/');
   I.click({react: 'Select'});
   I.click(format);
 });
@@ -42,7 +41,6 @@ const getTextSize = async () => I.executeScript(() => {
   return Math.max(...(ogma.getNodes().getAttribute('text.size') as number[]));
 });
 When(/^I select text size (.*)$/, async (size) => {
-  I.amOnPage('/');
   sizeBefore = (await getTextSize()) as any as number;
   I.click(locator.build('.ant-slider-mark>span').withText('200%'));
 });

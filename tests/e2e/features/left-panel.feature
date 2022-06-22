@@ -2,7 +2,8 @@ Feature: Size Format
 
   @format
   Scenario Outline: Select format
-    Given I select format <format>
+    Given I go to main page
+    And I select format <format>
     Then I see it's size within the panel <format>
     And it updates on zoom <format>
   Examples:
@@ -12,7 +13,8 @@ Feature: Size Format
 
   @select
   Scenario Outline: Select text size
-    Given I select text size <size>
+    Given I go to main page
+    And I select text size <size>
     Then I see it's updated within the viz <size>
 
   Examples:
@@ -29,8 +31,8 @@ Feature: Size Format
     Then text reapear
 
   Examples:
-    | size |
-    | 50% |
+    | dummy |
+    | dummy |
 
   @collide-switch
   Scenario Outline: Select text collision
@@ -41,8 +43,8 @@ Feature: Size Format
     Then text collide accordingly true
 
   Examples:
-    | size |
-    | 50% |
+    | dummy |
+    | dummy |
 
   @snap-switch
   Scenario Outline: Select snapping
@@ -53,5 +55,5 @@ Feature: Size Format
     Then snapping toggles accordingly false
 
   Examples:
-    | size |
-    | 50% |
+    | dummy |
+    | dummy |

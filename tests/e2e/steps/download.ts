@@ -88,7 +88,8 @@ When(/^I drag the viz (\w+)/, async (shouldDrag) => {
         await page.mouse.move(cx, cy);
         await page.mouse.down();
         await page.waitForTimeout(200);
-        await page.mouse.move(cx + 100, cy + 100, { steps: 20 });
+        await page.mouse.move(cx + 300, cy + 300, { steps: 60 });
+        await page.waitForTimeout(200);
         await page.mouse.up();
       }
     );
