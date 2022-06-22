@@ -37,7 +37,7 @@ exports.config = {
     features: './features/**/*.feature',
     steps: './steps/**/*.ts'
   },
-  name: 'Ogma',
+  name: 'lkeplugin-image-export',
   grep: process.env.GREP,
   plugins: {
     testomat: {

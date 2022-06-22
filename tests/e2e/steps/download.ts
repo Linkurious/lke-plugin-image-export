@@ -5,6 +5,7 @@ import mkdir from 'mkdirp';
 import path from 'path';
 import BlinkDiff from 'blink-diff';
 import { BrowserContext, Page } from 'playwright';
+import sharp  from "sharp"
 
 const { I } = inject();
 const ogma = {} as Ogma;
@@ -18,6 +19,7 @@ const results: any[] = [];
 
 const shouldReplace = process.env.REPLACE === 'true' ? true: false;
 function getPaths(fileName: string){
+  fileName = fileName.trim();
   return {
     diffPath: path.join(diffFolder, fileName),
     expectedPath: path.join(baseFolder, fileName),
@@ -46,32 +48,6 @@ function compareImages(expectedPath: string, actualPath: string, diffPath: strin
     });
   });
 }
-
-// function convertToPng(){
-  // turn the svg into a png file, to get a
-//               // visual comparision
-//               const blobURL = URL.createObjectURL(
-//                 new Blob([svg], {
-//                   type: 'image/svg+xml;charset=utf-8'
-//                 })
-//               );
-//               const img = document.createElement('img');
-//               return new Promise(resolve => {
-//                 img.addEventListener('load', () => {
-//                   const canvas = document.createElement('canvas');
-//                   canvas.width = width;
-//                   canvas.height = height;
-//                   const ctx = canvas.getContext('2d');
-//                   // @ts-ignore
-//                   ctx.drawImage(img, 0, 0, width, height);
-//                   resolve({
-//                     svg,
-//                     data64: canvas.toDataURL()
-//                   });
-//                 });
-//                 img.src = blobURL;
-//               });
-// }
 
 When(/^I drag the viz (\w+)/, async (shouldDrag) => {
     if(shouldDrag === 'false') return;
@@ -114,17 +90,19 @@ When(/^I select output format (.+)$/, async (format) => {
   await I.click('.ant-dropdown-menu-title-content');
 })
 
-When(/^I click download (.+)$/, async (name) => {
+When(/^I click download (.+) (.+)$/, async (name, format) => {
   const [download, downloadPath] = await I.download('text=Download');
   const {expectedPath, actualPath} = getPaths(name);
   if(!downloadPath){
     throw('download failed');
   }
-  if(shouldReplace){
-    return await fs.copyFile(downloadPath, expectedPath);
-  }else{
-    return await fs.copyFile(downloadPath, actualPath);
+  const outPath = shouldReplace ? expectedPath : actualPath;
+  if(format === 'svg'){
+    return await (sharp(downloadPath)
+    .png()
+    .toFile(outPath))
   }
+  return await fs.copyFile(downloadPath, outPath);
 });
 
 Then(/^image is nice (.+)$/, (name) => {
@@ -139,7 +117,6 @@ Then(/^image is nice (.+)$/, (name) => {
       )
     .then(() => {
       results.push({name, path: diffPath, success: true});
-      console.log("ICI", results)
     })
     .catch(e => {
       results.push({name, path: diffPath, success: false});
@@ -158,8 +135,6 @@ Before(async ({ tags }) => {
 });
 //@ts-ignore
 After(({tags}) => {
-  // if (!tags.includes('@download')) return;
-  console.log("AFTER", results)
   return fs.writeFile(
     path.join(rootFolder, 'export-results.json'),
     JSON.stringify(results)
