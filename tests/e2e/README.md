@@ -1,14 +1,14 @@
 ## How to run tests in testomat
 For the beta channel
 
-``testomatio=qt69d8c741rk npm run e2e:testomat``
+``testomatio=ayv1ac1b32he npm run e2e:testomat``
 
 
 ## How to import tests in testomat
 For the beta channel
 
-``testomatio=qt69d8c741rk npm run importTestomat``
+``testomatio=ayv1ac1b32he npm run importTestomat``
 
 ## How to run the tests
 
-``TESTOMATIO=qt69d8c741rk npx check-cucumber@latest --codeceptjs "**/*.feature" --dir features``
+``TESTOMATIO=ayv1ac1b32he npx check-cucumber@latest --codeceptjs "**/*.feature" --dir features``

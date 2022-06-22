@@ -1,6 +1,7 @@
+@leftpanel @S9f53a1d1
 Feature: Left Panel
 
-  @format
+  @format @T66b235a5
   Scenario Outline: Select format
     Given I go to main page
     And I select format <format>
@@ -11,7 +12,7 @@ Feature: Left Panel
     | Square |
     | Full size |
 
-  @select
+  @select @T712e3366
   Scenario Outline: Select text size
     Given I go to main page
     And I select text size <size>
@@ -22,38 +23,26 @@ Feature: Left Panel
     | 200% |
     | 50% |
 
-  @text-slider
-  Scenario Outline: Select text size
+  @text-slider @T712e3366
+  Scenario: Select text size
     Given I go to main page
     When I toggle text slider
     Then text disappear
     And I toggle text slider
     Then text reapear
 
-  Examples:
-    | dummy |
-    | dummy |
-
-  @collide-switch
-  Scenario Outline: Select text collision
+  @collide-switch @T895f83fe
+  Scenario: Select text collision
     Given I go to main page
     When I toggle text collision
     Then text collide accordingly false
     And I toggle text collision
     Then text collide accordingly true
 
-  Examples:
-    | dummy |
-    | dummy |
-
-  @snap-switch
-  Scenario Outline: Select snapping
+  @snap-switch @T62cf2ace
+  Scenario: Select snapping
     Given I go to main page
     When I toggle snapping
     Then snapping toggles accordingly true
     And I toggle snapping
     Then snapping toggles accordingly false
-
-  Examples:
-    | dummy |
-    | dummy |

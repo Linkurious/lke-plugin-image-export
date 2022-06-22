@@ -1,5 +1,6 @@
+@Sa24af3ff
 Feature: Download
-  @download @downloadpng
+  @download @downloadpng @T88b8d4f0
   Scenario Outline: Download png
     Given I go to main page
     And I select format <format>
@@ -20,7 +21,7 @@ Feature: Download
     | square-3.png    |     png      |  Square   | false  | 100% |  false      |   true           |
 
 
-  @download @downloadsvg
+  @download @downloadsvg @Tb0f103d2
   Scenario Outline: Download svg
       Given I go to main page
       And I select format <format>
