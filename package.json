@@ -43,7 +43,7 @@
     "types": "tsc --declaration --emitDeclarationOnly --outDir dist/types",
     "test": "jest",
     "e2e:tests": "./scripts/e2e/index.js",
-    "test:unit": "jest --ci --passWithNoTests",
+    "test:unit": "jest --ci",
     "lint": "eslint --ext .js,.ts --fix"
   },
   "devDependencies": {
@@ -117,5 +117,11 @@
     "@linkurious/rest-client",
     "@linkurious/ogma-linkurious-parser",
     "express-async-handler"
-  ]
+  ],
+  "jest": {
+    "reporters": [
+      "default",
+      ["jest-junit", {"outputDirectory": "reports", "outputName": "junit-test-results.xml"}]
+    ]
+  }
 }
