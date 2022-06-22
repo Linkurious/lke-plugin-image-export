@@ -104,6 +104,7 @@ export function Panel() {
               <Switch
                 size="small"
                 checked={textsVisible}
+                className="caption-switch"
                 onChange={() => {
                   ogma.styles.setEdgeTextsVisibility(!textsVisible);
                   ogma.styles.setNodeTextsVisibility(!textsVisible);
@@ -115,6 +116,7 @@ export function Panel() {
               <Switch
                 size="small"
                 checked={overlapRemoval}
+                className="collision-switch"
                 disabled={!textsVisible}
                 onChange={() => {
                   ogma.setOptions({
@@ -144,6 +146,7 @@ export function Panel() {
             <Form.Item label="Snapping" valuePropName="checked">
               <Switch
                 size="small"
+                className="snap-switch"
                 onChange={() => {
                   if (!snapping)
                     ogma.tools.snapping.enable({
