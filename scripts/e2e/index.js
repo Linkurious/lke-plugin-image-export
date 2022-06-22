@@ -11,7 +11,6 @@ function startServer() {
   return new Promise((resolve, reject) => {
     server.stdout.on('data', (data) => {
       const message = data.toString();
-      // console.log(message);
       const matches = message.match(/Server available at http:\/\/127\.0\.0\.1:(\d+)/)
       if (!matches || matches.length < 2) return;
       resolve({ server, port: matches[1] })
@@ -26,7 +25,6 @@ function startMockServer() {
   return new Promise((resolve, reject) => {
     mockServer.stdout.on('data', (data) => {
       const message = data.toString();
-      // console.log(message)
       const matches = message.match(/JSON Server is running/);
       if (!matches || !matches.length) return;
       resolve({ mockServer })

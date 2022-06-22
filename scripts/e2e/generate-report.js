@@ -42,7 +42,6 @@ function generateReport() {
     .then(() =>
       Promise.all([
         copyDir(testOutputPath, reportPath),
-        // copyDir(referencePath, path.join(reportPath, 'ref-images'))
       ])
     )
     .then(() =>

@@ -52,5 +52,4 @@ exports.config = {
       fullPageScreenshots: true
     }
   },
-  async bootstrap() {}
 };

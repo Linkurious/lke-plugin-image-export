@@ -110,6 +110,7 @@ export const OgmaComponent = (
 
   useEffect(() => {
     if (ogma) {
+      // @TODO: this is required for e2e testing. Maybe we could give it annother name, like window.ogmaImageExport ? 
       window.ogma = ogma;
       if (graph && ogma && graph !== graphData) {
         setGraphData(graph);
