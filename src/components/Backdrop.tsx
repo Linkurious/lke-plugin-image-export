@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useLayoutEffect, useState } from "react";
 import Ogma, { Point, Size, StyleRule } from "@linkurious/ogma";
-import { Format, FormatType } from "../types/formats";
-import { formatLookup } from "../constants";
+import { FormatType } from "../types/formats";
 import { useAppContext } from "../context";
 
 interface BackdropProps {
@@ -31,10 +30,17 @@ function scaleGraph(ogma: Ogma, scale: number) {
   );
 }
 
+// we need it here for the style rule
 let globalScale = 1;
 
 export const Backdrop: FC<BackdropProps> = ({ format }) => {
-  const { ogma, graphScale, setGraphScale } = useAppContext();
+  const {
+    ogma,
+    graphScale,
+    setGraphScale,
+    scalingStyleRule,
+    setScalingStyleRule,
+  } = useAppContext();
   const [windowSize, setWindowSize] = useState<Size>({ width: 0, height: 0 });
   const [borderWidth, setBorderWidth] = useState<BorderWidth>({
     top: 0,
@@ -42,7 +48,6 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
     right: 0,
     bottom: 0,
   });
-  const [scalingRule, setScalingRule] = useState<StyleRule>();
 
   useEffect(() => {
     if (!ogma) return;
@@ -60,7 +65,7 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
         },
       },
     });
-    setScalingRule(rule);
+    setScalingStyleRule(rule);
   }, [ogma]);
 
   useLayoutEffect(() => {
@@ -126,12 +131,12 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
     window.addEventListener("resize", updateSize);
 
     return () => window.removeEventListener("resize", updateSize);
-  }, [format, scalingRule]);
+  }, [format, scalingStyleRule]);
 
   useEffect(() => {
     globalScale = graphScale;
-    scalingRule?.refresh();
-  }, [scalingRule, graphScale]);
+    if (scalingStyleRule) scalingStyleRule.refresh();
+  }, [scalingStyleRule, graphScale]);
 
   return (
     <div

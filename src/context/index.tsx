@@ -1,6 +1,6 @@
 import { LKOgma } from "@linkurious/ogma-linkurious-parser";
 import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
-import { BoundingBox } from "@linkurious/ogma";
+import { BoundingBox, StyleRule } from "@linkurious/ogma";
 import React, {
   createContext,
   useContext,
@@ -24,8 +24,12 @@ interface IAppContext {
   setOgma: (ogma: LKOgma) => void;
   boundingBox: BoundingBox;
   setBoundingBox: (boundingBox: BoundingBox) => void;
+
+  // scaling to fit the clipping window
   graphScale: number;
   setGraphScale: (scale: number) => void;
+  scalingStyleRule: StyleRule;
+  setScalingStyleRule: (rule: StyleRule) => void;
 
   // shared state
   textsVisible: boolean;
@@ -61,6 +65,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [boundingBox, setBoundingBox] = useState<BoundingBox>();
   const [textsVisible, setTextsVisible] = useState(true);
   const [graphScale, setGraphScale] = useState(1);
+  const [scalingStyleRule, setScalingStyleRule] = useState<StyleRule>();
 
   useEffect(() => {
     Promise.all([api.getVisualisation(), api.getConfiguration()]).then(
@@ -89,6 +94,8 @@ export const AppContextProvider = ({ children }: Props) => {
           setTextsVisible,
           graphScale,
           setGraphScale,
+          scalingStyleRule,
+          setScalingStyleRule,
         } as IAppContext
       }
     >
