@@ -4,6 +4,7 @@ import fs from 'fs/promises';
 import mkdir from 'mkdirp';
 import path from 'path';
 import BlinkDiff from 'blink-diff';
+import { BrowserContext, Page } from 'playwright';
 
 const { I } = inject();
 const ogma = {} as Ogma;
@@ -71,6 +72,40 @@ function compareImages(expectedPath: string, actualPath: string, diffPath: strin
 //                 img.src = blobURL;
 //               });
 // }
+
+When(/^I drag the viz (\w+)/, async (shouldDrag) => {
+    if(shouldDrag === 'false') return;
+    await I.executeScript(() => {
+      ogma.setOptions({interactions: {drag: {enabled: false}}});
+    })
+    await I.usePlaywrightTo(
+      'drag the view',
+      async ({ page }: { page: Page; context: BrowserContext }) => {
+        const view = page.viewportSize();
+        if (!view) throw new Error('Could not get viewport size');
+        const cx = view.width / 2;
+        const cy = view.height / 2;
+        await page.mouse.move(cx, cy);
+        await page.mouse.down();
+        await page.waitForTimeout(200);
+        await page.mouse.move(cx + 100, cy + 100, { steps: 20 });
+        await page.mouse.up();
+      }
+    );
+    await I.executeScript(() => {
+      ogma.setOptions({interactions: {drag: {enabled: true}}});
+    })
+})
+
+When(/^I set text visibility (\w+)$/, async (shouldShow) => {
+  if(shouldShow === 'true') return;
+  I.click('.caption-switch');
+})
+
+When(/^I set text collision removal (\w+)$/, async (shouldRemoveCollision) => {
+  if(shouldRemoveCollision === 'true') return;
+  I.click('.collision-switch');
+})
 
 When(/^I select output format (.+)$/, async (format) => {
   if(format ==='svg')return;

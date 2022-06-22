@@ -42,7 +42,7 @@
     "serve": "typehead serve",
     "types": "tsc --declaration --emitDeclarationOnly --outDir dist/types",
     "test": "jest",
-    "e2e:tests": "PORT=8050 ./scripts/e2e/index.js",
+    "e2e:tests": "./scripts/e2e/index.js",
     "test:unit": "jest --ci --testResultsProcessor='jest-junit'",
     "lint": "eslint --ext .js,.ts --fix"
   },

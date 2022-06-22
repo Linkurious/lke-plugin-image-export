@@ -24,7 +24,7 @@ function getReportContent(results) {
     );
   }, '');
   const table = `<table><tbody>${rows}<tbody></table>`;
-  const intro = `<p>Images are displayed in the following order: actual result (left), expected result (middle), difference (right).</p>`;
+  const intro = `<p>Images are displayed in the following order: actual result (left), difference result (middle), expected result (right).</p>`;
   return intro + table;
 }
 

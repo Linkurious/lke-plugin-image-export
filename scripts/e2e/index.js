@@ -3,7 +3,6 @@ const { green, red } = require('nanocolors');
 const { spawn, exec } = require('child_process');
 const generateReport = require('./generate-report');
 const REPLACE = process.env.REPLACE;
-const SMOKE = process.env.SMOKE;
 
 
 
@@ -45,8 +44,7 @@ function runTests(PORT){
     // if you are replacing the export image references, only run
     // the export tests
     const args = process.argv.slice(2).join(' ');
-    let filter = REPLACE ? '--grep (download)' : '';
-    filter = '--grep download';
+    let filter = REPLACE ? '--grep download' : `--grep ${process.env.GREP}`;
     console.log(filter)
     testProcess = exec(
       `TESTOMATIO=${
@@ -82,7 +80,6 @@ startMockServer()
   server = data.server;
   return runTests(data.port)
 })
-.then(() => (REPLACE ? Promise.resolve() : generateReport()))
 .catch(e => {
   exitCode = 1;
   if(e.server){
@@ -91,8 +88,9 @@ startMockServer()
   if(e.mockServer){
     console.error(`problem starting mock server`, e.error)
   }
-  console.error(e)
+  console.error(e);
 })
+.then(() => (REPLACE ? Promise.resolve() : generateReport()))
 .finally(() => {
   console.log('killing server')
   server.kill('SIGINT')
