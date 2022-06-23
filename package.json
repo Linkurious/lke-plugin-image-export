@@ -43,6 +43,7 @@
     "types": "tsc --declaration --emitDeclarationOnly --outDir dist/types",
     "test": "jest",
     "e2e:tests": "./scripts/e2e/index.js",
+    "render:docker": "./scripts/e2e/replace-images.sh",
     "test:unit": "jest --ci",
     "lint": "eslint --ext .js,.ts --fix"
   },
