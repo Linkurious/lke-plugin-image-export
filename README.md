@@ -1,4 +1,4 @@
-# lke-plugin-image-export
+# `lke-plugin-image-export`
 
 ## Configuration
 

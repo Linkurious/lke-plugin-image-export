@@ -7,7 +7,12 @@ import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "./ImageViewer";
 import { DownOutlined } from "@ant-design/icons";
-import { formatSize, downloadBlob, scaleGraph } from "../utils";
+import {
+  formatSize,
+  downloadBlob,
+  scaleGraph,
+  stringToSVGElement,
+} from "../utils";
 
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
@@ -71,31 +76,45 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
       ogma.getSelectedEdges().setSelected(false);
       ogma.getSelectedNodes().setSelected(false);
 
-      //setScalingStyleEnabled(false);
-      console.log("scalingStyleEnabled", { scalingStyleEnabled });
-
-      const scaleStyleDef = scalingStyleRule.getDefinition();
       scaleGraph(ogma, 1 / graphScale);
+      const scaleStyleDef = scalingStyleRule.getDefinition();
+
       scalingStyleRule
         .destroy()
-        .then(() =>
-          svg(ogma)
+        .then(() => {
+          // if (format.value) {
+          //   return ogma.export
+          //     .svg({
+          //       download: false,
+          //       texts: textsVisible,
+          //       embedFonts: true,
+          //       clip: true,
+          //       width: format.value!.width,
+          //       height: format.value!.height,
+          //     })
+          //     .then((svg) => {
+          //       return stringToSVGElement(svg);
+          //     });
+          // }
+          return svg(ogma)
             .setOptions({ texts: textsVisible })
             .on("start", () => setProgress(0))
             .on("progress", (progress) => setProgress(progress))
-            .on("done", () => setLoading(false))
+
             .run({
               fullSize: format.value === undefined,
               width: format.value ? format.value.width : 0,
               height: format.value ? format.value.height : 0,
-            })
-        )
+            });
+        })
         .then((res) => {
+          setLoading(false);
           const width = parseFloat(res.getAttribute("width")!);
           const height = parseFloat(res.getAttribute("height")!);
           setSize({ width, height });
 
           const svgString = new XMLSerializer().serializeToString(res);
+
           // TODO: add progress bar
           console.time("embed fonts");
           const result = embedFonts(svgString);
@@ -129,10 +148,7 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
     if (currentFormat.label === "SVG") {
       downloadBlob(image as string, "image.svg", "image/svg+xml");
     } else {
-      const data = await svgToPng(
-        new DOMParser().parseFromString(image as string, "image/svg+xml")
-          .documentElement as unknown as SVGSVGElement
-      );
+      const data = await svgToPng(stringToSVGElement(image as string));
       downloadBlob(data, "image.png", "image/png");
     }
     if (onOk) onOk();
