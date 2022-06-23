@@ -67,7 +67,7 @@
     "blink-diff": "^1.0.13",
     "canvas": "^2.9.1",
     "codeceptjs": "^3.3.3",
-    "envsubst": "^4.0.0",
+    "envsub": "^4.0.7",
     "eslint": "^8.4.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^16.1.0",
