@@ -1,6 +1,6 @@
 {
   "name": "@linkurious/image-export-plugin",
-  "version": "0.0.1",
+  "version": "0.1.0-beta.1",
   "engines": {
     "node": "16.15.0",
     "npm": "8.5.5"
@@ -16,7 +16,6 @@
   "main": "public/index.js",
   "author": "Andrea Fantaccione",
   "scripts": {
-    "tsc": "tsc -b",
     "clean": "rm -rf dist *.tgz *.lke",
     "copy-assets": "mkdir -p dist/public && cp -R web/assets dist/public && cp web/index.html dist/public",
     "build:project": "npm-run-all build:manifest build:public build:backend",
@@ -25,7 +24,7 @@
     "postbuild:public": "mv dist/public/index.js dist/public/index-bundle.js; npm run copy-assets",
     "build:backend": "tsc -b backend/",
     "build:dependencies": "cp package.json dist && cd dist && npm install --only=prod --no-optional",
-    ":build": "npm run build:project && npm run build:dependencies && npm pack ./dist && npm run gunzip",
+    "build": "npm run build:project && npm run build:dependencies && npm pack ./dist && npm run gunzip",
     "gunzip": "gunzip -qf -c $npm_package_name-$npm_package_version.tgz > $npm_package_name-$npm_package_version.lke",
     "deploy:login": "curl -X POST $npm_config_DEPLOY_URL/api/auth/login --cookie-jar 'lke.cookie' -H 'Content-type: application/json' -d '{ \"usernameOrEmail\": \"'$npm_config_DEPLOY_USER'\", \"password\": \"'$npm_config_DEPLOY_PASS'\" }'",
     "deploy:logout": "curl -X GET $npm_config_DEPLOY_URL/api/auth/logout --cookie 'lke.cookie'  -H 'Content-type: application/json' && rm lke.cookie",
@@ -37,7 +36,7 @@
     "deploy": "cp $npm_package_name-$npm_package_version.lke $npm_config_DEPLOY_PLUGIN_FOLDER",
     "postdeploy": "npm run deploy:restart-plugins",
     "check-env": "node -e 'console.log(process.env)' | grep npm",
-    "build": "typehead build",
+    "build:component": "typehead build",
     "start": "node scripts/mock-server.js & npm run serve",
     "serve": "typehead serve",
     "types": "tsc --declaration --emitDeclarationOnly --outDir dist/types",
