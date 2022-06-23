@@ -19,7 +19,7 @@
     "clean": "rm -rf dist *.tgz *.lke",
     "copy-assets": "mkdir -p dist/public && cp -R web/assets dist/public && cp web/index.html dist/public",
     "build:project": "npm-run-all build:manifest build:public build:backend",
-    "build:manifest": "mkdir -p dist && cat src/manifest.json | envsubst > dist/manifest.json",
+    "build:manifest": "mkdir -p dist && envsub src/manifest.json dist/manifest.json",
     "build:public": "esbuild web/index.tsx --bundle --outdir=dist/public --target=es6",
     "postbuild:public": "mv dist/public/index.js dist/public/index-bundle.js; npm run copy-assets",
     "build:backend": "tsc -b backend/",
