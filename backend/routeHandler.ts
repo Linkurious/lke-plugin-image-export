@@ -1,6 +1,6 @@
 import bodyParser from "body-parser";
 
-import { PluginConfig, PluginRouteOptions } from "../types/plugin";
+import { PluginConfig, PluginRouteOptions } from "../src/types/plugin";
 
 export = function configureRoutes(
   options: PluginRouteOptions<PluginConfig>
