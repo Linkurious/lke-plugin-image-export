@@ -30,3 +30,8 @@ export const formatLookup: Record<Format, FormatType> = {
 export const formats: FormatType[] = Object.keys(formatLookup).map(
   (key: Format) => formatLookup[key]
 );
+
+/**
+ * Minimum backdrop preview width
+ */
+export const backdropMargin = 50;
