@@ -7,7 +7,13 @@ const middlewares = jsonServer.defaults();
 // GET '/api/configuration'
 // GET '/api/vis/:id'
 server.use(middlewares);
+server.use(
+  jsonServer.rewriter({
+    "/api/key/visualizations/*": "/api/vis/$1",
+  })
+);
 server.use("/api", router);
+
 server.listen(3000, () => {
   console.log("JSON Server is running");
 });
