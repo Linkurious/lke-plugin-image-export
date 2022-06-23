@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "incremental": true,
+    "module": "CommonJS",
+    "target": "ES6",
+    "outDir": "lke-plugin-image.lke",
+    "tsBuildInfoFile": "lke-plugin-image.lke/buildcache",
+    "esModuleInterop": true,
+    "lib": [
+      "DOM",
+      "ES2018",
+      "ES6"
+    ],
+    "sourceMap": false,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "declaration": true,
+    "declarationDir": "../../dist",
+    "removeComments": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "include": [
+    "src/@types/**/*.d.ts"
+  ],
+  "references": [
+  ]
+}
