@@ -38,7 +38,7 @@
     "check-env": "node -e 'console.log(process.env)' | grep npm",
     "build:component": "typehead build",
     "start": "node scripts/mock-server.js & npm run serve",
-    "serve": "typehead serve",
+    "serve": "typehead serve --outfile=index.js",
     "types": "tsc --declaration --emitDeclarationOnly --outDir dist/types",
     "test": "jest",
     "e2e:tests": "./scripts/e2e/index.js",
