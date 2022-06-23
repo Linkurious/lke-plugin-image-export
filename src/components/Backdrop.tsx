@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useLayoutEffect, useState } from "react";
-import Ogma, { Point, Size, StyleRule } from "@linkurious/ogma";
+import { Point, Size } from "@linkurious/ogma";
 import { FormatType } from "../types/formats";
 import { useAppContext } from "../context";
 import { scaleGraph } from "../utils";
+import { backdropMargin } from "../constants";
 
 interface BackdropProps {
   format: FormatType;
@@ -13,6 +14,56 @@ interface BorderWidth {
   left: number;
   right: number;
   bottom: number;
+}
+
+function getScale(width: number, height: number, format: FormatType): number {
+  let scale = 1;
+  if (format.value) {
+    if (
+      format.value.width > width - backdropMargin ||
+      format.value.height > height - backdropMargin
+    ) {
+      scale = Math.min(
+        (width - backdropMargin) / format.value.width,
+        (height - backdropMargin) / format.value.height
+      );
+    }
+  }
+  return scale;
+}
+
+function getBorderWidth(
+  width: number,
+  height: number,
+  format: FormatType
+): BorderWidth {
+  let min: Point = { x: 0, y: 0 };
+  let max: Point = { x: width, y: height };
+  const borderScale = getScale(width, height, format);
+
+  // fixed size
+  if (format.value) {
+    min = {
+      x: Math.max(0, (width - format.value.width * borderScale) / 2),
+      y: Math.max(0, (height - format.value.height * borderScale) / 2),
+    };
+    max = {
+      x: (width + format.value.width * borderScale) / 2,
+      y: (height + format.value.height * borderScale) / 2,
+    };
+  }
+
+  const heightTop = min.y;
+  const heightBottom = Math.max(0, height - max.y);
+  const widthLeft = min.x;
+  const widthRight = Math.max(0, width - max.x);
+
+  return {
+    top: heightBottom,
+    left: widthLeft,
+    right: widthRight,
+    bottom: heightTop,
+  };
 }
 
 // we need it here for the style rule, it cannot be in the component state
@@ -38,6 +89,8 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
   useEffect(() => {
     if (!ogma) return;
     const rule = ogma.styles.addRule({
+      nodeSelector: () => true,
+      edgeSelector: () => true,
       nodeAttributes: {
         radius: (n) => +n!.getAttribute("radius") * globalScale,
         text: {
@@ -59,57 +112,18 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
       const width = window.innerWidth;
       const height = window.innerHeight;
 
-      let min: Point = { x: 0, y: 0 };
-      let max: Point = { x: width, y: height };
-      let borderScale = 1;
+      const borderWidth = getBorderWidth(width, height, format);
+      const scale = getScale(width, height, format);
 
-      // fixed size
-      if (format.value) {
-        const margin = 50;
-        if (
-          format.value.width > width - margin ||
-          format.value.height > height - margin
-        ) {
-          const scale = Math.min(
-            (width - margin) / format.value.width,
-            (height - margin) / format.value.height
-          );
-          console.log("need to scale down", scale);
-          //ogma.getContainer()!.style.transform = `scale(${scale})`;
-
-          borderScale = scale;
-        }
-
-        min = {
-          x: Math.max(0, (width - format.value.width * borderScale) / 2),
-          y: Math.max(0, (height - format.value.height * borderScale) / 2),
-        };
-        max = {
-          x: (width + format.value.width * borderScale) / 2,
-          y: (height + format.value.height * borderScale) / 2,
-        };
-      }
-
-      const heightTop = min.y;
-      const heightBottom = Math.max(0, height - max.y);
-      const widthLeft = min.x;
-      const widthRight = Math.max(0, width - max.x);
-
-      setBorderWidth({
-        top: heightBottom,
-        left: widthLeft,
-        right: widthRight,
-        bottom: heightTop,
-      });
-
+      setBorderWidth(borderWidth);
       setWindowSize({ width, height });
 
       if (ogma) {
         // first drop to initial scale
         if (graphScale !== 1) scaleGraph(ogma, 1 / graphScale);
         // then apply the scale
-        setGraphScale(borderScale);
-        scaleGraph(ogma, borderScale);
+        setGraphScale(scale);
+        scaleGraph(ogma, scale);
       }
     };
     updateSize();
