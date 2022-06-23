@@ -1,5 +1,9 @@
 import xhr from "axios";
+<<<<<<< HEAD
 import qs from "qs";
+=======
+import qs from 'qs'
+>>>>>>> a68207c (try to use official and mock server)
 import {
   RestClient,
   Configuration,
