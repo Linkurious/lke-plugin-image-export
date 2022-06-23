@@ -1,4 +1,4 @@
-import { Size } from "@linkurious/ogma";
+import Ogma, { Size } from "@linkurious/ogma";
 
 export const formatSize = ({ width, height }: Size, suffix = "px") => {
   return `${width} × ${height} px`;
@@ -23,4 +23,20 @@ function downloadURL(data: string, fileName: string) {
   a.style.display = "none";
   a.click();
   a.remove();
+}
+
+export function scaleGraph(ogma: Ogma, scale: number) {
+  const { cx, cy } = ogma.view.getGraphBoundingBox();
+  const positions = ogma.getNodes().getPosition();
+  return ogma.getNodes().setAttributes(
+    positions.map((pos, i) => {
+      const dx = pos.x - cx;
+      const dy = pos.y - cy;
+
+      return {
+        x: cx + dx * scale,
+        y: cy + dy * scale,
+      };
+    })
+  );
 }

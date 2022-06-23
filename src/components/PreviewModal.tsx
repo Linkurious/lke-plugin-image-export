@@ -7,7 +7,7 @@ import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "./ImageViewer";
 import { DownOutlined } from "@ant-design/icons";
-import { formatSize, downloadBlob } from "../utils";
+import { formatSize, downloadBlob, scaleGraph } from "../utils";
 
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
@@ -45,12 +45,17 @@ const ExportInfo: FC<{
   );
 };
 
-export const PreviewModal: FC<Props> = ({
-  visible,
-  onCancel,
-  onOk,
-}) => {
-  const { ogma, textsVisible, format } = useAppContext();
+export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
+  const {
+    ogma,
+    textsVisible,
+    format,
+    graphScale,
+    scalingStyleRule,
+    setScalingStyleRule,
+    scalingStyleEnabled,
+    setScalingStyleEnabled,
+  } = useAppContext();
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState<string>();
   const [progress, setProgress] = useState(0);
@@ -65,18 +70,26 @@ export const PreviewModal: FC<Props> = ({
       setLoading(true);
       ogma.getSelectedEdges().setSelected(false);
       ogma.getSelectedNodes().setSelected(false);
-      svg(ogma)
-        .setOptions({
-          texts: textsVisible,
-        })
-        .on("start", () => setProgress(0))
-        .on("progress", (progress) => setProgress(progress))
-        .on("done", () => setLoading(false))
-        .run({
-          fullSize: format.value === undefined,
-          width: format.value ? format.value.width : 0,
-          height: format.value ? format.value.height : 0,
-        })
+
+      //setScalingStyleEnabled(false);
+      console.log("scalingStyleEnabled", { scalingStyleEnabled });
+
+      const scaleStyleDef = scalingStyleRule.getDefinition();
+      scaleGraph(ogma, 1 / graphScale);
+      scalingStyleRule
+        .destroy()
+        .then(() =>
+          svg(ogma)
+            .setOptions({ texts: textsVisible })
+            .on("start", () => setProgress(0))
+            .on("progress", (progress) => setProgress(progress))
+            .on("done", () => setLoading(false))
+            .run({
+              fullSize: format.value === undefined,
+              width: format.value ? format.value.width : 0,
+              height: format.value ? format.value.height : 0,
+            })
+        )
         .then((res) => {
           const width = parseFloat(res.getAttribute("width")!);
           const height = parseFloat(res.getAttribute("height")!);
@@ -91,6 +104,11 @@ export const PreviewModal: FC<Props> = ({
           //const optimzed = optimize(result, {}).data;
           console.timeEnd("optimize");
           setImage(result);
+        })
+        .then(() => {
+          const rule = ogma.styles.addRule(scaleStyleDef);
+          setScalingStyleRule(rule);
+          scaleGraph(ogma, graphScale);
         });
     }
     return () => {
