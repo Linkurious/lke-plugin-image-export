@@ -1,9 +1,5 @@
 import xhr from "axios";
-<<<<<<< HEAD
 import qs from "qs";
-=======
-import qs from 'qs'
->>>>>>> a68207c (try to use official and mock server)
 import {
   RestClient,
   Configuration,
@@ -11,24 +7,36 @@ import {
   PopulatedVisualization,
 } from "@linkurious/rest-client";
 
-const rc = new RestClient({ baseUrl: "../.." });
-console.log("parsed", qs.parse(location.href));
+const rc = new RestClient({
+  baseUrl:  '../../'
+});
+const { key , visualizationId }  = qs.parse(location.search) as any as { key:string, visualizationId: string };
 
-let { key = "key", visualisationId = "101" } = qs.parse(
-  location.href
-) as any as { key: string; visualisationId: string };
-
+//@ts-ignore
+if(IS_DEV){
+  const API_URL = "http://localhost:3000/api/";
+  xhr.defaults.baseURL = API_URL;
+  // xhr.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+}
 export async function getConfiguration(): Promise<IOgmaConfig> {
 
-  const response = await rc.config.getConfiguration();
-  if (response.isSuccess()) {
-    return response.body.ogma;
+  //@ts-ignore
+  if(IS_DEV){
+    return (await xhr.get<Configuration>(`/config`)).data.ogma;
+  }
+  const response =  await rc.config.getConfiguration();
+  if(response.isSuccess()) {
+    return response.body.ogma
   } else return {};
 }
 
-export async function getVisualisation(): Promise<PopulatedVisualization> {
+export async function getVisualisation() {
+  //@ts-ignore
+  if(IS_DEV){
+    return (await xhr.get<PopulatedVisualization>(`/vis/101`)).data
+  }
   const response = await rc.visualization.getVisualization({
-    id: parseInt(visualisationId, 10), //parseInt(visualisationId as string, 10),
+    id: parseInt(visualizationId, 10), //parseInt(visualisationId as string, 10),
     sourceKey: key, //key as string
   });
   if (response.isSuccess()) return response.body;
