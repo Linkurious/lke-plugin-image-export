@@ -12,6 +12,9 @@
     "types": ["node", "jest"]
   },
   "typeRoots": ["./src/types"],
+  "globals": {
+    "IS_DEV": "boolean"
+  },
   "include": ["./src/**/*", "./lib/**/*"],
   "exclude": ["node_modules"]
 }

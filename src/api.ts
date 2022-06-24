@@ -10,7 +10,7 @@ import {
 const rc = new RestClient({
   baseUrl:  '../../'
 });
-const { key , visualizationId }  = qs.parse(location.search) as any as { key:string, visualizationId: string };
+const { key , visualizationId }  = qs.parse(location.search.slice(1)) as any as { key:string, visualizationId: string };
 
 //@ts-ignore
 if(IS_DEV){
