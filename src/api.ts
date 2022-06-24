@@ -11,13 +11,15 @@ import {
   PopulatedVisualization,
 } from "@linkurious/rest-client";
 
-const rc = new RestClient({ baseUrl: "http://localhost:3000/" });
+const rc = new RestClient({ baseUrl: "../.." });
+console.log("parsed", qs.parse(location.href));
 
 let { key = "key", visualisationId = "101" } = qs.parse(
   location.href
 ) as any as { key: string; visualisationId: string };
 
 export async function getConfiguration(): Promise<IOgmaConfig> {
+
   const response = await rc.config.getConfiguration();
   if (response.isSuccess()) {
     return response.body.ogma;
