@@ -32,7 +32,7 @@
     "deploy:restart-plugins": "curl -X POST $(npm config get DEPLOY_URL)/api/admin/plugins/restart-all --cookie 'lke.cookie'",
     "postdeploy:restart-plugins": "npm run deploy:logout",
     "prebuild-deploy": "npm run build",
-    "build-deploy": "sudo npm run deploy",
+    "build-deploy": "npm run deploy",
     "deploy": "cp linkurious-image-export-plugin-$npm_package_version.lke $(npm config get DEPLOY_PLUGIN_FOLDER)",
     "postdeploy": "npm run deploy:restart-plugins",
     "check-env": "node -e 'console.log(process.env)' | grep npm",
