@@ -11,8 +11,4 @@ nodeJob {
   runBenchTests = true
   runPreReleaseOnUpload = false
   npmPackPath = './dist'
-
-  //Deployement
-  runDeploy = false
-  ansibleTags = "playbook::infra::docker::up"
 }
