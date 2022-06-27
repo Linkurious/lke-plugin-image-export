@@ -10,7 +10,10 @@
     "public/**.js",
     "public/**.html",
     "public/assets/**",
-    "manifest.json"
+    "dist/**/**.js",
+    "dist/**/**.css",
+    "dist/**/**.html",
+    "dist/manifest.json"
   ],
   "description": "A plugin to demo the Ogma Linkurious Parser",
   "main": "public/index.js",

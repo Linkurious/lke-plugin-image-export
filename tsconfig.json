@@ -4,6 +4,7 @@
     "allowJs": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "resolveJsonModule": true,
     "target": "es6",
     "jsx": "react",
     "module": "commonjs",
