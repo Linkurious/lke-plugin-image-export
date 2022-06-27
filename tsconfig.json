@@ -4,6 +4,7 @@
     "allowJs": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "resolveJsonModule": true,
     "target": "es6",
     "jsx": "react",
     "module": "commonjs",
@@ -12,6 +13,9 @@
     "types": ["node", "jest"]
   },
   "typeRoots": ["./src/types"],
+  "globals": {
+    "IS_DEV": "boolean"
+  },
   "include": ["./src/**/*", "./lib/**/*"],
   "exclude": ["node_modules"]
 }

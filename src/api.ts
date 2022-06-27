@@ -2,27 +2,32 @@ import xhr from "axios";
 import qs from "qs";
 import {
   RestClient,
-  Configuration,
   IOgmaConfig,
   PopulatedVisualization,
 } from "@linkurious/rest-client";
 
-const rc = new RestClient({ baseUrl: "http://localhost:3000/" });
+declare var IS_DEV: boolean;
 
-let { key = "key", visualisationId = "101" } = qs.parse(
-  location.href
-) as any as { key: string; visualisationId: string };
+const rc = new RestClient({
+  baseUrl: IS_DEV ? "http://localhost:3000/" : "../../",
+});
+
+const { key = "key", visualizationId = "101" } = qs.parse(
+  location.search.slice(1)
+) as {
+  key: string;
+  visualizationId: string;
+};
 
 export async function getConfiguration(): Promise<IOgmaConfig> {
   const response = await rc.config.getConfiguration();
-  if (response.isSuccess()) {
-    return response.body.ogma;
-  } else return {};
+  if (response.isSuccess()) return response.body.ogma;
+  return {};
 }
 
-export async function getVisualisation(): Promise<PopulatedVisualization> {
+export async function getVisualisation() {
   const response = await rc.visualization.getVisualization({
-    id: parseInt(visualisationId, 10), //parseInt(visualisationId as string, 10),
+    id: parseInt(visualizationId, 10), //parseInt(visualisationId as string, 10),
     sourceKey: key, //key as string
   });
   if (response.isSuccess()) return response.body;
