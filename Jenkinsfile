@@ -2,7 +2,7 @@
 
 nodeJob {
   // General
-  projectName = "linkurious/lke-plugin-image-export"
+  projectName = "lke-plugin-image-export"
   parameterList = [
     string(name: 'run', defaultValue: '', description: 'Run Id'),
     string(name: 'testomatio', defaultValue: 'ayv1ac1b32he', description: 'Testomatio API'),
