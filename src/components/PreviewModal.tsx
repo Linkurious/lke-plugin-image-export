@@ -58,8 +58,7 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
     graphScale,
     scalingStyleRule,
     setScalingStyleRule,
-    scalingStyleEnabled,
-    setScalingStyleEnabled,
+    background,
   } = useAppContext();
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState<string>();
@@ -81,32 +80,22 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
 
       scalingStyleRule
         .destroy()
-        .then(() => {
-          // if (format.value) {
-          //   return ogma.export
-          //     .svg({
-          //       download: false,
-          //       texts: textsVisible,
-          //       embedFonts: true,
-          //       clip: true,
-          //       width: format.value!.width,
-          //       height: format.value!.height,
-          //     })
-          //     .then((svg) => {
-          //       return stringToSVGElement(svg);
-          //     });
-          // }
-          return svg(ogma)
-            .setOptions({ texts: textsVisible })
+        .then(() =>
+          svg(ogma)
+            .setOptions({
+              texts: textsVisible,
+              background: background
+                ? ogma.getOptions().backgroundColor
+                : undefined,
+            })
             .on("start", () => setProgress(0))
             .on("progress", (progress) => setProgress(progress))
-
             .run({
               fullSize: format.value === undefined,
               width: format.value ? format.value.width : 0,
               height: format.value ? format.value.height : 0,
-            });
-        })
+            })
+        )
         .then((res) => {
           setLoading(false);
           const width = parseFloat(res.getAttribute("width")!);
