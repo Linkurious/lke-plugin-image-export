@@ -1,3 +1,5 @@
-test('Dummy', () => {
-  expect(1 + 2).toBe(3);
+describe("Image export", () => {
+  it("should have tests", () => {
+    expect(true).toBe(true);
+  });
 });

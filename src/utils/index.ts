@@ -32,16 +32,16 @@ export const stringToSVGElement = (svg: string) => {
 };
 
 export function scaleGraph(ogma: Ogma, scale: number) {
-  const { cx, cy } = ogma.view.getGraphBoundingBox();
+  const { x, y } = ogma.view.getCenter();
   const positions = ogma.getNodes().getPosition();
   return ogma.getNodes().setAttributes(
     positions.map((pos, i) => {
-      const dx = pos.x - cx;
-      const dy = pos.y - cy;
+      const dx = pos.x - x;
+      const dy = pos.y - y;
 
       return {
-        x: cx + dx * scale,
-        y: cy + dy * scale,
+        x: x + dx * scale,
+        y: y + dy * scale,
       };
     })
   );

@@ -1,6 +1,6 @@
 {
   "name": "@linkurious/image-export-plugin",
-  "version": "0.0.2",
+  "version": "0.1.0-alpha.2",
   "engines": {
     "node": "16.15.0",
     "npm": "8.5.5"
@@ -10,42 +10,39 @@
     "public/**.js",
     "public/**.html",
     "public/assets/**",
+    "dist/**/**.js",
     "manifest.json"
   ],
   "description": "A plugin to demo the Ogma Linkurious Parser",
   "main": "public/index.js",
   "author": "Andrea Fantaccione",
   "scripts": {
-    "tsc": "tsc -b",
     "clean": "rm -rf dist *.tgz *.lke",
-    "copy-assets": "mkdir -p dist/public && cp -R src/public/assets dist/public && cp src/public/index.html dist/public",
+    "copy-assets": "mkdir -p dist/public && cp -R web/assets dist/public && cp web/index.html dist/public",
     "build:project": "npm-run-all build:manifest build:public build:backend",
-    "build:manifest": "mkdir -p dist && cat src/manifest-template.json | envsubst > dist/manifest.json",
-    "build:public": "tsc -b src/public && cd dist/public_tmp && browserify *.js --debug -o ../public/index.js",
-    "postbuild:public": "npm run copy-assets",
-    "build:backend": "tsc -b src/backend",
-    "build:dependencies": "cp package.json dist && cd dist && npm install --only=prod --no-optional",
-    ":build": "npm run build:project && npm run build:dependencies && npm pack ./dist && npm run gunzip",
-    "gunzip": "gunzip -qf -c $npm_package_name-$npm_package_version.tgz > $npm_package_name-$npm_package_version.lke",
-    "deploy:login": "curl -X POST $npm_config_DEPLOY_URL/api/auth/login --cookie-jar 'lke.cookie' -H 'Content-type: application/json' -d '{ \"usernameOrEmail\": \"'$npm_config_DEPLOY_USER'\", \"password\": \"'$npm_config_DEPLOY_PASS'\" }'",
-    "deploy:logout": "curl -X GET $npm_config_DEPLOY_URL/api/auth/logout --cookie 'lke.cookie'  -H 'Content-type: application/json' && rm lke.cookie",
-    "predeploy:restart-plugins": "npm run deploy:login",
-    "deploy:restart-plugins": "curl -X POST $npm_config_DEPLOY_URL/api/admin/plugins/restart-all --cookie 'lke.cookie'",
-    "postdeploy:restart-plugins": "npm run deploy:logout",
-    "prebuild-deploy": "npm run build",
-    "build-deploy": "npm run deploy",
-    "deploy": "cp $npm_package_name-$npm_package_version.lke $npm_config_DEPLOY_PLUGIN_FOLDER",
+    "build:manifest": "mkdir -p dist && envsub src/manifest.json dist/manifest.json",
+    "build:public": "esbuild web/index.tsx --bundle --outdir=dist/public --target=es6 --define:IS_DEV=false",
+    "postbuild:public": "mv dist/public/index.js dist/public/index-bundle.js; npm run copy-assets",
+    "build:backend": "esbuild backend/routeHandler.ts --outfile=dist/backend/routeHandler.js --bundle --platform=node",
+    "build:dependencies": "cp package.json dist",
+    "build:component": "typehead build",
+    "build": "npm run build:project && npm run build:dependencies && npm pack ./dist && npm run repack",
+    "repack": "gunzip -qf -c linkurious-image-export-plugin-$npm_package_version.tgz > lke-plugin-image-export.lke",
+    "deploy": "cp lke-plugin-image-export.lke $(npm config get DEPLOY_PLUGIN_FOLDER)/lke-plugin-image-export-$npm_package_version.lke",
     "postdeploy": "npm run deploy:restart-plugins",
+    "deploy:login": "curl -X POST $(npm config get DEPLOY_URL)/api/auth/login --cookie-jar 'lke.cookie' -H 'Content-type: application/json' -d '{ \"usernameOrEmail\": \"'$(npm config get DEPLOY_USER)'\", \"password\": \"'$(npm config get DEPLOY_PASS)'\" }'",
+    "deploy:logout": "curl -X GET $(npm config get DEPLOY_URL)/api/auth/logout --cookie 'lke.cookie' -H 'Content-type: application/json' && rm lke.cookie",
+    "deploy:restart-plugins": "npm run deploy:login && curl -X POST $(npm config get DEPLOY_URL)/api/admin/plugins/restart-all --cookie 'lke.cookie' && npm run deploy:logout",
+    "build-deploy": "npm run build && npm run deploy",
     "check-env": "node -e 'console.log(process.env)' | grep npm",
-    "build": "typehead build",
     "start": "node scripts/mock-server.js & npm run serve",
-    "serve": "typehead serve",
+    "serve": "DEV=true typehead serve",
     "types": "tsc --declaration --emitDeclarationOnly --outDir dist/types",
     "test": "jest",
     "e2e:tests": "./scripts/e2e/index.js",
-    "render:docker": "./scripts/e2e/replace-images.sh",
-    "test:unit": "jest --ci",
-    "lint": "eslint --ext .js,.ts --fix"
+    "test:unit": "jest --ci --testResultsProcessor='jest-junit'",
+    "lint": "eslint --ext .js,.ts --fix",
+    "postversion": "sync_versions"
   },
   "devDependencies": {
     "@linkurious/code-tools": "0.0.8",
@@ -66,8 +63,9 @@
     "babel-core": "^6.26.3",
     "babel-jest": "^28.1.0",
     "blink-diff": "^1.0.13",
-    "canvas": "^2.9.1",
     "codeceptjs": "^3.3.3",
+    "envsub": "^4.0.7",
+    "esbuild-plugin-replace": "^1.2.0",
     "eslint": "^8.4.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^16.1.0",
@@ -82,6 +80,7 @@
     "mocha-multi-reporters": "^1.5.1",
     "mochawesome": "^7.1.3",
     "nanocolors": "^0.2.13",
+    "npm-run-all": "^4.1.5",
     "playwright": "^1.22.2",
     "prettier": "^2.5.1",
     "recursive-copy": "^2.0.14",
@@ -89,8 +88,7 @@
     "sharp": "^0.30.6",
     "ts-jest": "^28.0.2",
     "ts-node": "^10.8.1",
-    "typescript": "^4.6.4",
-    "xmldom": "^0.6.0"
+    "typescript": "^4.6.4"
   },
   "dependencies": {
     "@ant-design/colors": "^6.0.0",
@@ -99,30 +97,30 @@
     "@linkurious/ogma-export-stitch": "^0.0.2",
     "@linkurious/ogma-linkurious-parser": "3.1.2-PR-214.2",
     "@linkurious/ogma-mini-map": "^0.0.22",
-    "@linkurious/rest-client": "3.1.1",
+    "@linkurious/rest-client": "^3.1.2",
     "@linkurious/svg-font-embedder": "^0.0.28",
     "antd": "^4.20.6",
-    "canvas": "^2.9.0",
     "express-async-handler": "^1.2.0",
     "panzoom": "^9.4.3",
+    "qs": "^6.10.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-zoom-pan-pinch": "^2.1.3",
-    "svgo": "^2.8.0",
-    "xmldom": "^0.6.0"
+    "svgo": "^2.8.0"
   },
   "bundleDependencies": [
-    "ogma",
-    "canvas",
-    "xmldom",
     "@linkurious/rest-client",
-    "@linkurious/ogma-linkurious-parser",
     "express-async-handler"
   ],
+<<<<<<< HEAD
   "jest": {
     "reporters": [
       "default",
       ["jest-junit", {"outputDirectory": "reports", "outputName": "junit-test-results.xml"}]
     ]
+=======
+  "jest-junit": {
+    "outputName": "./reports/junit-test-results.xml"
+>>>>>>> mk2
   }
 }

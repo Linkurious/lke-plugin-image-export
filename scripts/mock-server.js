@@ -10,6 +10,7 @@ server.use(middlewares);
 server.use(
   jsonServer.rewriter({
     "/api/key/visualizations/*": "/api/vis/$1",
+    "/api/config": "/api/configuration",
   })
 );
 server.use("/api", router);

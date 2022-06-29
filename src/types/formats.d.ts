@@ -8,6 +8,8 @@ export type Format =
   | "Ledger paper"
   | "A4 paper"
   | "A3 paper"
+  | "A4 paper (landscape)"
+  | "A3 paper (landscape)"
   | "B4 paper"
   | "B5 paper"
   | "Overhead"

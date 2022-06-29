@@ -11,20 +11,32 @@ export const formatLookup: Record<Format, FormatType> = {
   "Full size": { label: "Full size", value: undefined },
   Square: { label: "Square", value: { width: 960, height: 960 } },
   "4:3": { label: "4:3", value: { width: 960, height: 720 } },
-  "Letter paper": { label: "Letter paper", value: { width: 960, height: 720 } },
+  "Letter paper": {
+    label: "Letter paper",
+    value: { width: 816, height: 1056 },
+  },
   "Ledger paper": {
     label: "Ledger paper",
-    value: { width: 1278.62, height: 959.04 },
+    value: { width: 1056, height: 1632 },
   },
-  "A4 paper": { label: "A4 paper", value: { width: 1039.97, height: 720 } },
-  "A3 paper": { label: "A3 paper", value: { width: 1344.0, height: 1008.0 } },
-  "B4 paper": { label: "B4 paper", value: { width: 1136.64, height: 852.48 } },
-  "B5 paper": { label: "B5 paper", value: { width: 707.2, height: 1000 } },
+  // values here are for 96dppi
+  "A4 paper": { label: "A4 paper", value: { width: 794, height: 1123 } },
+  "A3 paper": { label: "A3 paper", value: { width: 1123, height: 1587 } },
+  "A4 paper (landscape)": {
+    label: "A4 paper (landscape)",
+    value: { width: 1123, height: 794 },
+  },
+  "A3 paper (landscape)": {
+    label: "A3 paper (landscape)",
+    value: { width: 1587, height: 1123 },
+  },
+  "B4 paper": { label: "B4 paper", value: { width: 945, height: 1334 } },
+  "B5 paper": { label: "B5 paper", value: { width: 665, height: 945 } },
   Overhead: { label: "Overhead", value: { width: 960, height: 720 } },
   Banner: { label: "Banner", value: { width: 768, height: 96 } },
   "16:9": { label: "16:9", value: { width: 960, height: 540 } },
   "16:10": { label: "16:10", value: { width: 960, height: 600 } },
-  Widescreen: { label: "Widescreen", value: { width: 1279.97, height: 720 } },
+  Widescreen: { label: "Widescreen", value: { width: 1920, height: 1080 } },
 };
 
 export const formats: FormatType[] = Object.keys(formatLookup).map(

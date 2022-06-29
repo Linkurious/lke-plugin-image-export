@@ -1,24 +1,35 @@
 import xhr from "axios";
+import qs from "qs";
 import {
-  Configuration,
+  RestClient,
   IOgmaConfig,
   PopulatedVisualization,
 } from "@linkurious/rest-client";
 
-const API_URL = "http://localhost:3000/api/";
-xhr.defaults.baseURL = API_URL;
+declare var IS_DEV: boolean;
+
+const rc = new RestClient({
+  baseUrl: IS_DEV ? "http://localhost:3000/" : "../../",
+});
+
+const { key = "key", visualizationId = "101" } = qs.parse(
+  location.search.slice(1)
+) as {
+  key: string;
+  visualizationId: string;
+};
 
 export async function getConfiguration(): Promise<IOgmaConfig> {
-  try {
-    return (await xhr.get<Configuration>(`/configuration`)).data.ogma;
-  } catch (e) {
-    console.error(e);
-    return {};
-  }
+  const response = await rc.config.getConfiguration();
+  if (response.isSuccess()) return response.body.ogma;
+  return {};
 }
 
-export async function getVisualisation(id?: string) {
-  return await (
-    await xhr.get<PopulatedVisualization>(`vis/101`)
-  ).data;
+export async function getVisualisation() {
+  const response = await rc.visualization.getVisualization({
+    id: parseInt(visualizationId, 10), //parseInt(visualisationId as string, 10),
+    sourceKey: key, //key as string
+  });
+  if (response.isSuccess()) return response.body;
+  return {} as PopulatedVisualization;
 }

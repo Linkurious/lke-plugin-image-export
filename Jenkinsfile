@@ -11,8 +11,7 @@ nodeJob {
   runBenchTests = true
   runPreReleaseOnUpload = false
   npmPackPath = './dist'
+  binaries = ["lke-plugin-image-export.lke"]
+  groupId = 'com.linkurious.plugins'
 
-  //Deployement
-  runDeploy = false
-  ansibleTags = "playbook::infra::docker::up"
 }
