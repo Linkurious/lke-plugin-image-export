@@ -67,6 +67,7 @@ const ExportInfo: FC<{
 export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
   const {
     ogma,
+    visualisation,
     textsVisible,
     format,
     graphScale,
@@ -99,9 +100,6 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
           svg(ogma)
             .setOptions({
               texts: textsVisible,
-              // background: background
-              //   ? ogma.getOptions().backgroundColor
-              //   : undefined,
             })
             .on("start", () => setProgress(0))
             .on("progress", (progress) => setProgress(progress))
@@ -162,10 +160,14 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
 
   const onDownloadPressed = async () => {
     if (currentFormat.label === "SVG") {
-      downloadBlob(image as string, "image.svg", "image/svg+xml");
+      downloadBlob(
+        image as string,
+        `${visualisation.title}.svg`,
+        "image/svg+xml"
+      );
     } else {
       const data = await svgToPng(stringToSVGElement(image as string));
-      downloadBlob(data, "image.png", "image/png");
+      downloadBlob(data, `${visualisation.title}.png`, "image/png");
     }
     if (onOk) onOk();
   };

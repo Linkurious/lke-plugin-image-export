@@ -48,7 +48,6 @@ function runTests(PORT) {
       : process.env.GREP !== undefined
       ? `--grep ${process.env.GREP}`
       : "";
-    console.log(filter);
     testProcess = exec(
       `TESTOMATIO=${
         process.env.TESTOMATIO
