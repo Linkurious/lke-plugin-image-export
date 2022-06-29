@@ -36,6 +36,9 @@ interface IAppContext {
   // shared state
   textsVisible: boolean;
   setTextsVisible: (textsVisible: boolean) => void;
+
+  background: boolean;
+  setBackground: (background: boolean) => void;
   // TODO: export configuration to the app
 }
 
@@ -66,6 +69,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [ogma, setOgma] = useState<LKOgma>();
   const [boundingBox, setBoundingBox] = useState<BoundingBox>();
   const [textsVisible, setTextsVisible] = useState(true);
+  const [background, setBackground] = useState(true);
   const [graphScale, setGraphScale] = useState(1);
   const [scalingStyleRule, setScalingStyleRule] = useState<StyleRule>();
   const [scalingStyleEnabled, setScalingStyleEnabled] = useState(false);
@@ -95,6 +99,8 @@ export const AppContextProvider = ({ children }: Props) => {
           setBoundingBox,
           textsVisible,
           setTextsVisible,
+          background,
+          setBackground,
           graphScale,
           setGraphScale,
           scalingStyleRule,

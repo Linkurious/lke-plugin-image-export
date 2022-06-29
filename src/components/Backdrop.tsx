@@ -105,6 +105,9 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
       },
     });
     setScalingStyleRule(rule);
+    return () => {
+      rule.destroy();
+    };
   }, [ogma]);
 
   useLayoutEffect(() => {
