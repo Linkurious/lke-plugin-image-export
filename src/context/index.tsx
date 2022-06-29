@@ -69,7 +69,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [ogma, setOgma] = useState<LKOgma>();
   const [boundingBox, setBoundingBox] = useState<BoundingBox>();
   const [textsVisible, setTextsVisible] = useState(true);
-  const [background, setBackground] = useState(false);
+  const [background, setBackground] = useState(true);
   const [graphScale, setGraphScale] = useState(1);
   const [scalingStyleRule, setScalingStyleRule] = useState<StyleRule>();
   const [scalingStyleEnabled, setScalingStyleEnabled] = useState(false);

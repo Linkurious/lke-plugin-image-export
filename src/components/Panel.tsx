@@ -1,6 +1,5 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
-  Modal,
   Button,
   Collapse,
   Typography,
@@ -30,15 +29,8 @@ const marks: Record<number, string> = {
 const fontSize = { ratio: 1 };
 
 export function Panel() {
-  const {
-    ogma,
-    format,
-    setFormat,
-    textsVisible,
-    setTextsVisible,
-    background,
-    setBackground,
-  } = useAppContext();
+  const { ogma, format, setFormat, textsVisible, setTextsVisible } =
+    useAppContext();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
@@ -164,16 +156,6 @@ export function Panel() {
                     });
                   else ogma.tools.snapping.disable();
                   setSnapping(!snapping);
-                }}
-              />
-            </Form.Item>
-            <Form.Item label="Background" valuePropName="checked">
-              <Switch
-                size="small"
-                className="snap-switch"
-                checked={background}
-                onChange={() => {
-                  setBackground(!background);
                 }}
               />
             </Form.Item>
