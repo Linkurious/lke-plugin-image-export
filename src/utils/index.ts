@@ -25,6 +25,12 @@ function downloadURL(data: string, fileName: string) {
   a.remove();
 }
 
+export const stringToSVGElement = (svg: string) => {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(svg, "image/svg+xml");
+  return doc.documentElement as any as SVGSVGElement;
+};
+
 export function scaleGraph(ogma: Ogma, scale: number) {
   const { cx, cy } = ogma.view.getGraphBoundingBox();
   const positions = ogma.getNodes().getPosition();

@@ -1,7 +1,3 @@
-// import Exporter from "../src";
-
-// new Exporter();
-
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "../src/App";
