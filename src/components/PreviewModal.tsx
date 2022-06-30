@@ -6,7 +6,6 @@ import {
   ModalFuncProps,
   Progress,
   Dropdown,
-  Form,
   Switch,
 } from "antd";
 import { FormatType } from "../types/formats";
@@ -26,7 +25,6 @@ import {
   scaleGraph,
   stringToSVGElement,
 } from "../utils";
-import FormItemLabel from "antd/lib/form/FormItemLabel";
 
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
