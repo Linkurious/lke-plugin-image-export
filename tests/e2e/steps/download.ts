@@ -100,7 +100,7 @@ When(/^I click download (.+) (.+)$/, async (name, format) => {
     throw "download failed";
   }
   const outPath = shouldReplace ? expectedPath : actualPath;
-    return await (sharp(downloadPath)
+  return await (sharp(downloadPath)
     .png()
     .toFile(outPath))
 });

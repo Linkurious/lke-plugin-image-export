@@ -36,7 +36,7 @@
     "build-deploy": "npm run build && npm run deploy",
     "check-env": "node -e 'console.log(process.env)' | grep npm",
     "start": "node scripts/mock-server.js & npm run serve",
-    "serve": "DEV=true typehead serve",
+    "serve": "preprod=true DEV=true typehead serve",
     "types": "tsc --declaration --emitDeclarationOnly --outDir dist/types",
     "test": "jest",
     "e2e:tests": "./scripts/e2e/index.js",
