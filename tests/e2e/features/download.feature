@@ -3,7 +3,6 @@ Feature: Download
   @download @downloadpng @T88b8d4f0
   Scenario Outline: Download png
     Given I go to main page
-    And I select format <format>
     And I select text size <size>
     And I drag the viz <drag>
     And I set text visibility <textVisible>

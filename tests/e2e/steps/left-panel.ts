@@ -1,8 +1,6 @@
 import { assert } from "chai";
-import { BrowserContext, Page } from "playwright";
 import Ogma from "@linkurious/ogma";
-import { formats, fontSizes } from "../../../src/constants";
-import { useDebugValue } from "react";
+import { formats } from "../../../src/constants";
 import { locator } from "codeceptjs";
 
 const { I } = inject();
@@ -12,7 +10,7 @@ function getFormat(selectedFormat) {
   return formats.find((f) => f.label === selectedFormat);
 }
 When(/^I select format (.*)$/, async (format) => {
-  I.click({ react: "Select" });
+  I.click(locator.build(".format-select"));
   I.click(format);
 });
 Then(/^I see it's size within the panel (.*)$/, async (selectedFormat) => {
