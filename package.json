@@ -112,7 +112,10 @@
     "@linkurious/rest-client",
     "express-async-handler"
   ],
-  "jest-junit": {
-    "outputName": "./reports/junit-test-results.xml"
+  "jest": {
+    "reporters": [
+      "default",
+      ["jest-junit", {"outputDirectory": "reports", "outputName": "junit-test-results.xml"}]
+    ]
   }
 }

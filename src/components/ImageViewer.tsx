@@ -8,17 +8,20 @@ import {
 } from "@ant-design/icons";
 import { Size } from "@linkurious/ogma";
 import { useDimensions } from "../hooks";
+import { stringtoBase64 } from "../utils";
 
 const ZoomWrapper: FC<{
   size: Size;
   dimensions: DOMRect;
   svg: string;
+  background: boolean;
   zoomStep?: number;
   minScale?: number;
   maxScale?: number;
 }> = ({
   svg,
   size,
+  background,
   dimensions,
   zoomStep = 0.05,
   minScale = 0.01,
@@ -34,9 +37,7 @@ const ZoomWrapper: FC<{
   const [encoded, setEncoded] = useState("");
 
   useEffect(() => {
-    setEncoded(
-      `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svg)))}`
-    );
+    setEncoded(`data:image/svg+xml;base64,${stringtoBase64(svg)}`);
   }, []);
 
   if (encoded === "") return null;
@@ -51,13 +52,15 @@ const ZoomWrapper: FC<{
       limitToBounds={false}
     >
       {({ zoomIn, zoomOut, resetTransform }) => {
+        const imageClass =
+          "image-viewer--content" + (background ? "" : " transparent-bg");
         return (
           <>
             <TransformComponent
               contentClass="image-viewer"
               wrapperClass="image-viewer--wrapper"
             >
-              <img className="image-viewer--content" src={encoded} />
+              <img className={imageClass} src={encoded} />
               {/* <div
                 className="image-viewer--content"
                 dangerouslySetInnerHTML={{ __html: svg }}
@@ -91,12 +94,25 @@ const ZoomWrapper: FC<{
   );
 };
 
-export const ImageViewer = ({ svg, size }: { svg: string; size: Size }) => {
+export const ImageViewer = ({
+  svg,
+  size,
+  background,
+}: {
+  svg: string;
+  size: Size;
+  background: boolean;
+}) => {
   const [ref, dimensions] = useDimensions();
   return (
     <div className="image-viewer--container" ref={ref} style={{ flex: 1 }}>
       {dimensions && (
-        <ZoomWrapper size={size} dimensions={dimensions} svg={svg} />
+        <ZoomWrapper
+          size={size}
+          dimensions={dimensions}
+          svg={svg}
+          background={background}
+        />
       )}
     </div>
   );

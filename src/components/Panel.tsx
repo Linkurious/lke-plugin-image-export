@@ -1,6 +1,5 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
-  Modal,
   Button,
   Collapse,
   Typography,
@@ -15,6 +14,7 @@ import { FormatInfo } from "./FormatInfo";
 import { useAppContext } from "../context";
 import { PreviewModal } from "./PreviewModal";
 import { StyleRule } from "@linkurious/ogma";
+import { LkEdgeData, LkNodeData } from "@linkurious/rest-client";
 
 type SizeType = Parameters<typeof Form>[0]["size"];
 
@@ -57,8 +57,9 @@ export function Panel() {
 
   useEffect(() => {
     fontSize.ratio = 1;
+    let rule: StyleRule<LkNodeData, LkEdgeData>;
     if (ogma) {
-      const rule = ogma.styles.addRule({
+      rule = ogma.styles.addRule({
         nodeAttributes: {
           text: {
             size: (node) => {
@@ -78,6 +79,7 @@ export function Panel() {
     }
     return () => {
       fontSize.ratio = 1;
+      if (ogma && rule) rule.destroy();
     };
   }, [ogma]);
 

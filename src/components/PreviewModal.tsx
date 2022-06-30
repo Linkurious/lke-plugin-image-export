@@ -1,8 +1,20 @@
 import React, { FC, useEffect, useState } from "react";
-import { Button, Menu, Modal, ModalFuncProps, Progress, Dropdown } from "antd";
+import {
+  Button,
+  Menu,
+  Modal,
+  ModalFuncProps,
+  Progress,
+  Dropdown,
+  Switch,
+} from "antd";
 import { FormatType } from "../types/formats";
 import { useAppContext } from "../context";
-import { svg, svgToPng } from "@linkurious/ogma-export-stitch";
+import {
+  svg,
+  svgElementToString,
+  svgToPng,
+} from "@linkurious/ogma-export-stitch";
 import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "./ImageViewer";
@@ -53,13 +65,14 @@ const ExportInfo: FC<{
 export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
   const {
     ogma,
+    visualisation,
     textsVisible,
     format,
     graphScale,
     scalingStyleRule,
     setScalingStyleRule,
-    scalingStyleEnabled,
-    setScalingStyleEnabled,
+    background,
+    setBackground,
   } = useAppContext();
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState<string>();
@@ -81,32 +94,19 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
 
       scalingStyleRule
         .destroy()
-        .then(() => {
-          // if (format.value) {
-          //   return ogma.export
-          //     .svg({
-          //       download: false,
-          //       texts: textsVisible,
-          //       embedFonts: true,
-          //       clip: true,
-          //       width: format.value!.width,
-          //       height: format.value!.height,
-          //     })
-          //     .then((svg) => {
-          //       return stringToSVGElement(svg);
-          //     });
-          // }
-          return svg(ogma)
-            .setOptions({ texts: textsVisible })
+        .then(() =>
+          svg(ogma)
+            .setOptions({
+              texts: textsVisible,
+            })
             .on("start", () => setProgress(0))
             .on("progress", (progress) => setProgress(progress))
-
             .run({
               fullSize: format.value === undefined,
               width: format.value ? format.value.width : 0,
               height: format.value ? format.value.height : 0,
-            });
-        })
+            })
+        )
         .then((res) => {
           setLoading(false);
           const width = parseFloat(res.getAttribute("width")!);
@@ -135,6 +135,18 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
     };
   }, [visible]);
 
+  // apply the background color to the SVG
+  useEffect(() => {
+    if (image) {
+      const el = stringToSVGElement(image);
+      el.querySelector(".ogma-svg-background")!.setAttribute(
+        "fill-opacity",
+        background ? "1" : "0"
+      );
+      setImage(svgElementToString(el));
+    }
+  }, [background]);
+
   const menu = (
     <Menu
       onClick={({ key }) => {
@@ -146,10 +158,14 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
 
   const onDownloadPressed = async () => {
     if (currentFormat.label === "SVG") {
-      downloadBlob(image as string, "image.svg", "image/svg+xml");
+      downloadBlob(
+        image as string,
+        `${visualisation.title}.svg`,
+        "image/svg+xml"
+      );
     } else {
       const data = await svgToPng(stringToSVGElement(image as string));
-      downloadBlob(data, "image.png", "image/png");
+      downloadBlob(data, `${visualisation.title}.png`, "image/png");
     }
     if (onOk) onOk();
   };
@@ -163,6 +179,17 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
       onCancel={onCancel}
       width={"80vw"}
       footer={[
+        <span className="preview-background-selector" key="background">
+          <span className="preview-background-selector--label">background</span>
+          <Switch
+            size="small"
+            className="snap-switch"
+            checked={background}
+            onChange={() => {
+              setBackground(!background);
+            }}
+          />
+        </span>,
         <ExportInfo key="info" loading={loading} result={image} size={size} />,
         <Button
           key="ok"
@@ -198,7 +225,9 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
             size="small"
           />
         )}
-        {image && <ImageViewer svg={image} size={size} />}
+        {image && (
+          <ImageViewer svg={image} size={size} background={background} />
+        )}
       </div>
     </Modal>
   );

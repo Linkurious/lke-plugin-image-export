@@ -7,7 +7,7 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import { LKOgma as OgmaLib } from "@linkurious/ogma-linkurious-parser";
+import { LKOgma as OgmaLib, Filters } from "@linkurious/ogma-linkurious-parser";
 import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
 import { useAppContext } from "../context";
 import { BoundingBox, Layer, Overlay, Point } from "@linkurious/ogma";
@@ -31,10 +31,9 @@ export const OgmaComponent = (
   const [ready, setReady] = useState(false);
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const [graphData, setGraphData] = useState<PopulatedVisualization>();
-  const [viewCenter, setViewCenter] = useState<{ x: number; y: number }>();
-  const [layers, setLayers] = useState<Layer[]>();
+  const [, setViewCenter] = useState<{ x: number; y: number }>();
 
-  const { ogma, setBoundingBox, boundingBox, format } = useAppContext();
+  const { ogma, setBoundingBox } = useAppContext();
 
   useImperativeHandle(ref, () => ogma as OgmaLib, [ogma]);
 
@@ -72,9 +71,20 @@ export const OgmaComponent = (
       console.log("SETING OGma", window.ogma)
       if (graph && ogma && graph !== graphData) {
         setGraphData(graph);
-        ogma.initVisualization(graph);
-        ogma.view.locateGraph();
-        ogma.view.forceResize();
+        ogma
+          .initVisualization(graph)
+          // apply filters
+          .then(() =>
+            ogma.removeNodes(
+              ogma
+                .getNodes()
+                .filter((node) =>
+                  Filters.isFiltered(graph.filters.node, node.getData())
+                )
+            )
+          )
+          .then(() => ogma.view.locateGraph())
+          .then(() => ogma.view.forceResize());
 
         // setLayers(
         //   new Array(4).fill(0).map((_, i) => {
