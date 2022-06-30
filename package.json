@@ -37,6 +37,8 @@
     "check-env": "node -e 'console.log(process.env)' | grep npm",
     "start": "node scripts/mock-server.js & npm run serve",
     "serve": "preprod=true DEV=true typehead serve",
+    "serve:web": "serve web",
+    "build:web": "esbuild web/index.tsx --bundle --outfile=web/index-bundle.js --define:IS_DEV=true",
     "types": "tsc --declaration --emitDeclarationOnly --outDir dist/types",
     "test": "jest",
     "e2e:tests": "./scripts/e2e/index.js",
@@ -85,6 +87,7 @@
     "prettier": "^2.5.1",
     "recursive-copy": "^2.0.14",
     "resq": "^1.10.2",
+    "serve": "^13.0.2",
     "sharp": "^0.30.6",
     "ts-jest": "^28.0.2",
     "ts-node": "^10.8.1",
@@ -115,7 +118,13 @@
   "jest": {
     "reporters": [
       "default",
-      ["jest-junit", {"outputDirectory": "reports", "outputName": "junit-test-results.xml"}]
+      [
+        "jest-junit",
+        {
+          "outputDirectory": "reports",
+          "outputName": "junit-test-results.xml"
+        }
+      ]
     ]
   }
 }

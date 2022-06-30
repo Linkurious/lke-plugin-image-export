@@ -68,7 +68,6 @@ export const OgmaComponent = (
       // @ts-ignore
       window.ogma = ogma;
       // @ts-ignore
-      console.log("SETING OGma", window.ogma)
       if (graph && ogma && graph !== graphData) {
         setGraphData(graph);
         ogma
