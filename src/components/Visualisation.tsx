@@ -1,6 +1,7 @@
 import React from "react";
 import { useAppContext } from "../context";
 import { Backdrop } from "./Backdrop";
+import { Minimap } from "./Minimap";
 import { Ogma } from "./Ogma";
 
 export function Visualisation() {
@@ -11,7 +12,9 @@ export function Visualisation() {
         graph={visualisation}
         options={configuration}
         onReady={(ogma) => setOgma(ogma)}
-      />
+      >
+        <Minimap />
+      </Ogma>
       <Backdrop format={format} />
     </>
   );
