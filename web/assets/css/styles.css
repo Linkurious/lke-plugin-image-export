@@ -114,8 +114,8 @@ body {
 
 .ogma-mini-map {
   position: absolute;
-  right: 20px;
-  bottom: 20px;
+  right: 1em;
+  bottom: 3em;
   background: #f9fbfb;
   box-shadow: 0px 2px 8px rgba(44, 44, 44, 0.15);
   z-index: 100;
@@ -174,16 +174,25 @@ body {
   margin-right: 1em;
 }
 
+.zoom-control button,
 .image-viewer--tools button {
   color: #595959;
 }
 
+.zoom-control button > .anticon,
 .image-viewer--tools button > .anticon {
   font-size: 22px;
 }
 
 .image-viewer--tools .fit-button {
   margin-right: 1em;
+}
+
+.zoom-control {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  z-index: 100;
 }
 
 .image-viewer--content {
