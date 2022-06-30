@@ -163,6 +163,7 @@ export function Panel() {
               <Select
                 style={{ width: 130 }}
                 defaultValue={0}
+                className="format-select"
                 onChange={(index) => setFormat(formats[index])}
               >
                 {formats.map((item, index) => (
