@@ -8,9 +8,7 @@ import {
 } from "@ant-design/icons";
 import { Size } from "@linkurious/ogma";
 import { useDimensions } from "../hooks";
-import { backdropMargin } from "../constants";
 import { useAppContext } from "../context";
-//import { stringtoBase64, stringToSVGElement } from "../utils";
 
 export const ImageViewer: FC<{
   svg: string;
@@ -34,13 +32,10 @@ export const ImageViewer: FC<{
     if (!svgRef.current || !dimensions) return;
     const svgContainer = svgRef.current.querySelector("svg") as SVGSVGElement;
     const panzoomInstance = panzoomLib(
-      svgRef.current.querySelector(".tranform-group") as SVGRectElement
+      svgRef.current.querySelector(".transform-group") as SVGRectElement
     );
     panzoomInstance.zoomAbs(0, 0, k);
     panzoomInstance.moveTo(x, y);
-    //console.log(panzoomInstance, x, y, k, size, dimensions);
-    // @ts-ignore
-    window.panzoom = panzoomInstance;
     setPanzoom(panzoomInstance);
     if (dimensions.width) {
       svgContainer.setAttribute("width", dimensions.width.toString());
@@ -80,8 +75,8 @@ export const ImageViewer: FC<{
 
   const reset = () => {
     if (!panzoom) return;
-    panzoom.moveTo(0, 0);
-    panzoom.zoomAbs(0, 0, 1);
+    panzoom.zoomAbs(0, 0, k);
+    panzoom.moveTo(x, y);
   };
 
   return (

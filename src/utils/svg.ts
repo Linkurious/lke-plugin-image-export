@@ -50,7 +50,7 @@ export function addClipShape(
 export function addTransformGroup(svg: SVGSVGElement) {
   const transformGroup = createSVGElement<SVGGElement>("g");
   transformGroup.setAttribute("clip-path", "url(#ogma-canvas-clip)");
-  transformGroup.classList.add("tranform-group");
+  transformGroup.classList.add("transform-group");
   Array.prototype.filter
     .call(
       svg.children,
