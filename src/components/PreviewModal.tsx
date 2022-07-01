@@ -99,7 +99,7 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
           const height = parseFloat(res.getAttribute("height")!);
           setSize({ width, height });
 
-          addClipShape(res);
+          addClipShape(res, width, height);
           addCheckerboard(res);
           addTransformGroup(res);
           const svgString = new XMLSerializer().serializeToString(res);
@@ -132,7 +132,9 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
     bg.setAttribute("fill-opacity", "1");
     bg.setAttribute(
       "fill",
-      background ? ogma.getOptions().backgroundColor : "url(#pattern-checkers)"
+      background
+        ? (ogma.getOptions().backgroundColor as string)
+        : "url(#pattern-checkers)"
     );
     setImage(svgElementToString(el));
   }, [background, image]);

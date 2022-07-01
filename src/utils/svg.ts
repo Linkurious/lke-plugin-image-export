@@ -36,13 +36,20 @@ export function addCheckerboard(svg: SVGSVGElement) {
   pattern.appendChild(rect2);
 }
 
-export function addClipShape(svg: SVGSVGElement) {
+export function addClipShape(
+  svg: SVGSVGElement,
+  width: number,
+  height: number
+) {
   const clipPath = createSVGElement<SVGClipPathElement>("clipPath");
   clipPath.setAttribute("id", "ogma-canvas-clip");
   const clipShape = createSVGElement<SVGRectElement>("rect");
-  clipShape.setAttribute("width", svg.getAttribute("width")!);
-  clipShape.setAttribute("height", svg.getAttribute("height")!);
+  clipShape.setAttribute("width", width.toString());
+  clipShape.setAttribute("height", height.toString());
   clipPath.appendChild(clipShape);
+  const bgNode = svg.querySelector(".ogma-svg-background") as SVGRectElement;
+  bgNode.setAttribute("width", width.toString());
+  bgNode.setAttribute("height", height.toString());
   svg.insertBefore(clipPath, svg.firstChild);
 }
 

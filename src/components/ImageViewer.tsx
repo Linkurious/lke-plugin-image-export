@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, useLayoutEffect } from "react";
+import React, { FC, useEffect, useState, createRef } from "react";
 import { Button } from "antd";
 import panzoomLib, { PanZoom } from "panzoom";
 import {
@@ -26,20 +26,28 @@ export const ImageViewer: FC<{
   const x = (dimensions.width - size.width * k) / 2;
   const y = (dimensions.height - size.height * k) / 2;
 
-  const svgRef = React.createRef<HTMLDivElement>();
+  const svgRef = createRef<HTMLDivElement>();
   useEffect(() => {
     if (!svgRef.current || !dimensions) return;
     const svgContainer = svgRef.current.querySelector("svg") as SVGSVGElement;
-    svgContainer.setAttribute("width", "");
+
     //svgContainer.setAttribute("height", dimensions.height.toString());
-    setPanzoom(
-      panzoomLib(
-        svgRef.current.querySelector(".tranform-group") as SVGRectElement
-      )
+    const panzoomInstance = panzoomLib(
+      svgRef.current.querySelector(".tranform-group") as SVGRectElement
     );
+    panzoomInstance.zoomAbs(0, 0, k);
+    panzoomInstance.moveTo(x, y);
+    //console.log(panzoomInstance, x, y, k, size, dimensions);
+    // @ts-ignore
+    //window.panzoom = panzoomInstance;
+    setPanzoom(panzoomInstance);
+    if (dimensions.width) {
+      svgContainer.setAttribute("width", dimensions.width.toString());
+      svgContainer.setAttribute("height", dimensions.height.toString());
+    }
   }, [svg, dimensions]);
 
-  const imageClass = "image-viewer--content"; // + (background ? "" : " transparent-bg");
+  const imageClass = "image-viewer--content";
   const zoom = (scaleMultiplier: number) => {
     if (!panzoom || !svgRef.current) return;
     const containerRect = (
@@ -76,13 +84,13 @@ export const ImageViewer: FC<{
           icon={<ExpandOutlined />}
         />
         <Button
-          onClick={() => zoom(1.4)}
+          onClick={() => zoom(Math.SQRT2)}
           size="small"
           title="Zoom in"
           icon={<PlusSquareOutlined />}
         />
         <Button
-          onClick={() => zoom(0.6)}
+          onClick={() => zoom(Math.SQRT1_2)}
           size="small"
           title="Zoom out"
           icon={<MinusSquareOutlined />}
