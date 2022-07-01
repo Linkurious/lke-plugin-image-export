@@ -3,6 +3,7 @@ export const createSVGElement = <T extends SVGElement>(tagName: string): T => {
 };
 
 const GREY = "#e0e0e0";
+const WHITE = "#ffffff";
 
 export function addCheckerboard(svg: SVGSVGElement) {
   const pattern = createSVGElement<SVGPatternElement>("pattern");
@@ -15,25 +16,18 @@ export function addCheckerboard(svg: SVGSVGElement) {
 
   svg.insertBefore(pattern, svg.firstChild);
 
-  const rect1 = createSVGElement<SVGRectElement>("rect");
-  rect1.setAttribute("x", "0");
-  rect1.setAttribute("y", "0");
-  rect1.setAttribute("width", "5");
-  rect1.setAttribute("height", "5");
-  rect1.setAttribute("fill", GREY);
-  rect1.classList.add("checker");
-
-  const rect2 = createSVGElement<SVGRectElement>("rect");
-  rect2.setAttribute("x", "5");
-  rect2.setAttribute("y", "5");
-  rect2.setAttribute("width", "5");
-  rect2.setAttribute("height", "5");
-  rect2.setAttribute("fill", GREY);
-
-  rect2.classList.add("checker");
-
-  pattern.appendChild(rect1);
-  pattern.appendChild(rect2);
+  const side = 5;
+  for (let x = 0; x < 2; x++) {
+    for (let y = 0; y < 2; y++) {
+      const rect = createSVGElement<SVGRectElement>("rect");
+      rect.setAttribute("x", `${x * side}`);
+      rect.setAttribute("y", `${y * side}`);
+      rect.setAttribute("width", `${side}`);
+      rect.setAttribute("height", `${side}`);
+      rect.setAttribute("fill", x === y ? GREY : WHITE);
+      pattern.appendChild(rect);
+    }
+  }
 }
 
 export function addClipShape(
