@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useState, useCallback } from "react";
+import React, { FC, useEffect, useState, useLayoutEffect } from "react";
 import { Button } from "antd";
-import panzoomLib, { PanZoom } from 'panzoom';
+import panzoomLib, { PanZoom } from "panzoom";
 import {
   ExpandOutlined,
   MinusSquareOutlined,
@@ -8,20 +8,16 @@ import {
 } from "@ant-design/icons";
 import { Size } from "@linkurious/ogma";
 import { useDimensions } from "../hooks";
-import { stringtoBase64, stringToSVGElement } from "../utils";
+//import { stringtoBase64, stringToSVGElement } from "../utils";
 
-export const ImageViewer = ({
-  svg,
-  size,
-  background,
-}: {
+export const ImageViewer: FC<{
   svg: string;
   size: Size;
   background: boolean;
-}) => {
+}> = ({ svg, size }) => {
   let [ref, dimensions] = useDimensions();
   const [panzoom, setPanzoom] = useState<PanZoom>();
-  dimensions = dimensions || {width: 0, height: 0} as DOMRect
+  dimensions = dimensions || ({ width: 0, height: 0 } as DOMRect);
 
   const k = Math.min(
     dimensions.width / size.width,
@@ -29,49 +25,51 @@ export const ImageViewer = ({
   );
   const x = (dimensions.width - size.width * k) / 2;
   const y = (dimensions.height - size.height * k) / 2;
-  const svgRef =  React.createRef<HTMLDivElement>();
+
+  const svgRef = React.createRef<HTMLDivElement>();
   useEffect(() => {
-    if(!svgRef.current) return;
-    setPanzoom(panzoomLib(svgRef.current.querySelector('g') as SVGRectElement))
-  }, [svg]);
-  useEffect(() => {      
-    console.log(panzoom)
-    // @ts-ignore
-    window.panzoom = panzoom;
-  }, [panzoom])
+    if (!svgRef.current || !dimensions) return;
+    const svgContainer = svgRef.current.querySelector("svg") as SVGSVGElement;
+    svgContainer.setAttribute("width", "");
+    //svgContainer.setAttribute("height", dimensions.height.toString());
+    setPanzoom(
+      panzoomLib(
+        svgRef.current.querySelector(".tranform-group") as SVGRectElement
+      )
+    );
+  }, [svg, dimensions]);
 
-   
-    const imageClass =
-    "image-viewer--content"; // + (background ? "" : " transparent-bg");
-  const zoom = 
-    (
-      scaleMultiplier: number
-    ) => {
-      if(!panzoom) return;
-      // @ts-ignore
-      var containerRect = svgRef.current!.parentNode!.getBoundingClientRect();
-      panzoom.smoothZoom(
-        containerRect.width / 2,
-        containerRect.height / 2,
-        scaleMultiplier
-      );
-    };
+  const imageClass = "image-viewer--content"; // + (background ? "" : " transparent-bg");
+  const zoom = (scaleMultiplier: number) => {
+    if (!panzoom || !svgRef.current) return;
+    const containerRect = (
+      svgRef.current.parentNode as HTMLDivElement
+    ).getBoundingClientRect();
+    panzoom.smoothZoom(
+      containerRect.width / 2,
+      containerRect.height / 2,
+      scaleMultiplier
+    );
+  };
 
-    const reset = () => {
-      if(!panzoom) return;
-      // @ts-ignore
-      var containerRect = svgRef.current!.parentNode!.getBoundingClientRect();
-      panzoom.moveTo(0,0);
-      panzoom.zoomAbs(0,0, 1);
-    };
+  const reset = () => {
+    if (!panzoom) return;
+    panzoom.moveTo(0, 0);
+    panzoom.zoomAbs(0, 0, 1);
+  };
+
   return (
-    <div className="image-viewer--container" ref={ref} style={{ flex: 1 }}>
+    <div className="image-viewer--container" ref={ref}>
       <div className="image-viewer">
-        <div ref={svgRef} className={imageClass} dangerouslySetInnerHTML= {{__html: svg}} />
+        <div
+          ref={svgRef}
+          className={imageClass}
+          dangerouslySetInnerHTML={{ __html: svg }}
+        />
       </div>
       <div className="image-viewer--tools">
         <Button
-          onClick={() => reset()}
+          onClick={reset}
           size="small"
           className="fit-button"
           title="Reset"
@@ -90,7 +88,6 @@ export const ImageViewer = ({
           icon={<MinusSquareOutlined />}
         />
       </div>
-     </div>
+    </div>
   );
 };
-

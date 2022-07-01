@@ -1,4 +1,4 @@
-import { Format, FormatType } from "../types/formats";
+import { ExportType, Format, FormatType } from "../types/formats";
 
 export const fontSizes = [
   { label: "0.5x", value: "0.5" },
@@ -47,3 +47,14 @@ export const formats: FormatType[] = Object.keys(formatLookup).map(
  * Minimum backdrop preview width
  */
 export const backdropMargin = 50;
+
+export const ExportTypes: ExportType[] = [
+  {
+    key: "1",
+    label: "SVG",
+  },
+  {
+    key: "2",
+    label: "PNG",
+  },
+];

@@ -224,3 +224,7 @@ body {
 .preview-background-selector--label {
   margin-right: 0.5em;
 }
+
+svg {
+  outline: none;
+}

@@ -8,7 +8,8 @@ import {
   Dropdown,
   Switch,
 } from "antd";
-import { FormatType } from "../types/formats";
+import { FormatType, ExportType } from "../types/formats";
+import { ExportTypes } from "../constants";
 import { useAppContext } from "../context";
 import {
   svg,
@@ -25,6 +26,7 @@ import {
   scaleGraph,
   stringToSVGElement,
 } from "../utils";
+import { addCheckerboard, addClipShape, addTransformGroup } from "../utils/svg";
 
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
@@ -32,22 +34,6 @@ import {
 interface Props extends ModalFuncProps {
   format: FormatType;
 }
-
-type ExportType = {
-  key: string;
-  label: "PNG" | "SVG";
-};
-
-const ExportTypes: ExportType[] = [
-  {
-    key: "1",
-    label: "SVG",
-  },
-  {
-    key: "2",
-    label: "PNG",
-  },
-];
 
 const ExportInfo: FC<{
   loading: boolean;
@@ -62,61 +48,6 @@ const ExportInfo: FC<{
   );
 };
 
-function wrapIntoTranform(svg: SVGSVGElement){         
-  const transformGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-  transformGroup.setAttribute('clip-path', 'url(#ogma-canvas-clip)');
-  transformGroup.classList.add('tranform-group');
-  [...svg.children]
-  .filter(d => d.tagName !=='pattern' && d.tagName !=='clipPath' )
-  .forEach(c => {
-    transformGroup.appendChild(c as SVGElement);
-  })
-  svg.appendChild(transformGroup);
-}
-function addBg(svg: SVGSVGElement){
-  const bgRect = svg.querySelector(".ogma-svg-background") as SVGRectElement;
-  const clipPath = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "clipPath"
-  );
-  clipPath.setAttribute("id", "ogma-canvas-clip");
-  const clipShape = bgRect.cloneNode(false) as SVGRectElement;
-  clipShape.setAttribute('class', '');
-  clipPath.appendChild(clipShape);
-  svg.insertBefore(clipPath, svg.firstChild);
-}
-function addCheckerboard(svg: SVGSVGElement){
-  const pattern = document.createElementNS('http://www.w3.org/2000/svg', 'pattern');
-  pattern.setAttribute('id', 'pattern-checkers');
-  pattern.setAttribute('x', '0');
-  pattern.setAttribute('y', '0');
-  pattern.setAttribute('width', '10');
-  pattern.setAttribute('height', '10');
-  pattern.setAttribute('patternUnits', 'userSpaceOnUse');
-
-  svg.insertBefore(pattern, svg.firstChild);
-
-  const rect1 = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-  rect1.setAttribute('x', '0');
-  rect1.setAttribute('y', '0');
-  rect1.setAttribute('width', '5');
-  rect1.setAttribute('height', '5');
-  rect1.setAttribute('fill', '#DDDDDD');
-  rect1.classList.add('checker');
-
-
-  const rect2 = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-  rect2.setAttribute('x', '5');
-  rect2.setAttribute('y', '5');
-  rect2.setAttribute('width', '5');
-  rect2.setAttribute('height', '5');
-  rect2.setAttribute('fill', '#DDDDDD');
-
-  rect2.classList.add('checker');
-
-  pattern.appendChild(rect1);
-  pattern.appendChild(rect2);
-}
 export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
   const {
     ogma,
@@ -168,9 +99,9 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
           const height = parseFloat(res.getAttribute("height")!);
           setSize({ width, height });
 
-          addBg(res);
+          addClipShape(res);
           addCheckerboard(res);
-          wrapIntoTranform(res);
+          addTransformGroup(res);
           const svgString = new XMLSerializer().serializeToString(res);
 
           // TODO: add progress bar
@@ -195,13 +126,17 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
 
   // apply the background color to the SVG
   useEffect(() => {
-    if(!image) return;
+    if (!image) return;
     const el = stringToSVGElement(image);
-    const bg = el.querySelector(".ogma-svg-background")
-    bg!.setAttribute('fill-opacity', 1);
-    bg!.setAttribute('fill', background ? '#ddd' : 'url(#pattern-checkers)');
+    const bg = el.querySelector(".ogma-svg-background")!;
+    bg.setAttribute("fill-opacity", "1");
+    bg.setAttribute(
+      "fill",
+      background ? ogma.getOptions().backgroundColor : "url(#pattern-checkers)"
+    );
     setImage(svgElementToString(el));
   }, [background, image]);
+
   const menu = (
     <Menu
       onClick={({ key }) => {
