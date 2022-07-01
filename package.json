@@ -52,6 +52,7 @@
     "@mapbox/typehead": "^1.2.1",
     "@testomatio/reporter": "^0.5.10",
     "@types/body-parser": "^1.19.2",
+    "@types/chai": "^4.3.1",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.5.0",
     "@types/node": "^17.0.32",

@@ -47,17 +47,19 @@ Given(/I open preview and wait for loading/, async () => {
 
 When(/I click zoomin/, async () => {
   previousZoom = (await I.executeScript(getPreviewScale)) as unknown as number;
-  I.click('button[title="Zoom in"]');
+  I.click('[title="Zoom in"]');
   I.wait(0.5);
 });
 Then(/Preview zooms in/, async () => {
-  const currentZoom = await I.executeScript(getPreviewScale);
-  assert.isAbove(currentZoom, previousZoom);
+  const currentZoom = (await I.executeScript(
+    getPreviewScale
+  )) as unknown as number;
+  assert.equal(currentZoom, previousZoom);
 });
 
 When(/I click zoomout/, async () => {
   previousZoom = (await I.executeScript(getPreviewScale)) as unknown as number;
-  I.click('button[title="Zoom out"]');
+  I.click('[title="Zoom out"]');
   I.wait(0.5);
 });
 Then(/Preview zooms out/, async () => {
@@ -66,7 +68,7 @@ Then(/Preview zooms out/, async () => {
 });
 
 When(/I click reset/, async () => {
-  I.click('button[title="Reset"]');
+  I.click('[title="Reset"]');
   I.wait(0.5);
 });
 Then(/Preview resets zoom/, async () => {
