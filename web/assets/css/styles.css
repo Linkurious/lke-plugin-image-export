@@ -233,8 +233,3 @@ body {
   background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
   background-color: none;
 }
-
-.ant-modal-wrap,
-.ant-modal-mask {
-  pointer-events: none;
-}
