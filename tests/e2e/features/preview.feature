@@ -26,11 +26,11 @@ Feature: Preview
   #  And I click zoomout
   #  Then Preview zooms out
 
-  @zoom @T048e8483
-  Scenario: Reset zoom
-    Given I go to main page
-    And I open preview and wait for loading
-    When I click zoomin
-    And I click zoomin
-    And I click reset
-    Then Preview resets zoom
+  #@zoom @T048e8483
+  #Scenario: Reset zoom
+  #  Given I go to main page
+  #  And I open preview and wait for loading
+  #  When I click zoomin
+  #  And I click zoomin
+  #  And I click reset
+  #  Then Preview resets zoom
