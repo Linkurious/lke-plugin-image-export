@@ -180,7 +180,7 @@ export function Panel() {
         </Collapse.Panel>
       </Collapse>
       <div className="panel--controls">
-        <Button type="primary" onClick={showModal}>
+        <Button type="primary" onClick={showModal} className="preview--button">
           Preview
         </Button>
         <PreviewModal

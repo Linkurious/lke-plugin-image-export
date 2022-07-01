@@ -3,8 +3,8 @@ import { assert } from "chai";
 const { I } = inject();
 
 When(/^I click preview$/, async () => {
-  I.waitForElement("Preview");
-  I.click("Preview");
+  I.waitForElement(".preview--button");
+  I.click(".preview--button");
 });
 Then(/^I see the preview modal$/, () => {
   I.wait(0.2);
@@ -39,7 +39,8 @@ let previousZoom = 0;
 let startZoom: number;
 
 Given(/I open preview and wait for loading/, async () => {
-  I.click("Preview");
+  I.waitForElement(".preview--button");
+  I.click(".preview--button");
   I.waitForElement(".react-transform-component", 3);
   startZoom = (await I.executeScript(getPreviewScale)) as unknown as number;
 });
