@@ -90,7 +90,6 @@ startMockServer()
     if (e.mockServer) {
       console.error(`problem starting mock server`, e.error);
     }
-    console.error(e);
   })
   .then(() => (REPLACE ? Promise.resolve() : generateReport()))
   .finally(() => {

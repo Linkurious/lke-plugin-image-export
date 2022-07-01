@@ -3,6 +3,7 @@ import { assert } from "chai";
 const { I } = inject();
 
 When(/^I click preview$/, async () => {
+  I.waitForElement("Preview");
   I.click("Preview");
 });
 Then(/^I see the preview modal$/, () => {
