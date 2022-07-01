@@ -26,7 +26,7 @@ exports.config = {
       chromium: {
         // slowMo: 800,
         // chromiumSandbox: true, // https://playwright.dev/docs/ci/#docker
-        args: ["--headless"],
+        args: [process.env.HEADLESS ? "--headless" : ""],
       },
     },
     CustomHelper: {
