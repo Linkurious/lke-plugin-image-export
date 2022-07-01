@@ -23,16 +23,13 @@ When(/^I click the close button$/, async () => {
   I.click('button[aria-label="Close"]');
 });
 const getPreviewScale = () => {
-  console.log(
-    Array.prototype.map.call(
-      document.querySelectorAll("button"),
-      (b: HTMLButtonElement) => b.innerText
-    )
-  );
-  const transformEl = document.querySelector<HTMLElement>(
-    ".react-transform-component"
-  )!;
-  return Number(transformEl.style.transform.match(/scale\((.*)\)/)![1]);
+  const transformEl = document.querySelector<SVGGElement>(".transform-group")!;
+  const matrix = transformEl
+    .getAttribute("transform")!
+    .match(/matrix\(([^)]+)\)/)![1]
+    .split(" ")
+    .map(Number);
+  return matrix[0];
 };
 
 let previousZoom = 0;
@@ -41,7 +38,7 @@ let startZoom: number;
 Given(/I open preview and wait for loading/, async () => {
   I.waitForElement(".preview--button");
   I.click(".preview--button");
-  I.waitForElement(".react-transform-component", 3);
+  I.waitForElement(".transform-group", 3);
   startZoom = (await I.executeScript(getPreviewScale)) as unknown as number;
 });
 

@@ -24,6 +24,23 @@ class CustomHelper extends Helper {
     }, image);
   }
 
+  getElementSize(selector: string): Promise<[number, number]> {
+    return this.page.evaluate((selector) => {
+      const element = document.querySelector(selector) as HTMLElement;
+      return [element.clientWidth, element.clientHeight];
+    }, selector);
+  }
+
+  getSvgElementSize(selector: string): Promise<[number, number]> {
+    return this.page.evaluate((selector) => {
+      const element = document.querySelector(selector) as SVGElement;
+      return [
+        Number(element.getAttribute("width")),
+        Number(element.getAttribute("height")),
+      ];
+    }, selector);
+  }
+
   clickAtCoordinate(options: {
     x: number;
     y: number;

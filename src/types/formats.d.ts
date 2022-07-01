@@ -22,3 +22,8 @@ export type FormatType = {
   label: Format;
   value: Size | undefined;
 };
+
+export type ExportType = {
+  key: string;
+  label: "PNG" | "SVG";
+};

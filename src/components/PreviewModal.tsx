@@ -8,7 +8,8 @@ import {
   Dropdown,
   Switch,
 } from "antd";
-import { FormatType } from "../types/formats";
+import { FormatType, ExportType } from "../types/formats";
+import { ExportTypes } from "../constants";
 import { useAppContext } from "../context";
 import {
   svg,
@@ -25,6 +26,7 @@ import {
   scaleGraph,
   stringToSVGElement,
 } from "../utils";
+import { addCheckerboard, addClipShape, addTransformGroup } from "../utils/svg";
 
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
@@ -32,22 +34,6 @@ import {
 interface Props extends ModalFuncProps {
   format: FormatType;
 }
-
-type ExportType = {
-  key: string;
-  label: "PNG" | "SVG";
-};
-
-const ExportTypes: ExportType[] = [
-  {
-    key: "1",
-    label: "SVG",
-  },
-  {
-    key: "2",
-    label: "PNG",
-  },
-];
 
 const ExportInfo: FC<{
   loading: boolean;
@@ -113,6 +99,9 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
           const height = parseFloat(res.getAttribute("height")!);
           setSize({ width, height });
 
+          addClipShape(res, width, height);
+          addCheckerboard(res);
+          addTransformGroup(res);
           const svgString = new XMLSerializer().serializeToString(res);
 
           // TODO: add progress bar
@@ -137,15 +126,10 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
 
   // apply the background color to the SVG
   useEffect(() => {
-    if (image) {
-      const el = stringToSVGElement(image);
-      el.querySelector(".ogma-svg-background")!.setAttribute(
-        "fill-opacity",
-        background ? "1" : "0"
-      );
-      setImage(svgElementToString(el));
-    }
-  }, [background]);
+    if (!image) return;
+    const el = stringToSVGElement(image);
+    setImage(svgElementToString(el));
+  }, [background, image]);
 
   const menu = (
     <Menu
