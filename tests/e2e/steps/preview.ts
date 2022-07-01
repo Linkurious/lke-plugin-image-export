@@ -3,7 +3,8 @@ import { assert } from "chai";
 const { I } = inject();
 
 When(/^I click preview$/, async () => {
-  I.click("Preview");
+  I.waitForElement(".preview--button");
+  I.click(".preview--button");
 });
 Then(/^I see the preview modal$/, () => {
   I.wait(0.2);
@@ -38,24 +39,27 @@ let previousZoom = 0;
 let startZoom: number;
 
 Given(/I open preview and wait for loading/, async () => {
-  I.click("Preview");
+  I.waitForElement(".preview--button");
+  I.click(".preview--button");
   I.waitForElement(".react-transform-component", 3);
   startZoom = (await I.executeScript(getPreviewScale)) as unknown as number;
 });
 
 When(/I click zoomin/, async () => {
   previousZoom = (await I.executeScript(getPreviewScale)) as unknown as number;
-  I.click('button[title="Zoom in"]');
+  I.click('[title="Zoom in"]');
   I.wait(0.5);
 });
 Then(/Preview zooms in/, async () => {
-  const currentZoom = await I.executeScript(getPreviewScale);
-  assert.isAbove(currentZoom, previousZoom);
+  const currentZoom = (await I.executeScript(
+    getPreviewScale
+  )) as unknown as number;
+  assert.equal(currentZoom, previousZoom);
 });
 
 When(/I click zoomout/, async () => {
   previousZoom = (await I.executeScript(getPreviewScale)) as unknown as number;
-  I.click('button[title="Zoom out"]');
+  I.click('[title="Zoom out"]');
   I.wait(0.5);
 });
 Then(/Preview zooms out/, async () => {
@@ -64,7 +68,7 @@ Then(/Preview zooms out/, async () => {
 });
 
 When(/I click reset/, async () => {
-  I.click('button[title="Reset"]');
+  I.click('[title="Reset"]');
   I.wait(0.5);
 });
 Then(/Preview resets zoom/, async () => {

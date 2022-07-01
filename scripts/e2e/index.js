@@ -1,22 +1,22 @@
 #!/usr/bin/env node
 const { green, red } = require("nanocolors");
-const { spawn, exec } = require("child_process");
+const { spawn, exec, execSync } = require("child_process");
 const generateReport = require("./generate-report");
 const REPLACE = process.env.REPLACE;
 
 function startServer() {
-  const server = spawn("npm", ["run", "serve"]);
+  const server = spawn("npm", ["run", "serve:web"]);
   return new Promise((resolve, reject) => {
     server.stdout.on("data", (data) => {
       const message = data.toString();
-      const matches = message.match(
-        /Server available at http:\/\/127\.0\.0\.1:(\d+)/
-      );
+      const matches = message.match(/http\:\/\/localhost\:(\d+)/);
       if (!matches || matches.length < 2) return;
+      console.log(" - web server is running on port", matches[1]);
       resolve({ server, port: matches[1] });
     });
     server.stderr.on("data", (data) => {
-      reject({ server, error: data.toString() });
+      if (!data.toString().match(/Checking for updates failed/))
+        reject({ server, error: data.toString() });
     });
   });
 }
@@ -31,7 +31,7 @@ function startMockServer() {
       resolve({ mockServer });
     });
     mockServer.stderr.on("data", (data) => {
-      console.error(data.toString);
+      console.error("mockserver error", data.error);
       reject({ mockServer, error: data.toString() });
     });
   });
@@ -90,12 +90,11 @@ startMockServer()
     if (e.mockServer) {
       console.error(`problem starting mock server`, e.error);
     }
-    console.error(e);
   })
   .then(() => (REPLACE ? Promise.resolve() : generateReport()))
   .finally(() => {
     console.log("killing server");
-    server.kill("SIGINT");
-    mockServer.kill("SIGINT");
+    if (server) server.kill("SIGINT");
+    if (mockServer) mockServer.kill("SIGINT");
     process.exit(exitCode);
   });

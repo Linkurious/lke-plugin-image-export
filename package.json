@@ -21,7 +21,7 @@
     "copy-assets": "mkdir -p dist/public && cp -R web/assets dist/public && cp web/index.html dist/public",
     "build:project": "npm-run-all build:manifest build:public build:backend",
     "build:manifest": "mkdir -p dist && envsub src/manifest.json dist/manifest.json",
-    "build:public": "esbuild web/index.tsx --bundle --outdir=dist/public --target=es6 --define:IS_DEV=false",
+    "build:public": "esbuild web/index.tsx --bundle --minify --outfile=dist/public/index-bundle.js --target=es6 --define:IS_DEV=false",
     "postbuild:public": "mv dist/public/index.js dist/public/index-bundle.js; npm run copy-assets",
     "build:backend": "esbuild backend/routeHandler.ts --outfile=dist/backend/routeHandler.js --bundle --platform=node",
     "build:dependencies": "cp package.json dist",
@@ -37,8 +37,11 @@
     "check-env": "node -e 'console.log(process.env)' | grep npm",
     "start": "node scripts/mock-server.js & npm run serve",
     "serve": "preprod=true DEV=true typehead serve",
+    "serve:web": "serve web",
+    "build:web": "esbuild web/index.tsx --bundle --minify --outfile=web/index-bundle.js --define:IS_DEV=true",
     "types": "tsc --declaration --emitDeclarationOnly --outDir dist/types",
     "test": "jest",
+    "pree2e:tests": "npm run build:web",
     "e2e:tests": "./scripts/e2e/index.js",
     "test:unit": "jest --ci --testResultsProcessor='jest-junit'",
     "lint": "eslint --ext .js,.ts --fix",
@@ -49,6 +52,7 @@
     "@mapbox/typehead": "^1.2.1",
     "@testomatio/reporter": "^0.5.10",
     "@types/body-parser": "^1.19.2",
+    "@types/chai": "^4.3.1",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.5.0",
     "@types/node": "^17.0.32",
@@ -85,7 +89,8 @@
     "prettier": "^2.5.1",
     "recursive-copy": "^2.0.14",
     "resq": "^1.10.2",
-    "sharp": "^0.30.6",
+    "serve": "^13.0.2",
+    "sharp": "^0.30.7",
     "ts-jest": "^28.0.2",
     "ts-node": "^10.8.1",
     "typescript": "^4.6.4"
@@ -115,7 +120,13 @@
   "jest": {
     "reporters": [
       "default",
-      ["jest-junit", {"outputDirectory": "reports", "outputName": "junit-test-results.xml"}]
+      [
+        "jest-junit",
+        {
+          "outputDirectory": "reports",
+          "outputName": "junit-test-results.xml"
+        }
+      ]
     ]
   }
 }

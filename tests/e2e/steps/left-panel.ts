@@ -79,10 +79,10 @@ When(/^I toggle text collision$/, async () => {
 });
 
 Then(/^text collide accordingly (\w+)$/, async (shouldCollide) => {
-  const overlapRemoval = await I.executeScript(() => {
+  const overlapRemoval = (await I.executeScript(() => {
     const overlapRemoval = ogma.getOptions().texts?.preventOverlap;
     return overlapRemoval === undefined || overlapRemoval ? true : false;
-  });
+  })) as unknown as boolean;
   assert.equal(overlapRemoval, shouldCollide === "true" ? true : false);
 });
 
@@ -91,8 +91,8 @@ When(/^I toggle snapping$/, async () => {
 });
 
 Then(/^snapping toggles accordingly (\w+)$/, async (shouldSnap) => {
-  const snapEnabled = await I.executeScript(() =>
+  const snapEnabled = (await I.executeScript(() =>
     ogma.tools.snapping.enabled()
-  );
+  )) as unknown as boolean;
   assert.equal(snapEnabled, shouldSnap === "true" ? true : false);
 });

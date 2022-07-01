@@ -10,7 +10,12 @@ const reportPath = path.join(reportRootDir, "exports/");
 const templatePath = "./scripts/e2e/template.html";
 
 function getReportContent(results) {
-  console.log("results", results);
+  console.table(
+    results.map((res) => {
+      res.path = res.path.replace(`../../`, "");
+      return res;
+    })
+  );
   const rows = results.reduce((rows, { name, success }) => {
     const testName = name.replace(".png", "");
     const style = `style="color: ${success ? "green" : "red"}"`;
