@@ -21,7 +21,7 @@
     "copy-assets": "mkdir -p dist/public && cp -R web/assets dist/public && cp web/index.html dist/public",
     "build:project": "npm-run-all build:manifest build:public build:backend",
     "build:manifest": "mkdir -p dist && envsub src/manifest.json dist/manifest.json",
-    "build:public": "esbuild web/index.tsx --bundle --outdir=dist/public --target=es6 --define:IS_DEV=false",
+    "build:public": "esbuild web/index.tsx --bundle --minify --outfile=dist/public/index-bundle.js --target=es6 --define:IS_DEV=false",
     "postbuild:public": "mv dist/public/index.js dist/public/index-bundle.js; npm run copy-assets",
     "build:backend": "esbuild backend/routeHandler.ts --outfile=dist/backend/routeHandler.js --bundle --platform=node",
     "build:dependencies": "cp package.json dist",
