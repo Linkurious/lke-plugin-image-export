@@ -8,14 +8,17 @@ import {
 } from "@ant-design/icons";
 import { Size } from "@linkurious/ogma";
 import { useDimensions } from "../hooks";
+import { backdropMargin } from "../constants";
+import { useAppContext } from "../context";
 //import { stringtoBase64, stringToSVGElement } from "../utils";
 
 export const ImageViewer: FC<{
   svg: string;
   size: Size;
   background: boolean;
-}> = ({ svg, size }) => {
+}> = ({ svg, size, background }) => {
   let [ref, dimensions] = useDimensions();
+  const { ogma } = useAppContext();
   const [panzoom, setPanzoom] = useState<PanZoom>();
   dimensions = dimensions || ({ width: 0, height: 0 } as DOMRect);
 
@@ -30,8 +33,6 @@ export const ImageViewer: FC<{
   useEffect(() => {
     if (!svgRef.current || !dimensions) return;
     const svgContainer = svgRef.current.querySelector("svg") as SVGSVGElement;
-
-    //svgContainer.setAttribute("height", dimensions.height.toString());
     const panzoomInstance = panzoomLib(
       svgRef.current.querySelector(".tranform-group") as SVGRectElement
     );
@@ -39,13 +40,30 @@ export const ImageViewer: FC<{
     panzoomInstance.moveTo(x, y);
     //console.log(panzoomInstance, x, y, k, size, dimensions);
     // @ts-ignore
-    //window.panzoom = panzoomInstance;
+    window.panzoom = panzoomInstance;
     setPanzoom(panzoomInstance);
     if (dimensions.width) {
       svgContainer.setAttribute("width", dimensions.width.toString());
       svgContainer.setAttribute("height", dimensions.height.toString());
     }
+    return () => {
+      panzoomInstance.dispose();
+    };
   }, [svg, dimensions]);
+
+  useEffect(() => {
+    if (!svgRef.current) return;
+    const bg = svgRef.current.querySelector(
+      ".ogma-svg-background"
+    ) as SVGRectElement;
+    bg.setAttribute("fill-opacity", "1");
+    bg.setAttribute(
+      "fill",
+      background
+        ? (ogma.getOptions().backgroundColor as string)
+        : "url(#pattern-checkers)"
+    );
+  }, [background]);
 
   const imageClass = "image-viewer--content";
   const zoom = (scaleMultiplier: number) => {

@@ -128,14 +128,6 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
   useEffect(() => {
     if (!image) return;
     const el = stringToSVGElement(image);
-    const bg = el.querySelector(".ogma-svg-background")!;
-    bg.setAttribute("fill-opacity", "1");
-    bg.setAttribute(
-      "fill",
-      background
-        ? (ogma.getOptions().backgroundColor as string)
-        : "url(#pattern-checkers)"
-    );
     setImage(svgElementToString(el));
   }, [background, image]);
 
