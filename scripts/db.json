@@ -9646,9 +9646,8 @@
               "input": ["properties", "category"],
               "value": "|Consumer Electronics|Social Network Media|Mobile|",
               "style": {
-                "icon": {
-                  "font": "FontAwesome",
-                  "content": ""
+                "image": {
+                  "src": "https://cataas.com/cat?format=x.jpg"
                 }
               }
             },

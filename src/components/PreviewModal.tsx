@@ -26,7 +26,12 @@ import {
   scaleGraph,
   stringToSVGElement,
 } from "../utils";
-import { addCheckerboard, addClipShape, addTransformGroup } from "../utils/svg";
+import {
+  addCheckerboard,
+  addClipShape,
+  addTransformGroup,
+  embedImages,
+} from "../utils/svg";
 
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
@@ -102,12 +107,18 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
           addClipShape(res, width, height);
           addCheckerboard(res);
           addTransformGroup(res);
+
+          console.time("embed images");
+          embedImages(res);
+          console.timeEnd("embed images");
+
           const svgString = new XMLSerializer().serializeToString(res);
 
           // TODO: add progress bar
           console.time("embed fonts");
           const result = embedFonts(svgString);
           console.timeEnd("embed fonts");
+
           console.time("optimize");
           //const optimzed = optimize(result, {}).data;
           console.timeEnd("optimize");

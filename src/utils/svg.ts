@@ -59,3 +59,34 @@ export function addTransformGroup(svg: SVGSVGElement) {
     .forEach((child: SVGElement) => transformGroup.appendChild(child));
   svg.appendChild(transformGroup);
 }
+
+const toDataURL = (url: string) =>
+  fetch(url)
+    .then((response) => response.blob())
+    .then(
+      (blob) =>
+        new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(blob);
+        })
+    );
+
+export function embedImages(svg: SVGSVGElement) {
+  const images = svg.querySelectorAll("image");
+  const promises = [];
+
+  for (let i = 0; i < images.length; i++) {
+    const image = images[i] as SVGImageElement;
+    const url = image.getAttribute("href");
+    if (url) promises.push(toDataURL(url));
+  }
+
+  return Promise.all(promises).then((dataURLs: string[]) => {
+    for (let i = 0; i < images.length; i++) {
+      const image = images[i] as SVGImageElement;
+      image.setAttribute("href", dataURLs[i]);
+    }
+  });
+}

@@ -1,4 +1,3 @@
-import xhr from "axios";
 import qs from "qs";
 import {
   RestClient,
