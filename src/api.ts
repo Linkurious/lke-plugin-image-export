@@ -1,4 +1,3 @@
-import xhr from "axios";
 import qs from "qs";
 import {
   RestClient,
@@ -12,11 +11,9 @@ const rc = new RestClient({
   baseUrl: IS_DEV ? "http://localhost:3000/" : "../../",
 });
 
-const { key = "key", visualizationId = "101" } = qs.parse(
-  location.search.slice(1)
-) as {
+const { key = "key", id = "101" } = qs.parse(location.search.slice(1)) as {
   key: string;
-  visualizationId: string;
+  id: string;
 };
 
 export async function getConfiguration(): Promise<IOgmaConfig> {
@@ -27,7 +24,7 @@ export async function getConfiguration(): Promise<IOgmaConfig> {
 
 export async function getVisualisation() {
   const response = await rc.visualization.getVisualization({
-    id: parseInt(visualizationId, 10), //parseInt(visualisationId as string, 10),
+    id: parseInt(id, 10), //parseInt(visualisationId as string, 10),
     sourceKey: key, //key as string
   });
   if (response.isSuccess()) return response.body;
