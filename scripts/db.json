@@ -9636,6 +9636,9 @@
                 "icon": {
                   "font": "FontAwesome",
                   "content": ""
+                },
+                "image": {
+                  "url": "https://cataas.com/cat?x=.jpg"
                 }
               }
             },
@@ -9647,7 +9650,7 @@
               "value": "|Consumer Electronics|Social Network Media|Mobile|",
               "style": {
                 "image": {
-                  "src": "https://cataas.com/cat?format=x.jpg"
+                  "url": "https://cataas.com/cat?x=.jpg"
                 }
               }
             },

@@ -109,7 +109,9 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
           addTransformGroup(res);
 
           console.time("embed images");
-          embedImages(res);
+          return embedImages(res);
+        })
+        .then((res) => {
           console.timeEnd("embed images");
 
           const svgString = new XMLSerializer().serializeToString(res);

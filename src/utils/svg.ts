@@ -83,10 +83,12 @@ export function embedImages(svg: SVGSVGElement) {
     if (url) promises.push(toDataURL(url));
   }
 
-  return Promise.all(promises).then((dataURLs: string[]) => {
-    for (let i = 0; i < images.length; i++) {
-      const image = images[i] as SVGImageElement;
-      image.setAttribute("href", dataURLs[i]);
-    }
-  });
+  return Promise.all(promises)
+    .then((dataURLs: string[]) => {
+      for (let i = 0; i < images.length; i++) {
+        const image = images[i] as SVGImageElement;
+        image.setAttribute("href", dataURLs[i]);
+      }
+    })
+    .then(() => svg);
 }
