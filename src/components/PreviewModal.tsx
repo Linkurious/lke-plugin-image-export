@@ -98,32 +98,23 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
               height: format.value ? format.value.height : 0,
             })
         )
-        .then((res) => {
+        .then(async (res) => {
           setLoading(false);
           const width = parseFloat(res.getAttribute("width")!);
           const height = parseFloat(res.getAttribute("height")!);
           setSize({ width, height });
 
           // TODO: restrict these manipulations only to preview, do not export
-
-          // TODO: add progress bar
-
           addClipShape(res, width, height);
           addCheckerboard(res);
           addTransformGroup(res);
 
           console.time("embed images");
-          return embedImages(res);
-        })
-        .then((res) => {
+          res = await embedImages(res);
           console.timeEnd("embed images");
 
-          console.time("optimize");
-          //const optimzed = optimize(result, {}).data;
-          console.timeEnd("optimize");
-
-          console.time("embed fonts");
           const svgString = svgElementToString(res);
+          console.time("embed fonts");
           const result = embedFonts(svgString);
           console.timeEnd("embed fonts");
           setImage(result);
