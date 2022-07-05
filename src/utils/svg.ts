@@ -60,14 +60,14 @@ export function addTransformGroup(svg: SVGSVGElement) {
   svg.appendChild(transformGroup);
 }
 
-const toDataURL = (url: string) =>
+const toDataURL = (url: string): Promise<string> =>
   fetch(url)
     .then((response) => response.blob())
     .then(
       (blob) =>
         new Promise((resolve, reject) => {
           const reader = new FileReader();
-          reader.onloadend = () => resolve(reader.result);
+          reader.onloadend = () => resolve(reader.result as string);
           reader.onerror = reject;
           reader.readAsDataURL(blob);
         })
@@ -75,19 +75,25 @@ const toDataURL = (url: string) =>
 
 export function embedImages(svg: SVGSVGElement) {
   const images = svg.querySelectorAll("image");
-  const promises = [];
+  const promises: Promise<string>[] = [];
+  const replacements: SVGImageElement[] = [];
 
   for (let i = 0; i < images.length; i++) {
     const image = images[i] as SVGImageElement;
     const url = image.getAttribute("href");
-    if (url) promises.push(toDataURL(url));
+    if (url) {
+      replacements.push(images[i]);
+      promises.push(toDataURL(url));
+    }
   }
 
   return Promise.all(promises)
     .then((dataURLs: string[]) => {
-      for (let i = 0; i < images.length; i++) {
-        const image = images[i] as SVGImageElement;
-        image.setAttribute("href", dataURLs[i]);
+      for (let i = 0; i < replacements.length; i++) {
+        const image = replacements[i];
+        // important to replace the href attribute
+        image.removeAttribute("href");
+        image.setAttribute("xlink:href", dataURLs[i]);
       }
     })
     .then(() => svg);
