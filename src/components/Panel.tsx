@@ -12,7 +12,7 @@ import {
 import { formats } from "../constants";
 import { FormatInfo } from "./FormatInfo";
 import { useAppContext } from "../context";
-import { PreviewModal } from "./PreviewModal";
+import { Modal } from "./Preview";
 import { StyleRule } from "@linkurious/ogma";
 import { LkEdgeData, LkNodeData } from "@linkurious/rest-client";
 
@@ -183,7 +183,7 @@ export function Panel() {
         <Button type="primary" onClick={showModal} className="preview--button">
           Preview
         </Button>
-        <PreviewModal
+        <Modal
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
