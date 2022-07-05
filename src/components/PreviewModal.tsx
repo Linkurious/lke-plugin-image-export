@@ -26,7 +26,12 @@ import {
   scaleGraph,
   stringToSVGElement,
 } from "../utils";
-import { addCheckerboard, addClipShape, addTransformGroup } from "../utils/svg";
+import {
+  addCheckerboard,
+  addClipShape,
+  addTransformGroup,
+  embedImages,
+} from "../utils/svg";
 
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
@@ -99,18 +104,28 @@ export const PreviewModal: FC<Props> = ({ visible, onCancel, onOk }) => {
           const height = parseFloat(res.getAttribute("height")!);
           setSize({ width, height });
 
+          // TODO: restrict these manipulations only to preview, do not export
+
+          // TODO: add progress bar
+
           addClipShape(res, width, height);
           addCheckerboard(res);
           addTransformGroup(res);
-          const svgString = new XMLSerializer().serializeToString(res);
 
-          // TODO: add progress bar
-          console.time("embed fonts");
-          const result = embedFonts(svgString);
-          console.timeEnd("embed fonts");
+          console.time("embed images");
+          return embedImages(res);
+        })
+        .then((res) => {
+          console.timeEnd("embed images");
+
           console.time("optimize");
           //const optimzed = optimize(result, {}).data;
           console.timeEnd("optimize");
+
+          console.time("embed fonts");
+          const svgString = svgElementToString(res);
+          const result = embedFonts(svgString);
+          console.timeEnd("embed fonts");
           setImage(result);
         })
         .then(() => {
