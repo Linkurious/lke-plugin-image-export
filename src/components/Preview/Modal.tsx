@@ -1,15 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
-import {
-  Button,
-  Menu,
-  Modal as UIModal,
-  ModalFuncProps,
-  Progress,
-  Dropdown,
-  Switch,
-} from "antd";
+import { Modal as UIModal, ModalFuncProps, Progress } from "antd";
 import { FormatType, ExportType } from "../../types/formats";
-import { ExportTypes } from "../../constants";
 import { useAppContext } from "../../context";
 import {
   svg,
@@ -19,14 +10,8 @@ import {
 import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "../ImageViewer";
-import { DownOutlined } from "@ant-design/icons";
 import { Footer } from "./Footer";
-import {
-  formatSize,
-  downloadBlob,
-  scaleGraph,
-  stringToSVGElement,
-} from "../../utils";
+import { downloadBlob, scaleGraph, stringToSVGElement } from "../../utils";
 import {
   addCheckerboard,
   addClipShape,
@@ -40,19 +25,6 @@ import {
 interface Props extends ModalFuncProps {
   format: FormatType;
 }
-
-const ExportInfo: FC<{
-  loading: boolean;
-  result?: string;
-  size: Size;
-}> = ({ loading, result, size }) => {
-  if (loading || !result) return null;
-  return (
-    <span key="preview-info" className="preview--info">
-      {formatSize(size)}
-    </span>
-  );
-};
 
 export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
   const {
