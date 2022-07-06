@@ -6,7 +6,6 @@ const ogma = {} as Ogma;
 
 When(/^image is of size (\d+) (\d+)$/, async (width, height) => {
   // image-viewer--content
-  console.log("expected", width, height);
   const size = await I.getSvgElementSize(".ogma-svg-background");
   assert.deepEqual(
     {

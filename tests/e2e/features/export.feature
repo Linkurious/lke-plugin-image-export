@@ -8,5 +8,5 @@ Feature: Export
     Then image is of size <width> <height>
   Examples:
     | width | height | format    |
-    | 616   | 640    | Full size |
+    | 708   | 736    | Full size |
     | 960   | 960    | Square    |

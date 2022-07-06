@@ -9638,7 +9638,7 @@
                   "content": ""
                 },
                 "image": {
-                  "url": "https://cataas.com/cat?x=.jpg"
+                  "url": "assets/cat.jpg"
                 }
               }
             },
@@ -9650,7 +9650,7 @@
               "value": "|Consumer Electronics|Social Network Media|Mobile|",
               "style": {
                 "image": {
-                  "url": "https://cataas.com/cat?x=.jpg"
+                  "url": "assets/cat.jpg"
                 }
               }
             },
