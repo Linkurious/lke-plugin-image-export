@@ -7,10 +7,28 @@ import React, {
   ReactNode,
   Ref,
 } from "react";
-import { LKOgma as OgmaLib, Filters } from "@linkurious/ogma-linkurious-parser";
+import {
+  LKOgma as OgmaLib,
+  Filters,
+  NodeList,
+  EdgeList,
+} from "@linkurious/ogma-linkurious-parser";
 import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
 import { useAppContext } from "../context";
-import { BoundingBox, Layer, Overlay, Point } from "@linkurious/ogma";
+
+const applyItemFilter = (
+  ogma: OgmaLib,
+  graph: PopulatedVisualization,
+  isNode: boolean
+) => {
+  const filter = isNode ? graph.filters.node : graph.filters.edge;
+  const initial = isNode ? ogma.getNodes() : ogma.getEdges();
+  const items = initial.filter((item) =>
+    Filters.isFiltered(filter, item.getData())
+  );
+  if (isNode) return ogma.removeNodes(items as NodeList);
+  return ogma.removeEdges(items as EdgeList);
+};
 
 interface OgmaProps {
   options?: Partial<IOgmaConfig>;
@@ -73,29 +91,10 @@ export const OgmaComponent = (
         ogma
           .initVisualization(graph)
           // apply filters
-          .then(() =>
-            ogma.removeNodes(
-              ogma
-                .getNodes()
-                .filter((node) =>
-                  Filters.isFiltered(graph.filters.node, node.getData())
-                )
-            )
-          )
+          .then(() => applyItemFilter(ogma, graph, false))
+          .then(() => applyItemFilter(ogma, graph, true))
           .then(() => ogma.view.locateGraph())
           .then(() => ogma.view.forceResize());
-
-        // setLayers(
-        //   new Array(4).fill(0).map((_, i) => {
-        //     const div = document.createElement("div");
-        //     div.classList.add("overlay");
-        //     return ogma.layers.addLayer(
-        //       div
-        //       // position: { x: 0, y: 0 },
-        //       // size: { width: 0, height: 0 }
-        //     );
-        //   })
-        // );
       }
     }
   }, [graph, options, ogma]);
