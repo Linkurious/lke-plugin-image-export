@@ -18,6 +18,7 @@ import {
   addTransformGroup,
   embedImages,
 } from "../../utils/svg";
+import { fullSizeMargin } from "../../constants";
 
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
@@ -64,6 +65,7 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
           .on("progress", (progress) => setProgress(progress))
           .run({
             fullSize: format.value === undefined,
+            margin: format.value === undefined ? fullSizeMargin : 0,
             width: format.value ? format.value.width : 0,
             height: format.value ? format.value.height : 0,
           })

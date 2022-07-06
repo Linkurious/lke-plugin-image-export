@@ -1,6 +1,6 @@
 {
   "name": "@linkurious/image-export-plugin",
-  "version": "0.1.0-alpha.6",
+  "version": "0.1.0-alpha.7",
   "engines": {
     "node": "16.15.0",
     "npm": "8.5.5"
@@ -97,12 +97,12 @@
     "typescript": "^4.6.4"
   },
   "dependencies": {
-    "@ant-design/colors": "^6.0.0",
-    "@ant-design/icons": "^4.7.0",
-    "@linkurious/ogma": "^4.1.4-develop.31",
-    "@linkurious/ogma-export-stitch": "^0.0.2",
-    "@linkurious/ogma-linkurious-parser": "3.1.2-PR-214.2",
-    "@linkurious/ogma-mini-map": "^0.0.22",
+    "@ant-design/colors": "6.0.0",
+    "@ant-design/icons": "4.7.0",
+    "@linkurious/ogma": "4.1.4",
+    "@linkurious/ogma-export-stitch": "0.0.4",
+    "@linkurious/ogma-linkurious-parser": "3.2.0-PR-214.7",
+    "@linkurious/ogma-mini-map": "0.0.22",
     "@linkurious/rest-client": "^3.1.2",
     "@linkurious/svg-font-embedder": "^0.0.28",
     "antd": "^4.20.6",
