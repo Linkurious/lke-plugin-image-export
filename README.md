@@ -31,3 +31,38 @@ This will open the plugin in another tab in your browser. In the plugin, you can
 - **Export size:**
   - **Full-size:** You can chose to export the whole graph at the detalization level that you are currently seeing on the screen.
   - **Pre-defined sizes** - you can also go for the pre-defined document sizes (for instance, for printing) and _fit_ your visualisation into it, using panning and zooming. You have a selection of popular document sizes, from A3 to letterhead. Note that if you select the pre-defined document size, the parts of the graph that are not fitting into it, will be clipped.
+
+## Full-size export
+
+It's the default mode of the plugin. In this mode, the visualization will be exported at the current zoom level and detalization level, so nodes, edges and texts will have exactly the same size as you can see on your screen.
+
+![full-size export](./images/full-size.gif)
+
+The indicator in the settings panel will show the calculated size of the exported image. From here you can continue to the preview, where you will be able to check the details of the resulting image.
+
+![Full-size export preview](./images/full-size-preview.png)
+
+## Pre-defined formats
+
+You can also go for pre-defined export document sizes from the list:
+
+![Pre-defined export format](./images/predefined-format.png)
+
+After you chose the document size, the plugin will calculate the size of the exported image and show it in the settings panel. It will also show the format boundaries on the screen so that you could fit the whole graph or a part of it into the document size.
+
+![Size-fitting](./images/size-fitting.gif)
+
+## Background Export
+
+You can chose whether or not to include the background color defined in Linkurious Enterprise settings into the exported file. The selector for that is located on the bottom of the preview window.
+
+![Background select](./images/background.gif)
+
+## Chosing format
+
+Currently the plugin offers two formats: SVG and PNG. You can choose the format by clicking on the arrow next to the format name in the preview window.
+
+![Format selector](./images/format-select.png)
+
+- <abbr title="Scalable Vector Graphics">SVG</abbr> - this is the vector format that would offer the best quality and file size for printing and sharing on the web. It has all the fonts and images embedded into the document. It is also editable by the popular vector graphics applications such as [Adobe Illustrator](https://www.adobe.com/), [Inkscape](https://inkscape.org/) and lots of others. They can also be resized and embedded into the presentations and documents without any quality loss.
+- <abbr title="Portable Network Graphics">PNG</abbr> - this is the raster format and its adavantage is that it can be viewed by more applications, such as default image viewers on any operating system. Resizing the PNG documents will cause blurriness and degraded quality.
