@@ -11,6 +11,8 @@ export function Minimap() {
       minimap = new MinimapControl(ogma, {
         width: 150,
         height: 150,
+        strokeWidth: 0,
+        fillColor: `rgba(0,0,0,0.2)`,
       });
     return () => {
       if (minimap) minimap.destroy();
