@@ -6,7 +6,7 @@ This plugin allows you to export the visualization with better quality and more 
 
 ## Configuration
 
-Plugin is avalailable through a custom action:
+Plugin is available through a custom action:
 
 1.  In visualization menu, select "Manage custom actions..."
 2.  "New custom action"
