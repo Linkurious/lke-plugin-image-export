@@ -9,6 +9,7 @@ import {
 import { Size } from "@linkurious/ogma";
 import { useDimensions } from "../hooks";
 import { useAppContext } from "../context";
+import { getOgmaBackgroundColor } from "../utils";
 
 export const ImageViewer: FC<{
   svg: string;
@@ -54,9 +55,7 @@ export const ImageViewer: FC<{
     bg.setAttribute("fill-opacity", "1");
     bg.setAttribute(
       "fill",
-      background
-        ? (ogma.getOptions().backgroundColor as string)
-        : "url(#pattern-checkers)"
+      background ? getOgmaBackgroundColor(ogma) : "url(#pattern-checkers)"
     );
   }, [background]);
 

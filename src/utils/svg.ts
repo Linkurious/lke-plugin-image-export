@@ -6,17 +6,18 @@ const GREY = "#e0e0e0";
 const WHITE = "#ffffff";
 
 export function addCheckerboard(svg: SVGSVGElement) {
+  const w = 5;
   const pattern = createSVGElement<SVGPatternElement>("pattern");
   pattern.setAttribute("id", "pattern-checkers");
   pattern.setAttribute("x", "0");
   pattern.setAttribute("y", "0");
-  pattern.setAttribute("width", "10");
-  pattern.setAttribute("height", "10");
+  pattern.setAttribute("width", (2 * w).toString());
+  pattern.setAttribute("height", (2 * w).toString());
   pattern.setAttribute("patternUnits", "userSpaceOnUse");
 
   svg.insertBefore(pattern, svg.firstChild);
 
-  const side = 5;
+  const side = w;
   for (let x = 0; x < 2; x++) {
     for (let y = 0; y < 2; y++) {
       const rect = createSVGElement<SVGRectElement>("rect");

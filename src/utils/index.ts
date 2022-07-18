@@ -1,7 +1,21 @@
-import Ogma, { Size } from "@linkurious/ogma";
+import Ogma, { Size, Color } from "@linkurious/ogma";
 
 export const formatSize = ({ width, height }: Size, suffix = "px") => {
   return `${width} × ${height} px`;
+};
+
+export const getOgmaBackgroundColor = (ogma: Ogma): NonNullable<Color> => {
+  let color = ogma.getOptions().backgroundColor;
+  // TODO: temportary and terrible hack for LKE, remove ASAP
+  if (color) {
+    const match = color.match(
+      /rgba\((\d+),\s?(\d+),\s?(\d+),\s?(\d+(?:\.\d+)?)\)/
+    );
+    if (match && parseFloat(match[4]) === 0) {
+      color = `rgba(${match.slice(1, 4).join(",")},1)`;
+    }
+  }
+  return color || "";
 };
 
 export function downloadBlob(

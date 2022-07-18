@@ -72,7 +72,7 @@
             "enabled": false
           }
         },
-        "backgroundColor": "rgba(240, 240, 240, 1)"
+        "backgroundColor": "rgba(240, 240, 240, 0)"
       }
     },
     "domain": "lke.app.preprod.linkurious.net",
