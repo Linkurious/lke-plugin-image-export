@@ -97,6 +97,7 @@ export function Panel() {
             wrapperCol={{ span: 12 }}
             layout="horizontal"
             labelWrap={true}
+            labelAlign="left"
             initialValues={{ size: componentSize }}
             onValuesChange={onFormLayoutChange}
             size="small"
@@ -163,7 +164,7 @@ export function Panel() {
             <Typography.Title level={5}>Format</Typography.Title>
             <Form.Item label="Size">
               <Select
-                style={{ width: 130 }}
+                //style={{ minWidth: 130 }}
                 defaultValue={0}
                 className="format-select"
                 onChange={(index) => setFormat(formats[index])}

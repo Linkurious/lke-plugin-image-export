@@ -1,3 +1,4 @@
+import { Size } from "@linkurious/ogma";
 import { ExportType, Format, FormatType } from "../types/formats";
 
 export const fontSizes = [
@@ -7,36 +8,54 @@ export const fontSizes = [
   { label: "2x", value: "2" },
 ];
 
+const paperFormatsInches: Record<Format, Size | undefined> = {
+  "Letter paper": { width: 8.5, height: 11 },
+  "Ledger paper": { width: 11, height: 17 },
+  "A4 paper": { width: 21, height: 29.7 },
+  "A4 paper (landscape)": { width: 29.7, height: 21 },
+  "A3 paper": { width: 29.7, height: 42 },
+  "A3 paper (landscape)": { width: 42, height: 29.7 },
+  "B4 paper": { width: 25, height: 35.3 },
+  "B5 paper": { width: 19.05, height: 25 },
+  Widescreen: { width: 13.333, height: 7.5 },
+  Overhead: { width: 11.5, height: 8.5 },
+  "Full size": undefined,
+  Square: undefined,
+  "4:3": undefined,
+  Banner: undefined,
+  "16:9": undefined,
+  "16:10": undefined,
+};
+
+type ScreenSizes = Extract<
+  Format,
+  "Full size" | "Square" | "Banner" | "16:9" | "16:10" | "4:3"
+>;
+
+const dppi = 120;
+// calculate the size of the paper in pixels
+const paperSizes: Record<
+  Exclude<Format, ScreenSizes>,
+  FormatType
+> = Object.keys(paperFormatsInches).reduce((acc, key: Format) => {
+  const size = paperFormatsInches[key];
+  if (size)
+    acc[key] = {
+      label: key,
+      value: { width: size.width * dppi, height: size.height * dppi },
+    };
+  return acc;
+}, {} as Record<Format, FormatType>);
+
+// source of truth for the export types
 export const formatLookup: Record<Format, FormatType> = {
   "Full size": { label: "Full size", value: undefined },
   Square: { label: "Square", value: { width: 960, height: 960 } },
   "4:3": { label: "4:3", value: { width: 960, height: 720 } },
-  "Letter paper": {
-    label: "Letter paper",
-    value: { width: 816, height: 1056 },
-  },
-  "Ledger paper": {
-    label: "Ledger paper",
-    value: { width: 1056, height: 1632 },
-  },
-  // values here are for 96dppi
-  "A4 paper": { label: "A4 paper", value: { width: 794, height: 1123 } },
-  "A3 paper": { label: "A3 paper", value: { width: 1123, height: 1587 } },
-  "A4 paper (landscape)": {
-    label: "A4 paper (landscape)",
-    value: { width: 1123, height: 794 },
-  },
-  "A3 paper (landscape)": {
-    label: "A3 paper (landscape)",
-    value: { width: 1587, height: 1123 },
-  },
-  "B4 paper": { label: "B4 paper", value: { width: 945, height: 1334 } },
-  "B5 paper": { label: "B5 paper", value: { width: 665, height: 945 } },
-  Overhead: { label: "Overhead", value: { width: 960, height: 720 } },
   Banner: { label: "Banner", value: { width: 768, height: 96 } },
   "16:9": { label: "16:9", value: { width: 960, height: 540 } },
   "16:10": { label: "16:10", value: { width: 960, height: 600 } },
-  Widescreen: { label: "Widescreen", value: { width: 1920, height: 1080 } },
+  ...paperSizes,
 };
 
 export const formats: FormatType[] = Object.keys(formatLookup).map(
