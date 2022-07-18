@@ -11,12 +11,12 @@ export const fontSizes = [
 const paperFormatsInches: Record<Format, Size | undefined> = {
   "Letter paper": { width: 8.5, height: 11 },
   "Ledger paper": { width: 11, height: 17 },
-  "A4 paper": { width: 8.3, height: 11.7 },
-  "A4 paper (landscape)": { width: 11.7, height: 8.3 },
-  "A3 paper": { width: 11.7, height: 16.5 },
-  "A3 paper (landscape)": { width: 16.5, height: 11.7 },
-  "B4 paper": { width: 25, height: 35.3 },
-  "B5 paper": { width: 19.05, height: 25 },
+  A4: { width: 8.3, height: 11.7 },
+  "A4 (landscape)": { width: 11.7, height: 8.3 },
+  A3: { width: 11.7, height: 16.5 },
+  "A3 (landscape)": { width: 16.5, height: 11.7 },
+  B4: { width: 25, height: 35.3 },
+  B5: { width: 19.05, height: 25 },
 
   Overhead: { width: 11.5, height: 8.5 },
   "Full size": undefined,

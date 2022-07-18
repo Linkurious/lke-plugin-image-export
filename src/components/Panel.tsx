@@ -8,7 +8,10 @@ import {
   Select,
   Switch,
   Slider,
+  Dropdown,
+  Menu,
 } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 import { formats } from "../constants";
 import { FormatInfo } from "./FormatInfo";
 import { useAppContext } from "../context";
@@ -82,6 +85,15 @@ export function Panel() {
       if (ogma && rule) rule.destroy();
     };
   }, [ogma]);
+
+  const menu = (
+    <Menu
+      selectable
+      defaultSelectedKeys={["0"]}
+      onSelect={({ key }) => setFormat(formats[Number(key)])}
+      items={formats.map((item, index) => ({ key: index, label: item.label }))}
+    />
+  );
 
   return (
     <div className="panel">
@@ -163,18 +175,14 @@ export function Panel() {
             <Divider />
             <Typography.Title level={5}>Format</Typography.Title>
             <Form.Item label="Size">
-              <Select
-                //style={{ minWidth: 130 }}
-                defaultValue={0}
-                className="format-select"
-                onChange={(index) => setFormat(formats[index])}
+              <Dropdown.Button
+                trigger={["click"]}
+                overlay={menu}
+                placement="bottom"
+                icon={<DownOutlined />}
               >
-                {formats.map((item, index) => (
-                  <Select.Option value={index} key={index}>
-                    {item.label}
-                  </Select.Option>
-                ))}
-              </Select>
+                {format.label}
+              </Dropdown.Button>
             </Form.Item>
             <FormatInfo {...format} />
           </Form>
