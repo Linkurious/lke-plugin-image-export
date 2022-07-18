@@ -11,7 +11,8 @@ function getFormat(selectedFormat) {
 }
 When(/^I select format (.*)$/, async (format) => {
   I.click(locator.build(".format-select"));
-  I.click(format);
+  I.waitForElement(locator.build("span").withText(format));
+  I.click(locator.build("span").withText(format), undefined, { force: true });
 });
 Then(/^I see it's size within the panel (.*)$/, async (selectedFormat) => {
   const format = getFormat(selectedFormat);
