@@ -182,14 +182,14 @@ export function Panel() {
             <Divider />
             <Typography.Title level={5}>Format</Typography.Title>
             <Form.Item label="Size">
-              <Dropdown.Button
+              <Dropdown
                 trigger={["click"]}
                 overlay={menu}
                 placement="bottom"
-                icon={<DownOutlined />}
+                className="format-select"
               >
-                {format.label}
-              </Dropdown.Button>
+                <Button icon={<DownOutlined />}>{format.label}</Button>
+              </Dropdown>
             </Form.Item>
             <FormatInfo {...format} />
           </Form>
