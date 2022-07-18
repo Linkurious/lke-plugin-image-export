@@ -175,13 +175,15 @@ body {
   margin-right: 1em;
 }
 
-.zoom-control button,
-.image-viewer--tools button {
+.zoom-control .ant-btn,
+.image-viewer--tools .ant-btn,
+.version-info .ant-btn {
   color: #595959;
 }
 
-.zoom-control button > .anticon,
-.image-viewer--tools button > .anticon {
+.zoom-control .ant-btn > .anticon,
+.image-viewer--tools .ant-btn > .anticon,
+.version-info .ant-btn > .anticon {
   font-size: 22px;
 }
 
@@ -227,4 +229,20 @@ body {
 
 svg {
   outline: none;
+}
+
+.version-info {
+  position: absolute;
+  bottom: 17px;
+  right: 67px;
+  font-size: 0.9em;
+}
+
+.version-info .ant-btn {
+  width: 22px;
+  height: 22px;
+}
+
+.version-info .ant-btn .anticon {
+  font-size: 14px;
 }
