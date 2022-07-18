@@ -11,13 +11,13 @@ export const fontSizes = [
 const paperFormatsInches: Record<Format, Size | undefined> = {
   "Letter paper": { width: 8.5, height: 11 },
   "Ledger paper": { width: 11, height: 17 },
-  "A4 paper": { width: 21, height: 29.7 },
-  "A4 paper (landscape)": { width: 29.7, height: 21 },
-  "A3 paper": { width: 29.7, height: 42 },
-  "A3 paper (landscape)": { width: 42, height: 29.7 },
+  "A4 paper": { width: 8.3, height: 11.7 },
+  "A4 paper (landscape)": { width: 11.7, height: 8.3 },
+  "A3 paper": { width: 11.7, height: 16.5 },
+  "A3 paper (landscape)": { width: 16.5, height: 11.7 },
   "B4 paper": { width: 25, height: 35.3 },
   "B5 paper": { width: 19.05, height: 25 },
-  Widescreen: { width: 13.333, height: 7.5 },
+
   Overhead: { width: 11.5, height: 8.5 },
   "Full size": undefined,
   Square: undefined,
@@ -25,14 +25,15 @@ const paperFormatsInches: Record<Format, Size | undefined> = {
   Banner: undefined,
   "16:9": undefined,
   "16:10": undefined,
+  Widescreen: undefined,
 };
 
 type ScreenSizes = Extract<
   Format,
-  "Full size" | "Square" | "Banner" | "16:9" | "16:10" | "4:3"
+  "Full size" | "Square" | "Banner" | "16:9" | "16:10" | "4:3" | "Widescreen"
 >;
 
-const dppi = 120;
+const dppi = 96;
 // calculate the size of the paper in pixels
 const paperSizes: Record<
   Exclude<Format, ScreenSizes>,
@@ -42,7 +43,10 @@ const paperSizes: Record<
   if (size)
     acc[key] = {
       label: key,
-      value: { width: size.width * dppi, height: size.height * dppi },
+      value: {
+        width: Math.floor(size.width * dppi),
+        height: Math.floor(size.height * dppi),
+      },
     };
   return acc;
 }, {} as Record<Format, FormatType>);
@@ -55,6 +59,7 @@ export const formatLookup: Record<Format, FormatType> = {
   Banner: { label: "Banner", value: { width: 768, height: 96 } },
   "16:9": { label: "16:9", value: { width: 960, height: 540 } },
   "16:10": { label: "16:10", value: { width: 960, height: 600 } },
+  Widescreen: { label: "Widescreen", value: { width: 1920, height: 1080 } },
   ...paperSizes,
 };
 
