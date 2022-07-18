@@ -34,6 +34,7 @@ const fontSize = { ratio: 1 };
 export function Panel() {
   const { ogma, format, setFormat, textsVisible, setTextsVisible } =
     useAppContext();
+  const [collapsed, setCollapsed] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
@@ -94,10 +95,16 @@ export function Panel() {
       items={formats.map((item, index) => ({ key: index, label: item.label }))}
     />
   );
+  const panelClassName = `panel${collapsed ? " panel--collapsed" : ""}`;
 
   return (
-    <div className="panel">
-      <Collapse collapsible="header" defaultActiveKey={[1]} ghost>
+    <div className={panelClassName}>
+      <Collapse
+        collapsible="header"
+        defaultActiveKey={[1]}
+        ghost
+        onChange={(e) => setCollapsed(e.length === 0)}
+      >
         <Collapse.Panel
           collapsible="header"
           header="Options"
