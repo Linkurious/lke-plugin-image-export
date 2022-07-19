@@ -1,0 +1,33 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "baseBranches": ["develop-stable", "develop"],
+  "labels": ["dependencies"],
+  "prConcurrentLimit": 2,
+  "respectLatest": true,
+  "ignoreUnstable": true,
+  "schedule": "every weekend",
+  "docker": {
+    "addLabels": ["docker"]
+  },
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major"],
+      "matchBaseBranches": ["develop-stable"],
+      "enabled": false
+    },
+    {
+      "matchDatasources": ["docker"],
+      "addLabels": ["docker"]
+    },
+    {
+      "matchDatasources": ["npm", "node"],
+      "addLabels": ["javascript"]
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "addLabels": ["type:security"]
+  }
+}
