@@ -30,6 +30,7 @@
     "build:component": "typehead build",
     "build": "npm run build:project && npm run build:dependencies && npm pack ./dist && npm run repack",
     "repack": "gunzip -qf -c linkurious-image-export-plugin-$npm_package_version.tgz > lke-plugin-image-export.lke",
+    "upload": "gh release create \"v$(cat .version)\" lke-plugin-image-export.lke",
     "deploy": "cp lke-plugin-image-export.lke $(npm config get DEPLOY_PLUGIN_FOLDER)/lke-plugin-image-export-$npm_package_version.lke",
     "postdeploy": "npm run deploy:restart-plugins",
     "deploy:login": "curl -X POST $(npm config get DEPLOY_URL)/api/auth/login --cookie-jar 'lke.cookie' -H 'Content-type: application/json' -d '{ \"usernameOrEmail\": \"'$(npm config get DEPLOY_USER)'\", \"password\": \"'$(npm config get DEPLOY_PASS)'\" }'",
@@ -48,6 +49,15 @@
     "test:unit": "jest --ci --testResultsProcessor='jest-junit'",
     "lint": "eslint --ext .js,.ts --fix",
     "lint:ci": "eslint --ext .js,.ts",
+    "bump:patch": "bump2version patch && npm version --no-git-tag-version patch",
+    "bump:minor": "bump2version minor && npm version --no-git-tag-version minor",
+    "bump:major": "bump2version major && npm version --no-git-tag-version major",
+    "latest:develop-next": "npm install --save-exact @linkurious/rest-client@lk-develop-next @linkurious/ogma-linkurious-parser@lk-develop-next",
+    "latest:develop-stable": "npm install --save-exact @linkurious/rest-client@lk-develop-stable @linkurious/ogma-linkurious-parser@lk-develop-stable",
+    "latest:develop-maintenance": "npm install --save-exact @linkurious/rest-client@lk-develop-maintenance @linkurious/ogma-linkurious-parser@lk-develop-maintenance",
+    "latest:master": "npm install --save-exact @linkurious/rest-client@lk-master@linkurious/ogma-linkurious-parser@lk-master",
+    "latest:master-stable": "npm install --save-exact @linkurious/rest-client@lk-master-stable @linkurious/ogma-linkurious-parser@lk-master-stable",
+    "latest:master-maintenance": "npm install --save-exact @linkurious/rest-client@lk-master-maintenance @linkurious/ogma-linkurious-parser@lk-master-maintenance",
     "postversion": "sync_versions"
   },
   "devDependencies": {
