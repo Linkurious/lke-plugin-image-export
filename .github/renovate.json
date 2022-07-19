@@ -14,19 +14,17 @@
   },
   "packageRules": [
     {
+      "matchUpdateTypes": ["major"],
+      "matchBaseBranches": ["develop-stable"],
+      "enabled": false
+    },
+    {
       "matchDatasources": ["docker"],
       "addLabels": ["docker"]
     },
     {
       "matchDatasources": ["npm", "node"],
       "addLabels": ["javascript"]
-    }
-  ],
-  "packageRules": [
-    {
-      "matchUpdateTypes": ["major"],
-      "matchBaseBranches": ["develop-stable"],
-      "enabled": false
     }
   ],
   "vulnerabilityAlerts": {
