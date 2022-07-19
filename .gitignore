@@ -1,6 +1,9 @@
 node_modules
 .idea
 *.lke
+*.tgz
 dist
 .DS_Store
 .npmrc
+reports/
+web/index-bundle.*

@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "incremental": true,
+    "module": "CommonJS",
+    "target": "ES6",
+    "moduleResolution": "node",
+    "outDir": "../dist/backend",
+    "declarationDir": "../dist/backend",
+    "esModuleInterop": true,
+    "lib": ["DOM", "ES2018", "ES6"],
+    "sourceMap": false,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "declaration": true,
+    "removeComments": true,
+    /* Strict Checks */
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    /* Linter Checks */
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "typeRoots": ["@types/custom"],
+    // TODO: skipLibCheck was set to true to fix ogma error
+    "skipLibCheck": true
+  },
+  "include": ["@types/**/*.d.ts", "**/*.ts"],
+  "references": []
+}

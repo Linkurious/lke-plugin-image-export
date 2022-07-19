@@ -1,0 +1,259 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+/* roboto-regular - latin */
+@font-face {
+  font-family: "roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/roboto-v20-latin-regular.eot"); /* IE9 Compat Modes */
+  src: local("Roboto"), local("Roboto-Regular"),
+    url("fonts/roboto-v20-latin-regular.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("fonts/roboto-v20-latin-regular.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("fonts/roboto-v20-latin-regular.woff")
+      format("woff"),
+    /* Modern Browsers */ url("fonts/roboto-v20-latin-regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("fonts/roboto-v20-latin-regular.svg#Roboto")
+      format("svg"); /* Legacy iOS */
+}
+
+/* roboto-italic - latin */
+@font-face {
+  font-family: "roboto";
+  font-style: italic;
+  font-weight: 400;
+  src: url("fonts/roboto-v20-latin-italic.eot"); /* IE9 Compat Modes */
+  src: local("Roboto Italic"), local("Roboto-Italic"),
+    url("fonts/roboto-v20-latin-italic.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("fonts/roboto-v20-latin-italic.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("fonts/roboto-v20-latin-italic.woff")
+      format("woff"),
+    /* Modern Browsers */ url("fonts/roboto-v20-latin-italic.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("fonts/roboto-v20-latin-italic.svg#Roboto")
+      format("svg"); /* Legacy iOS */
+}
+
+/* roboto-500 - latin */
+@font-face {
+  font-family: "roboto";
+  font-style: normal;
+  font-weight: 500;
+  src: url("fonts/roboto-v20-latin-500.eot"); /* IE9 Compat Modes */
+  src: local("Roboto Medium"), local("Roboto-Medium"),
+    url("fonts/roboto-v20-latin-500.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("fonts/roboto-v20-latin-500.woff2") format("woff2"),
+    /* Super Modern Browsers */ url("fonts/roboto-v20-latin-500.woff")
+      format("woff"),
+    /* Modern Browsers */ url("fonts/roboto-v20-latin-500.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("fonts/roboto-v20-latin-500.svg#Roboto")
+      format("svg"); /* Legacy iOS */
+}
+
+/*
+ *  Font Awesome 4.6.3 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+@font-face {
+  font-family: "FontAwesome";
+  src: url("fonts/fontawesome-webfont.eot?v=4.6.3");
+  src: url("fonts/fontawesome-webfont.eot?#iefix&v=4.6.3")
+      format("embedded-opentype"),
+    url("fonts/fontawesome-webfont.woff2?v=4.6.3") format("woff2"),
+    url("fonts/fontawesome-webfont.woff?v=4.6.3") format("woff"),
+    url("fonts/fontawesome-webfont.ttf?v=4.6.3") format("truetype"),
+    url("fonts/fontawesome-webfont.svg?v=4.6.3#fontawesomeregular")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: #fdfdfd;
+  margin: 0;
+  font-family: "Open Sans", "Roboto", sans-serif, serif;
+}
+
+#ogma-container,
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.visualisation--container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.panel {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+
+  background: #f9fbfb;
+  box-shadow: 0px 2px 8px rgba(44, 44, 44, 0.15);
+  border-radius: 4px;
+  min-width: 300px;
+}
+
+.panel--settings .ant-collapse-content {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.panel--settings .ant-form-item {
+  margin-bottom: 12px;
+}
+
+.ogma-mini-map {
+  position: absolute;
+  right: 1em;
+  bottom: 3em;
+  background: #f9fbfb;
+  box-shadow: 0px 2px 8px rgba(44, 44, 44, 0.15);
+  z-index: 100;
+}
+
+.overlay {
+  opacity: 0.5;
+  background-color: grey;
+}
+.panel--controls {
+  padding: 12px 16px;
+  text-align: right;
+}
+
+.panel--collapsed .panel--controls {
+  margin-top: -47px;
+  text-align: right;
+  padding: 8px 10px;
+}
+
+.panel--collapsed {
+  min-width: 200px;
+}
+
+.preview--modal {
+  top: 2em;
+}
+
+.preview--modal .ant-modal-body {
+  padding: 0;
+  min-height: 70vh;
+  overflow: hidden;
+}
+
+.ant-modal-mask {
+  backdrop-filter: blur(10px);
+}
+
+.preview--progressbar {
+  padding: 2em;
+  margin-top: 25%;
+}
+
+.image-viewer {
+  max-width: 100%;
+  max-height: 70vh;
+}
+
+.image-viewer--wrapper {
+  margin: 0 auto !important;
+  height: 80vh;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 70vh;
+  background-color: #ddd;
+}
+
+.image-viewer--container {
+  display: flex;
+  min-height: 70vh;
+  flex-direction: column;
+}
+
+.image-viewer--tools {
+  display: flex;
+  align-self: end;
+  margin-top: -3em;
+  margin-right: 1em;
+}
+
+.zoom-control .ant-btn,
+.image-viewer--tools .ant-btn,
+.version-info .ant-btn {
+  color: #595959;
+}
+
+.zoom-control .ant-btn > .anticon,
+.image-viewer--tools .ant-btn > .anticon,
+.version-info .ant-btn > .anticon {
+  font-size: 22px;
+}
+
+.image-viewer--tools .fit-button {
+  margin-right: 1em;
+}
+
+.zoom-control {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  z-index: 100;
+}
+
+.image-viewer--content {
+  background-color: #dddddd;
+  /* width: 80vw;
+  text-align: center; */
+}
+
+.preview--info {
+  margin-right: 2em;
+}
+
+.download--button {
+  border-radius: 2px 0 0 2px;
+  margin-right: 1px;
+}
+
+.download--dropdown-trigger {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  border-radius: 0 2px 2px 0;
+}
+
+.preview-background-selector {
+  margin-right: 2em;
+}
+
+.preview-background-selector--label {
+  margin-right: 0.5em;
+}
+
+svg {
+  outline: none;
+}
+
+.version-info {
+  position: absolute;
+  bottom: 17px;
+  right: 67px;
+  font-size: 0.9em;
+}
+
+.version-info .ant-btn {
+  width: 22px;
+  height: 22px;
+}
+
+.version-info .ant-btn .anticon {
+  font-size: 14px;
+}
