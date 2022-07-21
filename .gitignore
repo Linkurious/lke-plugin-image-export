@@ -1,6 +1,19 @@
+# Dependency directory
 node_modules
+
+# IDEA config
 .idea
 *.lke
+# vim
+*.swp
+
+# Compiled code
 dist
 .DS_Store
+*.tgz
+
+# nyc test coverage
+.nyc_output
 .npmrc
+reports/
+web/index-bundle.*

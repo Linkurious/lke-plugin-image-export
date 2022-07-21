@@ -1,7 +1,21 @@
 {
-    "include": [], // DO NOT DELETE: mandatory to keep even if empty
-    "references": [
-        { "path": "src/public" },
-        { "path": "src/backend" }
-    ]
+  "compilerOptions": {
+    "outDir": "./dist",
+    "allowJs": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "target": "es6",
+    "jsx": "react",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "lib": ["es6", "dom"],
+    "types": ["node", "jest"]
+  },
+  "typeRoots": ["./src/types"],
+  "globals": {
+    "IS_DEV": "boolean"
+  },
+  "include": ["./src/**/*", "./lib/**/*"],
+  "exclude": ["node_modules"]
 }
