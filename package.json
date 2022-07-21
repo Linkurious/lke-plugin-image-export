@@ -115,7 +115,7 @@
     "@linkurious/ogma-export-stitch": "0.0.4",
     "@linkurious/ogma-linkurious-parser": "3.1.4",
     "@linkurious/ogma-mini-map": "0.0.27",
-    "@linkurious/rest-client": "file:lk-master@linkurious/ogma-linkurious-parser@lk-master",
+    "@linkurious/rest-client": "3.1.4",
     "@linkurious/svg-font-embedder": "0.0.28",
     "antd": "4.20.6",
     "express-async-handler": "1.2.0",
