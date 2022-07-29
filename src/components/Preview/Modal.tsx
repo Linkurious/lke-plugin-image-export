@@ -111,16 +111,22 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
   }, [background, image]);
 
   const onDownload = async (format: ExportType) => {
+    const el = stringToSVGElement(image as string);
+    const bg = el.querySelector(
+      ".ogma-svg-background"
+    ) as SVGRectElement;
+    bg!.setAttribute("fill-opacity",
+      background ? '1' : '0'
+    );
+    const imgDownload = svgElementToString(el)
     if (format.label === "SVG") {
       downloadBlob(
-        image as string,
+        imgDownload,
         `${visualisation.title}.svg`,
         "image/svg+xml"
       );
     } else {
-      const data = await svgToPng(stringToSVGElement(image as string), 1,
-        background ? getOgmaBackgroundColor(ogma) : undefined
-      );
+      const data = await svgToPng(el);
       downloadBlob(data, `${visualisation.title}.png`, "image/png");
     }
     if (onOk) onOk();
