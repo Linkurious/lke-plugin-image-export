@@ -32,6 +32,9 @@ This will open the plugin in another tab in your browser. In the plugin, you can
   - **Full-size:** You can chose to export the whole graph at the detalization level that you are currently seeing on the screen.
   - **Pre-defined sizes** - you can also go for the pre-defined document sizes (for instance, for printing) and _fit_ your visualization into it, using panning and zooming. If you are aiming at embedding your exported images into presentations, please refer to the [pre-defined PowerPoint slide sizes](https://support.microsoft.com/en-us/office/change-the-size-of-your-slides-040a811c-be43-40b9-8d04-0de5ed79987e) - for the modern system that would be `Widescreen`. For printing, you have a selection of popular document sizes, from A3 to letterhead. It is preferable to use SVG file format for printing, as it is vectorial and will produce higher quality prints. Note that if you select the pre-defined document size, the parts of the graph that are not fitting into it, will be clipped.
 
+## Snapping
+Snapping allows you to manually align each node linearly with other nodes in the visualization.  
+
 ## Full-size export
 
 It's the default mode of the plugin. In this mode, the visualization will be exported at the current zoom level and detalization level, so nodes, edges and texts will have exactly the same size as you can see on your screen.
