@@ -11,7 +11,7 @@ import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "../ImageViewer";
 import { Footer } from "./Footer";
-import { downloadBlob, scaleGraph, stringToSVGElement } from "../../utils";
+import { downloadBlob, getOgmaBackgroundColor, scaleGraph, stringToSVGElement } from "../../utils";
 import {
   addCheckerboard,
   addClipShape,
@@ -43,6 +43,7 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
   const [image, setImage] = useState<string>();
   const [progress, setProgress] = useState(0);
   const [size, setSize] = useState<Size>({ width: 0, height: 0 });
+
 
   useEffect(() => {
     if (!visible || !ogma || image) return;
@@ -117,7 +118,9 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
         "image/svg+xml"
       );
     } else {
-      const data = await svgToPng(stringToSVGElement(image as string));
+      const data = await svgToPng(stringToSVGElement(image as string), 1,
+        background ? getOgmaBackgroundColor(ogma) : undefined
+      );
       downloadBlob(data, `${visualisation.title}.png`, "image/png");
     }
     if (onOk) onOk();
