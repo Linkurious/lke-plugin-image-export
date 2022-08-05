@@ -1,7 +1,7 @@
 {
-  "name": "custom-image-export",
-  "version": "1.0.0",
-  "pluginApiVersion": "1.0.0",
+  "name": "image-export",
+  "version": "2.0.1",
+  "pluginApiVersion": "2.0.1",
   "publicRoute": "public",
   "singlePageAppIndex": "index.html",
   "backendFiles": [
