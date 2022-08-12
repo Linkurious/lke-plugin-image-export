@@ -11,7 +11,7 @@ import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "../ImageViewer";
 import { Footer } from "./Footer";
-import { downloadBlob, scaleGraph, stringToSVGElement } from "../../utils";
+import { downloadBlob, getOgmaBackgroundColor, scaleGraph, stringToSVGElement } from "../../utils";
 import {
   addCheckerboard,
   addClipShape,
@@ -43,6 +43,7 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
   const [image, setImage] = useState<string>();
   const [progress, setProgress] = useState(0);
   const [size, setSize] = useState<Size>({ width: 0, height: 0 });
+
 
   useEffect(() => {
     if (!visible || !ogma || image) return;
@@ -110,14 +111,22 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
   }, [background, image]);
 
   const onDownload = async (format: ExportType) => {
+    const el = stringToSVGElement(image as string);
+    const bg = el.querySelector(
+      ".ogma-svg-background"
+    ) as SVGRectElement;
+    bg!.setAttribute("fill-opacity",
+      background ? '1' : '0'
+    );
+    const imgDownload = svgElementToString(el)
     if (format.label === "SVG") {
       downloadBlob(
-        image as string,
+        imgDownload,
         `${visualisation.title}.svg`,
         "image/svg+xml"
       );
     } else {
-      const data = await svgToPng(stringToSVGElement(image as string));
+      const data = await svgToPng(el);
       downloadBlob(data, `${visualisation.title}.png`, "image/png");
     }
     if (onOk) onOk();

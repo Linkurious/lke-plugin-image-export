@@ -121,6 +121,14 @@ Then(/^image is nice (.+)$/, (name) => {
   }
 });
 
+When(/^I select background color (\w+)$/, async (background) => {
+  let checked = await I.grabAttributeFrom('.preview-background-selector>button', 'aria-checked');
+  if(background !== checked){
+    I.click(".preview-background-selector>button");
+  }
+});
+
+
 //@ts-ignore
 Before(async ({ tags }) => {
   if (!tags.includes("@download") || foldersCreated) return;
