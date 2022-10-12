@@ -7,11 +7,11 @@ import {
   svgElementToString,
   svgToPng,
 } from "@linkurious/ogma-export-stitch";
-import { Size } from "@linkurious/ogma";
+import Ogma, { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "../ImageViewer";
 import { Footer } from "./Footer";
-import { downloadBlob, getOgmaBackgroundColor, scaleGraph, stringToSVGElement } from "../../utils";
+import { downloadBlob, scaleGraph, stringToSVGElement } from "../../utils";
 import {
   addCheckerboard,
   addClipShape,
@@ -19,6 +19,7 @@ import {
   embedImages,
 } from "../../utils/svg";
 import { fullSizeMargin } from "../../constants";
+import { jsPDF } from "jspdf";
 
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
@@ -44,7 +45,6 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
   const [progress, setProgress] = useState(0);
   const [size, setSize] = useState<Size>({ width: 0, height: 0 });
 
-
   useEffect(() => {
     if (!visible || !ogma || image) return;
 
@@ -58,7 +58,7 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
     scalingStyleRule
       .destroy()
       .then(() =>
-        svg(ogma)
+        svg(ogma as any as Ogma)
           .setOptions({
             texts: textsVisible,
           })
@@ -112,22 +112,50 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
 
   const onDownload = async (format: ExportType) => {
     const el = stringToSVGElement(image as string);
-    const bg = el.querySelector(
-      ".ogma-svg-background"
-    ) as SVGRectElement;
-    bg!.setAttribute("fill-opacity",
-      background ? '1' : '0'
-    );
-    const imgDownload = svgElementToString(el)
-    if (format.label === "SVG") {
-      downloadBlob(
-        imgDownload,
-        `${visualisation.title}.svg`,
-        "image/svg+xml"
-      );
+    const bg = el.querySelector(".ogma-svg-background") as SVGRectElement;
+    bg!.setAttribute("fill-opacity", background ? "1" : "0");
+    if (format.label === "PDF") {
+      const doc = new jsPDF({ format: "a4", unit: "pt" });
+      // const svg = el.cloneNode(true) as SVGSVGElement;
+      // const svgWidth = parseInt(svg.getAttribute("width"));
+      // const svgHeight = parseInt(svg.getAttribute("height"));
+      // const margin = 15;
+      // const pageWidth = doc.getPageWidth() - margin * 2;
+      // const pageHeight = doc.getPageHeight() - margin * 2;
+      // // vertical cursor
+      // let y = margin;
+      // // fitting ratio canvas to page
+      // let ratio = 1 / Math.max(svgWidth / pageWidth, svgHeight / pageHeight);
+      // // seems like big sizes breaks it
+      // const width = svgWidth * ratio;
+      // const height = svgHeight * ratio;
+      // // resize SVG
+      // el.setAttribute("width", width.toString());
+      // el.setAttribute("height", height.toString());
+      // // fit the contents of SVG
+      // svg.setAttribute("viewBox", `0 0 ${width / ratio} ${height / ratio}`);
+      // doc
+      //   .svg(svg, { x: margin, y, width, height })
+      //   // pass the information to the next
+      //   .then(() => {
+      //     const blobURL = URL.createObjectURL(
+      //       doc.output("blob", { filename: "ogma.pdf" })
+      //     );
+      //     console.log(blobURL);
+      //   });
     } else {
-      const data = await svgToPng(el);
-      downloadBlob(data, `${visualisation.title}.png`, "image/png");
+      const imgDownload = svgElementToString(el);
+
+      if (format.label === "SVG") {
+        downloadBlob(
+          imgDownload,
+          `${visualisation.title}.svg`,
+          "image/svg+xml"
+        );
+      } else if (format.label === "PNG") {
+        const data = await svgToPng(el);
+        downloadBlob(data, `${visualisation.title}.png`, "image/png");
+      }
     }
     if (onOk) onOk();
   };
