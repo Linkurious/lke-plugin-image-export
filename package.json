@@ -27,7 +27,7 @@
     "postbuild:public": "npm run copy-assets",
     "build:backend": "esbuild backend/routeHandler.ts --outfile=dist/backend/routeHandler.js --bundle --platform=node",
     "build:dependencies": "cp package.json dist",
-    "build:component": "typehead build",
+    "build:component": "vite build",
     "build": "npm run build:project && npm run build:dependencies && npm pack ./dist && npm run repack",
     "repack": "gunzip -qf -c linkurious-image-export-plugin-$npm_package_version.tgz > lke-plugin-image-export.lke",
     "upload": "gh release create \"v$(cat .version)\" lke-plugin-image-export.lke",
@@ -38,8 +38,8 @@
     "deploy:restart-plugins": "npm run deploy:login && curl -X POST $(npm config get DEPLOY_URL)/api/admin/plugins/restart-all --cookie 'lke.cookie' && npm run deploy:logout",
     "build-deploy": "npm run build && npm run deploy",
     "check-env": "node -e 'console.log(process.env)' | grep npm",
-    "start": "node scripts/mock-server.js & npm run serve",
-    "serve": "preprod=true DEV=true typehead serve",
+    "start": "node scripts/mock-server.js & DEV=true vite serve",
+    "serve": "preprod=true DEV=true vite serve",
     "serve:web": "serve web",
     "build:web": "esbuild web/index.tsx --bundle --minify --outfile=web/index-bundle.js --define:IS_DEV=true",
     "types": "tsc --declaration --emitDeclarationOnly --outDir dist/types",
@@ -106,7 +106,8 @@
     "sharp": "0.30.7",
     "ts-jest": "28.0.2",
     "ts-node": "10.8.1",
-    "typescript": "4.6.4"
+    "typescript": "4.6.4",
+    "vite": "^3.1.8"
   },
   "dependencies": {
     "@ant-design/colors": "6.0.0",
@@ -114,7 +115,7 @@
     "@linkurious/ogma": "4.1.4",
     "@linkurious/ogma-export-stitch": "0.0.6",
     "@linkurious/ogma-linkurious-parser": "3.1.4",
-    "@linkurious/ogma-mini-map": "0.0.27",
+    "@linkurious/ogma-mini-map": "0.0.43",
     "@linkurious/rest-client": "3.1.4",
     "@linkurious/svg-font-embedder": "0.0.28",
     "antd": "4.20.6",

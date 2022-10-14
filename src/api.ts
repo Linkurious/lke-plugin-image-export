@@ -7,6 +7,8 @@ import {
 
 declare var IS_DEV: boolean;
 
+console.log({ isdev: IS_DEV });
+
 const rc = new RestClient({
   baseUrl: IS_DEV ? "http://localhost:3000/" : "../../",
 });

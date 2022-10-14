@@ -1,6 +1,6 @@
-
 module.exports = {
   define: {
-    'IS_DEV': process.env.DEV ? true: false
+    IS_DEV: process.env.DEV ? true : false,
   },
+  minify: false,
 };

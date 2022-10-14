@@ -19,7 +19,7 @@ import {
   embedImages,
 } from "../../utils/svg";
 import { fullSizeMargin } from "../../constants";
-import { jsPDF } from "jspdf";
+import { jsPDF as JSPDF } from "jspdf";
 
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
@@ -115,7 +115,7 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
     const bg = el.querySelector(".ogma-svg-background") as SVGRectElement;
     bg!.setAttribute("fill-opacity", background ? "1" : "0");
     if (format.label === "PDF") {
-      const doc = new jsPDF({ format: "a4", unit: "pt" });
+      const doc = new JSPDF({ format: "a4", unit: "pt" });
       // const svg = el.cloneNode(true) as SVGSVGElement;
       // const svgWidth = parseInt(svg.getAttribute("width"));
       // const svgHeight = parseInt(svg.getAttribute("height"));
