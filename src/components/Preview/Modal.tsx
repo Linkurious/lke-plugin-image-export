@@ -116,33 +116,34 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
     bg!.setAttribute("fill-opacity", background ? "1" : "0");
     if (format.label === "PDF") {
       const doc = new JSPDF({ format: "a4", unit: "pt" });
-      // const svg = el.cloneNode(true) as SVGSVGElement;
-      // const svgWidth = parseInt(svg.getAttribute("width"));
-      // const svgHeight = parseInt(svg.getAttribute("height"));
-      // const margin = 15;
-      // const pageWidth = doc.getPageWidth() - margin * 2;
-      // const pageHeight = doc.getPageHeight() - margin * 2;
-      // // vertical cursor
-      // let y = margin;
-      // // fitting ratio canvas to page
-      // let ratio = 1 / Math.max(svgWidth / pageWidth, svgHeight / pageHeight);
-      // // seems like big sizes breaks it
-      // const width = svgWidth * ratio;
-      // const height = svgHeight * ratio;
-      // // resize SVG
-      // el.setAttribute("width", width.toString());
-      // el.setAttribute("height", height.toString());
-      // // fit the contents of SVG
-      // svg.setAttribute("viewBox", `0 0 ${width / ratio} ${height / ratio}`);
-      // doc
-      //   .svg(svg, { x: margin, y, width, height })
-      //   // pass the information to the next
-      //   .then(() => {
-      //     const blobURL = URL.createObjectURL(
-      //       doc.output("blob", { filename: "ogma.pdf" })
-      //     );
-      //     console.log(blobURL);
-      //   });
+      const svg = el.cloneNode(true) as SVGSVGElement;
+      const svgWidth = parseInt(svg.getAttribute("width"));
+      const svgHeight = parseInt(svg.getAttribute("height"));
+      const margin = 15;
+      const pageWidth = doc.getPageWidth() - margin * 2;
+      const pageHeight = doc.getPageHeight() - margin * 2;
+      // vertical cursor
+      let y = margin;
+      // fitting ratio canvas to page
+      let ratio = 1 / Math.max(svgWidth / pageWidth, svgHeight / pageHeight);
+      // seems like big sizes breaks it
+      const width = svgWidth * ratio;
+      const height = svgHeight * ratio;
+      // resize SVG
+      el.setAttribute("width", width.toString());
+      el.setAttribute("height", height.toString());
+      // fit the contents of SVG
+      svg.setAttribute("viewBox", `0 0 ${width / ratio} ${height / ratio}`);
+      doc.addSvgAsImage(svgElementToString(el), margin, y, width, height);
+      // pass the information to the next
+      //.then(() => {
+      downloadBlob(
+        doc.output("bloburl"),
+        `${visualisation.title}.pdf`,
+        "application/pdf"
+      );
+      //console.log(blobURL);
+      //});
     } else {
       const imgDownload = svgElementToString(el);
 
