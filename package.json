@@ -81,6 +81,7 @@
     "blink-diff": "1.0.13",
     "codeceptjs": "3.3.3",
     "envsub": "4.0.7",
+    "esbuild": "^0.15.11",
     "esbuild-plugin-replace": "1.2.0",
     "eslint": "8.4.1",
     "eslint-config-airbnb-base": "15.0.0",
