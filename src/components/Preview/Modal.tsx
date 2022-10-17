@@ -11,7 +11,12 @@ import Ogma, { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "../ImageViewer";
 import { Footer } from "./Footer";
-import { downloadBlob, scaleGraph, stringToSVGElement } from "../../utils";
+import {
+  downloadBlob,
+  getOgmaBackgroundColor,
+  scaleGraph,
+  stringToSVGElement,
+} from "../../utils";
 import {
   addCheckerboard,
   addClipShape,
