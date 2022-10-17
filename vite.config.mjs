@@ -3,6 +3,7 @@ import path from "path";
 /** @type {import('vite').UserConfig} */
 export default {
   root: "web",
+
   plugins: [],
   server: {
     port: 4001,
@@ -13,6 +14,7 @@ export default {
   },
   build: {
     outDir: path.join(process.cwd(), "dist", "public"),
+    emptyOutDir: true,
   },
   proxy: {
     // string shorthand
