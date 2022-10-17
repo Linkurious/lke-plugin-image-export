@@ -19,7 +19,8 @@ import {
   embedImages,
 } from "../../utils/svg";
 import { fullSizeMargin } from "../../constants";
-import { jsPDF as JSPDF } from "jspdf";
+import { jsPDF } from "jspdf";
+import "svg2pdf.js";
 
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
@@ -58,7 +59,7 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
     scalingStyleRule
       .destroy()
       .then(() =>
-        svg(ogma as any as Ogma)
+        svg(ogma as unknown as Ogma)
           .setOptions({
             texts: textsVisible,
           })
@@ -115,13 +116,19 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
     const bg = el.querySelector(".ogma-svg-background") as SVGRectElement;
     bg!.setAttribute("fill-opacity", background ? "1" : "0");
     if (format.label === "PDF") {
-      const doc = new JSPDF({ format: "a4", unit: "pt" });
       const svg = el.cloneNode(true) as SVGSVGElement;
-      const svgWidth = parseInt(svg.getAttribute("width"));
-      const svgHeight = parseInt(svg.getAttribute("height"));
-      const margin = 15;
-      const pageWidth = doc.getPageWidth() - margin * 2;
-      const pageHeight = doc.getPageHeight() - margin * 2;
+      const svgWidth = parseInt(svg.getAttribute("width") as string);
+      const svgHeight = parseInt(svg.getAttribute("height") as string);
+      const pdf = new jsPDF({
+        format: [svgWidth, svgHeight],
+        orientation: svgWidth > svgHeight ? "landscape" : "portrait",
+        unit: "pt",
+        compress: true,
+      });
+      const margin = 0;
+      const pageWidth = pdf.getPageWidth() - margin * 2;
+      const pageHeight = pdf.getPageHeight() - margin * 2;
+
       // vertical cursor
       let y = margin;
       // fitting ratio canvas to page
@@ -134,16 +141,9 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
       el.setAttribute("height", height.toString());
       // fit the contents of SVG
       svg.setAttribute("viewBox", `0 0 ${width / ratio} ${height / ratio}`);
-      doc.addSvgAsImage(svgElementToString(el), margin, y, width, height);
-      // pass the information to the next
-      //.then(() => {
-      downloadBlob(
-        doc.output("bloburl"),
-        `${visualisation.title}.pdf`,
-        "application/pdf"
-      );
-      //console.log(blobURL);
-      //});
+
+      await pdf.svg(svg, { x: margin, y, width, height });
+      await pdf.save(`${visualisation.title}.pdf`);
     } else {
       const imgDownload = svgElementToString(el);
 

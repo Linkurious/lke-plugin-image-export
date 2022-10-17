@@ -120,12 +120,13 @@
     "@linkurious/svg-font-embedder": "0.0.28",
     "antd": "4.20.6",
     "express-async-handler": "1.2.0",
-    "jspdf": "^2.5.1",
+    "jspdf": "^2.1.0",
     "panzoom": "9.4.3",
     "qs": "6.10.5",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "svg2pdf": "^1.1.1",
+    "svg2pdf.js": "^2.2.1",
     "svgo": "2.8.0"
   },
   "bundleDependencies": [
