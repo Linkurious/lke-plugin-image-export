@@ -10,6 +10,7 @@ nodeJob {
   ]
   runBenchTests = true
   runPreReleaseOnUpload = false
+  runDependencyVersionCheck = false
   npmPackPath = './dist'
   binaries = ["lke-plugin-image-export.lke"]
   groupId = 'com.linkurious.plugins'
