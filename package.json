@@ -62,7 +62,6 @@
   },
   "devDependencies": {
     "@linkurious/code-tools": "0.0.8",
-    "@mapbox/typehead": "1.2.1",
     "@testomatio/reporter": "0.5.10",
     "@types/body-parser": "1.19.2",
     "@types/chai": "4.3.1",
