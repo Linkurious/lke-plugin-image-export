@@ -55,7 +55,7 @@
     "latest:develop-next": "npm install --save-exact @linkurious/rest-client@lk-develop-next @linkurious/ogma-linkurious-parser@lk-develop-next",
     "latest:develop-stable": "npm install --save-exact @linkurious/rest-client@lk-develop-stable @linkurious/ogma-linkurious-parser@lk-develop-stable",
     "latest:develop-maintenance": "npm install --save-exact @linkurious/rest-client@lk-develop-maintenance @linkurious/ogma-linkurious-parser@lk-develop-maintenance",
-    "latest:master": "npm install --save-exact @linkurious/rest-client@lk-master@linkurious/ogma-linkurious-parser@lk-master",
+    "latest:master": "npm install --save-exact @linkurious/rest-client@lk-master @linkurious/ogma-linkurious-parser@lk-master",
     "latest:master-stable": "npm install --save-exact @linkurious/rest-client@lk-master-stable @linkurious/ogma-linkurious-parser@lk-master-stable",
     "latest:master-maintenance": "npm install --save-exact @linkurious/rest-client@lk-master-maintenance @linkurious/ogma-linkurious-parser@lk-master-maintenance"
   },
