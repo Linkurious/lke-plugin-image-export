@@ -1,6 +1,6 @@
 {
   "name": "@linkurious/image-export-plugin",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "engines": {
     "node": "16.16.0",
     "npm": "8.5.5"
@@ -57,8 +57,7 @@
     "latest:develop-maintenance": "npm install --save-exact @linkurious/rest-client@lk-develop-maintenance @linkurious/ogma-linkurious-parser@lk-develop-maintenance",
     "latest:master": "npm install --save-exact @linkurious/rest-client@lk-master@linkurious/ogma-linkurious-parser@lk-master",
     "latest:master-stable": "npm install --save-exact @linkurious/rest-client@lk-master-stable @linkurious/ogma-linkurious-parser@lk-master-stable",
-    "latest:master-maintenance": "npm install --save-exact @linkurious/rest-client@lk-master-maintenance @linkurious/ogma-linkurious-parser@lk-master-maintenance",
-    "postversion": "sync_versions"
+    "latest:master-maintenance": "npm install --save-exact @linkurious/rest-client@lk-master-maintenance @linkurious/ogma-linkurious-parser@lk-master-maintenance"
   },
   "devDependencies": {
     "@linkurious/code-tools": "0.0.8",
