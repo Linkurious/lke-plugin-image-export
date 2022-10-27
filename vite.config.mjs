@@ -2,8 +2,8 @@ import path from "path";
 
 /** @type {import('vite').UserConfig} */
 export default {
+  base: "",
   root: "web",
-
   plugins: [],
   server: {
     port: 4001,
