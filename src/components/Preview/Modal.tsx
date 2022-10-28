@@ -2,12 +2,8 @@ import React, { FC, useEffect, useState } from "react";
 import { Modal as UIModal, ModalFuncProps, Progress } from "antd";
 import { FormatType, ExportType } from "../../types/formats";
 import { useAppContext } from "../../context";
-import {
-  svg,
-  svgElementToString,
-  svgToPng,
-} from "@linkurious/ogma-export-stitch";
-import Ogma, { Size } from "@linkurious/ogma";
+import { svg, svgElementToString } from "@linkurious/ogma-export-stitch";
+import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "../ImageViewer";
 import { Footer } from "./Footer";
