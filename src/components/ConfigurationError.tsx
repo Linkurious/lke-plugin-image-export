@@ -11,7 +11,7 @@ export const ConfigurationError: FC<ConfigurationErrorProps> = () => (
       <Result
         status="error"
         title="Configuration error"
-        subTitle="We are working on it"
+        subTitle="Error while trying to read the configuration, please reload the page"
       />
     </Layout.Content>
   </Layout>
