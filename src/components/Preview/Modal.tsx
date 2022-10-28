@@ -48,55 +48,55 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
   useEffect(() => {
     if (!visible || !ogma || image) return;
 
-    setLoading(true);
-    ogma.getSelectedEdges().setSelected(false);
-    ogma.getSelectedNodes().setSelected(false);
+    const prepareDownload = async () => {
+      setLoading(true);
+      ogma.getSelectedEdges().setSelected(false);
+      ogma.getSelectedNodes().setSelected(false);
 
-    scaleGraph(ogma, 1 / graphScale);
-    const scaleStyleDef = scalingStyleRule.getDefinition();
+      scaleGraph(ogma, 1 / graphScale);
+      const scaleStyleDef = scalingStyleRule.getDefinition();
 
-    scalingStyleRule
-      .destroy()
-      .then(() =>
-        svg(ogma as unknown as Ogma)
-          .setOptions({
-            texts: textsVisible,
-          })
-          .on("start", () => setProgress(0))
-          .on("progress", (progress) => setProgress(progress))
-          .run({
-            fullSize: format.value === undefined,
-            margin: format.value === undefined ? fullSizeMargin : 0,
-            width: format.value ? format.value.width : 0,
-            height: format.value ? format.value.height : 0,
-          })
-      )
-      .then(async (res) => {
-        setLoading(false);
-        const width = parseFloat(res.getAttribute("width")!);
-        const height = parseFloat(res.getAttribute("height")!);
-        setSize({ width, height });
+      await scalingStyleRule.destroy();
+      let res = await svg(ogma)
+        .setOptions({
+          texts: textsVisible,
+        })
+        .on("start", () => setProgress(0))
+        .on("progress", (progress) => setProgress(progress))
+        .run({
+          fullSize: format.value === undefined,
+          margin: format.value === undefined ? fullSizeMargin : 0,
+          width: format.value ? format.value.width : 0,
+          height: format.value ? format.value.height : 0,
+        });
 
-        // TODO: restrict these manipulations only to preview, do not export
-        addClipShape(res, width, height);
-        addCheckerboard(res);
-        addTransformGroup(res);
+      setLoading(false);
+      const width = parseFloat(res.getAttribute("width")!);
+      const height = parseFloat(res.getAttribute("height")!);
+      setSize({ width, height });
 
-        console.time("embed images");
-        res = await embedImages(res);
-        console.timeEnd("embed images");
+      // TODO: restrict these manipulations only to preview, do not export
+      addClipShape(res, width, height);
+      addCheckerboard(res);
+      addTransformGroup(res);
 
-        const svgString = svgElementToString(res);
-        console.time("embed fonts");
-        const result = embedFonts(svgString);
-        console.timeEnd("embed fonts");
-        setImage(result);
+      console.time("embed images");
+      res = await embedImages(res);
+      console.timeEnd("embed images");
 
-        // replace the rule with the original one
-        const rule = ogma.styles.addRule(scaleStyleDef);
-        setScalingStyleRule(rule);
-        scaleGraph(ogma, graphScale);
-      });
+      const svgString = svgElementToString(res);
+      console.time("embed fonts");
+      const result = embedFonts(svgString);
+      console.timeEnd("embed fonts");
+      setImage(result);
+
+      // replace the rule with the original one
+      const rule = ogma.styles.addRule(scaleStyleDef);
+      setScalingStyleRule(rule);
+      scaleGraph(ogma, graphScale);
+    };
+
+    prepareDownload();
 
     return () => {
       if (visible) setImage("");
