@@ -51,7 +51,6 @@ export async function handleDownload(
     let y = margin;
     // fitting ratio canvas to page
     let ratio = 1 / Math.max(svgWidth / pageWidth, svgHeight / pageHeight);
-    // seems like big sizes breaks it
     const width = svgWidth * ratio;
     const height = svgHeight * ratio;
     // resize SVG
