@@ -39,7 +39,9 @@ interface IAppContext {
 
   background: boolean;
   setBackground: (background: boolean) => void;
+
   // TODO: export configuration to the app
+  error: Error | null;
 }
 
 export function createAppContext<ND = unknown, ED = unknown>() {
@@ -65,6 +67,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [loading, setLoading] = useState(true);
   const [configuration, setConfig] = useState<IOgmaConfig>();
   const [format, setFormat] = useState<FormatType>(formats[0]);
+  const [error, setError] = useState<Error | null>(null);
 
   const [ogma, setOgma] = useState<LKOgma>();
   const [boundingBox, setBoundingBox] = useState<BoundingBox>();
@@ -75,13 +78,16 @@ export const AppContextProvider = ({ children }: Props) => {
   const [scalingStyleEnabled, setScalingStyleEnabled] = useState(false);
 
   useEffect(() => {
-    Promise.all([api.getVisualisation(), api.getConfiguration()]).then(
-      ([visualisation, configuration]) => {
+    Promise.all([api.getVisualisation(), api.getConfiguration()])
+      .then(([visualisation, configuration]) => {
         setVis(visualisation);
         setConfig(configuration);
         setLoading(false);
-      }
-    );
+      })
+      .catch((err) => {
+        setLoading(false);
+        setError(err);
+      });
   }, []);
 
   return (
@@ -107,6 +113,7 @@ export const AppContextProvider = ({ children }: Props) => {
           setScalingStyleRule,
           scalingStyleEnabled,
           setScalingStyleEnabled,
+          error,
         } as IAppContext
       }
     >

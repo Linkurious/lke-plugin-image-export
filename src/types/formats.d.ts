@@ -23,7 +23,9 @@ export type FormatType = {
   value: Size | undefined;
 };
 
+export type FileFormats = "PNG" | "SVG" | "PDF";
+
 export type ExportType = {
   key: string;
-  label: "PNG" | "SVG";
+  label: FileFormats;
 };

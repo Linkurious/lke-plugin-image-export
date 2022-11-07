@@ -2,16 +2,12 @@ import React, { FC, useEffect, useState } from "react";
 import { Modal as UIModal, ModalFuncProps, Progress } from "antd";
 import { FormatType, ExportType } from "../../types/formats";
 import { useAppContext } from "../../context";
-import {
-  svg,
-  svgElementToString,
-  svgToPng,
-} from "@linkurious/ogma-export-stitch";
+import { svg, svgElementToString } from "@linkurious/ogma-export-stitch";
 import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "../ImageViewer";
 import { Footer } from "./Footer";
-import { downloadBlob, getOgmaBackgroundColor, scaleGraph, stringToSVGElement } from "../../utils";
+import { scaleGraph, stringToSVGElement } from "../../utils";
 import {
   addCheckerboard,
   addClipShape,
@@ -19,6 +15,7 @@ import {
   embedImages,
 } from "../../utils/svg";
 import { fullSizeMargin } from "../../constants";
+import { handleDownload } from "../../utils/download";
 
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
@@ -44,59 +41,58 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
   const [progress, setProgress] = useState(0);
   const [size, setSize] = useState<Size>({ width: 0, height: 0 });
 
-
   useEffect(() => {
     if (!visible || !ogma || image) return;
 
-    setLoading(true);
-    ogma.getSelectedEdges().setSelected(false);
-    ogma.getSelectedNodes().setSelected(false);
+    const prepareDownload = async () => {
+      setLoading(true);
+      ogma.getSelectedEdges().setSelected(false);
+      ogma.getSelectedNodes().setSelected(false);
 
-    scaleGraph(ogma, 1 / graphScale);
-    const scaleStyleDef = scalingStyleRule.getDefinition();
+      scaleGraph(ogma, 1 / graphScale);
+      const scaleStyleDef = scalingStyleRule.getDefinition();
 
-    scalingStyleRule
-      .destroy()
-      .then(() =>
-        svg(ogma)
-          .setOptions({
-            texts: textsVisible,
-          })
-          .on("start", () => setProgress(0))
-          .on("progress", (progress) => setProgress(progress))
-          .run({
-            fullSize: format.value === undefined,
-            margin: format.value === undefined ? fullSizeMargin : 0,
-            width: format.value ? format.value.width : 0,
-            height: format.value ? format.value.height : 0,
-          })
-      )
-      .then(async (res) => {
-        setLoading(false);
-        const width = parseFloat(res.getAttribute("width")!);
-        const height = parseFloat(res.getAttribute("height")!);
-        setSize({ width, height });
+      await scalingStyleRule.destroy();
+      let res = await svg(ogma)
+        .setOptions({
+          texts: textsVisible,
+        })
+        .on("start", () => setProgress(0))
+        .on("progress", (progress) => setProgress(progress))
+        .run({
+          fullSize: format.value === undefined,
+          margin: format.value === undefined ? fullSizeMargin : 0,
+          width: format.value ? format.value.width : 0,
+          height: format.value ? format.value.height : 0,
+        });
 
-        // TODO: restrict these manipulations only to preview, do not export
-        addClipShape(res, width, height);
-        addCheckerboard(res);
-        addTransformGroup(res);
+      setLoading(false);
+      const width = parseFloat(res.getAttribute("width")!);
+      const height = parseFloat(res.getAttribute("height")!);
+      setSize({ width, height });
 
-        console.time("embed images");
-        res = await embedImages(res);
-        console.timeEnd("embed images");
+      // TODO: restrict these manipulations only to preview, do not export
+      addClipShape(res, width, height);
+      addCheckerboard(res);
+      addTransformGroup(res);
 
-        const svgString = svgElementToString(res);
-        console.time("embed fonts");
-        const result = embedFonts(svgString);
-        console.timeEnd("embed fonts");
-        setImage(result);
+      console.time("embed images");
+      res = await embedImages(res);
+      console.timeEnd("embed images");
 
-        // replace the rule with the original one
-        const rule = ogma.styles.addRule(scaleStyleDef);
-        setScalingStyleRule(rule);
-        scaleGraph(ogma, graphScale);
-      });
+      const svgString = svgElementToString(res);
+      console.time("embed fonts");
+      const result = embedFonts(svgString);
+      console.timeEnd("embed fonts");
+      setImage(result);
+
+      // replace the rule with the original one
+      const rule = ogma.styles.addRule(scaleStyleDef);
+      setScalingStyleRule(rule);
+      scaleGraph(ogma, graphScale);
+    };
+
+    prepareDownload();
 
     return () => {
       if (visible) setImage("");
@@ -112,23 +108,9 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
 
   const onDownload = async (format: ExportType) => {
     const el = stringToSVGElement(image as string);
-    const bg = el.querySelector(
-      ".ogma-svg-background"
-    ) as SVGRectElement;
-    bg!.setAttribute("fill-opacity",
-      background ? '1' : '0'
-    );
-    const imgDownload = svgElementToString(el)
-    if (format.label === "SVG") {
-      downloadBlob(
-        imgDownload,
-        `${visualisation.title}.svg`,
-        "image/svg+xml"
-      );
-    } else {
-      const data = await svgToPng(el);
-      downloadBlob(data, `${visualisation.title}.png`, "image/png");
-    }
+    const bg = el.querySelector(".ogma-svg-background") as SVGRectElement;
+    bg!.setAttribute("fill-opacity", background ? "1" : "0");
+    await handleDownload(el, format, visualisation.title);
     if (onOk) onOk();
   };
 

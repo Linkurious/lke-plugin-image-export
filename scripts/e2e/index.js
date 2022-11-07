@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const { green, red } = require("nanocolors");
-const { spawn, exec, execSync } = require("child_process");
+const { spawn, exec } = require("child_process");
 const generateReport = require("./generate-report");
 const REPLACE = process.env.REPLACE;
 
