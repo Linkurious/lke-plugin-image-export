@@ -81,6 +81,10 @@ export const ExportTypes: ExportType[] = [
     key: "2",
     label: "PNG",
   },
+  {
+    key: "3",
+    label: "PDF",
+  },
 ];
 
 export const fullSizeMargin = 0.075;
