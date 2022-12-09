@@ -42,3 +42,5 @@ export function scaleGraph(ogma: Ogma, scale: number) {
 
 export const stringtoBase64 = (str: string) =>
   btoa(unescape(encodeURIComponent(str)));
+
+export const stopPropagation = (e: Event) => e.stopPropagation();

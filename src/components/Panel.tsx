@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import {
   Button,
   Collapse,
@@ -18,6 +18,7 @@ import { useAppContext } from "../context";
 import { Modal } from "./Preview";
 import { StyleRule } from "@linkurious/ogma";
 import { LkEdgeData, LkNodeData } from "@linkurious/rest-client";
+import { stopPropagation } from "../utils";
 
 type SizeType = Parameters<typeof Form>[0]["size"];
 
@@ -47,6 +48,8 @@ export function Panel() {
     setComponentSize(size);
   };
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const showModal = useCallback(() => {
     setIsModalVisible(true);
   }, []);
@@ -58,6 +61,13 @@ export function Panel() {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
+  // stop event propagation on containerRef
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.addEventListener("mousemove", stopPropagation);
+    }
+  }, [containerRef]);
 
   useEffect(() => {
     fontSize.ratio = 1;
@@ -98,7 +108,7 @@ export function Panel() {
   const panelClassName = `panel${collapsed ? " panel--collapsed" : ""}`;
 
   return (
-    <div className={panelClassName}>
+    <div className={panelClassName} ref={containerRef}>
       <Collapse
         collapsible="header"
         defaultActiveKey={[1]}
