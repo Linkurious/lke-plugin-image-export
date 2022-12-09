@@ -114,7 +114,7 @@
   "dependencies": {
     "@ant-design/colors": "6.0.0",
     "@ant-design/icons": "4.7.0",
-    "@linkurious/ogma": "4.1.4",
+    "@linkurious/ogma": "4.3.9",
     "@linkurious/ogma-export-stitch": "0.0.6",
     "@linkurious/ogma-linkurious-parser": "3.1.12",
     "@linkurious/ogma-mini-map": "0.0.43",
