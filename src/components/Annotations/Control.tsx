@@ -23,7 +23,7 @@ export const AnnotationsControl: FC<Props> = ({}) => {
 
   useEffect(() => {
     if (ogma) {
-      //const control = new Control(ogma as any as Ogma);
+      const control = new Control(ogma);
     }
   }, [ogma]);
 
