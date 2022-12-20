@@ -14,28 +14,36 @@ interface Props {}
 const options = ["Option 1", "Option 2", "Option 3"];
 
 const DropdownPanel = () => {
-  const items = [
-    { label: "item 1", key: "item-1" }, // remember to pass the key prop
-    { label: "item 2", key: "item-2" },
-  ];
-
+  const iconSize = 22;
   return (
-    <Dropdown
-      menu={{ items }}
-      dropdownRender={(menu) => (
-        <div className="dropdown-content">
-          {menu}
-          <Divider style={{ margin: 0 }} />
-          <Space style={{ padding: 8 }}>
+    <>
+      <Dropdown.Button
+        //trigger={["click"]}
+        icon={<DownOutlined />}
+        menu={{ items: [] }}
+        onClick={() => console.log("add text")}
+        trigger={["click"]}
+        dropdownRender={(menu) => (
+          <div className="annotations-control--panel dropdown-content">
             <Button type="primary">Click me!</Button>
-          </Space>
-        </div>
-      )}
-    >
-      <Button icon={<TextIcon height={22} width={22} fr="" />}>
-        <DownOutlined />
-      </Button>
-    </Dropdown>
+          </div>
+        )}
+      >
+        <TextIcon height={iconSize} width={iconSize} fr="" />
+      </Dropdown.Button>
+      <Dropdown
+        trigger={["click"]}
+        dropdownRender={(menu) => (
+          <div className="annotations-control--panel dropdown-content">
+            <Button type="primary">Click me!</Button>
+          </div>
+        )}
+      >
+        <Button icon={<ArrowRight height={iconSize} width={iconSize} fr="" />}>
+          <DownOutlined />
+        </Button>
+      </Dropdown>
+    </>
   );
 };
 
@@ -58,11 +66,6 @@ export const AnnotationsControl: FC<Props> = ({}) => {
   return (
     <div className="annotations-control" ref={containerRef}>
       <Button.Group>
-        <Button icon={<TextIcon height={22} width={22} fr="" />} size="small" />
-        <Button
-          icon={<ArrowRight height={22} width={22} fr="" />}
-          size="small"
-        />
         <DropdownPanel />
       </Button.Group>
     </div>

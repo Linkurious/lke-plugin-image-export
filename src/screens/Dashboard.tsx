@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout } from "antd";
-import "antd/dist/antd.css";
+//import "antd/dist/antd.css";
 import { useAppContext } from "../context";
 import { Visualisation, Panel, Spinner } from "../components";
 import { ConfigurationError } from "../components/ConfigurationError";
