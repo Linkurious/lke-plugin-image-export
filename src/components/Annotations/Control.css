@@ -13,3 +13,13 @@
   box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
     0 9px 28px 8px rgb(0 0 0 / 5%);
 }
+
+.annotations-text--dropdown .ant-btn-compact-last-item {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.annotations-arrow--dropdown .ant-btn-compact-first-item {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

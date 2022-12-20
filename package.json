@@ -69,6 +69,7 @@
     "@types/jest": "27.5.0",
     "@types/node": "17.0.32",
     "@types/react": "17.0.2",
+    "@types/react-color": "^3.0.6",
     "@types/react-dom": "17.0.2",
     "@types/superagent": "4.1.15",
     "@types/svgo": "2.6.3",
@@ -128,6 +129,7 @@
     "panzoom": "9.4.3",
     "qs": "6.10.5",
     "react": "17.0.2",
+    "react-color": "^2.19.3",
     "react-dom": "17.0.2",
     "svg2pdf.js": "2.2.1",
     "svgo": "2.8.0"
