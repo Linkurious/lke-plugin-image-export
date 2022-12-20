@@ -5,7 +5,6 @@ import {
   Typography,
   Divider,
   Form,
-  Select,
   Switch,
   Slider,
   Dropdown,
@@ -97,14 +96,6 @@ export function Panel() {
     };
   }, [ogma]);
 
-  const menu = (
-    <Menu
-      selectable
-      defaultSelectedKeys={["0"]}
-      onSelect={({ key }) => setFormat(formats[Number(key)])}
-      items={formats.map((item, index) => ({ key: index, label: item.label }))}
-    />
-  );
   const panelClassName = `panel${collapsed ? " panel--collapsed" : ""}`;
 
   return (
