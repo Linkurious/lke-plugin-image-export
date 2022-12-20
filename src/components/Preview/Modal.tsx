@@ -118,7 +118,7 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
     <UIModal
       title="Preview"
       className="preview--modal"
-      visible={visible}
+      open={visible}
       onOk={onOk}
       onCancel={onCancel}
       width={"80vw"}

@@ -40,14 +40,6 @@ export const Footer: FC<FooterProps> = ({
     key: "1",
     label: "SVG",
   });
-  const menu = (
-    <Menu
-      onClick={({ key }) => {
-        setCurrentFormat(ExportTypes.find(({ key: k }) => k === key)!);
-      }}
-      items={ExportTypes.filter(({ label }) => label !== currentFormat.label)}
-    />
-  );
   return (
     <>
       <span className="preview-background-selector" key="background">
@@ -75,7 +67,14 @@ export const Footer: FC<FooterProps> = ({
       <Dropdown
         disabled={loading}
         key="type"
-        overlay={menu}
+        menu={{
+          onClick: ({ key }) => {
+            setCurrentFormat(ExportTypes.find(({ key: k }) => k === key)!);
+          },
+          items: ExportTypes.filter(
+            ({ label }) => label !== currentFormat.label
+          ),
+        }}
         trigger={["click"]}
       >
         <Button
