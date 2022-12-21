@@ -5,7 +5,7 @@ import { Minimap } from "./Minimap";
 import { Ogma } from "./Ogma";
 import { ZoomControl } from "./ZoomControl";
 import { VersionInfo } from "./VersionInfo";
-import { AnnotationsControl } from "./Annotations/Control";
+import { AnnotationsControl } from "./Annotations";
 
 export function Visualisation() {
   const { visualisation, configuration, setOgma, format } = useAppContext();

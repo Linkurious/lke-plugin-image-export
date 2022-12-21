@@ -1,5 +1,20 @@
 import { MenuProps } from "antd";
 
+export const iconSize = 22;
+
+export type fontFamilyTypes =
+  | 'Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif'
+  | "Georgia, serif"
+  | 'Menlo, Monaco, Consolas, "Courier New", monospace';
+
+export type fontNameAliases = "Serif" | "Sans-serif" | "Serif" | "Monospace";
+
+export const fontFamilies: Record<fontNameAliases, fontFamilyTypes> = {
+  "Sans-serif": 'Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif',
+  Serif: "Georgia, serif",
+  Monospace: 'Menlo, Monaco, Consolas, "Courier New", monospace',
+};
+
 export const fontItems: MenuProps["items"] = [
   { key: "Sans-serif", label: "Normal" },
   { key: "Serif", label: "Serif" },
@@ -30,11 +45,10 @@ export const colors = [
   "#68CCCA",
   "#73D8FF",
   "#AEA1FF",
-  "#FDA1FF",
+  "#1E88E5",
   "#333333",
   "#808080",
   "#cccccc",
-  "#ffffff",
 ];
 
 // darkened colors

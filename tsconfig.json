@@ -16,6 +16,6 @@
   "globals": {
     "IS_DEV": "boolean"
   },
-  "include": ["./src/**/*", "./lib/**/*"],
+  "include": ["./src/**/*"],
   "exclude": ["node_modules"]
 }
