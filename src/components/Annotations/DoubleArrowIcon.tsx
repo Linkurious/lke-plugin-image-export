@@ -10,12 +10,12 @@ export const DoubleArrowIcon: FC = () => (
     color="#000000"
   >
     <path
-      d="M 9 12 h 10 m 4 0 l -3 -3 m 3 3 l -3 3 m -12 -6 l -3 3 m 0 0 l 3 3"
-      transform="translate(-2,0)"
+      d="M 9 12 h 12 m 2 0 l -3 -3 m 3 3 l -3 3 m -10 -6 l -3 3 m 0 0 l 3 3"
+      transform="translate(-3,0)"
       stroke="#000000"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );

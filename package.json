@@ -122,6 +122,8 @@
     "@linkurious/rest-client": "3.1.12",
     "@linkurious/svg-font-embedder": "0.0.28",
     "@linkurious/text-annotations": "file:../ogma-prototype/packages/text-annotations",
+    "@uiw/react-color-github": "^1.1.1",
+    "@uiw/react-color-swatch": "^1.1.1",
     "antd": "^5.1.0",
     "express-async-handler": "1.2.0",
     "iconoir-react": "^5.5.2",

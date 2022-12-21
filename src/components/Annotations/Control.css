@@ -19,6 +19,14 @@
   border-bottom-right-radius: 0;
 }
 
+.annotations-control--panel .ant-form {
+  padding: 24px;
+}
+
+.annotations-control--panel .line-width-select {
+  box-shadow: none;
+}
+
 .annotations-arrow--dropdown .ant-btn-compact-first-item {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
