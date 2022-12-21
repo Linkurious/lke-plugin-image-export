@@ -12,6 +12,7 @@ import {
   TextStyle,
   Control as AnnotationsEditor,
 } from "@linkurious/text-annotations";
+import { colors } from "./constants";
 
 interface IAnnotationsContext {
   annotations: AnnotationCollection;
@@ -43,10 +44,17 @@ interface Props {
 }
 
 export const AnnotationsContextProvider = ({ children }: Props) => {
-  const [annotations, setAnnotations] = useState<AnnotationCollection>();
+  const [annotations, setAnnotations] = useState<AnnotationCollection>({
+    type: "FeatureCollection",
+    features: [],
+  });
   const [currentAnnotation, setCurrentAnnotation] =
     useState<AnnotationFeature>();
-  const [arrowStyle, setArrowStyle] = useState<ArrowStyles>();
+  const [arrowStyle, setArrowStyle] = useState<ArrowStyles>({
+    head: "arrow",
+    strokeColor: colors[0],
+    strokeWidth: 2,
+  });
   const [textStyle, setTextStyle] = useState<TextStyle>();
   const [editor, setEditor] = useState<AnnotationsEditor>();
 
