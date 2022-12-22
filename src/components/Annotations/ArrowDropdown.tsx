@@ -6,7 +6,8 @@ import { DownArrowIcon } from "./DownArrowIcon";
 import { ArrowStylePanel } from "./ArrowStylePanel";
 import { iconSize } from "./constants";
 import { useAnnotationsContext } from "../../context/annotations";
-import { Arrow } from "@linkurious/text-annotations";
+import { Arrow, createArrow } from "@linkurious/text-annotations";
+import { useAppContext } from "../../context";
 
 export const ArrowDropdown: FC = () => {
   const {
@@ -16,25 +17,17 @@ export const ArrowDropdown: FC = () => {
     setCurrentAnnotation,
     arrowStyle,
   } = useAnnotationsContext();
+  const { ogma } = useAppContext();
 
   const onClick = useCallback(() => {
-    console.log("add arrow");
-    const newArrow: Arrow = {
-      id: annotations.features.length.toString(),
-      properties: {
-        type: "arrow",
-        style: { ...arrowStyle },
-      },
-      type: "Feature",
-      geometry: {
-        type: "LineString",
-        coordinates: [
-          [0, 0],
-          [0, 0],
-        ],
-      },
-    };
-    console.log(newArrow);
+    ogma.events.once("click", (evt) => {
+      requestAnimationFrame(() => {
+        const start = ogma.view.screenToGraphCoordinates(evt);
+        // TODO: pass the options here
+        editor.startArrow(start.x, start.y);
+      });
+    });
+    //editor.add(newArrow);
   }, [editor, arrowStyle, annotations]);
 
   return (
