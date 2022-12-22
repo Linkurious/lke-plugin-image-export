@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { AnnotationsContextProvider } from "./context";
+import { AnnotationsContextProvider } from "../../context/annotations";
 import { AnnotationsControl as Control } from "./Control";
 
 export const AnnotationsControl: FC = () => {

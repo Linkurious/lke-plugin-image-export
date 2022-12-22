@@ -4,7 +4,7 @@ import { stopPropagation } from "../../utils";
 import { Control as AnnotationsEditor } from "@linkurious/text-annotations";
 
 import { useAppContext } from "../../context";
-import { useAnnotationsContext } from "./context";
+import { useAnnotationsContext } from "../../context/annotations";
 
 import { TextDropdown } from "./TextDropdown";
 import { ArrowDropdown } from "./ArrowDropdown";

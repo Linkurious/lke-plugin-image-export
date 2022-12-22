@@ -5,7 +5,7 @@ import { ArrowRight } from "iconoir-react";
 import { DownArrowIcon } from "./DownArrowIcon";
 import { ArrowStylePanel } from "./ArrowStylePanel";
 import { iconSize } from "./constants";
-import { useAnnotationsContext } from "./context";
+import { useAnnotationsContext } from "../../context/annotations";
 import { Arrow } from "@linkurious/text-annotations";
 
 export const ArrowDropdown: FC = () => {
