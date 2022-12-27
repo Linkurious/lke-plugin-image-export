@@ -11,7 +11,7 @@ import {
   ArrowStyles,
   TextStyle,
   Control as AnnotationsEditor,
-} from "@linkurious/text-annotations";
+} from "@linkurious/annotations-control";
 import { colors } from "../components/Annotations/constants";
 
 interface IAnnotationsContext {
@@ -55,7 +55,12 @@ export const AnnotationsContextProvider = ({ children }: Props) => {
     strokeColor: colors[0],
     strokeWidth: 2,
   });
-  const [textStyle, setTextStyle] = useState<TextStyle>();
+  const [textStyle, setTextStyle] = useState<TextStyle>({
+    font: '"Roboto", sans-serif',
+    fontSize: "24px",
+    color: "black",
+    strokeType: "none",
+  });
   const [editor, setEditor] = useState<AnnotationsEditor>();
 
   return (

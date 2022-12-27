@@ -56,6 +56,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       let res = await svg(ogma)
         .setOptions({
           texts: textsVisible,
+          embedFonts: true,
         })
         .on("start", () => setProgress(0))
         .on("progress", (progress) => setProgress(progress))
