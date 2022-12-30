@@ -1,4 +1,5 @@
 import { MenuProps } from "antd";
+import { RgbaColor } from "@uiw/color-convert";
 
 export const iconSize = 22;
 
@@ -51,6 +52,9 @@ export const colors = [
   "#cccccc",
 ];
 
+export const rgbaToString = ({ r, g, b, a }: RgbaColor) =>
+  `rgba(${r}, ${g}, ${b}, ${a})`;
+
 // darkened colors
 export const colorsDark = [
   "#C42E1F",
@@ -67,3 +71,9 @@ export const colorsDark = [
   "#999999",
   "#cccccc",
 ];
+
+export enum ArrowDirection {
+  BOTH = "both",
+  NONE = "none",
+  HEAD = "head",
+}

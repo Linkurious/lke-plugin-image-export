@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Form, Dropdown } from "antd";
 import ColorPicker from "@uiw/react-color-swatch";
 import { DownArrowIcon } from "./icons/DownArrow";
-import { fontItems, fontSizeItems, colors } from "./constants";
+import { fontItems, fontSizeItems, colors, rgbaToString } from "./constants";
 
 export const TextStylePanel: FC = () => (
   <div className="annotations-control--panel dropdown-content">

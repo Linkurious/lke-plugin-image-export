@@ -12,7 +12,7 @@ import {
   TextStyle,
   Control as AnnotationsEditor,
 } from "@linkurious/annotations-control";
-import { colors } from "../components/Annotations/constants";
+import { colors, rgbaToString } from "../components/Annotations/constants";
 
 interface IAnnotationsContext {
   annotations: AnnotationCollection;

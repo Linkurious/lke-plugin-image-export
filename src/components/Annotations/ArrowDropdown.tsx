@@ -6,7 +6,7 @@ import { DownArrowIcon } from "./icons/DownArrow";
 import { ArrowStylePanel } from "./ArrowStylePanel";
 import { iconSize } from "./constants";
 import { useAnnotationsContext } from "../../context/annotations";
-import { Arrow, createArrow } from "@linkurious/annotations-control";
+import { createArrow } from "@linkurious/annotations-control";
 import { useAppContext } from "../../context";
 
 export const ArrowDropdown: FC = () => {
