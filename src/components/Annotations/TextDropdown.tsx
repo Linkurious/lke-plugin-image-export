@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from "react";
 import { Dropdown } from "antd";
-import { DownArrowIcon } from "./DownArrowIcon";
+import { DownArrowIcon } from "./icons/DownArrowIcon";
 import { Text as TextIcon } from "iconoir-react";
 import { createText } from "@linkurious/annotations-control";
 import { TextStylePanel } from "./TextStylePanel";
@@ -9,7 +9,8 @@ import { useAnnotationsContext } from "../../context/annotations";
 import { useAppContext } from "../../context";
 
 export const TextDropdown: FC = () => {
-  const { editor, annotations, textStyle } = useAnnotationsContext();
+  const { editor, annotations, textStyle, currentAnnotation } =
+    useAnnotationsContext();
   const { ogma } = useAppContext();
   const onClick = useCallback(() => {
     ogma.events.once("mouseup", (evt) => {
@@ -29,6 +30,9 @@ export const TextDropdown: FC = () => {
       menu={{ items: [] }}
       onClick={onClick}
       trigger={["click"]}
+      type={
+        currentAnnotation?.properties.type === "text" ? "primary" : "default"
+      }
       dropdownRender={() => <TextStylePanel />}
     >
       <TextIcon height={iconSize} width={iconSize} fr="" />

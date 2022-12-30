@@ -2,7 +2,7 @@ import React, { FC, useCallback } from "react";
 import { Dropdown } from "antd";
 import { ArrowRight } from "iconoir-react";
 
-import { DownArrowIcon } from "./DownArrowIcon";
+import { DownArrowIcon } from "./icons/DownArrowIcon";
 import { ArrowStylePanel } from "./ArrowStylePanel";
 import { iconSize } from "./constants";
 import { useAnnotationsContext } from "../../context/annotations";

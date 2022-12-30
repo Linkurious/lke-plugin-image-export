@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useLayoutEffect, useState, useRef } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import { Button } from "antd";
 import { stopPropagation } from "../../utils";
 import { Control as AnnotationsEditor } from "@linkurious/annotations-control";
@@ -15,7 +15,7 @@ import "./Control.css";
 export const AnnotationsControl: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { ogma } = useAppContext();
-  const { setEditor } = useAnnotationsContext();
+  const { setEditor, setCurrentAnnotation } = useAnnotationsContext();
 
   useEffect(() => {
     if (containerRef.current) {
@@ -26,6 +26,9 @@ export const AnnotationsControl: FC = () => {
   useEffect(() => {
     if (ogma) {
       const newEditor = new AnnotationsEditor(ogma);
+      newEditor
+        .on("select", (annotation) => setCurrentAnnotation(annotation))
+        .on("unselect", () => setCurrentAnnotation(null));
       setEditor(newEditor);
     }
   }, [ogma]);

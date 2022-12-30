@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Button, Form, Menu, MenuProps } from "antd";
-import { DoubleArrowIcon } from "./DoubleArrowIcon";
+import { DoubleArrowIcon } from "./icons/DoubleArrowIcon";
 import { Minus, MoveRight } from "iconoir-react";
 import ColorPicker from "@uiw/react-color-swatch";
 import { lineWidthItems, colors } from "./constants";

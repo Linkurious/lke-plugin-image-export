@@ -17,8 +17,8 @@ import { colors } from "../components/Annotations/constants";
 interface IAnnotationsContext {
   annotations: AnnotationCollection;
   setAnnotations: (annotations: AnnotationCollection) => void;
-  currentAnnotation?: AnnotationFeature;
-  setCurrentAnnotation: (annotation: AnnotationFeature) => void;
+  currentAnnotation?: AnnotationFeature | null;
+  setCurrentAnnotation: (annotation: AnnotationFeature | null) => void;
   arrowStyle: ArrowStyles;
   setArrowStyle: (arrowStyle: ArrowStyles) => void;
   textStyle: TextStyle;
@@ -49,7 +49,7 @@ export const AnnotationsContextProvider = ({ children }: Props) => {
     features: [],
   });
   const [currentAnnotation, setCurrentAnnotation] =
-    useState<AnnotationFeature>();
+    useState<AnnotationFeature | null>(null);
   const [arrowStyle, setArrowStyle] = useState<ArrowStyles>({
     head: "arrow",
     strokeColor: colors[0],
