@@ -45,3 +45,11 @@
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+.line-width-select--item {
+  height: 0;
+  border-color: #444;
+  border-style: solid;
+  margin-top: 0.375em;
+  margin-bottom: 0.375em;
+}

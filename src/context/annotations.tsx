@@ -17,7 +17,7 @@ import { colors } from "../components/Annotations/constants";
 interface IAnnotationsContext {
   annotations: AnnotationCollection;
   setAnnotations: (annotations: AnnotationCollection) => void;
-  currentAnnotation?: AnnotationFeature | null;
+  currentAnnotation: AnnotationFeature | null;
   setCurrentAnnotation: (annotation: AnnotationFeature | null) => void;
   arrowStyle: ArrowStyles;
   setArrowStyle: (arrowStyle: ArrowStyles) => void;
