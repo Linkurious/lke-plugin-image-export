@@ -15,7 +15,13 @@ import "./Control.css";
 export const AnnotationsControl: FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { ogma } = useAppContext();
-  const { setEditor, setCurrentAnnotation } = useAnnotationsContext();
+  const {
+    editor,
+    setEditor,
+    arrowStyle,
+    currentAnnotation,
+    setCurrentAnnotation,
+  } = useAnnotationsContext();
 
   useEffect(() => {
     if (containerRef.current) {
@@ -32,6 +38,19 @@ export const AnnotationsControl: FC = () => {
       setEditor(newEditor);
     }
   }, [ogma]);
+
+  useEffect(() => {
+    console.log("arrow style changed", currentAnnotation);
+    if (
+      editor &&
+      currentAnnotation &&
+      currentAnnotation?.properties.type === "arrow"
+    ) {
+      editor.update(currentAnnotation.id, {
+        properties: { type: "arrow", style: arrowStyle },
+      });
+    }
+  }, [editor, arrowStyle]);
 
   return (
     <div className="annotations-control" ref={containerRef}>

@@ -33,8 +33,8 @@ export const fontSizeItems: MenuProps["items"] = [
 export const lineWidthItems: MenuProps["items"] = [
   { key: "1", title: "thin" },
   { key: "2", title: "medium" },
-  { key: "3", title: "thick" },
-  { key: "4", title: "xl" },
+  { key: "10", title: "thick" },
+  { key: "20", title: "xl" },
 ];
 
 export const colors = [
