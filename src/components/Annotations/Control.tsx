@@ -19,6 +19,7 @@ export const AnnotationsControl: FC = () => {
     editor,
     setEditor,
     arrowStyle,
+    textStyle,
     currentAnnotation,
     setCurrentAnnotation,
   } = useAnnotationsContext();
@@ -49,6 +50,16 @@ export const AnnotationsControl: FC = () => {
       editor.updateStyle(currentAnnotation.id, arrowStyle);
     }
   }, [editor, arrowStyle]);
+
+  useEffect(() => {
+    if (
+      editor &&
+      currentAnnotation &&
+      currentAnnotation?.properties.type === "text"
+    ) {
+      editor.updateStyle(currentAnnotation.id, textStyle);
+    }
+  }, [editor, textStyle]);
 
   return (
     <div className="annotations-control" ref={containerRef}>
