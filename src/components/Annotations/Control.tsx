@@ -46,9 +46,7 @@ export const AnnotationsControl: FC = () => {
       currentAnnotation &&
       currentAnnotation?.properties.type === "arrow"
     ) {
-      editor.update(currentAnnotation.id, {
-        properties: { type: "arrow", style: arrowStyle },
-      });
+      editor.updateStyle(currentAnnotation.id, arrowStyle);
     }
   }, [editor, arrowStyle]);
 
