@@ -13,6 +13,8 @@ type MenuItem = Required<MenuProps>["items"][number];
 export const ArrowStylePanel: FC = () => {
   const { arrowStyle, setArrowStyle } = useAnnotationsContext();
 
+  console.log(arrowStyle);
+
   const onLineWidthSelect = useCallback(
     (item: MenuItem & { key: string }) => {
       setArrowStyle({
