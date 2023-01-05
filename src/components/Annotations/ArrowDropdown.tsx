@@ -3,7 +3,7 @@ import { Dropdown } from "antd";
 import { ArrowRight } from "iconoir-react";
 import { createArrow } from "@linkurious/annotations-control";
 
-import { DownArrowIcon } from "./icons/DownArrow";
+import { DownArrowIcon } from "./icons";
 import { ArrowStylePanel } from "./ArrowStylePanel";
 import { iconSize } from "./constants";
 import { useAnnotationsContext } from "../../context/annotations";

@@ -4,7 +4,7 @@ import { Minus, MoveRight } from "iconoir-react";
 import ColorPicker from "@uiw/react-color-swatch";
 import { hsvaToHex } from "@uiw/color-convert";
 
-import { DoubleArrowIcon } from "./icons/DoubleArrow";
+import { DoubleArrowIcon, RightArrowIcon } from "./icons";
 import { lineWidthItems, colors, ArrowDirection } from "./constants";
 import { useAnnotationsContext } from "../../context/annotations";
 
@@ -12,8 +12,6 @@ type MenuItem = Required<MenuProps>["items"][number];
 
 export const ArrowStylePanel: FC = () => {
   const { arrowStyle, setArrowStyle } = useAnnotationsContext();
-
-  console.log(arrowStyle);
 
   const onLineWidthSelect = useCallback(
     (item: MenuItem & { key: string }) => {
@@ -73,7 +71,7 @@ export const ArrowStylePanel: FC = () => {
               type={arrowStyle.head && !arrowStyle.tail ? "primary" : "default"}
               onClick={() => onDirectionSelect(ArrowDirection.HEAD)}
             >
-              <MoveRight fr="" />
+              <RightArrowIcon />
             </Button>
           </Button.Group>
         </Form.Item>
@@ -89,7 +87,7 @@ export const ArrowStylePanel: FC = () => {
               className: "line-width-select--group-header",
               children: lineWidthItems!.map((item) => {
                 if (!item) return null;
-                const borderWidth = (item.key || "0").toString();
+                const borderWidth = (+(item.key || 0) / 2).toString();
                 return {
                   ...item,
                   label: (

@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from "react";
 import { Dropdown } from "antd";
-import { DownArrowIcon } from "./icons/DownArrow";
+import { DownArrowIcon } from "./icons";
 import { Text as TextIcon } from "iconoir-react";
 import { createText } from "@linkurious/annotations-control";
 import { TextStylePanel } from "./TextStylePanel";
