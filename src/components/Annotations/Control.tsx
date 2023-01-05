@@ -57,7 +57,10 @@ export const AnnotationsControl: FC = () => {
           }
           setCurrentAnnotation(annotation);
         })
-        .on("unselect", () => setCurrentAnnotation(null));
+        .on("unselect", () => {
+          // TODO: maybe set back to the default options
+          setCurrentAnnotation(null);
+        });
       setEditor(newEditor);
     }
   }, [ogma]);
