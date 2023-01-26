@@ -21,4 +21,6 @@ nodeJob {
   binaries = ["lke-plugin-image-export.lke"]
   groupId = 'com.linkurious.plugins'
 
+  githubRelease = true
+
 }
