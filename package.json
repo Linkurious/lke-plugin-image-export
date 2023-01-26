@@ -1,6 +1,6 @@
 {
   "name": "@linkurious/image-export-plugin",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "engines": {
     "node": "16.16.0",
     "npm": "8.5.5"
@@ -29,8 +29,8 @@
     "build:dependencies": "cp package.json dist",
     "build:component": "vite build",
     "build": "npm run build:project && npm run build:dependencies && npm pack ./dist && npm run repack",
-    "repack": "gunzip -qf -c linkurious-image-export-plugin-$npm_package_version.tgz > lke-plugin-image-export.lke",
-    "upload": "gh release create \"v$(cat .version)\" lke-plugin-image-export.lke",
+    "repack": "mkdir -p tmp/github_release && gunzip -qf -c linkurious-image-export-plugin-$npm_package_version.tgz > lke-plugin-image-export.lke && ln -sf $(pwd)/lke-plugin-image-export.lke $(pwd)/tmp/github_release/lke-plugin-image-export-v$(cat .version).lke",
+    "manual-upload": "gh release create \"v$(cat .version)\" tmp/github_release/lke-plugin-image-export-v$(cat .version).lke",
     "deploy": "cp lke-plugin-image-export.lke $(npm config get DEPLOY_PLUGIN_FOLDER)/lke-plugin-image-export-$npm_package_version.lke",
     "postdeploy": "npm run deploy:restart-plugins",
     "deploy:login": "curl -X POST $(npm config get DEPLOY_URL)/api/auth/login --cookie-jar 'lke.cookie' -H 'Content-type: application/json' -d '{ \"usernameOrEmail\": \"'$(npm config get DEPLOY_USER)'\", \"password\": \"'$(npm config get DEPLOY_PASS)'\" }'",
@@ -114,11 +114,11 @@
   "dependencies": {
     "@ant-design/colors": "6.0.0",
     "@ant-design/icons": "4.7.0",
-    "@linkurious/ogma": "4.1.4",
+    "@linkurious/ogma": "4.1.6",
     "@linkurious/ogma-export-stitch": "0.0.6",
-    "@linkurious/ogma-linkurious-parser": "3.1.12",
+    "@linkurious/ogma-linkurious-parser": "3.1.13",
     "@linkurious/ogma-mini-map": "0.0.43",
-    "@linkurious/rest-client": "3.1.12",
+    "@linkurious/rest-client": "3.1.13",
     "@linkurious/svg-font-embedder": "0.0.28",
     "antd": "4.20.6",
     "express-async-handler": "1.2.0",
