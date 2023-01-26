@@ -3,6 +3,8 @@
 nodeJob {
   // General
   projectName = "linkurious/lke-plugin-image-export"
+  podTemplateNames = ['jnlp-agent-node']
+
   parameterList = [
     string(name: 'run', defaultValue: '', description: 'Run Id'),
     string(name: 'testomatio', defaultValue: 'ayv1ac1b32he', description: 'Testomatio API'),
