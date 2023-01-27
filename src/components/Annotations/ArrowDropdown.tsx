@@ -24,9 +24,10 @@ export const ArrowDropdown: FC = () => {
   const [isDrawing, setIsDrawing] = useState(false);
 
   const onClick = useCallback(() => {
+    if (isDrawing) return;
     const arrow = createArrow(0, 0, 0, 0, arrowStyle);
     setCurrentAnnotation(arrow);
-    setIsDrawing(false);
+    setIsDrawing(true);
     let cancelled = false;
     ogma.events
       .once("keyup", (evt) => {
@@ -35,7 +36,7 @@ export const ArrowDropdown: FC = () => {
           setIsDrawing(false);
         }
       })
-      .once("mouseup", (evt) => {
+      .once("mousedown", (evt) => {
         requestAnimationFrame(() => {
           if (cancelled || isDrawing) return;
           setIsDrawing(true);
@@ -43,10 +44,11 @@ export const ArrowDropdown: FC = () => {
           arrow.geometry = createArrow(x, y, x, y, arrowStyle).geometry;
           editor.startArrow(x, y, arrow);
           setCurrentAnnotation(arrow);
+          setIsDrawing(false);
         });
       });
     //editor.add(newArrow);
-  }, [editor, arrowStyle, annotations]);
+  }, [editor, arrowStyle, annotations, isDrawing]);
 
   return (
     <Dropdown.Button

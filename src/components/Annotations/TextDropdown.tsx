@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, { FC, useCallback, useState } from "react";
 import { Dropdown } from "antd";
 import { DownArrowIcon } from "./icons";
 import { Text as TextIcon } from "iconoir-react";
@@ -9,19 +9,37 @@ import { useAnnotationsContext } from "../../context/annotations";
 import { useAppContext } from "../../context";
 
 export const TextDropdown: FC = () => {
-  const { editor, annotations, textStyle, currentAnnotation } =
-    useAnnotationsContext();
+  const {
+    editor,
+    annotations,
+    textStyle,
+    currentAnnotation,
+    setCurrentAnnotation,
+  } = useAnnotationsContext();
   const { ogma } = useAppContext();
+  const [isDrawing, setIsDrawing] = useState(false);
+
   const onClick = useCallback(() => {
-    ogma.events.once("mouseup", (evt) => {
-      requestAnimationFrame(() => {
-        const { x, y } = ogma.view.screenToGraphCoordinates(evt);
-        console.log("textStyle", textStyle);
-        const text = createText(x, y, 0, 0, "", textStyle);
-        editor.startText(x, y, text);
+    console.log("start drawing text");
+    if (isDrawing) return;
+    setIsDrawing(true);
+    ogma.events
+      .once("keyup", (evt) => {
+        if (evt.code === 27) {
+          setCurrentAnnotation(null);
+          setIsDrawing(false);
+        }
+      })
+      .once("mousedown", (evt) => {
+        requestAnimationFrame(() => {
+          const { x, y } = ogma.view.screenToGraphCoordinates(evt);
+          const text = createText(x, y, 0, 0, "", textStyle);
+          editor.startText(x, y, text);
+          setCurrentAnnotation(text);
+        });
       });
-    });
-  }, [editor, annotations, textStyle]);
+  }, [editor, annotations, textStyle, isDrawing]);
+
   return (
     <Dropdown.Button
       size="small"
@@ -31,7 +49,9 @@ export const TextDropdown: FC = () => {
       onClick={onClick}
       trigger={["click"]}
       type={
-        currentAnnotation?.properties.type === "text" ? "primary" : "default"
+        currentAnnotation && currentAnnotation.properties.type === "text"
+          ? "primary"
+          : "default"
       }
       dropdownRender={() => <TextStylePanel />}
     >

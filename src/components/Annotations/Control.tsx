@@ -28,6 +28,8 @@ export const AnnotationsControl: FC = () => {
     setTextStyle,
     currentAnnotation,
     setCurrentAnnotation,
+    annotations,
+    setAnnotations,
   } = useAnnotationsContext();
 
   // stop propagation of mouse events to the ogma canvas
@@ -58,8 +60,22 @@ export const AnnotationsControl: FC = () => {
           setCurrentAnnotation(annotation);
         })
         .on("unselect", () => {
-          // TODO: maybe set back to the default options
+          // TODO: maybe set back the styles to the default options
           setCurrentAnnotation(null);
+        })
+        .on("add", (annotation) => {
+          setAnnotations({
+            ...annotations,
+            features: [...annotations.features, annotation],
+          });
+        })
+        .on("remove", (annotation) => {
+          setAnnotations({
+            ...annotations,
+            features: annotations.features.filter(
+              (a) => a.id !== annotation.id
+            ),
+          });
         });
       setEditor(newEditor);
     }
@@ -67,7 +83,7 @@ export const AnnotationsControl: FC = () => {
 
   // update the style of the current arrow annotation when the style changes
   useEffect(() => {
-    console.log("arrow style changed", currentAnnotation);
+    console.log("arrow style changed", arrowStyle, currentAnnotation);
     if (
       editor &&
       currentAnnotation &&
@@ -79,7 +95,7 @@ export const AnnotationsControl: FC = () => {
 
   // update the style of the current text annotation when the style changes
   useEffect(() => {
-    console.log("text style changed", currentAnnotation);
+    console.log("text style changed", textStyle, currentAnnotation);
     if (
       editor &&
       currentAnnotation &&
