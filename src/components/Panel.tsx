@@ -87,14 +87,6 @@ export function Panel() {
     };
   }, [ogma]);
 
-  const menu = (
-    <Menu
-      selectable
-      defaultSelectedKeys={["0"]}
-      onSelect={({ key }) => setFormat(formats[Number(key)])}
-      items={formats.map((item, index) => ({ key: index, label: item.label }))}
-    />
-  );
   const panelClassName = `panel${collapsed ? " panel--collapsed" : ""}`;
 
   return (
@@ -151,7 +143,7 @@ export function Panel() {
             <div>
               <span>Text size</span>
               <Slider
-                tipFormatter={(value) => `${value}%`}
+                tooltip={{ formatter: (value) => `${value}%` }}
                 marks={marks}
                 included={false}
                 min={1}
@@ -184,7 +176,15 @@ export function Panel() {
             <Form.Item label="Size">
               <Dropdown
                 trigger={["click"]}
-                overlay={menu}
+                menu={{
+                  selectable: true,
+                  defaultSelectedKeys: ["0"],
+                  onSelect: ({ key }) => setFormat(formats[Number(key)]),
+                  items: formats.map((item, index) => ({
+                    key: index,
+                    label: item.label,
+                  })),
+                }}
                 placement="bottom"
                 className="format-select"
               >
@@ -200,7 +200,7 @@ export function Panel() {
           Preview
         </Button>
         <Modal
-          visible={isModalVisible}
+          open={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
           format={format}

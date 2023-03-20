@@ -24,7 +24,7 @@ interface Props extends ModalFuncProps {
   format: FormatType;
 }
 
-export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
+export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
   const {
     ogma,
     visualisation,
@@ -42,7 +42,7 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
   const [size, setSize] = useState<Size>({ width: 0, height: 0 });
 
   useEffect(() => {
-    if (!visible || !ogma || image) return;
+    if (!open || !ogma || image) return;
 
     const prepareDownload = async () => {
       setLoading(true);
@@ -53,6 +53,7 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
       const scaleStyleDef = scalingStyleRule.getDefinition();
 
       await scalingStyleRule.destroy();
+      // @ts-ignore
       let res = await svg(ogma)
         .setOptions({
           texts: textsVisible,
@@ -95,9 +96,9 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
     prepareDownload();
 
     return () => {
-      if (visible) setImage("");
+      if (open) setImage("");
     };
-  }, [visible]);
+  }, [open]);
 
   // apply the background color to the SVG
   useEffect(() => {
@@ -118,7 +119,7 @@ export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
     <UIModal
       title="Preview"
       className="preview--modal"
-      visible={visible}
+      open={open}
       onOk={onOk}
       onCancel={onCancel}
       width={"80vw"}

@@ -75,7 +75,14 @@ export const Footer: FC<FooterProps> = ({
       <Dropdown
         disabled={loading}
         key="type"
-        overlay={menu}
+        menu={{
+          onClick: ({ key }) => {
+            setCurrentFormat(ExportTypes.find(({ key: k }) => k === key)!);
+          },
+          items: ExportTypes.filter(
+            ({ label }) => label !== currentFormat.label
+          ),
+        }}
         trigger={["click"]}
       >
         <Button

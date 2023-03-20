@@ -10,7 +10,6 @@ export default {
       targets: ["defaults", "not IE 11"],
     }),
   ],
-
   server: {
     port: 4001,
     open: true,
