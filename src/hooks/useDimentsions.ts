@@ -5,7 +5,7 @@ export function useDimensions(): [
   DOMRect | undefined
 ] {
   const [node, setNode] = useState<HTMLElement>();
-  const ref = useCallback((node) => setNode(node), []);
+  const ref = useCallback((node: HTMLElement) => setNode(node), []);
   const [dimensions, setDimensions] = useState<DOMRect>();
   useLayoutEffect(() => {
     if (node) setDimensions(node.getBoundingClientRect());
