@@ -6,8 +6,4 @@ const container =
   document.getElementById("root") || document.querySelector("lk-app-root");
 const root = ReactDOMClient.createRoot(container!);
 
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+root.render(<App />);
