@@ -1,16 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
-import {
-  Button,
-  Collapse,
-  Typography,
-  Divider,
-  Form,
-  Select,
-  Switch,
-  Slider,
-  Dropdown,
-  Menu,
-} from "antd";
+
+import Button from "antd/es/button/button";
+import Divider from "antd/es/divider";
+import Collapse from "antd/es/collapse";
+import Form from "antd/es/form";
+import Slider from "antd/es/slider";
+import Switch from "antd/es/switch";
+import Dropdown from "antd/es/dropdown";
+import Typography from "antd/es/typography";
+
 import { DownOutlined } from "@ant-design/icons";
 import { formats } from "../constants";
 import { FormatInfo } from "./FormatInfo";

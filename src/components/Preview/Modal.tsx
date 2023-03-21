@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
-import { Modal as UIModal, ModalFuncProps, Progress } from "antd";
+import Progress from "antd/es/progress";
+import UIModal, { ModalFuncProps } from "antd/es/modal";
+
 import { FormatType, ExportType } from "../../types/formats";
 import { useAppContext } from "../../context";
 import { svg, svgElementToString } from "@linkurious/ogma-export-stitch";

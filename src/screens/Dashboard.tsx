@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout } from "antd";
+import Layout from "antd/es/layout";
 import "antd/dist/reset.css";
 import { useAppContext } from "../context";
 import { Visualisation, Panel, Spinner } from "../components";

@@ -1,5 +1,5 @@
 import { MinusSquareOutlined, PlusSquareOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import Button from "antd/es/button/button";
 import React, { FC } from "react";
 import { useAppContext } from "../context";
 
