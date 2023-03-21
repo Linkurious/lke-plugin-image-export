@@ -1,14 +1,16 @@
 import path from "path";
 import legacy from "@vitejs/plugin-legacy";
+import react from "@vitejs/plugin-react";
 
 /** @type {import('vite').UserConfig} */
 export default {
   base: "",
   root: "web",
   plugins: [
-    legacy({
-      targets: ["defaults", "not IE 11"],
-    }),
+    react(),
+    // legacy({
+    //   targets: ["defaults", "not IE 11"],
+    // }),
   ],
   server: {
     port: 4001,
