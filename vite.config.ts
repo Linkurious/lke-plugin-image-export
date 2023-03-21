@@ -15,6 +15,12 @@ export default {
   server: {
     port: 4001,
     open: true,
+    proxy: {
+      // string shorthand
+      "/api": {
+        target: "http://localhost:3000/api",
+      },
+    },
   },
   define: {
     IS_DEV: process.env.DEV ? true : false,
@@ -23,14 +29,8 @@ export default {
     manifest: true,
     outDir: path.join(process.cwd(), "dist", "public"),
     rollupOptions: {
-      format: "iife",
+      output: { format: "iife" },
     },
     emptyOutDir: true,
-  },
-  proxy: {
-    // string shorthand
-    "/api": {
-      target: "http://localhost:3000/api",
-    },
   },
 };
