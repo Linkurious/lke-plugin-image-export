@@ -11,6 +11,7 @@ node_modules
 dist
 .DS_Store
 *.tgz
+tmp
 
 # nyc test coverage
 .nyc_output
