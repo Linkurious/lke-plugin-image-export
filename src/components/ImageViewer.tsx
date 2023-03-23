@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState, createRef } from "react";
-import { Button } from "antd";
+import Button from "antd/es/button/button";
 import panzoomLib, { PanZoom } from "panzoom";
 import {
   ExpandOutlined,

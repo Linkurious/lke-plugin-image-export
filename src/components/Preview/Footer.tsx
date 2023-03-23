@@ -1,5 +1,10 @@
 import React, { FC, useState } from "react";
-import { Dropdown, Switch, Menu, Button } from "antd";
+
+import Button from "antd/es/button/button";
+import Switch from "antd/es/switch";
+import Menu from "antd/es/menu";
+import Dropdown from "antd/es/dropdown";
+
 import { DownOutlined } from "@ant-design/icons";
 import { formatSize } from "../../utils";
 import { Size } from "@linkurious/ogma";
@@ -75,7 +80,14 @@ export const Footer: FC<FooterProps> = ({
       <Dropdown
         disabled={loading}
         key="type"
-        overlay={menu}
+        menu={{
+          onClick: ({ key }) => {
+            setCurrentFormat(ExportTypes.find(({ key: k }) => k === key)!);
+          },
+          items: ExportTypes.filter(
+            ({ label }) => label !== currentFormat.label
+          ),
+        }}
         trigger={["click"]}
       >
         <Button
