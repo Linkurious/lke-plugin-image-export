@@ -1,9 +1,10 @@
 import React from "react";
-import { Layout } from "antd";
-import "antd/dist/antd.css";
+import Layout from "antd/es/layout";
+import "antd/dist/reset.css";
 import { useAppContext } from "../context";
 import { Visualisation, Panel, Spinner } from "../components";
 import { ConfigurationError } from "../components/ConfigurationError";
+import { AnnotationsControl } from "../components/Annotations";
 
 export function Dashboard() {
   const { loading, error } = useAppContext();
@@ -17,6 +18,7 @@ export function Dashboard() {
           <>
             <Visualisation />
             <Panel />
+            <AnnotationsControl />
           </>
         )}
       </Layout.Content>

@@ -2,7 +2,7 @@ import React, { FC, useEffect, useLayoutEffect, useState } from "react";
 import { Point, Size } from "@linkurious/ogma";
 import { FormatType } from "../types/formats";
 import { useAppContext } from "../context";
-import { scaleGraph } from "../utils";
+import { destroyRule, scaleGraph } from "../utils";
 import { backdropMargin } from "../constants";
 
 interface BackdropProps {
@@ -106,7 +106,7 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
     });
     setScalingStyleRule(rule);
     return () => {
-      rule.destroy();
+      destroyRule(rule, ogma);
     };
   }, [ogma]);
 
@@ -138,7 +138,13 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
 
   useEffect(() => {
     globalScale = graphScale;
-    if (scalingStyleRule) scalingStyleRule.refresh();
+    if (scalingStyleRule) {
+      // TODO: fix this, it's a hack
+      try {
+        scalingStyleRule.refresh();
+        // eslint-disable-next-line no-empty
+      } catch (e) {}
+    }
   }, [scalingStyleRule, graphScale]);
 
   return (

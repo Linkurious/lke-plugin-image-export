@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState, createRef } from "react";
-import { Button } from "antd";
+import Button from "antd/es/button/button";
 import panzoomLib, { PanZoom } from "panzoom";
 import {
   ExpandOutlined,
@@ -16,10 +16,10 @@ export const ImageViewer: FC<{
   size: Size;
   background: boolean;
 }> = ({ svg, size, background }) => {
-  let [ref, dimensions] = useDimensions();
+  const [ref, inputDimensions] = useDimensions();
   const { ogma } = useAppContext();
   const [panzoom, setPanzoom] = useState<PanZoom>();
-  dimensions = dimensions || ({ width: 0, height: 0 } as DOMRect);
+  const dimensions = inputDimensions || ({ width: 0, height: 0 } as DOMRect);
 
   const k = Math.min(
     dimensions.width / size.width,

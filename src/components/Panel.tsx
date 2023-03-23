@@ -1,16 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
-import {
-  Button,
-  Collapse,
-  Typography,
-  Divider,
-  Form,
-  Select,
-  Switch,
-  Slider,
-  Dropdown,
-  Menu,
-} from "antd";
+
+import Button from "antd/es/button/button";
+import Divider from "antd/es/divider";
+import Collapse from "antd/es/collapse";
+import Form from "antd/es/form";
+import Slider from "antd/es/slider";
+import Switch from "antd/es/switch";
+import Dropdown from "antd/es/dropdown";
+import Typography from "antd/es/typography";
+
 import { DownOutlined } from "@ant-design/icons";
 import { formats } from "../constants";
 import { FormatInfo } from "./FormatInfo";
@@ -18,6 +16,7 @@ import { useAppContext } from "../context";
 import { Modal } from "./Preview";
 import { StyleRule } from "@linkurious/ogma";
 import { LkEdgeData, LkNodeData } from "@linkurious/rest-client";
+import { destroyRule } from "../utils";
 
 type SizeType = Parameters<typeof Form>[0]["size"];
 
@@ -83,18 +82,10 @@ export function Panel() {
     }
     return () => {
       fontSize.ratio = 1;
-      if (ogma && rule) rule.destroy();
+      if (ogma && rule) destroyRule(rule, ogma);
     };
   }, [ogma]);
 
-  const menu = (
-    <Menu
-      selectable
-      defaultSelectedKeys={["0"]}
-      onSelect={({ key }) => setFormat(formats[Number(key)])}
-      items={formats.map((item, index) => ({ key: index, label: item.label }))}
-    />
-  );
   const panelClassName = `panel${collapsed ? " panel--collapsed" : ""}`;
 
   return (
@@ -151,7 +142,7 @@ export function Panel() {
             <div>
               <span>Text size</span>
               <Slider
-                tipFormatter={(value) => `${value}%`}
+                tooltip={{ formatter: (value) => `${value}%` }}
                 marks={marks}
                 included={false}
                 min={1}
@@ -184,7 +175,15 @@ export function Panel() {
             <Form.Item label="Size">
               <Dropdown
                 trigger={["click"]}
-                overlay={menu}
+                menu={{
+                  selectable: true,
+                  defaultSelectedKeys: ["0"],
+                  onSelect: ({ key }) => setFormat(formats[Number(key)]),
+                  items: formats.map((item, index) => ({
+                    key: index,
+                    label: item.label,
+                  })),
+                }}
                 placement="bottom"
                 className="format-select"
               >
@@ -200,7 +199,7 @@ export function Panel() {
           Preview
         </Button>
         <Modal
-          visible={isModalVisible}
+          open={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
           format={format}

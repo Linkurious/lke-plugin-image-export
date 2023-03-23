@@ -1,5 +1,14 @@
+import {
+  AnnotationCollection,
+  getAnnotationsBounds,
+} from "@linkurious/annotations-control";
+import Ogma, { SVGExportOptions } from "@linkurious/ogma";
+import { getBoundingBox, mergeBounds } from ".";
+
+const SVG_NS = "http://www.w3.org/2000/svg";
+
 export const createSVGElement = <T extends SVGElement>(tagName: string): T => {
-  return document.createElementNS("http://www.w3.org/2000/svg", tagName) as T;
+  return document.createElementNS(SVG_NS, tagName) as T;
 };
 
 const GREY = "#e0e0e0";
@@ -98,4 +107,85 @@ export function embedImages(svg: SVGSVGElement) {
       }
     })
     .then(() => svg);
+}
+
+const defaultOptions: SVGExportOptions = {
+  groupSemantically: true,
+  embedFonts: true,
+  download: false,
+  texts: true,
+  margin: 0,
+};
+
+export async function exportClipped(
+  ogma: Ogma,
+  width: number,
+  height: number,
+  exportOptions: SVGExportOptions = {}
+) {
+  const options: SVGExportOptions = {
+    ...defaultOptions,
+    ...exportOptions,
+  };
+
+  // not much special, just ensure the default settings are correct
+  return await ogma.export.svg({
+    ...options,
+    clip: true,
+    width,
+    height,
+  });
+}
+
+export async function exportOrginalSize(
+  ogma: Ogma,
+  annotations: AnnotationCollection,
+  exportOptions: SVGExportOptions = {}
+) {
+  const options: SVGExportOptions = {
+    ...defaultOptions,
+    ...exportOptions,
+  };
+  const view = ogma.view.get();
+  // include annotations in the bounds
+  const annotationBounds = getAnnotationsBounds(annotations);
+  const graphBounds = getBoundingBox(ogma, !!options.texts);
+  const [minX, minY, maxX, maxY] = mergeBounds(graphBounds, annotationBounds);
+
+  const tl = ogma.view.graphToScreenCoordinates({ x: minX, y: minY });
+  const br = ogma.view.graphToScreenCoordinates({ x: maxX, y: maxY });
+
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const width = br.x - tl.x + 2 * options.margin!;
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const height = br.y - tl.y + 2 * options.margin!;
+
+  // resize canvas
+  await ogma.view.setSize({ width, height });
+  // center view
+  await ogma.view.setCenter({ x: (minX + maxX) / 2, y: (minY + maxY) / 2 });
+  await ogma.view.afterNextFrame();
+
+  const svg = await ogma.export.svg({ clip: true, ...options });
+  // reset canvas size
+  await ogma.view.setSize({ width: view.width, height: view.height });
+  return svg;
+}
+
+export function bringTextsToTop(svg: SVGSVGElement) {
+  const container = svg.querySelector(".transform-group") as SVGGElement;
+  // bubble up the texts
+  const textComponents = Array.prototype.filter.call(
+    container.querySelectorAll("[data-text-component]"),
+    (el: SVGElement) => !el.classList.contains("badge-text")
+  );
+  // group them
+  const captions = document.createElementNS(SVG_NS, "g");
+  captions.classList.add("ogma-captions");
+  Array.prototype.forEach.call(textComponents, (el: SVGElement) =>
+    captions.appendChild(el)
+  );
+  const entitiesContainer = container.querySelector(".ogma-nodes")
+    ?.parentNode as SVGGElement;
+  entitiesContainer.appendChild(captions);
 }

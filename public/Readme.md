@@ -1,0 +1,1 @@
+This folder is treated in a special way by vite. Since the files here are not referenced anywhere in the code, the contents of it are just automatically copied into the build folder. That works for us to properly serve the image files.

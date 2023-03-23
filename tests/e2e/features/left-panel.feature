@@ -1,7 +1,7 @@
 @leftpanel @S9f53a1d1
 Feature: Left Panel
 
-  @format @T66b235a5
+  @format @select-format
   Scenario Outline: Select format
     Given I go to main page
     And I select format <format>
@@ -12,7 +12,7 @@ Feature: Left Panel
     | Square |
     | Full size |
 
-  @select @T712e3366
+  @select @select-text-size
   Scenario Outline: Select text size
     Given I go to main page
     And I select text size <size>
@@ -24,7 +24,7 @@ Feature: Left Panel
     | 50% |
 
   @text-slider @T712e3366
-  Scenario: Select text size
+  Scenario: Select text size with slider
     Given I go to main page
     When I toggle text slider
     Then text disappear
