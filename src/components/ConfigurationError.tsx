@@ -1,6 +1,5 @@
 import React, { FC } from "react";
-import Layout from "antd/lib/layout";
-import Result from "antd/lib/result";
+import { Layout, Result } from "antd";
 
 interface ConfigurationErrorProps {
   error: Error;

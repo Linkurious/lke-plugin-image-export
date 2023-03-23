@@ -1,7 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import Progress from "antd/es/progress";
-import UIModal, { ModalFuncProps } from "antd/es/modal";
-
+import { Modal as UIModal, ModalFuncProps, Progress } from "antd";
 import { FormatType, ExportType } from "../../types/formats";
 import { useAppContext } from "../../context";
 import { svg, svgElementToString } from "@linkurious/ogma-export-stitch";
@@ -26,7 +24,7 @@ interface Props extends ModalFuncProps {
   format: FormatType;
 }
 
-export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
+export const Modal: FC<Props> = ({ visible, onCancel, onOk }) => {
   const {
     ogma,
     visualisation,
@@ -44,7 +42,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
   const [size, setSize] = useState<Size>({ width: 0, height: 0 });
 
   useEffect(() => {
-    if (!open || !ogma || image) return;
+    if (!visible || !ogma || image) return;
 
     const prepareDownload = async () => {
       setLoading(true);
@@ -55,7 +53,6 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       const scaleStyleDef = scalingStyleRule.getDefinition();
 
       await scalingStyleRule.destroy();
-      // @ts-ignore
       let res = await svg(ogma)
         .setOptions({
           texts: textsVisible,
@@ -98,9 +95,9 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
     prepareDownload();
 
     return () => {
-      if (open) setImage("");
+      if (visible) setImage("");
     };
-  }, [open]);
+  }, [visible]);
 
   // apply the background color to the SVG
   useEffect(() => {
@@ -121,7 +118,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
     <UIModal
       title="Preview"
       className="preview--modal"
-      open={open}
+      visible={visible}
       onOk={onOk}
       onCancel={onCancel}
       width={"80vw"}

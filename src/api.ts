@@ -1,3 +1,4 @@
+import qs from "qs";
 import {
   RestClient,
   IOgmaConfig,
@@ -10,9 +11,12 @@ const rc = new RestClient({
   baseUrl: IS_DEV ? "http://localhost:3000/" : "../../",
 });
 
-const params = new URLSearchParams(location.search);
-const sourceKey = params.get("key") || "key";
-const id = params.get("id") || "101";
+const { sourceKey = "key", id = "101" } = qs.parse(
+  location.search.slice(1)
+) as {
+  sourceKey: string;
+  id: string;
+};
 
 export async function getConfiguration(): Promise<IOgmaConfig> {
   const response = await rc.config.getConfiguration();

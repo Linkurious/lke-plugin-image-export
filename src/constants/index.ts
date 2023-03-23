@@ -34,12 +34,11 @@ type ScreenSizes = Extract<
 >;
 
 const dppi = 96;
-const formatsKeys = Object.keys(paperFormatsInches) as Format[];
 // calculate the size of the paper in pixels
 const paperSizes: Record<
   Exclude<Format, ScreenSizes>,
   FormatType
-> = formatsKeys.reduce((acc, key: Format) => {
+> = Object.keys(paperFormatsInches).reduce((acc, key: Format) => {
   const size = paperFormatsInches[key];
   if (size)
     acc[key] = {
@@ -64,8 +63,9 @@ export const formatLookup: Record<Format, FormatType> = {
   ...paperSizes,
 };
 
-const formatKeys = Object.keys(formatLookup) as Format[];
-export const formats: FormatType[] = formatKeys.map((key) => formatLookup[key]);
+export const formats: FormatType[] = Object.keys(formatLookup).map(
+  (key: Format) => formatLookup[key]
+);
 
 /**
  * Minimum backdrop preview width

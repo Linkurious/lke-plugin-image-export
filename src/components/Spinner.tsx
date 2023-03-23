@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import Spin from "antd/es/spin";
+import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
 const antIcon = (

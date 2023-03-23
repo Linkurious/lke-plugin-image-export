@@ -85,6 +85,7 @@ export const OgmaComponent = (
       //Maybe we could give it annother name, like window.ogmaImageExport ?
       // @ts-ignore
       window.ogma = ogma;
+      // @ts-ignore
       if (graph && ogma && graph !== graphData) {
         setGraphData(graph);
         ogma
