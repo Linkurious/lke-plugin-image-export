@@ -61,7 +61,7 @@
     "latest:master-maintenance": "npm install --save-exact @linkurious/rest-client@lk-master-maintenance @linkurious/ogma-linkurious-parser@lk-master-maintenance"
   },
   "devDependencies": {
-    "@linkurious/code-tools": "0.0.8",
+    "@linkurious/code-tools": "0.0.14",
     "@testomatio/reporter": "0.5.10",
     "@types/body-parser": "1.19.2",
     "@types/chai": "4.3.1",
