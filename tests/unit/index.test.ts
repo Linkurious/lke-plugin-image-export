@@ -1,5 +1,7 @@
+import { describe, it, assert } from "vitest";
+
 describe("Image export", () => {
   it("should have tests", () => {
-    expect(true).toBe(true);
+    assert.isTrue(true);
   });
 });

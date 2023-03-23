@@ -2,9 +2,8 @@ const common = {
   env: {
     node: true,
     es6: true,
-    "jest/globals": true,
   },
-  plugins: ["prettier", "jest", "markdown"],
+  plugins: ["prettier", "markdown"],
   extends: [
     "airbnb-base",
     "plugin:jest/all",

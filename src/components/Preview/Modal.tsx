@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
-import { Modal as UIModal, ModalFuncProps, Progress } from "antd";
+import Progress from "antd/es/progress";
+import UIModal, { ModalFuncProps } from "antd/es/modal";
+
 import { FormatType, ExportType } from "../../types/formats";
 import { useAnnotationsContext, useAppContext } from "../../context";
 import {
@@ -60,6 +62,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       const scaleStyleDef = scalingStyleRule.getDefinition();
 
       await scalingStyleRule.destroy();
+      // @ts-ignore
       let res = await svg(ogma)
         .setOptions({
           texts: textsVisible,

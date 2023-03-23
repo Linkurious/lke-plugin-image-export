@@ -1,5 +1,9 @@
 import React, { FC, useState } from "react";
-import { Dropdown, Switch, Menu, Button } from "antd";
+
+import Button from "antd/es/button/button";
+import Switch from "antd/es/switch";
+import Dropdown from "antd/es/dropdown";
+
 import { DownOutlined } from "@ant-design/icons";
 import { formatSize } from "../../utils";
 import { Size } from "@linkurious/ogma";
