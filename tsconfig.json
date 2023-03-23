@@ -17,14 +17,10 @@
     "jsx": "react-jsx",
     "composite": true
   },
-<<<<<<< HEAD
   "typeRoots": ["./src/types"],
   "globals": {
     "IS_DEV": "boolean"
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules"]
-=======
-  "include": ["src"]
->>>>>>> develop
 }
