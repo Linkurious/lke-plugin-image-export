@@ -32,7 +32,12 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
             12
           </Dropdown.Button>
         </Form.Item>
-        <ColorPicker colors={colors} />
+        <Form.Item label="Text color">
+          <ColorPicker colors={colors} />
+        </Form.Item>
+        <Form.Item label="Background color">
+          <ColorPicker colors={colors} />
+        </Form.Item>
       </Form>
     </div>
   );

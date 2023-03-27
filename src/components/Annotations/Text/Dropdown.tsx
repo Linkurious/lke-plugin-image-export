@@ -9,14 +9,15 @@ import { DownArrowIcon } from "../icons";
 interface TextDropdownProps {}
 
 export const TextDropdown: FC<TextDropdownProps> = () => {
-  const { editor } = useAnnotationsContext();
-  const { ogma } = useAppContext();
+  // const { editor } = useAnnotationsContext();
+  // const { ogma } = useAppContext();
 
   const onClick = useCallback(() => {
     console.log("start new text annotation");
-  }, [editor]);
+  }, []);
   return (
     <Dropdown.Button
+      title="Text box"
       size="small"
       className="annotations-text--dropdown"
       menu={{ items: [] }}

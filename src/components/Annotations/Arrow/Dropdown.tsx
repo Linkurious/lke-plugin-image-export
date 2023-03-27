@@ -9,14 +9,15 @@ import { ArrowStylePanel } from "./StylePanel";
 interface ArrowDropdownProps {}
 
 export const ArrowDropDown: FC<ArrowDropdownProps> = () => {
-  const { editor } = useAnnotationsContext();
-  const { ogma } = useAppContext();
+  // const { editor } = useAnnotationsContext();
+  // const { ogma } = useAppContext();
   const onClick = useCallback(() => {
     console.log("start new arrow annotation");
   }, []);
 
   return (
     <Dropdown.Button
+      title="Arrow / Line"
       size="small"
       className="annotations-arrow--dropdown"
       trigger={["click"]}

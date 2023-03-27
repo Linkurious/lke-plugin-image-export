@@ -9,7 +9,6 @@ interface AnnotationsControlProps {}
 
 export const AnnotationsControl: FC<AnnotationsControlProps> = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { ogma } = useAppContext();
   return (
     <div className="annotations-control" ref={containerRef}>
       <Button.Group>
