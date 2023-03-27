@@ -53,7 +53,7 @@ export const OgmaComponent = (
 
   const { ogma, setBoundingBox } = useAppContext();
 
-  useImperativeHandle(ref, () => ogma as OgmaLib, [ogma]);
+  useImperativeHandle(ref, () => ogma, [ogma]);
 
   useEffect(() => {
     if (container) {
