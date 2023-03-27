@@ -1,0 +1,77 @@
+.annotations-control {
+  position: absolute;
+  top: 20px;
+  right: calc(50vw - 200px);
+}
+
+.annotations-control--panel {
+  background: #fff;
+  box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
+    0 9px 28px 8px rgb(0 0 0 / 5%);
+  margin-top: -4px;
+  border-radius: 4px;
+}
+
+.annotations-text--dropdown .ant-btn-compact-last-item {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.annotations-control--panel .ant-form {
+  padding: 24px;
+}
+
+.annotations-control--panel .line-width-select {
+  box-shadow: none;
+  padding: 0 0 24px 0;
+}
+
+.annotations-control--panel-arrow
+  .line-width-select
+  .line-width-select--group-header
+  .ant-dropdown-menu-item-group-title {
+  padding: 0;
+}
+
+.annotations-control--panel-arrow
+  .line-width-select
+  .ant-dropdown-menu-item-group-list {
+  margin: 0;
+}
+
+.annotations-arrow--dropdown .ant-btn-compact-first-item {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -1px;
+}
+
+.annotations-text--dropdown .ant-btn-compact-first-item svg,
+.annotations-arrow--dropdown .ant-btn-compact-first-item svg {
+  margin-top: 3px;
+}
+
+.line-width-select--item {
+  height: 0;
+  border-color: #444;
+  border-style: solid;
+  margin-top: 0.375em;
+  margin-bottom: 0.375em;
+}
+
+.color-picker--item {
+  height: 15px;
+  width: 15px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  border-radius: 2px;
+}
+
+.color-picker--item.checked {
+  height: 20px;
+  width: 20px;
+  margin-top: 2.5px;
+}

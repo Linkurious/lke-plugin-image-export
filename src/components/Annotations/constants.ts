@@ -1,7 +1,7 @@
 import { MenuProps } from "antd";
 import { RgbaColor } from "@uiw/color-convert";
 
-export const iconSize = 22;
+export const iconSize = 16;
 
 export type fontFamilyTypes =
   | 'Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif'

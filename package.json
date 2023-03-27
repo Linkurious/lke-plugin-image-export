@@ -104,6 +104,7 @@
     "@uiw/react-color-swatch": "^1.1.2",
     "antd": "5.3.2",
     "express": "4.18.2",
+    "iconoir-react": "^6.5.0",
     "jspdf": "2.5.1",
     "panzoom": "9.4.3",
     "react": "18.2.0",
