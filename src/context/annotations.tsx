@@ -53,7 +53,7 @@ export const AnnotationsContextProvider = ({ children }: Props) => {
   const [arrowStyle, setArrowStyle] = useState<ArrowStyles>({
     head: "arrow",
     strokeColor: colors[0],
-    strokeWidth: 2,
+    strokeWidth: 1,
   });
   const [textStyle, setTextStyle] = useState<TextStyle>({
     font: '"Roboto", sans-serif',

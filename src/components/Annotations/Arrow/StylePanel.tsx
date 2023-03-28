@@ -2,17 +2,16 @@ import { FC, useCallback } from "react";
 
 import Form from "antd/es/form";
 import Button from "antd/es/button";
-import Menu, { MenuProps } from "antd/es/menu";
+import { MenuProps } from "antd/es/menu";
 
-import { Minus, MoveRight } from "iconoir-react";
+import { Minus } from "iconoir-react";
 import ColorPicker from "@uiw/react-color-swatch";
 import { HsvaColor, hsvaToHex } from "@uiw/color-convert";
 
+import { LineWidthSelect } from "./LineWidthSelect";
 import { DoubleArrowIcon, RightArrowIcon } from "../icons";
 import { lineWidthItems, colors, ArrowDirection } from "../constants";
 import { useAnnotationsContext } from "../../../context";
-
-type MenuItem = Required<MenuProps>["items"][number];
 
 interface ArrowStylePanelProps {}
 
@@ -20,10 +19,10 @@ export const ArrowStylePanel: FC<ArrowStylePanelProps> = () => {
   const { arrowStyle, setArrowStyle } = useAnnotationsContext();
 
   const onLineWidthSelect = useCallback(
-    (item: MenuItem & { key: string }) => {
+    (item: { value: number }) => {
       setArrowStyle({
         ...arrowStyle,
-        strokeWidth: parseInt(item.key.toString() || "0"),
+        strokeWidth: parseInt(item.value.toString() || "0"),
       });
     },
     [arrowStyle]
@@ -81,31 +80,10 @@ export const ArrowStylePanel: FC<ArrowStylePanelProps> = () => {
             </Button>
           </Button.Group>
         </Form.Item>
-        <Menu
-          className="line-width-select"
-          onClick={onLineWidthSelect}
-          selectedKeys={[arrowStyle.strokeWidth!.toString()]}
-          selectable={false}
-          items={[
-            {
-              label: "Line width",
-              type: "group",
-              className: "line-width-select--group-header",
-              children: lineWidthItems!.map((item) => {
-                if (!item) return null;
-                const borderWidth = (+(item.key || 0) / 2).toString();
-                return {
-                  ...item,
-                  label: (
-                    <div
-                      className="line-width-select--item"
-                      style={{ borderWidth: `${borderWidth}px` }}
-                    />
-                  ),
-                };
-              }) as MenuProps["items"],
-            },
-          ]}
+        <LineWidthSelect
+          options={lineWidthItems}
+          selected={arrowStyle.strokeWidth || 1}
+          onChange={onLineWidthSelect}
         />
         <ColorPicker
           color={arrowStyle.strokeColor}

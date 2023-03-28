@@ -23,7 +23,28 @@
 
 .annotations-control--panel .line-width-select {
   box-shadow: none;
-  padding: 0 0 24px 0;
+  padding: 0 0 18px 0;
+}
+
+.annotations-control--panel .line-width-select ul {
+  list-style: none;
+  padding: 0;
+}
+
+.annotations-control--panel .line-width-select li {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  cursor: pointer;
+}
+
+.annotations-control--panel
+  .line-width-select
+  li:hover
+  .line-width-select--item,
+.annotations-control--panel
+  .line-width-select
+  .line-width-select--item-selected {
+  border-color: #1677ff;
 }
 
 .annotations-control--panel-arrow
@@ -54,8 +75,6 @@
   height: 0;
   border-color: #444;
   border-style: solid;
-  margin-top: 0.375em;
-  margin-bottom: 0.375em;
 }
 
 .color-picker--item {
