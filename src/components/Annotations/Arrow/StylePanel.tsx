@@ -12,6 +12,7 @@ import { LineWidthSelect } from "./LineWidthSelect";
 import { DoubleArrowIcon, RightArrowIcon } from "../icons";
 import { lineWidthItems, colors, ArrowDirection } from "../constants";
 import { useAnnotationsContext } from "../../../context";
+import { colorIcon } from "../icons/Color";
 
 interface ArrowStylePanelProps {}
 
@@ -89,19 +90,7 @@ export const ArrowStylePanel: FC<ArrowStylePanelProps> = () => {
           color={arrowStyle.strokeColor}
           colors={colors}
           onChange={onColorSelect}
-          rectRender={(opts) => {
-            const className = opts.checked
-              ? "color-picker--item checked"
-              : "color-picker--item";
-            return (
-              <div
-                key={opts.key}
-                onClick={opts.onClick}
-                className={className}
-                style={{ backgroundColor: opts.color }}
-              />
-            );
-          }}
+          rectRender={colorIcon}
         />
       </Form>
     </div>

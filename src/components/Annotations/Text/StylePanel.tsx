@@ -7,6 +7,7 @@ import ColorPicker from "@uiw/react-color-swatch";
 
 import { DownArrowIcon } from "../icons";
 import { fontItems, fontSizeItems, colors } from "../constants";
+import { colorIcon } from "../icons/Color";
 
 interface TextStylePanelProps {}
 
@@ -33,10 +34,10 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
           </Dropdown.Button>
         </Form.Item>
         <Form.Item label="Text color">
-          <ColorPicker colors={colors} />
+          <ColorPicker colors={colors} rectRender={colorIcon} />
         </Form.Item>
         <Form.Item label="Background color">
-          <ColorPicker colors={colors} />
+          <ColorPicker colors={colors} rectRender={colorIcon} />
         </Form.Item>
       </Form>
     </div>
