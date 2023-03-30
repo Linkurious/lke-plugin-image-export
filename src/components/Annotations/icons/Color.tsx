@@ -9,6 +9,7 @@ export const colorIcon = ({
   const className = checked
     ? "color-picker--item checked"
     : "color-picker--item";
+  console.log({ color });
   return (
     <div
       key={key}

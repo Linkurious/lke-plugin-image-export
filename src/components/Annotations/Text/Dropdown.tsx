@@ -4,7 +4,7 @@ import { Text as TextIcon } from "iconoir-react";
 import { TextStylePanel } from "./StylePanel";
 import { useAnnotationsContext, useAppContext } from "../../../context";
 import { iconSize } from "../constants";
-import { DownArrowIcon } from "../icons";
+import { NavArrowDown } from "iconoir-react";
 
 interface TextDropdownProps {}
 
@@ -23,7 +23,7 @@ export const TextDropdown: FC<TextDropdownProps> = () => {
       menu={{ items: [] }}
       trigger={["click"]}
       onClick={onClick}
-      icon={<DownArrowIcon />}
+      icon={<NavArrowDown width={12} />}
       dropdownRender={() => <TextStylePanel />}
     >
       <TextIcon height={iconSize} width={iconSize} fr="" />

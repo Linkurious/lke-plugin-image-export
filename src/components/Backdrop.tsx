@@ -107,6 +107,7 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
     setScalingStyleRule(rule);
     return () => {
       rule.destroy();
+      setScalingStyleRule(undefined);
     };
   }, [ogma]);
 
@@ -138,7 +139,8 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
 
   useEffect(() => {
     globalScale = graphScale;
-    if (scalingStyleRule) scalingStyleRule.refresh();
+    if (scalingStyleRule && scalingStyleRule.getIndex() !== null)
+      scalingStyleRule.refresh();
   }, [scalingStyleRule, graphScale]);
 
   return (

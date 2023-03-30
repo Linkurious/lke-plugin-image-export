@@ -1,7 +1,8 @@
 import { FC, useCallback } from "react";
 import Dropdown from "antd/es/dropdown/dropdown";
-import { iconSize } from "../constants";
+import { arrowIconSize, iconSize } from "../constants";
 import { DownArrowIcon } from "../icons";
+import { NavArrowDown } from "iconoir-react";
 import { ArrowRight as RightArrowIcon } from "iconoir-react";
 import { useAnnotationsContext, useAppContext } from "../../../context";
 import { ArrowStylePanel } from "./StylePanel";
@@ -21,7 +22,7 @@ export const ArrowDropDown: FC<ArrowDropdownProps> = () => {
       size="small"
       className="annotations-arrow--dropdown"
       trigger={["click"]}
-      icon={<DownArrowIcon />}
+      icon={<NavArrowDown width={arrowIconSize} />}
       onClick={onClick}
       dropdownRender={() => <ArrowStylePanel />}
     >

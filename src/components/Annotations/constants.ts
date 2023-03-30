@@ -1,7 +1,8 @@
 import { MenuProps } from "antd";
-import { RgbaColor } from "@uiw/color-convert";
+import { RgbaColor, hexToRgba } from "@uiw/color-convert";
 
 export const iconSize = 16;
+export const arrowIconSize = 12;
 
 export type fontFamilyTypes =
   | 'Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif'
@@ -38,10 +39,10 @@ export const lineWidthItems = [
 ];
 
 export const colors = [
+  "#FFFFFF",
   "#F44E3B",
   "#FE9200",
   "#FCDC00",
-  "#DBDF00",
   "#A4DD00",
   "#68CCCA",
   "#73D8FF",
@@ -54,6 +55,11 @@ export const colors = [
 
 export const rgbaToString = ({ r, g, b, a }: RgbaColor) =>
   `rgba(${r}, ${g}, ${b}, ${a})`;
+
+export const backgroundColors = [
+  { r: 0, g: 0, b: 0, a: 0 },
+  ...colors.slice(1).map(hexToRgba),
+].map(rgbaToString);
 
 // darkened colors
 export const colorsDark = [

@@ -87,10 +87,15 @@
   position: relative;
   outline: none;
   border-radius: 2px;
+  border: 1px solid #ddd;
 }
 
 .color-picker--item.checked {
   height: 20px;
   width: 20px;
   margin-top: 2.5px;
+}
+
+.text-styles-panel .ant-form-item-label {
+  min-width: 34.5%;
 }
