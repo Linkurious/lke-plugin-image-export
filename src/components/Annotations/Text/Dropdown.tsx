@@ -20,7 +20,6 @@ export const TextDropdown: FC<TextDropdownProps> = () => {
       title="Text box"
       size="small"
       className="annotations-text--dropdown"
-      menu={{ items: [] }}
       trigger={["click"]}
       onClick={onClick}
       icon={<NavArrowDown width={12} />}

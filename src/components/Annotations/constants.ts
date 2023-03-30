@@ -23,13 +23,12 @@ export const fontItems: MenuProps["items"] = [
   { key: "Monospace", label: "Monospace" },
 ];
 
-export const fontSizeItems: MenuProps["items"] = [
-  { key: "8", label: "8" },
-  { key: "10", label: "10" },
-  { key: "12", label: "12" },
-  { key: "14", label: "14" },
-  { key: "16", label: "16" },
-];
+export const fontSizes = [8, 10, 12, 14, 16, 24, 32, 48, 64, 72];
+
+export const fontSizeItems: MenuProps["items"] = fontSizes.map((fs) => ({
+  key: fs.toString(),
+  label: fs.toString(),
+}));
 
 export const lineWidthItems = [
   { value: 1, title: "thin" },
@@ -52,15 +51,13 @@ export const colors = [
   "#cccccc",
 ];
 
-export const TRANSPARENT = "rgba(0,0,0,0)";
+export const TRANSPARENT = "none";
+export const BLACK = "#333333";
 
 export const rgbaToString = ({ r, g, b, a }: RgbaColor) =>
   `rgba(${r},${g},${b},${a})`;
 
-export const backgroundColors = [
-  TRANSPARENT,
-  ...colors.slice(1).map(hexToRgba).map(rgbaToString),
-];
+export const backgroundColors = [TRANSPARENT, ...colors.slice(1)];
 
 // darkened colors
 export const colorsDark = [

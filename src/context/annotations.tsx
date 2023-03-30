@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useContext,
   Context,
@@ -12,7 +12,14 @@ import {
   TextStyle,
   Control as AnnotationsEditor,
 } from "@linkurious/annotations-control";
-import { colors, rgbaToString } from "../components/Annotations/constants";
+import {
+  colors,
+  fontFamilies,
+  rgbaToString,
+  fontSizes,
+  TRANSPARENT,
+  BLACK,
+} from "../components/Annotations/constants";
 
 interface IAnnotationsContext {
   annotations: AnnotationCollection;
@@ -56,11 +63,11 @@ export const AnnotationsContextProvider = ({ children }: Props) => {
     strokeWidth: 1,
   });
   const [textStyle, setTextStyle] = useState<TextStyle>({
-    font: '"Roboto", sans-serif',
-    fontSize: "24px",
-    color: "black",
-    strokeType: "none",
-    background: "rgba(0,0,0,0)",
+    font: fontFamilies["Sans-serif"],
+    fontSize: fontSizes[5].toString(),
+    color: BLACK,
+    strokeType: TRANSPARENT,
+    background: TRANSPARENT,
   });
   const [editor, setEditor] = useState<AnnotationsEditor>();
 
