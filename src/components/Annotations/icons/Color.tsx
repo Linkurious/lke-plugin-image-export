@@ -1,4 +1,6 @@
 import { SwatchRectRenderProps } from "@uiw/react-color-swatch";
+import { NoBackground } from "./NoBackground";
+import { TRANSPARENT } from "../constants";
 
 export const colorIcon = ({
   onClick,
@@ -9,13 +11,15 @@ export const colorIcon = ({
   const className = checked
     ? "color-picker--item checked"
     : "color-picker--item";
-  console.log({ color });
+  const icon = color === TRANSPARENT ? <NoBackground /> : null;
   return (
     <div
       key={key}
       onClick={onClick}
       className={className}
       style={{ backgroundColor: color }}
-    />
+    >
+      {icon}
+    </div>
   );
 };

@@ -77,6 +77,7 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
     setGraphScale,
     scalingStyleRule,
     setScalingStyleRule,
+    scalingStyleEnabled,
   } = useAppContext();
   const [windowSize, setWindowSize] = useState<Size>({ width: 0, height: 0 });
   const [borderWidth, setBorderWidth] = useState<BorderWidth>({
@@ -107,7 +108,6 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
     setScalingStyleRule(rule);
     return () => {
       rule.destroy();
-      setScalingStyleRule(undefined);
     };
   }, [ogma]);
 
@@ -139,8 +139,12 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
 
   useEffect(() => {
     globalScale = graphScale;
-    if (scalingStyleRule && scalingStyleRule.getIndex() !== null)
-      scalingStyleRule.refresh();
+    if (scalingStyleRule) {
+      // TODO: fix this, it's a hack
+      try {
+        scalingStyleRule.refresh();
+      } catch (e) {}
+    }
   }, [scalingStyleRule, graphScale]);
 
   return (

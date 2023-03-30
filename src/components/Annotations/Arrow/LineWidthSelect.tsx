@@ -22,7 +22,6 @@ export const LineWidthSelect: FC<LineWidthSelectProps> = ({
     <div className="line-width-select">
       <ul>
         {options.map((option, i) => {
-          console.log(option.value, selected);
           const className = `line-width-select--item${
             option.value === selected ? " line-width-select--item-selected" : ""
           }`;

@@ -13,10 +13,12 @@ import {
   backgroundColors,
 } from "../constants";
 import { colorIcon } from "../icons/Color";
+import { useAnnotationsContext } from "../../../context";
 
 interface TextStylePanelProps {}
 
 export const TextStylePanel: FC<TextStylePanelProps> = () => {
+  const { textStyle, setTextStyle } = useAnnotationsContext();
   return (
     <div className="annotations-control--panel text-styles-panel dropdown-content">
       <Form layout="horizontal">
@@ -42,7 +44,11 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
           <ColorPicker colors={colors} rectRender={colorIcon} />
         </Form.Item>
         <Form.Item label="Background color" className="style-background">
-          <ColorPicker colors={backgroundColors} rectRender={colorIcon} />
+          <ColorPicker
+            colors={backgroundColors}
+            color={textStyle.background}
+            rectRender={colorIcon}
+          />
         </Form.Item>
       </Form>
     </div>

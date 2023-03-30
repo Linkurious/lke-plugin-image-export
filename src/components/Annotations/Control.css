@@ -21,6 +21,7 @@
   padding: 24px;
 }
 
+/* Line width select */
 .annotations-control--panel .line-width-select {
   box-shadow: none;
   padding: 0 0 18px 0;
@@ -35,6 +36,12 @@
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   cursor: pointer;
+}
+
+.annotations-control--panel .line-width-select--item {
+  height: 0;
+  border-color: #444;
+  border-style: solid;
 }
 
 .annotations-control--panel
@@ -71,11 +78,15 @@
   margin-top: 3px;
 }
 
-.line-width-select--item {
-  height: 0;
-  border-color: #444;
-  border-style: solid;
+.text-styles-panel .ant-form-item-label {
+  min-width: 34.5%;
 }
+
+.text-styles-panel .ant-form-item-control {
+  align-items: end;
+}
+
+/* Color picker */
 
 .color-picker--item {
   height: 15px;
@@ -96,6 +107,11 @@
   margin-top: 2.5px;
 }
 
-.text-styles-panel .ant-form-item-label {
-  min-width: 34.5%;
+.color-picker--item .no-background-icon {
+  position: relative;
+  top: -3px;
+}
+
+.color-picker--item.checked .no-background-icon {
+  top: 0;
 }

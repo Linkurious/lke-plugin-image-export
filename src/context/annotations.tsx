@@ -52,7 +52,7 @@ export const AnnotationsContextProvider = ({ children }: Props) => {
     useState<AnnotationFeature | null>(null);
   const [arrowStyle, setArrowStyle] = useState<ArrowStyles>({
     head: "arrow",
-    strokeColor: colors[0],
+    strokeColor: colors[1],
     strokeWidth: 1,
   });
   const [textStyle, setTextStyle] = useState<TextStyle>({
@@ -60,6 +60,7 @@ export const AnnotationsContextProvider = ({ children }: Props) => {
     fontSize: "24px",
     color: "black",
     strokeType: "none",
+    background: "rgba(0,0,0,0)",
   });
   const [editor, setEditor] = useState<AnnotationsEditor>();
 
