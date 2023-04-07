@@ -1,20 +1,38 @@
 import { FC, useCallback } from "react";
 import Dropdown from "antd/es/dropdown/dropdown";
 import { arrowIconSize, iconSize } from "../constants";
-import { DownArrowIcon } from "../icons";
 import { NavArrowDown } from "iconoir-react";
 import { ArrowRight as RightArrowIcon } from "iconoir-react";
 import { useAnnotationsContext, useAppContext } from "../../../context";
 import { ArrowStylePanel } from "./StylePanel";
+import { createArrow } from "@linkurious/annotations-control";
 
 interface ArrowDropdownProps {}
 
 export const ArrowDropDown: FC<ArrowDropdownProps> = () => {
-  // const { editor } = useAnnotationsContext();
-  // const { ogma } = useAppContext();
+  const { editor, annotations, arrowStyle, setCurrentAnnotation } =
+    useAnnotationsContext();
+  const { ogma } = useAppContext();
   const onClick = useCallback(() => {
     console.log("start new arrow annotation");
-  }, []);
+    const arrow = createArrow(0, 0, 0, 0, arrowStyle);
+    setCurrentAnnotation(arrow);
+    ogma.events
+      .once("keyup", (evt) => {
+        if (evt.code === 27) {
+          setCurrentAnnotation(null);
+          //setIsDrawing(false);
+        }
+      })
+      .once("mousedown", (evt) => {
+        requestAnimationFrame(() => {
+          const { x, y } = ogma.view.screenToGraphCoordinates(evt);
+          arrow.geometry = createArrow(x, y, x, y, arrowStyle).geometry;
+          editor.startArrow(x, y, arrow);
+          setCurrentAnnotation(arrow);
+        });
+      });
+  }, [editor, arrowStyle, annotations]);
 
   return (
     <Dropdown.Button

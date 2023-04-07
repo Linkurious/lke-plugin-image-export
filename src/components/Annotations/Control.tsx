@@ -4,6 +4,7 @@ import {
   isArrow,
   isText,
 } from "@linkurious/annotations-control";
+import "@linkurious/annotations-control/style.css";
 import "./Control.css";
 import { useAppContext, useAnnotationsContext } from "../../context";
 
@@ -30,7 +31,6 @@ export const AnnotationsControl: FC<AnnotationsControlProps> = () => {
   } = useAnnotationsContext();
   useEffect(() => {
     if (ogma) {
-      console.log(ogma);
       const newEditor = new AnnotationsEditor(ogma);
       newEditor
         .on("select", (annotation) => {
@@ -59,6 +59,7 @@ export const AnnotationsControl: FC<AnnotationsControlProps> = () => {
           });
         })
         .on("remove", (annotation) => {
+          console.log({ annotation });
           setAnnotations({
             ...annotations,
             features: annotations.features.filter(
@@ -68,7 +69,33 @@ export const AnnotationsControl: FC<AnnotationsControlProps> = () => {
         });
       setEditor(newEditor);
     }
+    return () => {
+      editor?.destroy();
+    };
   }, [ogma]);
+
+  // update the style of the current arrow annotation when the style changes
+  useEffect(() => {
+    console.log("arrow style changed", arrowStyle, currentAnnotation);
+    if (
+      editor &&
+      currentAnnotation &&
+      currentAnnotation?.properties.type === "arrow"
+    ) {
+      editor.updateStyle(currentAnnotation.id, arrowStyle);
+    }
+  }, [editor, arrowStyle]);
+
+  // update the style of the current text annotation when the style changes
+  useEffect(() => {
+    if (
+      editor &&
+      currentAnnotation &&
+      currentAnnotation?.properties.type === "text"
+    ) {
+      editor.updateStyle(currentAnnotation.id, textStyle);
+    }
+  }, [editor, textStyle]);
 
   return (
     <div className="annotations-control" ref={containerRef}>
