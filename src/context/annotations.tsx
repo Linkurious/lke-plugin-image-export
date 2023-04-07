@@ -60,7 +60,7 @@ export const AnnotationsContextProvider = ({ children }: Props) => {
   const [arrowStyle, setArrowStyle] = useState<ArrowStyles>({
     head: "arrow",
     strokeColor: colors[1],
-    strokeWidth: 1,
+    strokeWidth: 5,
   });
   const [textStyle, setTextStyle] = useState<TextStyle>({
     font: fontFamilies["Sans-serif"],

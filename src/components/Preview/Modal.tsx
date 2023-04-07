@@ -3,8 +3,13 @@ import Progress from "antd/es/progress";
 import UIModal, { ModalFuncProps } from "antd/es/modal";
 
 import { FormatType, ExportType } from "../../types/formats";
-import { useAppContext } from "../../context";
-import { svg, svgElementToString } from "@linkurious/ogma-export-stitch";
+import { useAnnotationsContext, useAppContext } from "../../context";
+import {
+  svg,
+  svgElementToString,
+  getBoundingBox,
+  mergeBounds,
+} from "@linkurious/ogma-export-stitch";
 import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "../ImageViewer";
@@ -18,6 +23,7 @@ import {
 } from "../../utils/svg";
 import { fullSizeMargin } from "../../constants";
 import { handleDownload } from "../../utils/download";
+import { getAnnotationsBounds } from "@linkurious/annotations-control";
 
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
@@ -38,6 +44,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
     background,
     setBackground,
   } = useAppContext();
+  const { annotations } = useAnnotationsContext();
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState<string>();
   const [progress, setProgress] = useState(0);
@@ -67,6 +74,15 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
           margin: format.value === undefined ? fullSizeMargin : 0,
           width: format.value ? format.value.width : 0,
           height: format.value ? format.value.height : 0,
+          getBounds: (ogma) => {
+            let bounds = getBoundingBox(ogma);
+            console.log({ bounds, annotations: annotations.features.length });
+            if (annotations.features.length > 0) {
+              const annotationBounds = getAnnotationsBounds(annotations);
+              bounds = mergeBounds(bounds, annotationBounds);
+            }
+            return bounds;
+          },
         });
 
       setLoading(false);

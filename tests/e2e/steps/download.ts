@@ -100,9 +100,8 @@ When(/^I click download (.+) (.+)$/, async (name, format) => {
     throw "download failed";
   }
   const outPath = shouldReplace ? expectedPath : actualPath;
-  return await (sharp(downloadPath)
-    .png()
-    .toFile(outPath))
+  if (format === "svg") return await fs.copyFile(downloadPath, outPath);
+  return await sharp(downloadPath).png().toFile(outPath);
 });
 
 Then(/^image is nice (.+)$/, (name) => {
@@ -122,12 +121,14 @@ Then(/^image is nice (.+)$/, (name) => {
 });
 
 When(/^I select background color (\w+)$/, async (background) => {
-  let checked = await I.grabAttributeFrom('.preview-background-selector>button', 'aria-checked');
-  if(background !== checked){
+  let checked = await I.grabAttributeFrom(
+    ".preview-background-selector>button",
+    "aria-checked"
+  );
+  if (background !== checked) {
     I.click(".preview-background-selector>button");
   }
 });
-
 
 //@ts-ignore
 Before(async ({ tags }) => {

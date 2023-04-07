@@ -5,16 +5,21 @@ import { NavArrowDown } from "iconoir-react";
 import { ArrowRight as RightArrowIcon } from "iconoir-react";
 import { useAnnotationsContext, useAppContext } from "../../../context";
 import { ArrowStylePanel } from "./StylePanel";
-import { createArrow } from "@linkurious/annotations-control";
+import { createArrow, isArrow } from "@linkurious/annotations-control";
 
 interface ArrowDropdownProps {}
 
 export const ArrowDropDown: FC<ArrowDropdownProps> = () => {
-  const { editor, annotations, arrowStyle, setCurrentAnnotation } =
-    useAnnotationsContext();
+  const {
+    editor,
+    annotations,
+    arrowStyle,
+    currentAnnotation,
+    setCurrentAnnotation,
+  } = useAnnotationsContext();
   const { ogma } = useAppContext();
+  const isActive = currentAnnotation && isArrow(currentAnnotation);
   const onClick = useCallback(() => {
-    console.log("start new arrow annotation");
     const arrow = createArrow(0, 0, 0, 0, arrowStyle);
     setCurrentAnnotation(arrow);
     ogma.events
@@ -41,6 +46,7 @@ export const ArrowDropDown: FC<ArrowDropdownProps> = () => {
       className="annotations-arrow--dropdown"
       trigger={["click"]}
       icon={<NavArrowDown width={arrowIconSize} />}
+      type={isActive ? "primary" : "default"}
       onClick={onClick}
       dropdownRender={() => <ArrowStylePanel />}
     >

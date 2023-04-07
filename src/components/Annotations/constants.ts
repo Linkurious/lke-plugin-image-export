@@ -38,6 +38,7 @@ export const lineWidthItems = [
 ];
 
 export const colors = [
+  "#FFFFFF",
   "#F44E3B",
   "#FE9200",
   "#FCDC00",
@@ -57,7 +58,7 @@ export const BLACK = "#333333";
 export const rgbaToString = ({ r, g, b, a }: RgbaColor) =>
   `rgba(${r},${g},${b},${a})`;
 
-export const backgroundColors = [TRANSPARENT, ...colors.slice(1)];
+export const backgroundColors = [TRANSPARENT, ...colors];
 
 // darkened colors
 export const colorsDark = [

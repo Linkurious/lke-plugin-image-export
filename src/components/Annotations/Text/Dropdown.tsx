@@ -5,16 +5,22 @@ import { TextStylePanel } from "./StylePanel";
 import { useAnnotationsContext, useAppContext } from "../../../context";
 import { iconSize } from "../constants";
 import { NavArrowDown } from "iconoir-react";
-import { createArrow, createText } from "@linkurious/annotations-control";
+import {
+  createArrow,
+  createText,
+  isText,
+} from "@linkurious/annotations-control";
 
 interface TextDropdownProps {}
 
 export const TextDropdown: FC<TextDropdownProps> = () => {
-  const { editor, textStyle, setCurrentAnnotation } = useAnnotationsContext();
+  const { editor, textStyle, setCurrentAnnotation, currentAnnotation } =
+    useAnnotationsContext();
   const { ogma } = useAppContext();
 
+  const isActive = currentAnnotation && isText(currentAnnotation);
+
   const onClick = useCallback(() => {
-    console.log("start new text annotation", editor);
     // set button active
     ogma.events
       .once("keyup", (evt) => {
@@ -41,6 +47,7 @@ export const TextDropdown: FC<TextDropdownProps> = () => {
       trigger={["click"]}
       onClick={onClick}
       icon={<NavArrowDown width={12} />}
+      type={isActive ? "primary" : "default"}
       dropdownRender={() => <TextStylePanel />}
     >
       <TextIcon height={iconSize} width={iconSize} fr="" />
