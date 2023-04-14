@@ -31,7 +31,9 @@ export const AnnotationsControl: FC<AnnotationsControlProps> = () => {
   } = useAnnotationsContext();
   useEffect(() => {
     if (ogma) {
-      const newEditor = new AnnotationsEditor(ogma);
+      const newEditor = new AnnotationsEditor(ogma, {
+        textPlaceholder: "Your text...",
+      });
       newEditor
         .on("select", (annotation) => {
           // read back the current options from the selected annotation

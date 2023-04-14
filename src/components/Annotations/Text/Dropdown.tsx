@@ -31,7 +31,7 @@ export const TextDropdown: FC<TextDropdownProps> = () => {
       .once("mousedown", (evt) => {
         requestAnimationFrame(() => {
           const { x, y } = ogma.view.screenToGraphCoordinates(evt);
-          const text = createText(x, y, 0, 0, "Text", textStyle);
+          const text = createText(x, y, 0, 0, "", textStyle);
           //control.add(arrow);
           editor.startText(x, y, text);
           setCurrentAnnotation(text);
