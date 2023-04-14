@@ -87,7 +87,8 @@
     "terser": "5.16.6",
     "ts-node": "10.8.1",
     "typescript": "5.0.2",
-    "vite": "4.2.0"
+    "vite": "4.2.0",
+    "xmldom-qsa": "^1.1.3-gamma"
   },
   "dependencies": {
     "@ant-design/colors": "6.0.0",

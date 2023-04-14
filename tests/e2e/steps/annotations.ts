@@ -1,10 +1,15 @@
 import { assert } from "chai";
 import Ogma from "@linkurious/ogma";
 import { formats } from "../../../src/constants";
+import {
+  colors,
+  lineWidthItems,
+} from "../../../src/components/annotations/constants";
 import { locator } from "codeceptjs";
 import { BrowserContext, Page } from "playwright";
 import * as path from "path";
 import * as fs from "fs/promises";
+import { DOMParser } from "xmldom-qsa";
 
 const { I } = inject();
 const ogma = {} as Ogma;
@@ -43,6 +48,15 @@ Then(
     // read the file from screenshotFolder
     const filePath = path.join(screenshotFolder, name);
     const svg = await fs.readFile(filePath, "utf-8");
-    assert.notEqual(svg.indexOf('data-annotation-type="arrow"'), -1);
+    const doc = new DOMParser().parseFromString(svg);
+    const arrows = doc.querySelectorAll("[data-annotation-type=arrow]");
+    assert.equal(arrows.length, 1);
+    const arrow = arrows[0];
+    assert.equal(arrow.getAttribute("stroke"), colors[1]);
+    assert.equal(
+      arrow.getAttribute("stroke-width"),
+      lineWidthItems[1].value.toString()
+    );
+    // not checking the path here, assuming it's tested in the drawing module
   }
 );
