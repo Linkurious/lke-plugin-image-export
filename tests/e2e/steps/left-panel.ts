@@ -24,7 +24,7 @@ Then(/^I see it's size within the panel (.*)$/, async (selectedFormat) => {
 Then(/^it updates on zoom (.*)$/, async (selectedFormat) => {
   const format = getFormat(selectedFormat);
   const before = await I.grabTextFrom(".dimensions");
-  I.zoom("canvas", 100);
+  I.zoom(".visualisation--container", 100);
   I.wait(1);
   const after = await I.grabTextFrom(".dimensions");
   if (format && !format.value) {

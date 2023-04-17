@@ -100,7 +100,6 @@ When(/^I click download (.+) (.+)$/, async (name, format) => {
     throw "download failed";
   }
   const outPath = shouldReplace ? expectedPath : actualPath;
-  if (format === "svg") return await fs.copyFile(downloadPath, outPath);
   return await sharp(downloadPath).png().toFile(outPath);
 });
 

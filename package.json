@@ -43,7 +43,7 @@
     "build:web": "DEV=true vite build",
     "types": "tsc --declaration --emitDeclarationOnly --outDir dist/types",
     "test": "vitest run",
-    "pree2e:tests": "npm run build:web",
+    "-pree2e:tests": "npm run build:web",
     "e2e:tests": "./scripts/e2e/index.js",
     "test:unit": "vitest run --coverage --reporter=junit --reporter=default --outputFile reports/unit/junit-test-results.xml",
     "lint": "eslint --ext .js,.ts --fix",
