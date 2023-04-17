@@ -1,11 +1,9 @@
 import { assert } from "chai";
 import Ogma from "@linkurious/ogma";
-import { formats } from "../../../src/constants";
 import {
   colors,
   lineWidthItems,
 } from "../../../src/components/annotations/constants";
-import { locator } from "codeceptjs";
 import { BrowserContext, Page } from "playwright";
 import * as path from "path";
 import * as fs from "fs/promises";
