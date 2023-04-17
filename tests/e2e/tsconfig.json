@@ -1,6 +1,7 @@
 {
   "ts-node": {
-    "files": true
+    "files": true,
+    "transpileOnly": true
   },
   "compilerOptions": {
     "target": "es2018",
@@ -12,6 +13,5 @@
     "resolveJsonModule": true,
     "noUnusedParameters": false,
     "noImplicitAny": false
-  },
-  "include": ["steps", "../../package.json", "../../src"]
+  }
 }

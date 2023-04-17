@@ -1,7 +1,7 @@
 /// <reference types='codeceptjs' />
 
-type CustomHelper = import('./helpers/customHelper');
-type Ogma = typeof import('@linkurious/ogma');
+type CustomHelper = import("./helpers/customHelper");
+type Ogma = typeof import("@linkurious/ogma");
 
 declare namespace CodeceptJS {
   interface SupportObject {
