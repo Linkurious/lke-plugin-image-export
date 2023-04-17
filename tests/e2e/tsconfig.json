@@ -14,5 +14,5 @@
     "noUnusedParameters": false,
     "noImplicitAny": false
   },
-  "include": ["../../src", "steps", "helpers"]
+  "include": ["../../../src", "steps", "steps/*.ts", "helpers"]
 }
