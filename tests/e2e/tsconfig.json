@@ -12,5 +12,6 @@
     "resolveJsonModule": true,
     "noUnusedParameters": false,
     "noImplicitAny": false
-  }
+  },
+  "include": ["steps", "../../package.json", "../../src"]
 }
