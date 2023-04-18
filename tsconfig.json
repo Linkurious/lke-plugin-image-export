@@ -21,5 +21,10 @@
     "composite": true,
     "types": ["codeceptjs", "node"]
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx", "package.json"]
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "tests/e2e/**/*.ts",
+    "package.json"
+  ]
 }
