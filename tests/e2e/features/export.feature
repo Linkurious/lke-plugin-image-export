@@ -1,6 +1,6 @@
-@Sda1a4fc3
 Feature: Export
-  @export @Tf483a205
+
+  @export @export-size
   Scenario Outline: Export at size
     Given I go to main page
     And I select format <format>

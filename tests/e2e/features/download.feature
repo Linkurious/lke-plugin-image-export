@@ -1,4 +1,3 @@
-@Sa24af3ff
 Feature: Download
   @download @downloadpng
   Scenario Outline: Download png

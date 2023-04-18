@@ -6,22 +6,25 @@ import { locator } from "codeceptjs";
 const { I } = inject();
 const ogma = {} as Ogma;
 
-function getFormat(selectedFormat) {
+function getFormat(selectedFormat: string) {
   return formats.find((f) => f.label === selectedFormat);
 }
-When(/^I select format (.*)$/, async (format) => {
+When(/^I select format (.*)$/, async (format: string) => {
   I.click(locator.build(".format-select"));
   I.waitForElement(locator.build("span").withText(format));
   I.click(locator.build("span").withText(format), undefined, { force: true });
 });
-Then(/^I see it's size within the panel (.*)$/, async (selectedFormat) => {
-  const format = getFormat(selectedFormat);
-  if (format && format.value) {
-    I.see(`${format.value.width} × ${format.value.height} px`, ".dimensions");
+Then(
+  /^I see it's size within the panel (.*)$/,
+  async (selectedFormat: string) => {
+    const format = getFormat(selectedFormat);
+    if (format && format.value) {
+      I.see(`${format.value.width} × ${format.value.height} px`, ".dimensions");
+    }
   }
-});
+);
 
-Then(/^it updates on zoom (.*)$/, async (selectedFormat) => {
+Then(/^it updates on zoom (.*)$/, async (selectedFormat: string) => {
   const format = getFormat(selectedFormat);
   const before = await I.grabTextFrom(".dimensions");
   I.zoom(".visualisation--container", 100);
@@ -39,12 +42,12 @@ const getTextSize = async () =>
   I.executeScript(() => {
     return Math.max(...(ogma.getNodes().getAttribute("text.size") as number[]));
   });
-When(/^I select text size (.*)$/, async (size) => {
+When(/^I select text size (.*)$/, async (size: string) => {
   sizeBefore = (await getTextSize()) as any as number;
   I.click(locator.build(".ant-slider-mark>span").withText("200%"));
 });
 
-Then(/^I see it's updated within the viz (.*)$/, async (size) => {
+Then(/^I see it's updated within the viz (.*)$/, async (size: string) => {
   const sizeAfter = (await getTextSize()) as any as number;
   const ratio = +size.slice(0, -1) / 100;
   if (ratio > 1) {
@@ -79,7 +82,7 @@ When(/^I toggle text collision$/, async () => {
   I.click(".collision-switch");
 });
 
-Then(/^text collide accordingly (\w+)$/, async (shouldCollide) => {
+Then(/^text collide accordingly (\w+)$/, async (shouldCollide: string) => {
   const overlapRemoval = (await I.executeScript(() => {
     const overlapRemoval = ogma.getOptions().texts?.preventOverlap;
     return overlapRemoval === undefined || overlapRemoval ? true : false;
@@ -91,7 +94,7 @@ When(/^I toggle snapping$/, async () => {
   I.click(".snap-switch");
 });
 
-Then(/^snapping toggles accordingly (\w+)$/, async (shouldSnap) => {
+Then(/^snapping toggles accordingly (\w+)$/, async (shouldSnap: string) => {
   const snapEnabled = (await I.executeScript(() =>
     ogma.tools.snapping.enabled()
   )) as unknown as boolean;

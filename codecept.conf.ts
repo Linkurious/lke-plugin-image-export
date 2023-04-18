@@ -1,6 +1,4 @@
-require("ts-node/register");
-
-const { setHeadlessWhen, setWindowSize } = require("@codeceptjs/configure");
+import { setHeadlessWhen, setWindowSize } from "@codeceptjs/configure";
 
 setHeadlessWhen(process.env.CI);
 
@@ -15,7 +13,8 @@ const emulateOptions = process.env.TEST_RETINA
   : { isMobile: false, deviceScaleFactor: 1 };
 
 /** @type {CodeceptJS.MainConfig} */
-exports.config = {
+export const config: CodeceptJS.MainConfig = {
+  // this is irreleavnt by the way
   tests: "./tests/e2e/*_test.ts",
   output: "./reports/html/e2e",
   timeout: 25,

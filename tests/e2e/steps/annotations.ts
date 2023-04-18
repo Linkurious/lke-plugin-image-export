@@ -3,7 +3,7 @@ import Ogma from "@linkurious/ogma";
 import {
   colors,
   lineWidthItems,
-} from "../../../src/components/annotations/constants";
+} from "../../../src/components/Annotations/constants";
 import { BrowserContext, Page } from "playwright";
 import * as path from "path";
 import * as fs from "fs/promises";
@@ -15,7 +15,7 @@ const ogma = {} as Ogma;
 const rootFolder = "../../reports/html/e2e/";
 const screenshotFolder = path.join(rootFolder, "screenshot/");
 
-When(/^I select annotation (\w+)$/, async (type) => {
+When(/^I select annotation (\w+)$/, async (type: string) => {
   I.waitForElement(`.annotations-${type}--dropdown button`);
   I.click(`.annotations-${type}--dropdown button`);
 });
@@ -27,7 +27,7 @@ When(/^I select annotation text$/, async () => {
 
 When(
   /^I draw an arrow from (\d*),(\d+) to (\d+),(\d+)$/,
-  async (x1s, y1s, x2s, y2s) => {
+  async (x1s: string, y1s: string, x2s: string, y2s: string) => {
     const [x1, y1, x2, y2] = [x1s, y1s, x2s, y2s].map((s) => parseInt(s, 10));
     await I.usePlaywrightTo(
       "draw an arrow",
@@ -45,7 +45,7 @@ When(
 
 When(
   /^I draw a text from (\d*),(\d+) to (\d+),(\d+)$/,
-  async (x1s, y1s, x2s, y2s) => {
+  async (x1s: string, y1s: string, x2s: string, y2s: string) => {
     const [x1, y1, x2, y2] = [x1s, y1s, x2s, y2s].map((s) => parseInt(s, 10));
     await I.usePlaywrightTo(
       "draw an text",
@@ -63,7 +63,7 @@ When(
 
 When(
   /^I change the text at (\d+),(\d+) to "([^"]+)"$/,
-  async (x1s, y1s, text) => {
+  async (x1s: string, y1s: string, text: string) => {
     const [x1, y1] = [x1s, y1s].map((s) => parseInt(s, 10));
     await I.usePlaywrightTo(
       "change the text",
@@ -86,7 +86,7 @@ When(
 
 Then(
   /^The export ([\w\.]+) contains an arrow from (\d*),(\d+) to (\d+),(\d+)$/,
-  async (name, x1s, y1s, x2s, y2s) => {
+  async (name: string, x1s: string, y1s: string, x2s: string, y2s: string) => {
     // read the file from screenshotFolder
     const filePath = path.join(screenshotFolder, name);
     const svg = await fs.readFile(filePath, "utf-8");
@@ -105,7 +105,7 @@ Then(
 
 Then(
   /^The export ([\w.]+) contains a text "([^"]+)" at (\d+),(\d+) to (\d+),(\d+)$/,
-  async (name, text) => {
+  async (name: string, text: string) => {
     const filePath = path.join(screenshotFolder, name);
     const svg = await fs.readFile(filePath, "utf-8");
     const doc = new DOMParser().parseFromString(svg);
