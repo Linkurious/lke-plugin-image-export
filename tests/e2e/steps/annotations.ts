@@ -12,7 +12,7 @@ import { DOMParser } from "xmldom-qsa";
 const { I } = inject();
 const ogma = {} as Ogma;
 
-const rootFolder = "../../reports/html/e2e/";
+const rootFolder = path.resolve(__dirname, "../../../reports/html/e2e/");
 const screenshotFolder = path.join(rootFolder, "screenshot/");
 
 When(/^I select annotation (\w+)$/, async (type: string) => {
