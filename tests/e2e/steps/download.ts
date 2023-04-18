@@ -105,10 +105,10 @@ When(/^I click download (.+) (.+)$/, async (name: string, format: string) => {
 });
 
 When(/^I download (.+) (.+)$/, async (name: string, format: string) => {
-  const [, downloadPath] = await I.download("text=Download");
-  const { expectedPath, actualPath } = getPaths(name);
+  const [download, downloadPath] = await I.download("text=Download");
+  const { actualPath } = getPaths(name);
   if (!downloadPath) throw "download failed";
-  await fs.copyFile(downloadPath, shouldReplace ? expectedPath : actualPath);
+  return await download.saveAs(actualPath);
 });
 
 Then(/^image is nice (.+)$/, (name: string) => {
