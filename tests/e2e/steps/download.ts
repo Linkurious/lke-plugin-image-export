@@ -1,7 +1,7 @@
 import Ogma from "@linkurious/ogma";
 import fs from "fs/promises";
 import mkdir from "mkdirp";
-import path from "path";
+import * as path from "path";
 import BlinkDiff from "blink-diff";
 import { BrowserContext, Page } from "playwright";
 import sharp from "sharp";
@@ -99,6 +99,11 @@ When(/^I click download (.+) (.+)$/, async (name, format) => {
   if (!downloadPath) {
     throw "download failed";
   }
+  if (format === "svg")
+    return await fs.copyFile(
+      downloadPath,
+      shouldReplace ? expectedPath : actualPath
+    );
   const outPath = shouldReplace ? expectedPath : actualPath;
   return await sharp(downloadPath).png().toFile(outPath);
 });
