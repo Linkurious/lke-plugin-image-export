@@ -86,6 +86,7 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
             menu={{ items: fontItems, onClick: onFontSelect }}
             trigger={["click"]}
             icon={<DownArrowIcon />}
+            overlayClassName="text--font-dropdown"
           >
             {currentFont.label}
           </Dropdown.Button>

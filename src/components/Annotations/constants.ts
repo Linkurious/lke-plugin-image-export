@@ -17,7 +17,7 @@ export const fontFamilies: Record<fontNameAliases, fontFamilyTypes> = {
   Monospace: 'Menlo, Monaco, Consolas, "Courier New", monospace',
 };
 
-export const fontItems: MenuProps["items"] = [
+export const fontItems: NonNullable<MenuProps["items"]> = [
   { key: "Sans-serif", label: "Normal" },
   { key: "Serif", label: "Serif" },
   { key: "Monospace", label: "Monospace" },

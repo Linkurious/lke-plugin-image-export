@@ -3,6 +3,8 @@ import Ogma from "@linkurious/ogma";
 import {
   colors,
   lineWidthItems,
+  fontItems,
+  fontFamilies,
 } from "../../../src/components/Annotations/constants";
 import { BrowserContext, Page } from "playwright";
 import * as path from "path";
@@ -169,7 +171,20 @@ When(/^I change the text color to "([^"]+)"$/, async (color: string) => {
   const colorButton = `${panelClass} ${selectorItem} .color-picker--item:nth-child(${color})`;
   I.waitForElement(colorButton);
   I.click(colorButton);
-  return I.wait(0.5);
+  return I.wait(0.25);
+});
+
+When(/^I change the text font to "([^"]+)"$/, async (font: string) => {
+  const panelClass = ".annotations-control--panel-text";
+  I.waitForElement(panelClass);
+  const selectorItem = ".text--font .ant-dropdown-trigger";
+  const fontDropDownButton = `${panelClass} ${selectorItem}`;
+  I.waitForElement(fontDropDownButton);
+  I.click(fontDropDownButton);
+  const fontItem = `.text--font-dropdown .ant-dropdown-menu-item:nth-child(${font})`;
+  I.waitForElement(fontItem);
+  I.click(fontItem);
+  I.wait(0.25);
 });
 
 Then(
@@ -275,6 +290,21 @@ Then(
     assert.equal(
       texts[0].getAttribute("fill")?.toUpperCase(),
       colors[+color - 1]
+    );
+  }
+);
+
+Then(
+  /^The export "([^"]+)" contains a text "([^"]+)" with font "([^"]+)"$/,
+  async (name: string, text: string, font: string) => {
+    const { doc } = await readSvg(name);
+    const texts = doc.querySelectorAll("[data-annotation-type=text]");
+    assert.equal(texts.length, 1);
+    assert.equal(texts[0].textContent, text);
+    const fontIndex = +font - 1;
+    assert.equal(
+      texts[0].getAttribute("font-family"),
+      fontFamilies[fontItems[fontIndex]!.key as keyof typeof fontFamilies]
     );
   }
 );
