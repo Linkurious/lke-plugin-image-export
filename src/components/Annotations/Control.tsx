@@ -78,7 +78,6 @@ export const AnnotationsControl: FC<AnnotationsControlProps> = () => {
 
   // update the style of the current arrow annotation when the style changes
   useEffect(() => {
-    console.log("arrow style changed", arrowStyle, currentAnnotation);
     if (
       editor &&
       currentAnnotation &&

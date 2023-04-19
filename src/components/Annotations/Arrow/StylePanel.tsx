@@ -53,28 +53,38 @@ export const ArrowStylePanel: FC<ArrowStylePanelProps> = () => {
     [arrowStyle]
   );
 
+  const direction =
+    arrowStyle.head && arrowStyle.tail && arrowStyle.tail !== "none"
+      ? ArrowDirection.BOTH
+      : !arrowStyle.head && !arrowStyle.tail
+      ? ArrowDirection.NONE
+      : ArrowDirection.HEAD;
+
   return (
     <div className="annotations-control--panel dropdown-content annotations-control--panel-arrow">
       <Form layout="horizontal">
         <Form.Item label="Direction">
           <Button.Group>
             <Button
+              className="direction--both"
               value={ArrowDirection.BOTH}
-              type={arrowStyle.head && arrowStyle.tail ? "primary" : "default"}
+              type={direction === ArrowDirection.BOTH ? "primary" : "default"}
               onClick={() => onDirectionSelect(ArrowDirection.BOTH)}
             >
               <DoubleArrowIcon />
             </Button>
             <Button
+              className="direction--none"
               value={ArrowDirection.NONE}
-              type={arrowStyle.head ? "default" : "primary"}
+              type={direction === ArrowDirection.NONE ? "primary" : "default"}
               onClick={() => onDirectionSelect(ArrowDirection.NONE)}
             >
               <Minus fr="" />
             </Button>
             <Button
+              className="direction--head"
               value={ArrowDirection.HEAD}
-              type={arrowStyle.head && !arrowStyle.tail ? "primary" : "default"}
+              type={direction === ArrowDirection.HEAD ? "primary" : "default"}
               onClick={() => onDirectionSelect(ArrowDirection.HEAD)}
             >
               <RightArrowIcon />
@@ -87,6 +97,7 @@ export const ArrowStylePanel: FC<ArrowStylePanelProps> = () => {
           onChange={onLineWidthSelect}
         />
         <ColorPicker
+          className="arrow--color-picker"
           color={arrowStyle.strokeColor}
           colors={colors}
           onChange={onColorSelect}

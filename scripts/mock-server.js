@@ -15,11 +15,10 @@ server.use(
 );
 server.use("/api", router);
 
-server.listen(3000, () => {
+const app = server.listen(3000, () => {
   console.log("JSON Server is running");
 });
 
 process.on("SIGTERM", () => {
-  console.log("SIGTERM signal received: closing HTTP server");
-  server.close(() => console.log("HTTP server closed"));
+  if (app.listening) app.close(() => console.log("HTTP server closed"));
 });

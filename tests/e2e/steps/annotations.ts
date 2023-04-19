@@ -15,14 +15,24 @@ const ogma = {} as Ogma;
 const rootFolder = path.resolve(__dirname, "../../../reports/html/e2e/");
 const screenshotFolder = path.join(rootFolder, "screenshot/");
 
+const readSvg = async (fileName: string) => {
+  const filePath = path.join(screenshotFolder, fileName);
+  console.log("filePath", filePath);
+  const svg = await fs.readFile(filePath, "utf-8");
+  const doc = new DOMParser().parseFromString(svg);
+  return { doc, svg };
+};
+
 When(/^I select annotation (\w+)$/, async (type: string) => {
-  I.waitForElement(`.annotations-${type}--dropdown button`);
-  I.click(`.annotations-${type}--dropdown button`);
+  I.waitForElement(
+    `.annotations-${type}--dropdown .ant-btn-compact-first-item`
+  );
+  I.click(`.annotations-${type}--dropdown .ant-btn-compact-first-item`);
 });
 
 When(/^I select annotation text$/, async () => {
-  I.waitForElement(".annotations-text--dropdown button");
-  I.click(".annotations-text--dropdown button");
+  I.waitForElement(".annotations-text--dropdown .ant-btn-compact-first-item");
+  I.click(".annotations-text--dropdown .ant-btn-compact-first-item");
 });
 
 When(
@@ -61,6 +71,11 @@ When(
   }
 );
 
+When(/^I open the (\w+) settings menu$/, async (type: "text" | "arrow") => {
+  I.waitForElement(`.annotations-${type}--dropdown .ant-dropdown-trigger`);
+  I.click(`.annotations-${type}--dropdown .ant-dropdown-trigger`);
+});
+
 When(
   /^I change the text at (\d+),(\d+) to "([^"]+)"$/,
   async (x1s: string, y1s: string, text: string) => {
@@ -84,13 +99,29 @@ When(
   }
 );
 
+When(/^I change the arrow direction to "(\w+)"$/, async (direction: string) => {
+  I.waitForElement(".annotations-control--panel-arrow");
+  const directionButton = `.annotations-control--panel-arrow .direction--${direction}`;
+  I.waitForElement(directionButton);
+  I.click(directionButton);
+  return I.wait(0.5);
+});
+
+When(/^I change the arrow color to "(\w+)"$/, async (color: string) => {
+  const panelClass = ".annotations-control--panel-arrow";
+  I.waitForElement(panelClass);
+  const selectorItem = ".arrow--color-picker";
+  const colorButton = `${panelClass} ${selectorItem} .color-picker--item:nth-child(${color})`;
+  I.waitForElement(colorButton);
+  I.click(colorButton);
+  return I.wait(0.5);
+});
+
 Then(
   /^The export ([\w\.]+) contains an arrow from (\d*),(\d+) to (\d+),(\d+)$/,
   async (name: string, x1s: string, y1s: string, x2s: string, y2s: string) => {
     // read the file from screenshotFolder
-    const filePath = path.join(screenshotFolder, name);
-    const svg = await fs.readFile(filePath, "utf-8");
-    const doc = new DOMParser().parseFromString(svg);
+    const { doc } = await readSvg(name);
     const arrows = doc.querySelectorAll("[data-annotation-type=arrow]");
     assert.equal(arrows.length, 1);
     const arrow = arrows[0];
@@ -106,11 +137,37 @@ Then(
 Then(
   /^The export ([\w.]+) contains a text "([^"]+)" at (\d+),(\d+) to (\d+),(\d+)$/,
   async (name: string, text: string) => {
-    const filePath = path.join(screenshotFolder, name);
-    const svg = await fs.readFile(filePath, "utf-8");
-    const doc = new DOMParser().parseFromString(svg);
+    const { doc } = await readSvg(name);
     const texts = doc.querySelectorAll("[data-annotation-type=text]");
     assert.equal(texts.length, 1);
     assert.equal(texts[0].textContent, text);
+  }
+);
+
+Then(
+  /^The export "([^"]+)" contains an arrow with direction "([^"]+)"$/,
+  async (name: string, direction: string) => {
+    const { doc } = await readSvg(name);
+    const arrows = doc.querySelectorAll("[data-annotation-type=arrow]");
+    assert.equal(arrows.length, 1);
+    const arrow = arrows[0];
+    const commands = arrow.getAttribute("d")?.split(" ");
+    const expectedLength =
+      direction === "both" ? 21 : direction === "none" ? 5 : 13;
+    assert.equal(commands?.length, expectedLength);
+  }
+);
+
+Then(
+  /^The export "([^"]+)" contains an arrow with color "([^"]+)"$/,
+  async (name: string, color: string) => {
+    const { doc } = await readSvg(name);
+    const arrows = doc.querySelectorAll("[data-annotation-type=arrow]");
+    assert.equal(arrows.length, 1);
+    const arrow = arrows[0];
+    assert.equal(
+      arrow.getAttribute("stroke")?.toUpperCase(),
+      colors[+color - 1]
+    );
   }
 );
