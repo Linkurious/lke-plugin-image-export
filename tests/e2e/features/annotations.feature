@@ -115,3 +115,22 @@ Feature: Annotations
     | 500 | 500 | 700 | 600 | 550 | 550 | Changed text | 3 | text-background-2.svg | svg |
     | 500 | 500 | 700 | 600 | 550 | 550 | Changed text | 4 | text-background-4.svg | svg |
     | 500 | 500 | 700 | 600 | 550 | 550 | Changed text | 1 | text-background-6.svg | svg |
+
+  @annotations-text-color
+  Scenario Outline: Draw a text with color
+    Given I go to main page
+    And I select annotation text
+    And I draw a text from <x1>,<y1> to <x2>,<y2>
+    And I change the text at <x3>,<y3> to "<text>"
+    And I select text at <x3>,<y3>
+    And I open the text settings menu
+    And I change the text color to "<color>"
+    And I unselect the text
+    And I open preview and wait for loading
+    And I select output format <outputFormat>
+    When I download <name> <outputFormat>
+    Then The export "<name>" contains a text "<text>" with color "<color>"
+  Examples:
+    | x1 | y1 | x2  | y2  | x3 | y3 | text | color | name | outputFormat |
+    | 500 | 500 | 700 | 600 | 550 | 550 | Changed text | 2 | text-color-2.svg | svg |
+    | 500 | 500 | 700 | 600 | 550 | 550 | Changed text | 4 | text-color-4.svg | svg |

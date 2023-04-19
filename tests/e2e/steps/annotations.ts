@@ -45,7 +45,7 @@ When(
         await page.mouse.move(x1, y1);
         await page.mouse.down();
         await page.waitForTimeout(200);
-        await page.mouse.move(x2, y2, { steps: 60 });
+        await page.mouse.move(x2, y2, { steps: 15 });
         await page.waitForTimeout(200);
         await page.mouse.up();
       }
@@ -63,7 +63,7 @@ When(
         await page.mouse.move(x1, y1);
         await page.mouse.down();
         await page.waitForTimeout(200);
-        await page.mouse.move(x2, y2, { steps: 60 });
+        await page.mouse.move(x2, y2, { steps: 15 });
         await page.waitForTimeout(200);
         await page.mouse.up();
       }
@@ -82,7 +82,7 @@ When(/^I select text at (\d+),(\d+)$/, async (x1s: string, y1s: string) => {
     "select text",
     async ({ page }: { page: Page; context: BrowserContext }) => {
       await page.mouse.move(0, 0);
-      await page.mouse.move(x1, y1, { steps: 30 });
+      await page.mouse.move(x1, y1, { steps: 15 });
       await page.mouse.down();
       await page.mouse.up();
     }
@@ -117,7 +117,7 @@ When(/^I change the arrow direction to "(\w+)"$/, async (direction: string) => {
   const directionButton = `.annotations-control--panel-arrow .direction--${direction}`;
   I.waitForElement(directionButton);
   I.click(directionButton);
-  return I.wait(0.5);
+  return I.wait(0.25);
 });
 
 When(/^I change the arrow color to "(\w+)"$/, async (color: string) => {
@@ -127,7 +127,7 @@ When(/^I change the arrow color to "(\w+)"$/, async (color: string) => {
   const colorButton = `${panelClass} ${selectorItem} .color-picker--item:nth-child(${color})`;
   I.waitForElement(colorButton);
   I.click(colorButton);
-  return I.wait(0.5);
+  return I.wait(0.25);
 });
 
 When(/^I change the arrow width to "(\w+)"$/, async (width: string) => {
@@ -138,7 +138,7 @@ When(/^I change the arrow width to "(\w+)"$/, async (width: string) => {
   const widthButton = `${panelClass} ${selectorItem} ${itemClass}:nth-child(${width})`;
   I.waitForElement(widthButton);
   I.click(widthButton);
-  return I.wait(0.5);
+  return I.wait(0.25);
 });
 
 When(/^I change the text background to "(\w+)"$/, async (color: string) => {
@@ -148,18 +148,28 @@ When(/^I change the text background to "(\w+)"$/, async (color: string) => {
   const colorButton = `${panelClass} ${selectorItem} .color-picker--item:nth-child(${color})`;
   I.waitForElement(colorButton);
   I.click(colorButton);
-  return I.wait(0.5);
+  return I.wait(0.25);
 });
 
 When(/^I unselect the text$/, async () => {
   return await I.usePlaywrightTo(
     "unselect text",
     async ({ page }: { page: Page; context: BrowserContext }) => {
-      await page.mouse.move(0, 0, { steps: 30 });
+      await page.mouse.move(0, 0, { steps: 15 });
       await page.mouse.down();
       await page.mouse.up();
     }
   );
+});
+
+When(/^I change the text color to "([^"]+)"$/, async (color: string) => {
+  const panelClass = ".annotations-control--panel-text";
+  I.waitForElement(panelClass);
+  const selectorItem = ".text--color-picker";
+  const colorButton = `${panelClass} ${selectorItem} .color-picker--item:nth-child(${color})`;
+  I.waitForElement(colorButton);
+  I.click(colorButton);
+  return I.wait(0.5);
 });
 
 Then(
@@ -252,5 +262,19 @@ Then(
     if (+color === 1) assert.equal(bg?.getAttribute("fill"), "none");
     else
       assert.equal(bg?.getAttribute("fill")?.toUpperCase(), colors[+color - 2]);
+  }
+);
+
+Then(
+  /^The export "([^"]+)" contains a text "([^"]+)" with color "([^"]+)"$/,
+  async (name: string, text: string, color: string) => {
+    const { doc } = await readSvg(name);
+    const texts = doc.querySelectorAll("[data-annotation-type=text]");
+    assert.equal(texts.length, 1);
+    assert.equal(texts[0].textContent, text);
+    assert.equal(
+      texts[0].getAttribute("fill")?.toUpperCase(),
+      colors[+color - 1]
+    );
   }
 );
