@@ -25,10 +25,12 @@ export const fontItems: NonNullable<MenuProps["items"]> = [
 
 export const fontSizes = [8, 10, 12, 14, 16, 24, 32, 48, 64, 72];
 
-export const fontSizeItems: MenuProps["items"] = fontSizes.map((fs) => ({
-  key: fs.toString(),
-  label: fs.toString(),
-}));
+export const fontSizeItems: NonNullable<MenuProps["items"]> = fontSizes.map(
+  (fs) => ({
+    key: fs.toString(),
+    label: fs.toString(),
+  })
+);
 
 export const lineWidthItems = [
   { value: 1, title: "thin" },

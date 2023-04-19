@@ -96,6 +96,7 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
             className="text--size"
             menu={{ items: fontSizeItems, onClick: onFontSizeSelect }}
             trigger={["click"]}
+            overlayClassName="text--size-dropdown"
             icon={<DownArrowIcon />}
           >
             {currentFontSize.label}

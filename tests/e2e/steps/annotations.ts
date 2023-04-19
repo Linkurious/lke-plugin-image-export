@@ -5,6 +5,7 @@ import {
   lineWidthItems,
   fontItems,
   fontFamilies,
+  fontSizeItems,
 } from "../../../src/components/Annotations/constants";
 import { BrowserContext, Page } from "playwright";
 import * as path from "path";
@@ -187,6 +188,19 @@ When(/^I change the text font to "([^"]+)"$/, async (font: string) => {
   I.wait(0.25);
 });
 
+When(/^I change the text size to "([^"]+)"$/, async (size: string) => {
+  const panelClass = ".annotations-control--panel-text";
+  I.waitForElement(panelClass);
+  const selectorItem = ".text--size .ant-dropdown-trigger";
+  const sizeDropDownButton = `${panelClass} ${selectorItem}`;
+  I.waitForElement(sizeDropDownButton);
+  I.click(sizeDropDownButton);
+  const sizeItem = `.text--size-dropdown .ant-dropdown-menu-item:nth-child(${size})`;
+  I.waitForElement(sizeItem);
+  I.click(sizeItem);
+  I.wait(0.25);
+});
+
 Then(
   /^The export "([^"]+)" contains an arrow from (\d*),(\d+) to (\d+),(\d+)$/,
   async (name: string, x1s: string, y1s: string, x2s: string, y2s: string) => {
@@ -305,6 +319,21 @@ Then(
     assert.equal(
       texts[0].getAttribute("font-family"),
       fontFamilies[fontItems[fontIndex]!.key as keyof typeof fontFamilies]
+    );
+  }
+);
+
+Then(
+  /^The export "([^"]+)" contains a text "([^"]+)" with size "([^"]+)"$/,
+  async (name: string, text: string, size: string) => {
+    const { doc } = await readSvg(name);
+    const texts = doc.querySelectorAll("[data-annotation-type=text]");
+    assert.equal(texts.length, 1);
+    assert.equal(texts[0].textContent, text);
+    const sizeIndex = +size - 1;
+    assert.equal(
+      texts[0].getAttribute("font-size"),
+      fontSizeItems[sizeIndex]!.key
     );
   }
 );

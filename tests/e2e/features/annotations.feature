@@ -153,3 +153,21 @@ Feature: Annotations
   Examples:
     | x1 | y1 | x2  | y2  | x3 | y3 | text | font | name | outputFormat |
     | 500 | 500 | 700 | 600 | 550 | 550 | Changed text | 2 | text-font-1.svg | svg |
+
+  @annotations-text-size
+  Scenario Outline: Draw a text with size
+    Given I go to main page
+    And I select annotation text
+    And I draw a text from <x1>,<y1> to <x2>,<y2>
+    And I change the text at <x3>,<y3> to "<text>"
+    And I select text at <x3>,<y3>
+    And I open the text settings menu
+    And I change the text size to "<size>"
+    And I unselect the text
+    And I open preview and wait for loading
+    And I select output format <outputFormat>
+    When I download <name> <outputFormat>
+    Then The export "<name>" contains a text "<text>" with size "<size>"
+  Examples:
+    | x1 | y1 | x2  | y2  | x3 | y3 | text | size | name | outputFormat |
+    | 500 | 500 | 700 | 600 | 550 | 550 | Changed text | 3 | text-size-1.svg | svg |
