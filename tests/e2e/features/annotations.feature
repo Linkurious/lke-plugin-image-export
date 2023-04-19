@@ -8,7 +8,7 @@ Feature: Annotations
     And I open preview and wait for loading
     And I select output format <outputFormat>
     When I download <name> <outputFormat>
-    Then The export <name> contains an arrow from <x1>,<y1> to <x2>,<y2>
+    Then The export "<name>" contains an arrow from <x1>,<y1> to <x2>,<y2>
   Examples:
     | x1 | y1 | x2  | y2  | name | outputFormat |
     | 500 | 500 | 700 | 600 | arrow.svg | svg |
@@ -22,7 +22,7 @@ Feature: Annotations
     And I open preview and wait for loading
     And I select output format <outputFormat>
     When I download <name> <outputFormat>
-    Then The export <name> contains a text "<text>" at <x1>,<y1> to <x2>,<y2>
+    Then The export "<name>" contains a text "<text>" at <x1>,<y1> to <x2>,<y2>
   Examples:
     | x1 | y1 | x2  | y2  | x3 | y3 | text | name | outputFormat |
     | 500 | 500 | 700 | 600 | 550 | 550 | Changed text | text.svg | svg |
@@ -79,3 +79,18 @@ Feature: Annotations
     | 500 | 500 | 700 | 600 | 1 | arrow-width-1.svg | svg |
     | 500 | 500 | 700 | 600 | 2 | arrow-width-2.svg | svg |
     | 500 | 500 | 700 | 600 | 3 | arrow-width-3.svg | svg |
+
+  @annotations-arrow-multiple
+  Scenario Outline: Draw multiple arrows
+    Given I go to main page
+    And I select annotation arrow
+    And I draw an arrow from <x1>,<y1> to <x2>,<y2>
+    And I select annotation arrow
+    And I draw an arrow from <x3>,<y3> to <x4>,<y4>
+    And I open preview and wait for loading
+    And I select output format <outputFormat>
+    When I download <name> <outputFormat>
+    Then The export "<name>" contains <num> arrows
+  Examples:
+    | x1 | y1 | x2  | y2  | x3 | y3 | x4 | y4 | name | outputFormat | num |
+    | 500 | 500 | 700 | 600 | 550 | 600 | 700 | 200 | arrow-multiple.svg | svg | 2 |

@@ -129,7 +129,7 @@ When(/^I change the arrow width to "(\w+)"$/, async (width: string) => {
 });
 
 Then(
-  /^The export ([\w\.]+) contains an arrow from (\d*),(\d+) to (\d+),(\d+)$/,
+  /^The export "([^"]+)" contains an arrow from (\d*),(\d+) to (\d+),(\d+)$/,
   async (name: string, x1s: string, y1s: string, x2s: string, y2s: string) => {
     // read the file from screenshotFolder
     const { doc } = await readSvg(name);
@@ -146,7 +146,7 @@ Then(
 );
 
 Then(
-  /^The export ([\w.]+) contains a text "([^"]+)" at (\d+),(\d+) to (\d+),(\d+)$/,
+  /^The export "([^"]+)" contains a text "([^"]+)" at (\d+),(\d+) to (\d+),(\d+)$/,
   async (name: string, text: string) => {
     const { doc } = await readSvg(name);
     const texts = doc.querySelectorAll("[data-annotation-type=text]");
@@ -194,5 +194,14 @@ Then(
       arrow.getAttribute("stroke-width"),
       lineWidthItems[+width - 1].value.toString()
     );
+  }
+);
+
+Then(
+  /^The export "([^"]+)" contains (\d+) arrows$/,
+  async (name: string, num: string) => {
+    const { doc } = await readSvg(name);
+    const arrows = doc.querySelectorAll("[data-annotation-type=arrow]");
+    assert.equal(arrows.length, +num);
   }
 );
