@@ -44,7 +44,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
     background,
     setBackground,
   } = useAppContext();
-  const { annotations } = useAnnotationsContext();
+  const { annotations, editor } = useAnnotationsContext();
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState<string>();
   const [progress, setProgress] = useState(0);
@@ -57,11 +57,12 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       setLoading(true);
       ogma.getSelectedEdges().setSelected(false);
       ogma.getSelectedNodes().setSelected(false);
-
-      scaleGraph(ogma, 1 / graphScale);
+      editor.unselect();
+      await scaleGraph(ogma, 1 / graphScale);
       const scaleStyleDef = scalingStyleRule.getDefinition();
 
       await scalingStyleRule.destroy();
+
       // @ts-ignore
       let res = await svg(ogma)
         .setOptions({
@@ -76,7 +77,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
           height: format.value ? format.value.height : 0,
           getBounds: (ogma) => {
             let bounds = getBoundingBox(ogma);
-            console.log({ bounds, annotations: annotations.features.length });
+            console.log({ bounds, annotations });
             if (annotations.features.length > 0) {
               const annotationBounds = getAnnotationsBounds(annotations);
               bounds = mergeBounds(bounds, annotationBounds);
@@ -116,7 +117,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
     return () => {
       if (open) setImage("");
     };
-  }, [open]);
+  }, [open, editor]);
 
   // apply the background color to the SVG
   useEffect(() => {

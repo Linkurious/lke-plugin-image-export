@@ -78,10 +78,11 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
   );
 
   return (
-    <div className="annotations-control--panel text-styles-panel dropdown-content">
+    <div className="annotations-control--panel annotations-control--panel-text dropdown-content">
       <Form layout="horizontal">
         <Form.Item label="Font">
           <Dropdown.Button
+            className="text--font"
             menu={{ items: fontItems, onClick: onFontSelect }}
             trigger={["click"]}
             icon={<DownArrowIcon />}
@@ -91,6 +92,7 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
         </Form.Item>
         <Form.Item label="Size">
           <Dropdown.Button
+            className="text--size"
             menu={{ items: fontSizeItems, onClick: onFontSizeSelect }}
             trigger={["click"]}
             icon={<DownArrowIcon />}
@@ -100,6 +102,7 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
         </Form.Item>
         <Form.Item label="Text color" className="style-color">
           <ColorPicker
+            className="text--color-picker"
             colors={colors}
             rectRender={colorIcon}
             onChange={onTextColorSelect}
@@ -108,6 +111,7 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
         </Form.Item>
         <Form.Item label="Background color" className="style-background">
           <ColorPicker
+            className="text--background-color-picker"
             colors={backgroundColors}
             color={textStyle.background}
             onChange={onTextBgColorSelect}

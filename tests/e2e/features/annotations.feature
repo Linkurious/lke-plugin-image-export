@@ -94,3 +94,24 @@ Feature: Annotations
   Examples:
     | x1 | y1 | x2  | y2  | x3 | y3 | x4 | y4 | name | outputFormat | num |
     | 500 | 500 | 700 | 600 | 550 | 600 | 700 | 200 | arrow-multiple.svg | svg | 2 |
+
+
+  @annotations-text-background
+  Scenario Outline: Draw a text with background
+    Given I go to main page
+    And I select annotation text
+    And I draw a text from <x1>,<y1> to <x2>,<y2>
+    And I change the text at <x3>,<y3> to "<text>"
+    And I select text at <x3>,<y3>
+    And I open the text settings menu
+    And I change the text background to "<background>"
+    And I unselect the text
+    And I open preview and wait for loading
+    And I select output format <outputFormat>
+    When I download <name> <outputFormat>
+    Then The export "<name>" contains a text "<text>" with background "<background>"
+  Examples:
+    | x1 | y1 | x2  | y2  | x3 | y3 | text | background | name | outputFormat |
+    | 500 | 500 | 700 | 600 | 550 | 550 | Changed text | 3 | text-background-2.svg | svg |
+    | 500 | 500 | 700 | 600 | 550 | 550 | Changed text | 4 | text-background-4.svg | svg |
+    | 500 | 500 | 700 | 600 | 550 | 550 | Changed text | 1 | text-background-6.svg | svg |

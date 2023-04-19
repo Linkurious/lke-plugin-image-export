@@ -78,11 +78,11 @@
   margin-top: 3px;
 }
 
-.text-styles-panel .ant-form-item-label {
+.annotations-control--panel-text .ant-form-item-label {
   min-width: 30%;
 }
 
-.text-styles-panel .ant-form-item-control {
+.annotations-control--panel-text .ant-form-item-control {
   align-items: end;
 }
 

@@ -76,6 +76,19 @@ When(/^I open the (\w+) settings menu$/, async (type: "text" | "arrow") => {
   I.click(`.annotations-${type}--dropdown .ant-dropdown-trigger`);
 });
 
+When(/^I select text at (\d+),(\d+)$/, async (x1s: string, y1s: string) => {
+  const [x1, y1] = [x1s, y1s].map((s) => parseInt(s, 10));
+  return await I.usePlaywrightTo(
+    "select text",
+    async ({ page }: { page: Page; context: BrowserContext }) => {
+      await page.mouse.move(0, 0);
+      await page.mouse.move(x1, y1, { steps: 30 });
+      await page.mouse.down();
+      await page.mouse.up();
+    }
+  );
+});
+
 When(
   /^I change the text at (\d+),(\d+) to "([^"]+)"$/,
   async (x1s: string, y1s: string, text: string) => {
@@ -126,6 +139,27 @@ When(/^I change the arrow width to "(\w+)"$/, async (width: string) => {
   I.waitForElement(widthButton);
   I.click(widthButton);
   return I.wait(0.5);
+});
+
+When(/^I change the text background to "(\w+)"$/, async (color: string) => {
+  const panelClass = ".annotations-control--panel-text";
+  I.waitForElement(panelClass);
+  const selectorItem = ".text--background-color-picker";
+  const colorButton = `${panelClass} ${selectorItem} .color-picker--item:nth-child(${color})`;
+  I.waitForElement(colorButton);
+  I.click(colorButton);
+  return I.wait(0.5);
+});
+
+When(/^I unselect the text$/, async () => {
+  return await I.usePlaywrightTo(
+    "unselect text",
+    async ({ page }: { page: Page; context: BrowserContext }) => {
+      await page.mouse.move(0, 0, { steps: 30 });
+      await page.mouse.down();
+      await page.mouse.up();
+    }
+  );
 });
 
 Then(
@@ -203,5 +237,20 @@ Then(
     const { doc } = await readSvg(name);
     const arrows = doc.querySelectorAll("[data-annotation-type=arrow]");
     assert.equal(arrows.length, +num);
+  }
+);
+
+Then(
+  /^The export "([^"]+)" contains a text "([^"]+)" with background "([^"]+)"$/,
+  async (name: string, textContent: string, color: string) => {
+    const { doc } = await readSvg(name);
+    const texts = doc.querySelectorAll("[data-annotation-type=text]");
+    assert.equal(texts.length, 1);
+    const text = texts[0];
+    const bg = text.querySelector("rect");
+    assert.isNotNull(bg);
+    if (+color === 1) assert.equal(bg?.getAttribute("fill"), "none");
+    else
+      assert.equal(bg?.getAttribute("fill")?.toUpperCase(), colors[+color - 2]);
   }
 );
