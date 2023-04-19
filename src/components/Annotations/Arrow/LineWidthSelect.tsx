@@ -26,7 +26,12 @@ export const LineWidthSelect: FC<LineWidthSelectProps> = ({
             option.value === selected ? " line-width-select--item-selected" : ""
           }`;
           return (
-            <li key={i} onClick={() => onChange(option)}>
+            <li
+              key={i}
+              onClick={() => onChange(option)}
+              title={option.title}
+              className="line-width-select--item-container"
+            >
               <div
                 className={className}
                 style={{ borderWidth: `${option.value / 2}px` }}

@@ -62,3 +62,20 @@ Feature: Annotations
     | 500 | 500 | 700 | 600 | 2 | arrow-color-2.svg | svg |
     | 500 | 500 | 700 | 600 | 4 | arrow-color-4.svg | svg |
     | 500 | 500 | 700 | 600 | 6 | arrow-color-6.svg | svg |
+
+  @annotations-arrow-width
+  Scenario Outline: Draw an arrow with width
+    Given I go to main page
+    And I select annotation arrow
+    And I draw an arrow from <x1>,<y1> to <x2>,<y2>
+    And I open the arrow settings menu
+    And I change the arrow width to "<width>"
+    And I open preview and wait for loading
+    And I select output format <outputFormat>
+    When I download <name> <outputFormat>
+    Then The export "<name>" contains an arrow with width "<width>"
+  Examples:
+    | x1 | y1 | x2  | y2  | width | name | outputFormat |
+    | 500 | 500 | 700 | 600 | 1 | arrow-width-1.svg | svg |
+    | 500 | 500 | 700 | 600 | 2 | arrow-width-2.svg | svg |
+    | 500 | 500 | 700 | 600 | 3 | arrow-width-3.svg | svg |

@@ -117,6 +117,17 @@ When(/^I change the arrow color to "(\w+)"$/, async (color: string) => {
   return I.wait(0.5);
 });
 
+When(/^I change the arrow width to "(\w+)"$/, async (width: string) => {
+  const panelClass = ".annotations-control--panel-arrow";
+  I.waitForElement(panelClass);
+  const selectorItem = ".line-width-select";
+  const itemClass = ".line-width-select--item-container";
+  const widthButton = `${panelClass} ${selectorItem} ${itemClass}:nth-child(${width})`;
+  I.waitForElement(widthButton);
+  I.click(widthButton);
+  return I.wait(0.5);
+});
+
 Then(
   /^The export ([\w\.]+) contains an arrow from (\d*),(\d+) to (\d+),(\d+)$/,
   async (name: string, x1s: string, y1s: string, x2s: string, y2s: string) => {
@@ -168,6 +179,20 @@ Then(
     assert.equal(
       arrow.getAttribute("stroke")?.toUpperCase(),
       colors[+color - 1]
+    );
+  }
+);
+
+Then(
+  /^The export "([^"]+)" contains an arrow with width "([^"]+)"$/,
+  async (name: string, width: string) => {
+    const { doc } = await readSvg(name);
+    const arrows = doc.querySelectorAll("[data-annotation-type=arrow]");
+    assert.equal(arrows.length, 1);
+    const arrow = arrows[0];
+    assert.equal(
+      arrow.getAttribute("stroke-width"),
+      lineWidthItems[+width - 1].value.toString()
     );
   }
 );
