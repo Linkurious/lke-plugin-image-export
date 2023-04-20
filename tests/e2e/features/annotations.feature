@@ -42,9 +42,9 @@ Feature: Annotations
 
   Examples:
     | x1 | y1 | x2  | y2  | direction | name | outputFormat |
-    | 500 | 500 | 700 | 600 | head | arrow-head.svg | svg |
-    | 500 | 500 | 700 | 600 | both | arrow-both.svg | svg |
-    | 500 | 500 | 700 | 600 | none | arrow-none.svg | svg |
+    | 500 | 500 | 700 | 600 | head | arrow-direction-head.svg | svg |
+    | 500 | 500 | 700 | 600 | both | arrow-direction-both.svg | svg |
+    | 500 | 500 | 700 | 600 | none | arrow-direction-none.svg | svg |
 
   @annotations-arrow-color
   Scenario Outline: Draw an arrow with color
@@ -171,3 +171,24 @@ Feature: Annotations
   Examples:
     | x1 | y1 | x2  | y2  | x3 | y3 | text | size | name | outputFormat |
     | 500 | 500 | 700 | 600 | 550 | 550 | Changed text | 3 | text-size-1.svg | svg |
+
+  @annotations-connect-arrow-text
+  Scenario Outline: Connect arrow and text
+    Given I go to main page
+    And I select annotation text
+    And I draw a text from <x3>,<y3> to <x4>,<y4>
+    And I change the text at <x5>,<y5> to "<text>"
+    And I unselect the text
+    And I select annotation arrow
+    And I draw an arrow from <x1>,<y1> to <x2>,<y2>
+    And I connect the arrow to the text around <x2>,<y2>
+    And I select text at <x5>,<y5>
+    And I drag the text at <x3>,<y3> by <shift>
+    And I unselect the text
+    And I open preview and wait for loading
+    And I select output format <outputFormat>
+    When I download <name> <outputFormat>
+    Then The export "<name>" contains a text "<text>" connected to an arrow
+  Examples:
+    | x1 | y1 | x2  | y2  | x3 | y3 | x4 | y4 | x5 | y5 | text | name | outputFormat | shift |
+    | 500 | 200 | 590 | 500 | 500 | 500 | 700 | 600 | 550 | 550 | Changed text | arrow-text-connect.svg | svg | 100 |

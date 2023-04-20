@@ -1,5 +1,6 @@
 import { MenuProps } from "antd";
 import { RgbaColor } from "@uiw/color-convert";
+import { ArrowStyles, TextStyle } from "@linkurious/annotations-control";
 
 export const iconSize = 16;
 export const arrowIconSize = 12;
@@ -84,3 +85,18 @@ export enum ArrowDirection {
   NONE = "none",
   HEAD = "head",
 }
+
+export const defaultArrowStyle: ArrowStyles = {
+  head: "arrow",
+  strokeColor: colors[1],
+  strokeWidth: 5,
+};
+
+export const defaultTextStyle: TextStyle = {
+  font: fontFamilies["Sans-serif"],
+  fontSize: fontSizes[5].toString(),
+  padding: fontSizes[5] / 4,
+  color: BLACK,
+  strokeType: TRANSPARENT,
+  background: TRANSPARENT,
+};

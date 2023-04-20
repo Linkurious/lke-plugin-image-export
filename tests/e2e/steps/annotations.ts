@@ -201,6 +201,43 @@ When(/^I change the text size to "([^"]+)"$/, async (size: string) => {
   I.wait(0.25);
 });
 
+When(
+  /^I connect the arrow to the text around (\d+),(\d+)$/,
+  async (x1s: string, y1s: string) => {
+    const [x1, y1] = [x1s, y1s].map((s) => parseInt(s, 10));
+    await I.usePlaywrightTo(
+      "connect arrow to text",
+      async ({ page }: { page: Page; context: BrowserContext }) => {
+        await page.mouse.move(x1, y1);
+        await page.mouse.down();
+        await page.waitForTimeout(200);
+        await page.mouse.move(x1 + 10, y1, { steps: 60 });
+        await page.waitForTimeout(200);
+        await page.mouse.up();
+        await page.waitForTimeout(200);
+      }
+    );
+  }
+);
+
+When(
+  /^I drag the text at (\d+),(\d+) by (\d+)$/,
+  async (x1s: string, y1s: string, shiftS: string) => {
+    const [x1, y1, shift] = [x1s, y1s, shiftS].map((s) => parseInt(s, 10));
+    await I.usePlaywrightTo(
+      "drag text",
+      async ({ page }: { page: Page; context: BrowserContext }) => {
+        await page.mouse.move(x1 + 10, y1 - 2);
+        await page.mouse.down();
+        await page.waitForTimeout(200);
+        await page.mouse.move(x1 + shift, y1, { steps: 60 });
+        await page.waitForTimeout(200);
+        await page.mouse.up();
+      }
+    );
+  }
+);
+
 Then(
   /^The export "([^"]+)" contains an arrow from (\d*),(\d+) to (\d+),(\d+)$/,
   async (name: string, x1s: string, y1s: string, x2s: string, y2s: string) => {
@@ -335,5 +372,16 @@ Then(
       texts[0].getAttribute("font-size"),
       fontSizeItems[sizeIndex]!.key
     );
+  }
+);
+
+Then(
+  /^The export "([^"]+)" contains a text "([^"]+)" connected to an arrow$/,
+  async (name: string, text: string) => {
+    const { doc } = await readSvg(name);
+    const texts = doc.querySelectorAll("[data-annotation-type=text]");
+    const arrows = doc.querySelectorAll("[data-annotation-type=arrow]");
+    assert.equal(texts.length, 1);
+    assert.equal(arrows.length, 1);
   }
 );

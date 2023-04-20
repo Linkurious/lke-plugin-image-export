@@ -46,6 +46,7 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
       setTextStyle({
         ...textStyle,
         fontSize: key.toString(),
+        padding: +key / 4,
       });
     },
     [textStyle]

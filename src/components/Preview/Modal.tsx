@@ -77,7 +77,6 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
           height: format.value ? format.value.height : 0,
           getBounds: (ogma) => {
             let bounds = getBoundingBox(ogma);
-            console.log({ bounds, annotations });
             if (annotations.features.length > 0) {
               const annotationBounds = getAnnotationsBounds(annotations);
               bounds = mergeBounds(bounds, annotationBounds);

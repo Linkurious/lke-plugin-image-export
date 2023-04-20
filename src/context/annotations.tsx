@@ -19,6 +19,8 @@ import {
   fontSizes,
   TRANSPARENT,
   BLACK,
+  defaultArrowStyle,
+  defaultTextStyle,
 } from "../components/Annotations/constants";
 
 interface IAnnotationsContext {
@@ -57,18 +59,8 @@ export const AnnotationsContextProvider = ({ children }: Props) => {
   });
   const [currentAnnotation, setCurrentAnnotation] =
     useState<AnnotationFeature | null>(null);
-  const [arrowStyle, setArrowStyle] = useState<ArrowStyles>({
-    head: "arrow",
-    strokeColor: colors[1],
-    strokeWidth: 5,
-  });
-  const [textStyle, setTextStyle] = useState<TextStyle>({
-    font: fontFamilies["Sans-serif"],
-    fontSize: fontSizes[5].toString(),
-    color: BLACK,
-    strokeType: TRANSPARENT,
-    background: TRANSPARENT,
-  });
+  const [arrowStyle, setArrowStyle] = useState<ArrowStyles>(defaultArrowStyle);
+  const [textStyle, setTextStyle] = useState<TextStyle>(defaultTextStyle);
   const [editor, setEditor] = useState<AnnotationsEditor>();
 
   return (
