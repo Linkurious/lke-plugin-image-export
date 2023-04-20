@@ -116,7 +116,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
     return () => {
       if (open) setImage("");
     };
-  }, [open, editor]);
+  }, [open, editor, ogma, annotations]);
 
   // apply the background color to the SVG
   useEffect(() => {

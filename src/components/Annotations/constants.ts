@@ -92,10 +92,12 @@ export const defaultArrowStyle: ArrowStyles = {
   strokeWidth: 5,
 };
 
+export const RELATIVE_PADDING = 0.25;
+
 export const defaultTextStyle: TextStyle = {
   font: fontFamilies["Sans-serif"],
   fontSize: fontSizes[5].toString(),
-  padding: fontSizes[5] / 4,
+  padding: fontSizes[5] * RELATIVE_PADDING,
   color: BLACK,
   strokeType: TRANSPARENT,
   background: TRANSPARENT,

@@ -61,7 +61,6 @@ export const AnnotationsControl: FC<AnnotationsControlProps> = () => {
           });
         })
         .on("remove", (annotation) => {
-          console.log({ annotation });
           setAnnotations({
             ...annotations,
             features: annotations.features.filter(

@@ -15,6 +15,7 @@ import {
   fontFamilies,
   fontNameAliases,
   TRANSPARENT,
+  RELATIVE_PADDING,
 } from "../constants";
 import { colorIcon } from "../icons/Color";
 import { useAnnotationsContext } from "../../../context";
@@ -46,7 +47,7 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
       setTextStyle({
         ...textStyle,
         fontSize: key.toString(),
-        padding: +key / 4,
+        padding: +key * RELATIVE_PADDING,
       });
     },
     [textStyle]
