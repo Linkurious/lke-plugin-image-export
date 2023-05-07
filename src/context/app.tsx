@@ -13,6 +13,7 @@ import React, {
 import * as api from "../api";
 import { FormatType } from "../types/formats";
 import { formats } from "../constants";
+import { Bounds } from "../utils";
 
 interface IAppContext {
   visualisation: PopulatedVisualization;
@@ -22,8 +23,8 @@ interface IAppContext {
   loading: boolean;
   ogma: LKOgma;
   setOgma: (ogma: LKOgma) => void;
-  boundingBox: BoundingBox;
-  setBoundingBox: (boundingBox: BoundingBox) => void;
+  boundingBox: Bounds;
+  setBoundingBox: (boundingBox: Bounds) => void;
 
   // scaling to fit the clipping window
   graphScale: number;
@@ -70,7 +71,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [error, setError] = useState<Error | null>(null);
 
   const [ogma, setOgma] = useState<LKOgma>();
-  const [boundingBox, setBoundingBox] = useState<BoundingBox>();
+  const [boundingBox, setBoundingBox] = useState<Bounds>();
   const [textsVisible, setTextsVisible] = useState(true);
   const [background, setBackground] = useState(true);
   const [graphScale, setGraphScale] = useState(1);

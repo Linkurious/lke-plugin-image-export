@@ -1,3 +1,10 @@
+import {
+  AnnotationCollection,
+  getAnnotationsBounds,
+} from "@linkurious/annotations-control";
+import Ogma, { SVGExportOptions } from "@linkurious/ogma";
+import { getBoundingBox, mergeBounds } from ".";
+
 export const createSVGElement = <T extends SVGElement>(tagName: string): T => {
   return document.createElementNS("http://www.w3.org/2000/svg", tagName) as T;
 };
@@ -99,3 +106,61 @@ export function embedImages(svg: SVGSVGElement) {
     })
     .then(() => svg);
 }
+
+const defaultOptions: SVGExportOptions = {
+  groupSemantically: true,
+  embedFonts: true,
+  download: false,
+  texts: true,
+  margin: 0,
+};
+
+export async function exportClipped(
+  ogma: Ogma,
+  width: number,
+  height: number,
+  exportOptions: SVGExportOptions = {}
+) {
+  const options: SVGExportOptions = {
+    ...defaultOptions,
+    ...exportOptions,
+  };
+
+  return await ogma.export.svg({
+    ...options,
+    clip: true,
+    width,
+    height,
+  });
+}
+
+export async function exportOrginalSize(
+  ogma: Ogma,
+  annotations: AnnotationCollection,
+  exportOptions: SVGExportOptions = {}
+) {
+  const options: SVGExportOptions = {
+    ...defaultOptions,
+    ...exportOptions,
+  };
+  const view = ogma.view.get();
+  const annotationBounds = getAnnotationsBounds(annotations);
+  const graphBounds = getBoundingBox(ogma, !!options.texts);
+  const [minX, minY, maxX, maxY] = mergeBounds(graphBounds, annotationBounds);
+
+  const topLeft = ogma.view.graphToScreenCoordinates({ x: minX, y: minY });
+  const bottomRight = ogma.view.graphToScreenCoordinates({ x: maxX, y: maxY });
+
+  const width = bottomRight.x - topLeft.x + 2 * options.margin!;
+  const height = bottomRight.y - topLeft.y + 2 * options.margin!;
+
+  await ogma.view.setSize({ width, height });
+  await ogma.view.locateGraph();
+
+  const svg = await ogma.export.svg({ clip: true, ...options });
+  await ogma.view.setSize({ width: view.width, height: view.height });
+  return svg;
+}
+
+// @ts-ignore
+window.exportOrginalSize = exportOrginalSize;

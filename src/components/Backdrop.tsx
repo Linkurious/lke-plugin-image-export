@@ -77,7 +77,6 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
     setGraphScale,
     scalingStyleRule,
     setScalingStyleRule,
-    scalingStyleEnabled,
   } = useAppContext();
   const [windowSize, setWindowSize] = useState<Size>({ width: 0, height: 0 });
   const [borderWidth, setBorderWidth] = useState<BorderWidth>({

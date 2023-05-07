@@ -15,6 +15,7 @@ import {
 } from "@linkurious/ogma-linkurious-parser";
 import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
 import { useAppContext } from "../context";
+import { getBoundingBox } from "../utils";
 
 const applyItemFilter = (
   ogma: OgmaLib,
@@ -51,7 +52,7 @@ export const OgmaComponent = (
   const [graphData, setGraphData] = useState<PopulatedVisualization>();
   const [, setViewCenter] = useState<{ x: number; y: number }>();
 
-  const { ogma, setBoundingBox } = useAppContext();
+  const { ogma, setBoundingBox, textsVisible } = useAppContext();
 
   useImperativeHandle(ref, () => ogma, [ogma]);
 
@@ -100,7 +101,7 @@ export const OgmaComponent = (
 
   useEffect(() => {
     const updateBbox = () => {
-      if (ogma) setBoundingBox(ogma.view.getGraphBoundingBox());
+      if (ogma) setBoundingBox(getBoundingBox(ogma, textsVisible));
     };
     const updateCenter = () => {
       if (ogma) setViewCenter(ogma.view.getCenter());
@@ -126,7 +127,7 @@ export const OgmaComponent = (
       ogma?.events.off(updateBbox);
       ogma?.events.off(updateCenter);
     };
-  }, [ogma]);
+  }, [ogma, textsVisible]);
 
   return (
     <div
