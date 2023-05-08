@@ -62,25 +62,17 @@ export function getBoundingBox(ogma: Ogma, texts: boolean): Bounds {
   return ogma.getNodes().reduce(
     (acc, node, i) => {
       let { x, y, radius } = attributes[i];
-      const textBbox = texts ? ogma.view.getTextBoundingBox(node) : null;
       let minTextX = x;
       let minTextY = y;
       let maxTextX = x;
       let maxTextY = y;
+      const textBbox = texts ? ogma.view.getTextBoundingBox(node) : null;
       if (textBbox) {
         const { minX, minY, maxX, maxY } = textBbox;
-        const tl = ogma.view.screenToGraphCoordinates({ x: minX, y: minY });
-        const br = ogma.view.screenToGraphCoordinates({ x: maxX, y: maxY });
-        //minTextX = tl.x;
-        minTextY = tl.y;
-        //maxTextX = br.x;
-        maxTextY = br.y;
-        if (node.getAttribute("text") === "Innova Partners") {
-          console.log("node", node);
-          console.log("textBbox", textBbox);
-          console.log("tl", tl);
-          console.log("br", br);
-        }
+        minTextX = minX;
+        minTextY = minY;
+        maxTextX = maxX;
+        maxTextY = maxY;
       }
       acc[0] = Math.min(acc[0], x - +radius, minTextX);
       acc[1] = Math.min(acc[1], y - +radius, minTextY);
@@ -100,5 +92,5 @@ export async function destroyRule(rule: StyleRule, ogma: Ogma) {
   const rules = ogma.styles.getRuleList();
   const ruleId = rule.getId();
   for (const r of rules) if (r.getId() === ruleId) return await rule.destroy();
-  return null;
+  return void 0;
 }
