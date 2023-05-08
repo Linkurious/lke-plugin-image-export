@@ -9,7 +9,7 @@ import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "../ImageViewer";
 import { Footer } from "./Footer";
-import { scaleGraph, stringToSVGElement } from "../../utils";
+import { destroyRule, scaleGraph, stringToSVGElement } from "../../utils";
 import {
   addCheckerboard,
   addClipShape,
@@ -55,7 +55,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       await scaleGraph(ogma, 1 / graphScale);
       const scaleStyleDef = scalingStyleRule.getDefinition();
 
-      await scalingStyleRule.destroy();
+      await destroyRule(scalingStyleRule, ogma);
 
       // @ts-ignore
       let res = stringToSVGElement(

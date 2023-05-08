@@ -1,4 +1,4 @@
-import Ogma, { Size, Color } from "@linkurious/ogma";
+import Ogma, { Size, Color, StyleRule } from "@linkurious/ogma";
 
 export const formatSize = ({ width, height }: Size, suffix = "px") => {
   return `${Math.round(width)} × ${Math.round(height)} ${suffix}`;
@@ -68,18 +68,19 @@ export function getBoundingBox(ogma: Ogma, texts: boolean): Bounds {
       let maxTextX = x;
       let maxTextY = y;
       if (textBbox) {
-        const tl = ogma.view.screenToGraphCoordinates({
-          x: textBbox.minX,
-          y: textBbox.minY,
-        });
-        const br = ogma.view.screenToGraphCoordinates({
-          x: textBbox.maxX,
-          y: textBbox.maxY,
-        });
-        minTextX = tl.x;
+        const { minX, minY, maxX, maxY } = textBbox;
+        const tl = ogma.view.screenToGraphCoordinates({ x: minX, y: minY });
+        const br = ogma.view.screenToGraphCoordinates({ x: maxX, y: maxY });
+        //minTextX = tl.x;
         minTextY = tl.y;
-        maxTextX = br.x;
+        //maxTextX = br.x;
         maxTextY = br.y;
+        if (node.getAttribute("text") === "Innova Partners") {
+          console.log("node", node);
+          console.log("textBbox", textBbox);
+          console.log("tl", tl);
+          console.log("br", br);
+        }
       }
       acc[0] = Math.min(acc[0], x - +radius, minTextX);
       acc[1] = Math.min(acc[1], y - +radius, minTextY);
@@ -89,4 +90,15 @@ export function getBoundingBox(ogma: Ogma, texts: boolean): Bounds {
     },
     [Infinity, Infinity, -Infinity, -Infinity]
   );
+}
+
+/**
+ * TODO: remove this, it's a hack. StyleRules should bail out if they are
+ * already destroyed, or provide an simple way to check if they are destroyed.
+ */
+export async function destroyRule(rule: StyleRule, ogma: Ogma) {
+  const rules = ogma.styles.getRuleList();
+  const ruleId = rule.getId();
+  for (const r of rules) if (r.getId() === ruleId) return await rule.destroy();
+  return null;
 }

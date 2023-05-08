@@ -126,6 +126,7 @@ export async function exportClipped(
     ...exportOptions,
   };
 
+  // not much special, just ensure the default settings are correct
   return await ogma.export.svg({
     ...options,
     clip: true,
@@ -144,20 +145,27 @@ export async function exportOrginalSize(
     ...exportOptions,
   };
   const view = ogma.view.get();
+  // include annotations in the bounds
   const annotationBounds = getAnnotationsBounds(annotations);
   const graphBounds = getBoundingBox(ogma, !!options.texts);
   const [minX, minY, maxX, maxY] = mergeBounds(graphBounds, annotationBounds);
 
-  const topLeft = ogma.view.graphToScreenCoordinates({ x: minX, y: minY });
-  const bottomRight = ogma.view.graphToScreenCoordinates({ x: maxX, y: maxY });
+  const tl = ogma.view.graphToScreenCoordinates({ x: minX, y: minY });
+  const br = ogma.view.graphToScreenCoordinates({ x: maxX, y: maxY });
 
-  const width = bottomRight.x - topLeft.x + 2 * options.margin!;
-  const height = bottomRight.y - topLeft.y + 2 * options.margin!;
+  const width = br.x - tl.x + 2 * options.margin!;
+  const height = br.y - tl.y + 2 * options.margin!;
 
+  console.log({ width, height }, annotationBounds);
+
+  // resize canvas
   await ogma.view.setSize({ width, height });
-  await ogma.view.locateGraph();
+  // center view
+  await ogma.view.setCenter({ x: (minX + maxX) / 2, y: (minY + maxY) / 2 });
+  await ogma.view.afterNextFrame();
 
   const svg = await ogma.export.svg({ clip: true, ...options });
+  // reset canvas size
   await ogma.view.setSize({ width: view.width, height: view.height });
   return svg;
 }

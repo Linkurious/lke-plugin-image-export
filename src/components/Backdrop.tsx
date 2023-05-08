@@ -2,7 +2,7 @@ import React, { FC, useEffect, useLayoutEffect, useState } from "react";
 import { Point, Size } from "@linkurious/ogma";
 import { FormatType } from "../types/formats";
 import { useAppContext } from "../context";
-import { scaleGraph } from "../utils";
+import { destroyRule, scaleGraph } from "../utils";
 import { backdropMargin } from "../constants";
 
 interface BackdropProps {
@@ -106,7 +106,7 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
     });
     setScalingStyleRule(rule);
     return () => {
-      rule.destroy();
+      destroyRule(rule, ogma);
     };
   }, [ogma]);
 
