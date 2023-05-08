@@ -5,8 +5,10 @@ import {
 import Ogma, { SVGExportOptions } from "@linkurious/ogma";
 import { getBoundingBox, mergeBounds } from ".";
 
+const SVG_NS = "http://www.w3.org/2000/svg";
+
 export const createSVGElement = <T extends SVGElement>(tagName: string): T => {
-  return document.createElementNS("http://www.w3.org/2000/svg", tagName) as T;
+  return document.createElementNS(SVG_NS, tagName) as T;
 };
 
 const GREY = "#e0e0e0";
@@ -156,8 +158,6 @@ export async function exportOrginalSize(
   const width = br.x - tl.x + 2 * options.margin!;
   const height = br.y - tl.y + 2 * options.margin!;
 
-  console.log({ width, height }, annotationBounds);
-
   // resize canvas
   await ogma.view.setSize({ width, height });
   // center view
@@ -170,5 +170,18 @@ export async function exportOrginalSize(
   return svg;
 }
 
-// @ts-ignore
-window.exportOrginalSize = exportOrginalSize;
+export function bringTextsToTop(svg: SVGSVGElement) {
+  const container = svg.querySelector(".transform-group") as SVGGElement;
+  // bubble up the texts
+  const textComponents = Array.prototype.filter.call(
+    container.querySelectorAll("[data-text-component]"),
+    (el: SVGElement) => !el.classList.contains("badge-text")
+  );
+  // group them
+  const captions = document.createElementNS(SVG_NS, "g");
+  captions.classList.add("ogma-captions");
+  Array.prototype.forEach.call(textComponents, (el: SVGElement) =>
+    captions.appendChild(el)
+  );
+  container.appendChild(captions);
+}

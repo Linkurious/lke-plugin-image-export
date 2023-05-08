@@ -122,6 +122,7 @@ export const OgmaComponent = (
         updateBbox
       );
       ogma.events.on("move", updateCenter);
+      updateBbox();
     }
     return () => {
       ogma?.events.off(updateBbox);

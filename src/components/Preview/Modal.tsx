@@ -14,6 +14,7 @@ import {
   addCheckerboard,
   addClipShape,
   addTransformGroup,
+  bringTextsToTop,
   embedImages,
   exportClipped,
   exportOrginalSize,
@@ -57,15 +58,18 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
 
       await destroyRule(scalingStyleRule, ogma);
 
+      const exportOptions = {
+        texts: textsVisible,
+      };
       // @ts-ignore
       let res = stringToSVGElement(
         format.value === undefined
-          ? await exportOrginalSize(ogma, annotations, {})
+          ? await exportOrginalSize(ogma, annotations, exportOptions)
           : await exportClipped(
               ogma,
               format.value.width,
               format.value.height,
-              {}
+              exportOptions
             )
       );
 
@@ -78,6 +82,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       addClipShape(res, width, height);
       addCheckerboard(res);
       addTransformGroup(res);
+      bringTextsToTop(res);
 
       console.time("embed images");
       res = await embedImages(res);
