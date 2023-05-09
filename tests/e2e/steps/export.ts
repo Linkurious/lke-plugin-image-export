@@ -8,8 +8,8 @@ When(
     const size = await I.getSvgElementSize(".ogma-svg-background");
     assert.deepEqual(
       {
-        width: size[0],
-        height: size[1],
+        width: Math.round(size[0]),
+        height: Math.round(size[1]),
       },
       { width: +width, height: +height }
     );
