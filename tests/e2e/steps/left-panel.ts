@@ -10,6 +10,7 @@ function getFormat(selectedFormat: string) {
   return formats.find((f) => f.label === selectedFormat);
 }
 When(/^I select format (.*)$/, async (format: string) => {
+  I.waitForElement(locator.build(".format-select"));
   I.click(locator.build(".format-select"));
   I.waitForElement(locator.build("span").withText(format));
   I.click(locator.build("span").withText(format), undefined, { force: true });

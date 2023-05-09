@@ -16,7 +16,7 @@ const baseFolder = path.resolve(__dirname, "../ref-images");
 let foldersCreated = false;
 const results: any[] = [];
 
-const shouldReplace = process.env.REPLACE === "true" ? true : false;
+const shouldReplace = process.env.REPLACE === "true";
 function getPaths(fileName: string) {
   fileName = fileName.trim();
   return {
@@ -41,9 +41,8 @@ function compareImages(
 
   return new Promise((resolve, reject) => {
     diff.run((error, result) => {
-      if (error) {
-        reject(error);
-      } else {
+      if (error) reject(error);
+      else {
         diff.hasPassed(result.code)
           ? resolve(result.differences)
           : reject(result.differences);
@@ -113,13 +112,10 @@ When(/^I download (.+) (.+)$/, async (name: string, format: string) => {
 
 Then(/^image is nice (.+)$/, (name: string) => {
   const { expectedPath, actualPath, diffPath } = getPaths(name);
-  if (shouldReplace) {
-    return;
-  } else {
+  if (shouldReplace) return;
+  else {
     return compareImages(actualPath, expectedPath, diffPath)
-      .then(() => {
-        results.push({ name, path: diffPath, success: true });
-      })
+      .then(() => results.push({ name, path: diffPath, success: true }))
       .catch((e) => {
         results.push({ name, path: diffPath, success: false });
         throw e;
