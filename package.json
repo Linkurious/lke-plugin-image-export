@@ -51,6 +51,7 @@
     "test:unit": "vitest run --coverage --reporter=junit --reporter=default --outputFile reports/unit/junit-test-results.xml",
     "lint": "eslint --ext .js,.ts --fix",
     "lint:ci": "eslint --ext .js,.ts",
+    "postlint:ci": "cat src/manifest.json",
     "bump:patch": "npm version --no-git-tag-version patch",
     "bump:minor": "npm version --no-git-tag-version minor",
     "bump:major": "npm version --no-git-tag-version major",
