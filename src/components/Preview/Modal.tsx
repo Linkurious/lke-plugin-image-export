@@ -52,6 +52,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       setLoading(true);
       ogma.getSelectedEdges().setSelected(false);
       ogma.getSelectedNodes().setSelected(false);
+
       editor.unselect();
       await scaleGraph(ogma, 1 / graphScale);
       const scaleStyleDef = scalingStyleRule.getDefinition();
