@@ -11,13 +11,15 @@ import {
 } from "react";
 
 import * as api from "../api";
-import { FormatType } from "../types/formats";
+import type { GraphSchema } from "../api";
+import type { FormatType } from "../types/formats";
 import { formats } from "../constants";
-import { Bounds } from "../utils";
+import type { Bounds } from "../utils";
 
 interface IAppContext {
   visualisation: PopulatedVisualization;
   configuration: IOgmaConfig;
+  graphSchema?: GraphSchema;
   format: FormatType;
   setFormat: (format: FormatType) => void;
   loading: boolean;
@@ -67,6 +69,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [visualisation, setVis] = useState<PopulatedVisualization>();
   const [loading, setLoading] = useState(true);
   const [configuration, setConfig] = useState<IOgmaConfig>();
+  const [graphSchema, setGraphSchema] = useState<GraphSchema>();
   const [format, setFormat] = useState<FormatType>(formats[0]);
   const [error, setError] = useState<Error | null>(null);
 
@@ -84,9 +87,10 @@ export const AppContextProvider = ({ children }: Props) => {
       api.getConfiguration(),
       api.getGraphSchema(),
     ])
-      .then(([visualisation, configuration]) => {
+      .then(([visualisation, configuration, graphSchema]) => {
         setVis(visualisation);
         setConfig(configuration);
+        setGraphSchema(graphSchema);
         setLoading(false);
       })
       .catch((err) => {
@@ -101,6 +105,7 @@ export const AppContextProvider = ({ children }: Props) => {
         {
           visualisation,
           configuration,
+          graphSchema,
           loading,
           ogma,
           setOgma,

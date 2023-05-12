@@ -16,6 +16,7 @@ import {
 import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
 import { useAppContext } from "../context";
 import { getBoundingBox } from "../utils";
+import { GraphSchema } from "../api";
 
 const applyItemFilter = (
   ogma: OgmaLib,
@@ -31,10 +32,17 @@ const applyItemFilter = (
   return ogma.removeEdges(items as EdgeList);
 };
 
+const applySchema = async (ogma: OgmaLib, graphSchema?: GraphSchema) => {
+  if (graphSchema) {
+    ogma.LKCaptions.graphSchema = graphSchema;
+  }
+};
+
 interface OgmaProps {
   options?: Partial<IOgmaConfig>;
   onReady?: (ogma: OgmaLib) => void;
   graph?: PopulatedVisualization;
+  schema?: GraphSchema;
   children?: ReactNode;
 }
 
@@ -44,7 +52,7 @@ const defaultOptions = {};
  * Main component for the Ogma library.
  */
 export const OgmaComponent = (
-  { options = defaultOptions, children, graph, onReady }: OgmaProps,
+  { options = defaultOptions, children, graph, onReady, schema }: OgmaProps,
   ref?: Ref<OgmaLib>
 ) => {
   const [ready, setReady] = useState(false);
@@ -90,14 +98,17 @@ export const OgmaComponent = (
         setGraphData(graph);
         ogma
           .initVisualization(graph)
+          // apply caption schema
+          .then(() => applySchema(ogma, schema))
           // apply filters
           .then(() => applyItemFilter(ogma, graph, false))
           .then(() => applyItemFilter(ogma, graph, true))
+          // set up the schema
           .then(() => ogma.view.locateGraph())
           .then(() => ogma.view.forceResize());
       }
     }
-  }, [graph, options, ogma]);
+  }, [graph, options, ogma, schema]);
 
   useEffect(() => {
     const updateBbox = () => {
