@@ -183,5 +183,7 @@ export function bringTextsToTop(svg: SVGSVGElement) {
   Array.prototype.forEach.call(textComponents, (el: SVGElement) =>
     captions.appendChild(el)
   );
-  container.appendChild(captions);
+  const entitiesContainer = container.querySelector(".ogma-nodes")
+    ?.parentNode as SVGGElement;
+  entitiesContainer.appendChild(captions);
 }
