@@ -1,7 +1,7 @@
 import { LKOgma } from "@linkurious/ogma-linkurious-parser";
 import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
-import { BoundingBox, StyleRule } from "@linkurious/ogma";
-import React, {
+import { StyleRule } from "@linkurious/ogma";
+import {
   createContext,
   useContext,
   Context,
@@ -79,7 +79,11 @@ export const AppContextProvider = ({ children }: Props) => {
   const [scalingStyleEnabled, setScalingStyleEnabled] = useState(false);
 
   useEffect(() => {
-    Promise.all([api.getVisualisation(), api.getConfiguration()])
+    Promise.all([
+      api.getVisualisation(),
+      api.getConfiguration(),
+      api.getGraphSchema(),
+    ])
       .then(([visualisation, configuration]) => {
         setVis(visualisation);
         setConfig(configuration);

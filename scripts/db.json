@@ -9711,5 +9711,534 @@
       "right": "owner",
       "widgetKey": null
     }
-  ]
+  ],
+
+  "graph": {
+    "schema": {
+      "node": {
+        "types": {
+          "fuck": "off"
+        }
+      }
+    }
+  },
+
+  "edgeTypes": {
+    "any": {
+      "access": "write"
+    },
+    "results": [
+      {
+        "properties": [],
+        "itemType": "HAS_BANK_ACCOUNT",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [],
+        "itemType": "HAS_PHONE_NUMBER",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [],
+        "itemType": "HAS_IP_ADDRESS",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [],
+        "itemType": "HAS_ADDRESS",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [],
+        "itemType": "HAS_LOAN",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [
+          {
+            "propertyKey": "amount",
+            "required": false,
+            "indexed": true,
+            "propertyType": {
+              "name": "auto"
+            },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "date",
+            "required": false,
+            "indexed": true,
+            "propertyType": {
+              "name": "auto"
+            },
+            "visibility": "searchable"
+          }
+        ],
+        "itemType": "HAS_TRANSFERED",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [
+          {
+            "propertyKey": "ownership",
+            "required": false,
+            "indexed": true,
+            "propertyType": {
+              "name": "auto"
+            },
+            "visibility": "searchable"
+          }
+        ],
+        "itemType": "IS_SHAREHOLDER_OF",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [
+          {
+            "propertyKey": "name",
+            "required": false,
+            "indexed": true,
+            "propertyType": {
+              "name": "auto"
+            },
+            "visibility": "searchable"
+          }
+        ],
+        "itemType": "IS_OFFICER_OF",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [
+          {
+            "propertyKey": "amount",
+            "required": false,
+            "indexed": true,
+            "propertyType": {
+              "name": "auto"
+            },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "number_transactions",
+            "required": false,
+            "indexed": true,
+            "propertyType": {
+              "name": "auto"
+            },
+            "visibility": "searchable"
+          }
+        ],
+        "itemType": "HAS_TRANSFERED_AGG",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      }
+    ]
+  },
+  "nodeTypes": {
+    "any": { "access": "write" },
+    "results": [
+      {
+        "properties": [
+          {
+            "propertyKey": "city",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "component",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "country",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "hash",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "latitude",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "longitude",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "number",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "pagerank_g",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "partition",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "street",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          }
+        ],
+        "itemType": "ADDRESS",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [
+          {
+            "propertyKey": "community",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "component",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "country",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "email",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "first_name",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "full_name",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "last_name",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "name",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "pagerank_g",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "partition",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          }
+        ],
+        "itemType": "PERSON",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [
+          {
+            "propertyKey": "component",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "name",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "pagerank_g",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "partition",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          }
+        ],
+        "itemType": "PHONE_NUMBER",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [
+          {
+            "propertyKey": "component",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "name",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "pagerank_g",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "partition",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          }
+        ],
+        "itemType": "COMPANY",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [
+          {
+            "propertyKey": "TotalAmount",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "TotalTransactions",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "amount",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "component",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "name",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "pagerank_g",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "partition",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          }
+        ],
+        "itemType": "BANK_ACCOUNT",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [
+          {
+            "propertyKey": "component",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "name",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "pagerank_g",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "partition",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          }
+        ],
+        "itemType": "IP_ADDRESS",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [
+          {
+            "propertyKey": "amount",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "component",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "pagerank_g",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          },
+          {
+            "propertyKey": "partition",
+            "required": false,
+            "indexed": true,
+            "propertyType": { "name": "auto" },
+            "visibility": "searchable"
+          }
+        ],
+        "itemType": "LOAN",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [],
+        "itemType": "ATM",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [],
+        "itemType": "EMAIL",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [],
+        "itemType": "PHONE",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      },
+      {
+        "properties": [],
+        "itemType": "TRANSACTION",
+        "access": "write",
+        "visibility": "searchable",
+        "indexed": true
+      }
+    ]
+  }
 }

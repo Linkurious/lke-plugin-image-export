@@ -2,6 +2,7 @@ import {
   RestClient,
   IOgmaConfig,
   PopulatedVisualization,
+  EntityType,
 } from "@linkurious/rest-client";
 
 declare var IS_DEV: boolean;
@@ -18,6 +19,23 @@ export async function getConfiguration(): Promise<IOgmaConfig> {
   const response = await rc.config.getConfiguration();
   if (response.isSuccess()) return response.body.ogma;
   return {};
+}
+
+export async function getGraphSchema() {
+  const nodeTypes = await rc.graphSchema.getTypesWithAccess({
+    entityType: EntityType.NODE,
+    sourceKey,
+  });
+  const edgeTypes = await rc.graphSchema.getTypesWithAccess({
+    entityType: EntityType.EDGE,
+    sourceKey,
+  });
+  if (nodeTypes.isSuccess() && edgeTypes.isSuccess()) {
+    return {
+      node: nodeTypes.body.results,
+      edge: edgeTypes.body.results,
+    };
+  }
 }
 
 export async function getVisualisation() {
