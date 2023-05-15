@@ -1,3 +1,4 @@
+/// <reference types='codeceptjs' />
 import { setHeadlessWhen, setWindowSize } from "@codeceptjs/configure";
 
 setHeadlessWhen(process.env.CI);

@@ -1,6 +1,6 @@
 /// <reference types='codeceptjs' />
 
-type CustomHelper = import("./tests/e2e/helpers/customHelper");
+type CustomHelper = import("./helpers/customHelper");
 type Ogma = typeof import("@linkurious/ogma");
 
 declare namespace CodeceptJS {
