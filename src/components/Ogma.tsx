@@ -125,7 +125,7 @@ export const OgmaComponent = (
       let bounds = getBoundingBox(ogma, textsVisible);
       if (annotations.features.length > 0)
         bounds = mergeBounds(bounds, getAnnotationsBounds(annotations));
-      console.log("updateBbox", bounds);
+      // console.log("updateBbox", bounds);
       setBoundingBox(bounds);
     }
   }, [ogma, textsVisible, annotations]);
