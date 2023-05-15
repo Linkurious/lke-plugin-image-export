@@ -62,8 +62,7 @@ export const OgmaComponent = (
   const [graphData, setGraphData] = useState<PopulatedVisualization>();
   const [, setViewCenter] = useState<{ x: number; y: number }>();
 
-  const { ogma, setBoundingBox, boundingBox, textsVisible } = useAppContext();
-  const { annotations } = useAnnotationsContext();
+  const { ogma, setBoundingBox, textsVisible } = useAppContext();
 
   useImperativeHandle(ref, () => ogma, [ogma]);
 
@@ -122,13 +121,9 @@ export const OgmaComponent = (
 
   const updateBbox = useCallback(() => {
     if (ogma) {
-      let bounds = getBoundingBox(ogma, textsVisible);
-      if (annotations.features.length > 0)
-        bounds = mergeBounds(bounds, getAnnotationsBounds(annotations));
-      // console.log("updateBbox", bounds);
-      setBoundingBox(bounds);
+      setBoundingBox(getBoundingBox(ogma, textsVisible));
     }
-  }, [ogma, textsVisible, annotations]);
+  }, [ogma, textsVisible]);
 
   useEffect(() => {
     const updateCenter = () => {

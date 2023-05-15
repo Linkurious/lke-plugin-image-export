@@ -1,11 +1,13 @@
 import React, { FC, useEffect, useState } from "react";
 import { fullSizeMargin } from "../constants";
-import { useAppContext } from "../context";
+import { useAnnotationsContext, useAppContext } from "../context";
 import { FormatType } from "../types/formats";
-import { formatSize } from "../utils";
+import { formatSize, mergeBounds } from "../utils";
+import { getAnnotationsBounds } from "@linkurious/annotations-control";
 
 export const FormatInfo: FC<FormatType> = ({ value }) => {
   const { ogma, boundingBox, format, textsVisible } = useAppContext();
+  const { annotations } = useAnnotationsContext();
   const [, setZoom] = useState(1);
   let dimensions = "";
 
@@ -18,13 +20,18 @@ export const FormatInfo: FC<FormatType> = ({ value }) => {
 
   useEffect(() => {
     if (ogma) setZoom(ogma.view.getZoom());
-  }, [ogma, textsVisible, boundingBox]);
+  }, [ogma, textsVisible, boundingBox, annotations]);
 
   if (!boundingBox || !ogma) return null;
 
+  const combinedBoundingBox =
+    annotations.features.length === 0
+      ? boundingBox
+      : mergeBounds(getAnnotationsBounds(annotations), boundingBox);
+
   if (typeof value === "undefined") {
     const margin = format.value === undefined ? fullSizeMargin : 0;
-    const [minX, minY, maxX, maxY] = boundingBox;
+    const [minX, minY, maxX, maxY] = combinedBoundingBox;
 
     const lb = ogma.view.graphToScreenCoordinates({ x: minX, y: minY });
     const rt = ogma.view.graphToScreenCoordinates({ x: maxX, y: maxY });
