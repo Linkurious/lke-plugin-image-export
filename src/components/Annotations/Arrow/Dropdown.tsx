@@ -6,38 +6,42 @@ import { ArrowRight as RightArrowIcon } from "iconoir-react";
 import { useAnnotationsContext, useAppContext } from "../../../context";
 import { ArrowStylePanel } from "./StylePanel";
 import { createArrow, isArrow } from "@linkurious/annotations-control";
+import { MouseButtonEvent, MouseOutEvent } from "@linkurious/ogma/dev";
+import { LkEdgeData, LkNodeData } from "@linkurious/rest-client";
 
 interface ArrowDropdownProps {}
 
 export const ArrowDropDown: FC<ArrowDropdownProps> = () => {
-  const {
-    editor,
-    annotations,
-    arrowStyle,
-    currentAnnotation,
-    setCurrentAnnotation,
-  } = useAnnotationsContext();
+  const { editor, arrowStyle, currentAnnotation, setCurrentAnnotation } =
+    useAnnotationsContext();
   const { ogma } = useAppContext();
   const isActive = currentAnnotation && isArrow(currentAnnotation);
   const onClick = useCallback(() => {
     const arrow = createArrow(0, 0, 0, 0, arrowStyle);
     setCurrentAnnotation(arrow);
-    ogma.events
-      .once("keyup", (evt) => {
-        if (evt.code === 27) {
-          setCurrentAnnotation(null);
-          //setIsDrawing(false);
-        }
-      })
-      .once("mousedown", (evt) => {
-        requestAnimationFrame(() => {
-          const { x, y } = ogma.view.screenToGraphCoordinates(evt);
-          arrow.geometry = createArrow(x, y, x, y, arrowStyle).geometry;
-          editor.startArrow(x, y, arrow);
-          setCurrentAnnotation(arrow);
-        });
+
+    const onKeyUp = (evt: { code: number }) => {
+      if (evt.code === 27) {
+        setCurrentAnnotation(null);
+        //setIsDrawing(false);
+      }
+    };
+
+    const onMouseDown = (evt: MouseButtonEvent<LkNodeData, LkEdgeData>) => {
+      requestAnimationFrame(() => {
+        const { x, y } = ogma.view.screenToGraphCoordinates(evt);
+        arrow.geometry = createArrow(x, y, x, y, arrowStyle).geometry;
+        editor.startArrow(x, y, arrow);
+        setCurrentAnnotation(arrow);
       });
-  }, [editor, arrowStyle, annotations]);
+    };
+
+    ogma.events.once("keyup", onKeyUp).once("mousedown", onMouseDown);
+
+    return () => {
+      ogma.events.off(onKeyUp).off(onMouseDown);
+    };
+  }, [editor, arrowStyle, setCurrentAnnotation]);
 
   return (
     <Dropdown.Button

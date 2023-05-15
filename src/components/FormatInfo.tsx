@@ -4,7 +4,7 @@ import { useAppContext } from "../context";
 import { FormatType } from "../types/formats";
 import { formatSize } from "../utils";
 
-export const FormatInfo: FC<FormatType> = ({ label, value }) => {
+export const FormatInfo: FC<FormatType> = ({ value }) => {
   const { ogma, boundingBox, format, textsVisible } = useAppContext();
   const [, setZoom] = useState(1);
   let dimensions = "";
@@ -18,7 +18,7 @@ export const FormatInfo: FC<FormatType> = ({ label, value }) => {
 
   useEffect(() => {
     if (ogma) setZoom(ogma.view.getZoom());
-  }, [textsVisible, boundingBox]);
+  }, [ogma, textsVisible, boundingBox]);
 
   if (!boundingBox || !ogma) return null;
 

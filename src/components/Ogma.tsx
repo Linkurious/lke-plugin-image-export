@@ -6,6 +6,7 @@ import React, {
   useImperativeHandle,
   ReactNode,
   Ref,
+  useCallback,
 } from "react";
 import {
   LKOgma as OgmaLib,
@@ -14,9 +15,10 @@ import {
   EdgeList,
 } from "@linkurious/ogma-linkurious-parser";
 import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
-import { useAppContext } from "../context";
-import { getBoundingBox } from "../utils";
+import { useAnnotationsContext, useAppContext } from "../context";
+import { getBoundingBox, mergeBounds } from "../utils";
 import { GraphSchema } from "../api";
+import { getAnnotationsBounds } from "@linkurious/annotations-control";
 
 const applyItemFilter = (
   ogma: OgmaLib,
@@ -60,7 +62,8 @@ export const OgmaComponent = (
   const [graphData, setGraphData] = useState<PopulatedVisualization>();
   const [, setViewCenter] = useState<{ x: number; y: number }>();
 
-  const { ogma, setBoundingBox, textsVisible } = useAppContext();
+  const { ogma, setBoundingBox, boundingBox, textsVisible } = useAppContext();
+  const { annotations } = useAnnotationsContext();
 
   useImperativeHandle(ref, () => ogma, [ogma]);
 
@@ -69,9 +72,15 @@ export const OgmaComponent = (
       const instance = new OgmaLib(options);
       instance.setContainer(container);
 
-      // TODO: remove
-      // @ts-ignore
-      window.ogma = instance;
+      instance.setOptions({
+        interactions: {
+          selection: { enabled: false },
+        },
+      });
+
+      // items should not be highlighted
+      instance.styles.setHoveredNodeAttributes(null);
+      instance.styles.setHoveredEdgeAttributes(null);
 
       setReady(true);
       if (onReady) onReady(instance);
@@ -92,6 +101,7 @@ export const OgmaComponent = (
     if (ogma) {
       // TODO: this is required for e2e testing.
       //Maybe we could give it annother name, like window.ogmaImageExport ?
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       window.ogma = ogma;
       if (graph && ogma && graph !== graphData) {
@@ -110,36 +120,30 @@ export const OgmaComponent = (
     }
   }, [graph, options, ogma, schema]);
 
+  const updateBbox = useCallback(() => {
+    if (ogma) {
+      let bounds = getBoundingBox(ogma, textsVisible);
+      if (annotations.features.length > 0)
+        bounds = mergeBounds(bounds, getAnnotationsBounds(annotations));
+      console.log("updateBbox", bounds);
+      setBoundingBox(bounds);
+    }
+  }, [ogma, textsVisible, annotations]);
+
   useEffect(() => {
-    const updateBbox = () => {
-      if (ogma) setBoundingBox(getBoundingBox(ogma, textsVisible));
-    };
     const updateCenter = () => {
       if (ogma) setViewCenter(ogma.view.getCenter());
     };
     if (ogma) {
-      ogma.setOptions({
-        interactions: {
-          selection: { enabled: false },
-        },
-      });
-
-      // items should not be highlighted
-      ogma.styles.setHoveredNodeAttributes(null);
-      ogma.styles.setHoveredEdgeAttributes(null);
-
-      ogma.events.on(
-        ["addNodes", "addEdges", "layoutEnd", "nodesDragEnd"],
-        updateBbox
-      );
-      ogma.events.on("move", updateCenter);
+      ogma.events
+        .on(["addNodes", "addEdges", "layoutEnd", "nodesDragEnd"], updateBbox)
+        .on("move", updateCenter);
       updateBbox();
     }
     return () => {
-      ogma?.events.off(updateBbox);
-      ogma?.events.off(updateCenter);
+      ogma?.events.off(updateBbox).off(updateCenter);
     };
-  }, [ogma, textsVisible]);
+  }, [ogma]);
 
   return (
     <div

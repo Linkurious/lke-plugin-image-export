@@ -2,7 +2,6 @@ import React, { FC, useState } from "react";
 
 import Button from "antd/es/button/button";
 import Switch from "antd/es/switch";
-import Menu from "antd/es/menu";
 import Dropdown from "antd/es/dropdown";
 
 import { DownOutlined } from "@ant-design/icons";

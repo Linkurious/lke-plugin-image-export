@@ -1,4 +1,4 @@
-import { InfoOutlined, PlusSquareOutlined } from "@ant-design/icons";
+import { InfoOutlined } from "@ant-design/icons";
 import Button from "antd/es/button/button";
 import { version } from "../../package.json";
 

@@ -21,14 +21,14 @@ export const getOgmaBackgroundColor = (ogma: Ogma): NonNullable<Color> => {
 export const stringToSVGElement = (svg: string) => {
   const parser = new DOMParser();
   const doc = parser.parseFromString(svg, "image/svg+xml");
-  return doc.documentElement as any as SVGSVGElement;
+  return doc.documentElement as unknown as SVGSVGElement;
 };
 
 export function scaleGraph(ogma: Ogma, scale: number) {
   const { x, y } = ogma.view.getCenter();
   const positions = ogma.getNodes().getPosition();
   return ogma.getNodes().setAttributes(
-    positions.map((pos, i) => {
+    positions.map((pos) => {
       const dx = pos.x - x;
       const dy = pos.y - y;
 
@@ -61,7 +61,7 @@ export function getBoundingBox(ogma: Ogma, texts: boolean): Bounds {
   const attributes = ogma.getNodes().getAttributes(["x", "y", "radius"]);
   return ogma.getNodes().reduce(
     (acc, node, i) => {
-      let { x, y, radius } = attributes[i];
+      const { x, y, radius } = attributes[i];
       let minTextX = x;
       let minTextY = y;
       let maxTextX = x;

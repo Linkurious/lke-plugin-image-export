@@ -47,13 +47,9 @@ interface IAppContext {
   error: Error | null;
 }
 
-export function createAppContext<ND = unknown, ED = unknown>() {
-  return createContext<IAppContext | null>(null);
-}
-
 export const AppContext = createContext(
   undefined
-) as any as Context<IAppContext>;
+) as unknown as Context<IAppContext>;
 
 export const useAppContext = () => useContext<IAppContext>(AppContext);
 
@@ -74,7 +70,12 @@ export const AppContextProvider = ({ children }: Props) => {
   const [error, setError] = useState<Error | null>(null);
 
   const [ogma, setOgma] = useState<LKOgma>();
-  const [boundingBox, setBoundingBox] = useState<Bounds>();
+  const [boundingBox, setBoundingBox] = useState<Bounds>([
+    Infinity,
+    Infinity,
+    -Infinity,
+    -Infinity,
+  ]);
   const [textsVisible, setTextsVisible] = useState(true);
   const [background, setBackground] = useState(true);
   const [graphScale, setGraphScale] = useState(1);

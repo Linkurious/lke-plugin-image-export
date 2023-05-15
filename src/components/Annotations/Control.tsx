@@ -26,8 +26,7 @@ export const AnnotationsControl: FC<AnnotationsControlProps> = () => {
     setTextStyle,
     currentAnnotation,
     setCurrentAnnotation,
-    annotations,
-    setAnnotations,
+    updateAnnotations,
   } = useAnnotationsContext();
   useEffect(() => {
     if (ogma) {
@@ -54,20 +53,24 @@ export const AnnotationsControl: FC<AnnotationsControlProps> = () => {
           // TODO: maybe set back the styles to the default options
           setCurrentAnnotation(null);
         })
-        .on("add", (annotation) => {
-          setAnnotations({
-            ...annotations,
-            features: [...annotations.features, annotation],
+        .on("add", (annotation) =>
+          updateAnnotations({
+            type: "add",
+            payload: annotation,
+          })
+        )
+        .on("update", (annotation) => {
+          updateAnnotations({
+            type: "update",
+            payload: annotation,
           });
         })
-        .on("remove", (annotation) => {
-          setAnnotations({
-            ...annotations,
-            features: annotations.features.filter(
-              (a) => a.id !== annotation.id
-            ),
-          });
-        });
+        .on("remove", (annotation) =>
+          updateAnnotations({
+            type: "remove",
+            payload: annotation,
+          })
+        );
       setEditor(newEditor);
     }
     return () => {

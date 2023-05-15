@@ -4,6 +4,7 @@ import {
   Context,
   useState,
   ReactElement,
+  useReducer,
 } from "react";
 import {
   AnnotationCollection,
@@ -11,21 +12,16 @@ import {
   ArrowStyles,
   TextStyle,
   Control as AnnotationsEditor,
+  Annotation,
 } from "@linkurious/annotations-control";
 import {
-  colors,
-  fontFamilies,
-  rgbaToString,
-  fontSizes,
-  TRANSPARENT,
-  BLACK,
   defaultArrowStyle,
   defaultTextStyle,
 } from "../components/Annotations/constants";
 
 interface IAnnotationsContext {
   annotations: AnnotationCollection;
-  setAnnotations: (annotations: AnnotationCollection) => void;
+  updateAnnotations: React.Dispatch<AnnotationAction>;
   currentAnnotation: AnnotationFeature | null;
   setCurrentAnnotation: (annotation: AnnotationFeature | null) => void;
   arrowStyle: ArrowStyles;
@@ -43,7 +39,7 @@ export function createAnnotationsContext() {
 
 export const AnnotationsContext = createContext(
   undefined
-) as any as Context<IAnnotationsContext>;
+) as unknown as Context<IAnnotationsContext>;
 
 export const useAnnotationsContext = () =>
   useContext<IAnnotationsContext>(AnnotationsContext);
@@ -52,8 +48,41 @@ interface Props {
   children: ReactElement;
 }
 
+type AnnotationActionType = "add" | "remove" | "update";
+type AnnotationAction = {
+  type: AnnotationActionType;
+  payload: Annotation;
+};
+
+const annotatationsReducer = (
+  state: AnnotationCollection,
+  action: AnnotationAction
+) => {
+  switch (action.type) {
+    case "add":
+      return {
+        ...state,
+        features: [...state.features, action.payload],
+      };
+    case "remove":
+      return {
+        ...state,
+        features: state.features.filter((a) => a.id !== action.payload.id),
+      };
+    case "update":
+      return {
+        ...state,
+        features: state.features.map((a) =>
+          a.id === action.payload.id ? action.payload : a
+        ),
+      };
+    default:
+      return state;
+  }
+};
+
 export const AnnotationsContextProvider = ({ children }: Props) => {
-  const [annotations, setAnnotations] = useState<AnnotationCollection>({
+  const [annotations, updateAnnotations] = useReducer(annotatationsReducer, {
     type: "FeatureCollection",
     features: [],
   });
@@ -68,7 +97,7 @@ export const AnnotationsContextProvider = ({ children }: Props) => {
       value={
         {
           annotations,
-          setAnnotations,
+          updateAnnotations,
 
           currentAnnotation,
           setCurrentAnnotation,

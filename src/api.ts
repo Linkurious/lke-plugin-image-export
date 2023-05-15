@@ -6,7 +6,7 @@ import {
   GraphSchemaTypeWithAccess,
 } from "@linkurious/rest-client";
 
-declare var IS_DEV: boolean;
+declare let IS_DEV: boolean;
 
 const rc = new RestClient({
   baseUrl: IS_DEV ? "http://localhost:3000/" : "../../",

@@ -35,7 +35,7 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
         font: fontFamilies[key.toString() as fontNameAliases],
       });
     },
-    [textStyle]
+    [textStyle, setTextStyle]
   );
 
   const currentFont = fontItems?.find(
@@ -50,7 +50,7 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
         padding: +key * RELATIVE_PADDING,
       });
     },
-    [textStyle]
+    [textStyle, setTextStyle]
   );
 
   const currentFontSize = fontSizeItems?.find(
@@ -65,7 +65,7 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
         color,
       });
     },
-    [textStyle]
+    [textStyle, setTextStyle]
   );
 
   const onTextBgColorSelect = useCallback(
@@ -76,7 +76,7 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
         background: color,
       });
     },
-    [textStyle]
+    [textStyle, setTextStyle]
   );
 
   return (

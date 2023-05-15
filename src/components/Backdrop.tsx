@@ -142,6 +142,7 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
       // TODO: fix this, it's a hack
       try {
         scalingStyleRule.refresh();
+        // eslint-disable-next-line no-empty
       } catch (e) {}
     }
   }, [scalingStyleRule, graphScale]);

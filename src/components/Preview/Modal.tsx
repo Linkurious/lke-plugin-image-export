@@ -62,7 +62,6 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       const exportOptions = {
         texts: textsVisible,
       };
-      // @ts-ignore
       let res = stringToSVGElement(
         format.value === undefined
           ? await exportOrginalSize(ogma, annotations, exportOptions)
@@ -73,9 +72,12 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
               exportOptions
             )
       );
+      setProgress(50);
 
       setLoading(false);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const width = parseFloat(res.getAttribute("width")!);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const height = parseFloat(res.getAttribute("height")!);
       setSize({ width, height });
 
