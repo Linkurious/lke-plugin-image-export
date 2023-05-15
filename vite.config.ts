@@ -1,11 +1,9 @@
 import path from "path";
 import { defineConfig } from "vite";
-import legacy from "@vitejs/plugin-legacy";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   base: "",
-  root: "web",
   plugins: [react()],
   server: {
     port: 4001,
@@ -22,9 +20,6 @@ export default defineConfig({
   },
   build: {
     outDir: path.join(process.cwd(), "dist", "public"),
-    rollupOptions: {
-      output: { format: "iife" },
-    },
     emptyOutDir: true,
   },
 });

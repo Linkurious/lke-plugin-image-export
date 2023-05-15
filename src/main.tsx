@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOMClient from "react-dom/client";
-import App from "../../src/App";
-import "./css/styles.css";
+import App from "./App";
+import "./assets/styles.css";
 
 const container =
   document.getElementById("root") || document.querySelector("lk-app-root");
