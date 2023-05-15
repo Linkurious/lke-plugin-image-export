@@ -12,10 +12,13 @@ export const FormatInfo: FC<FormatType> = ({ value }) => {
   let dimensions = "";
 
   useEffect(() => {
-    if (ogma)
-      ogma.events.on("move", () => {
-        setZoom(ogma.view.getZoom());
-      });
+    const onMove = () => {
+      setZoom(ogma.view.getZoom());
+    };
+    ogma?.events.on("move", onMove);
+    return () => {
+      ogma?.events.off(onMove);
+    };
   }, [ogma]);
 
   useEffect(() => {
