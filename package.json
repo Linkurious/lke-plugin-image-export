@@ -19,11 +19,9 @@
   "author": "Andrea Fantaccione",
   "scripts": {
     "clean": "rm -rf dist *.tgz *.lke",
-    "copy-assets": "mkdir -p dist/public && cp -R web/assets dist/public",
     "build:project": "npm-run-all build:manifest build:public build:backend",
     "build:manifest": "mkdir -p dist && cp src/manifest.json dist/manifest.json",
     "build:public": "vite build",
-    "postbuild:public": "npm run copy-assets",
     "build:backend": "esbuild backend/routeHandler.ts --outfile=dist/backend/routeHandler.js --bundle --platform=node",
     "build:dependencies": "cp package.json dist",
     "build:component": "vite build",
