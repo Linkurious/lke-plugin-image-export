@@ -132,7 +132,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       onCancel={onCancel}
       width={"80vw"}
       footer={
-        image && (
+        image ? (
           <Footer
             setBackground={setBackground}
             background={background}
@@ -141,7 +141,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
             size={size}
             image={image}
           />
-        )
+        ) : null
       }
     >
       <div className="preview--container">
