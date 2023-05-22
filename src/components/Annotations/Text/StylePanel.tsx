@@ -24,7 +24,7 @@ import { HsvaColor, hsvaToHex } from "@uiw/color-convert";
 interface TextStylePanelProps {}
 
 export const TextStylePanel: FC<TextStylePanelProps> = () => {
-  const { textStyle, setTextStyle } = useAnnotationsContext();
+  const { textStyle, setTextStyle, textSizeFactor } = useAnnotationsContext();
 
   type MenuClickCallback = NonNullable<MenuProps["onClick"]>;
 
@@ -46,15 +46,18 @@ export const TextStylePanel: FC<TextStylePanelProps> = () => {
     ({ key }) => {
       setTextStyle({
         ...textStyle,
-        fontSize: key.toString(),
+        fontSize: (+key * textSizeFactor).toString(),
         padding: +key * RELATIVE_PADDING,
       });
     },
-    [textStyle, setTextStyle]
+    [textStyle, setTextStyle, textSizeFactor]
   );
 
+  const currentFontSizeValue = (
+    +textStyle.fontSize! / textSizeFactor
+  ).toString();
   const currentFontSize = fontSizeItems?.find(
-    (size) => size!.key === textStyle.fontSize
+    (size) => size!.key === currentFontSizeValue
   ) as { label: string };
 
   const onTextColorSelect = useCallback(

@@ -25,8 +25,12 @@ interface IAnnotationsContext {
   currentAnnotation: AnnotationFeature | null;
   setCurrentAnnotation: (annotation: AnnotationFeature | null) => void;
   arrowStyle: ArrowStyles;
+  arrowWidthFactor: number;
+  setArrowWidthFactor: (arrowWidthFactor: number) => void;
   setArrowStyle: (arrowStyle: ArrowStyles) => void;
   textStyle: TextStyle;
+  textSizeFactor: number;
+  setTextSizeFactor: (textSizeFactor: number) => void;
   setTextStyle: (textStyle: TextStyle) => void;
 
   editor: AnnotationsEditor;
@@ -91,6 +95,8 @@ export const AnnotationsContextProvider = ({ children }: Props) => {
   const [arrowStyle, setArrowStyle] = useState<ArrowStyles>(defaultArrowStyle);
   const [textStyle, setTextStyle] = useState<TextStyle>(defaultTextStyle);
   const [editor, setEditor] = useState<AnnotationsEditor>();
+  const [arrowWidthFactor, setArrowWidthFactor] = useState(1);
+  const [textSizeFactor, setTextSizeFactor] = useState(1);
 
   return (
     <AnnotationsContext.Provider
@@ -106,6 +112,10 @@ export const AnnotationsContextProvider = ({ children }: Props) => {
           setTextStyle,
           arrowStyle,
           setArrowStyle,
+          arrowWidthFactor,
+          setArrowWidthFactor,
+          textSizeFactor,
+          setTextSizeFactor,
 
           editor,
           setEditor,

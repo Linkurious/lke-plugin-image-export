@@ -11,6 +11,7 @@ import { useAppContext, useAnnotationsContext } from "../../context";
 import Button from "antd/es/button/button";
 import { TextDropdown } from "./Text/Dropdown";
 import { ArrowDropDown } from "./Arrow/Dropdown";
+import { meanValue } from "../../utils";
 
 interface AnnotationsControlProps {}
 
@@ -27,11 +28,35 @@ export const AnnotationsControl: FC<AnnotationsControlProps> = () => {
     currentAnnotation,
     setCurrentAnnotation,
     updateAnnotations,
+
+    arrowWidthFactor,
+    setArrowWidthFactor,
+    setTextSizeFactor,
   } = useAnnotationsContext();
   useEffect(() => {
     if (ogma) {
       const newEditor = new AnnotationsEditor(ogma, {
         textPlaceholder: "Your text...",
+        detectMargin: 2,
+        magnetRadius: 5,
+        minArrowHeight: 0.0005,
+        maxArrowHeight: 15,
+      });
+
+      // adjust the default style of the annotations based on the graph
+      const newTextSizeFactor =
+        meanValue(ogma.getNodes().getAttribute("radius") as number[]) / 5;
+      const newArrowWidthFactor = arrowWidthFactor;
+
+      setArrowStyle({
+        ...arrowStyle,
+        strokeWidth: (arrowStyle.strokeWidth || 1) * newArrowWidthFactor,
+      });
+      setArrowWidthFactor(newArrowWidthFactor);
+      setTextSizeFactor(newTextSizeFactor);
+      setTextStyle({
+        ...textStyle,
+        fontSize: (+textStyle.fontSize! * newTextSizeFactor).toString(),
       });
       newEditor
         .on("select", (annotation) => {

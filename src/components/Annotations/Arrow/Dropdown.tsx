@@ -23,7 +23,6 @@ export const ArrowDropDown: FC<ArrowDropdownProps> = () => {
     const onKeyUp = (evt: { code: number }) => {
       if (evt.code === 27) {
         setCurrentAnnotation(null);
-        //setIsDrawing(false);
       }
     };
 
@@ -41,7 +40,7 @@ export const ArrowDropDown: FC<ArrowDropdownProps> = () => {
     return () => {
       ogma.events.off(onKeyUp).off(onMouseDown);
     };
-  }, [editor, arrowStyle, setCurrentAnnotation]);
+  }, [ogma, editor, arrowStyle, setCurrentAnnotation]);
 
   return (
     <Dropdown.Button

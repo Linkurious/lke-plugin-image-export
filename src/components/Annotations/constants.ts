@@ -35,8 +35,8 @@ export const fontSizeItems: NonNullable<MenuProps["items"]> = fontSizes.map(
 
 export const lineWidthItems = [
   { value: 1, title: "thin" },
-  { value: 5, title: "medium" },
-  { value: 10, title: "thick" },
+  { value: 3, title: "medium" },
+  { value: 8, title: "thick" },
   { value: 20, title: "xl" },
 ];
 
@@ -89,15 +89,15 @@ export enum ArrowDirection {
 export const defaultArrowStyle: ArrowStyles = {
   head: "arrow",
   strokeColor: colors[1],
-  strokeWidth: 5,
+  strokeWidth: lineWidthItems[1].value,
 };
 
 export const RELATIVE_PADDING = 0.25;
 
 export const defaultTextStyle: TextStyle = {
   font: fontFamilies["Sans-serif"],
-  fontSize: fontSizes[5].toString(),
-  padding: fontSizes[5] * RELATIVE_PADDING,
+  fontSize: fontSizes[2].toString(),
+  padding: fontSizes[2] * RELATIVE_PADDING,
   color: BLACK,
   strokeType: TRANSPARENT,
   background: TRANSPARENT,

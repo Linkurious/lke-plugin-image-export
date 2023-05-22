@@ -2,7 +2,6 @@ import { FC, useCallback } from "react";
 
 import Form from "antd/es/form";
 import Button from "antd/es/button";
-import { MenuProps } from "antd/es/menu";
 
 import { Minus } from "iconoir-react";
 import ColorPicker from "@uiw/react-color-swatch";
@@ -17,16 +16,17 @@ import { colorIcon } from "../icons/Color";
 interface ArrowStylePanelProps {}
 
 export const ArrowStylePanel: FC<ArrowStylePanelProps> = () => {
-  const { arrowStyle, setArrowStyle } = useAnnotationsContext();
+  const { arrowStyle, setArrowStyle, arrowWidthFactor } =
+    useAnnotationsContext();
 
   const onLineWidthSelect = useCallback(
     (item: { value: number }) => {
       setArrowStyle({
         ...arrowStyle,
-        strokeWidth: parseInt(item.value.toString() || "0"),
+        strokeWidth: parseInt(item.value.toString() || "0") * arrowWidthFactor,
       });
     },
-    [arrowStyle]
+    [arrowStyle, setArrowStyle, arrowWidthFactor]
   );
 
   const onDirectionSelect = useCallback(
@@ -40,7 +40,7 @@ export const ArrowStylePanel: FC<ArrowStylePanelProps> = () => {
         tail: dir === ArrowDirection.BOTH ? "arrow" : undefined,
       });
     },
-    [arrowStyle]
+    [arrowStyle, setArrowStyle]
   );
 
   const onColorSelect = useCallback(
@@ -50,7 +50,7 @@ export const ArrowStylePanel: FC<ArrowStylePanelProps> = () => {
         strokeColor: hsvaToHex(color),
       });
     },
-    [arrowStyle]
+    [arrowStyle, setArrowStyle]
   );
 
   const direction =
@@ -93,7 +93,7 @@ export const ArrowStylePanel: FC<ArrowStylePanelProps> = () => {
         </Form.Item>
         <LineWidthSelect
           options={lineWidthItems}
-          selected={arrowStyle.strokeWidth || 1}
+          selected={(arrowStyle.strokeWidth || 1) / arrowWidthFactor}
           onChange={onLineWidthSelect}
         />
         <ColorPicker

@@ -94,3 +94,6 @@ export async function destroyRule(rule: StyleRule, ogma: Ogma) {
   for (const r of rules) if (r.getId() === ruleId) return await rule.destroy();
   return void 0;
 }
+
+export const meanValue = (values: number[]) =>
+  values.reduce((acc, v) => acc + v, 0) / values.length;

@@ -14,6 +14,7 @@ const rc = new RestClient({
 
 const params = new URLSearchParams(location.search);
 const sourceKey = params.get("key") || "key";
+// 101 is bigger graph, 102 is 5 nodes
 const id = params.get("id") || "101";
 
 export interface GraphSchema {
