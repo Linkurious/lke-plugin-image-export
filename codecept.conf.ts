@@ -1,6 +1,5 @@
-require("ts-node/register");
-
-const { setHeadlessWhen, setWindowSize } = require("@codeceptjs/configure");
+/// <reference types='codeceptjs' />
+import { setHeadlessWhen, setWindowSize } from "@codeceptjs/configure";
 
 setHeadlessWhen(process.env.CI);
 
@@ -14,8 +13,11 @@ const emulateOptions = process.env.TEST_RETINA
   ? { isMobile: false, deviceScaleFactor: 2 }
   : { isMobile: false, deviceScaleFactor: 1 };
 
-exports.config = {
-  output: "../../reports/html/e2e",
+/** @type {CodeceptJS.MainConfig} */
+export const config: CodeceptJS.MainConfig = {
+  // this is irreleavnt by the way
+  tests: "./tests/e2e/*_test.ts",
+  output: "./reports/html/e2e",
   timeout: 25,
   helpers: {
     Playwright: {
@@ -30,12 +32,12 @@ exports.config = {
       },
     },
     CustomHelper: {
-      require: "./helpers/customHelper",
+      require: "./tests/e2e/helpers/customHelper",
     },
   },
   gherkin: {
-    features: "./features/**/*.feature",
-    steps: "./steps/**/*.ts",
+    features: "./tests/e2e/features/**/*.feature",
+    steps: "./tests/e2e/steps/**/*.ts",
   },
   name: "lkeplugin-image-export",
   grep: process.env.GREP,
@@ -47,7 +49,7 @@ exports.config = {
     },
     stepByStepReport: {
       enabled: process.env.CI,
-      output: "../../reports/html/e2e",
+      output: "./reports/html/e2e",
       ignoreSteps: ["grab*", "wait*"],
       fullPageScreenshots: true,
     },

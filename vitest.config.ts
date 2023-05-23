@@ -7,8 +7,11 @@ import react from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  define: {
+    IS_DEV: process.env.DEV ? true : false,
+  },
   test: {
-    include: ["tests/unit/**/*.test.ts"],
+    include: ["tests/unit/**/*.test.ts", "tests/unit/**/*.test.tsx"],
     globals: true,
     coverage: {
       reporter: ["json", "cobertura"],

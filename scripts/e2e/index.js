@@ -50,7 +50,7 @@ function runTests(PORT) {
       : "";
     testProcess = exec(
       `TESTOMATIO=${
-        process.env.TESTOMATIO
+        process.env.TESTOMATIO || ""
       } REPLACE=${!!REPLACE} PORT=${PORT} ./scripts/e2e/run.js ${filter} ${args}`,
       { maxBuffer: 1024 * 5000 },
       (error) => {

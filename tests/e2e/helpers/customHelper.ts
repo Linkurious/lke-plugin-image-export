@@ -13,10 +13,9 @@ class CustomHelper extends Helper {
     return Promise.all([
       this.page.waitForEvent("download"),
       this.page.locator(button).click(),
-    ]).then(([download]) => {
-      return Promise.all([download, download.path()]);
-    });
+    ]).then(([download]) => Promise.all([download, download.path()]));
   }
+
   getImageSize(image: string): Promise<[number, number, number]> {
     return this.page.evaluate((image) => {
       const img = document.querySelector(image) as HTMLImageElement;
@@ -57,9 +56,8 @@ class CustomHelper extends Helper {
     // });
     return this.page
       .click(selector)
-      .then(() => {
-        this.page.mouse.wheel(value, 0);
-      })
+      .then(() => this.page.mouse.move(500, 500))
+      .then(() => this.page.mouse.wheel(value, 0))
       .then(() => new Promise((resolve) => setTimeout(resolve, 100)))
       .catch((e) => {
         console.error("error", e);

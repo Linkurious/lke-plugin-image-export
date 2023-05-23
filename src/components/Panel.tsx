@@ -16,6 +16,7 @@ import { useAppContext } from "../context";
 import { Modal } from "./Preview";
 import { StyleRule } from "@linkurious/ogma";
 import { LkEdgeData, LkNodeData } from "@linkurious/rest-client";
+import { destroyRule } from "../utils";
 
 type SizeType = Parameters<typeof Form>[0]["size"];
 
@@ -81,7 +82,7 @@ export function Panel() {
     }
     return () => {
       fontSize.ratio = 1;
-      if (ogma && rule) rule.destroy();
+      if (ogma && rule) destroyRule(rule, ogma);
     };
   }, [ogma]);
 
