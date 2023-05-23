@@ -16,10 +16,10 @@ export const ImageViewer: FC<{
   size: Size;
   background: boolean;
 }> = ({ svg, size, background }) => {
-  let [ref, dimensions] = useDimensions();
+  const [ref, inputDimensions] = useDimensions();
   const { ogma } = useAppContext();
   const [panzoom, setPanzoom] = useState<PanZoom>();
-  dimensions = dimensions || ({ width: 0, height: 0 } as DOMRect);
+  const dimensions = inputDimensions || ({ width: 0, height: 0 } as DOMRect);
 
   const k = Math.min(
     dimensions.width / size.width,

@@ -1,4 +1,3 @@
-import React from "react";
 import { useAppContext } from "../context";
 import { Backdrop } from "./Backdrop";
 import { Minimap } from "./Minimap";
@@ -7,12 +6,14 @@ import { ZoomControl } from "./ZoomControl";
 import { VersionInfo } from "./VersionInfo";
 
 export function Visualisation() {
-  const { visualisation, configuration, setOgma, format } = useAppContext();
+  const { visualisation, configuration, graphSchema, setOgma, format } =
+    useAppContext();
   return (
     <>
       <Ogma
         graph={visualisation}
         options={configuration}
+        schema={graphSchema}
         onReady={(ogma) => setOgma(ogma)}
       >
         <ZoomControl />

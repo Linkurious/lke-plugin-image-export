@@ -3,8 +3,9 @@ const { exec } = require("child_process");
 const argv = require("minimist")(process.argv.slice(2));
 
 const grep = argv.grep || "";
+const TESTOMATIO = process.env.TESTOMATIO || "";
 const testProcess = exec(
-  `cd tests/e2e && TESTOMATIO_RUN=\${run} TESTOMATIO=${process.env.TESTOMATIO} ../../node_modules/.bin/codeceptjs run --debug --verbose --grep "${grep}" --reporter-options configFile=.reporters.json`,
+  `TESTOMATIO_RUN=\${run} TESTOMATIO=${TESTOMATIO} npx codeceptjs run --grep "${grep}" --reporter-options configFile=./tests/e2e/reporters.json`,
   (err) => {
     if (err) {
       console.error(err);
