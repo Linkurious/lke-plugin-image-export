@@ -1,24 +1,25 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Progress from "antd/es/progress";
 import UIModal, { ModalFuncProps } from "antd/es/modal";
 
 import { FormatType, ExportType } from "../../types/formats";
-import { useAppContext } from "../../context";
-import { svg, svgElementToString } from "@linkurious/ogma-export-stitch";
+import { useAnnotationsContext, useAppContext } from "../../context";
+import { svgElementToString } from "@linkurious/ogma-export-stitch";
 import { Size } from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
 import { ImageViewer } from "../ImageViewer";
 import { Footer } from "./Footer";
-import { scaleGraph, stringToSVGElement } from "../../utils";
+import { destroyRule, scaleGraph, stringToSVGElement } from "../../utils";
 import {
   addCheckerboard,
   addClipShape,
   addTransformGroup,
+  bringTextsToTop,
   embedImages,
+  exportClipped,
+  exportOrginalSize,
 } from "../../utils/svg";
-import { fullSizeMargin } from "../../constants";
 import { handleDownload } from "../../utils/download";
-
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
 
@@ -38,6 +39,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
     background,
     setBackground,
   } = useAppContext();
+  const { annotations, editor } = useAnnotationsContext();
   const [loading, setLoading] = useState(true);
   const [image, setImage] = useState<string>();
   const [progress, setProgress] = useState(0);
@@ -51,26 +53,31 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       ogma.getSelectedEdges().setSelected(false);
       ogma.getSelectedNodes().setSelected(false);
 
-      scaleGraph(ogma, 1 / graphScale);
+      editor.unselect();
+      await scaleGraph(ogma, 1 / graphScale);
       const scaleStyleDef = scalingStyleRule.getDefinition();
 
-      await scalingStyleRule.destroy();
-      // @ts-ignore
-      let res = await svg(ogma)
-        .setOptions({
-          texts: textsVisible,
-        })
-        .on("start", () => setProgress(0))
-        .on("progress", (progress) => setProgress(progress))
-        .run({
-          fullSize: format.value === undefined,
-          margin: format.value === undefined ? fullSizeMargin : 0,
-          width: format.value ? format.value.width : 0,
-          height: format.value ? format.value.height : 0,
-        });
+      await destroyRule(scalingStyleRule, ogma);
+
+      const exportOptions = {
+        texts: textsVisible,
+      };
+      let res = stringToSVGElement(
+        format.value === undefined
+          ? await exportOrginalSize(ogma, annotations, exportOptions)
+          : await exportClipped(
+              ogma,
+              format.value.width,
+              format.value.height,
+              exportOptions
+            )
+      );
+      setProgress(50);
 
       setLoading(false);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const width = parseFloat(res.getAttribute("width")!);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const height = parseFloat(res.getAttribute("height")!);
       setSize({ width, height });
 
@@ -78,6 +85,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       addClipShape(res, width, height);
       addCheckerboard(res);
       addTransformGroup(res);
+      bringTextsToTop(res);
 
       console.time("embed images");
       res = await embedImages(res);
@@ -100,7 +108,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
     return () => {
       if (open) setImage("");
     };
-  }, [open]);
+  }, [open, editor, ogma, annotations]);
 
   // apply the background color to the SVG
   useEffect(() => {
@@ -126,7 +134,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       onCancel={onCancel}
       width={"80vw"}
       footer={
-        image && (
+        image ? (
           <Footer
             setBackground={setBackground}
             background={background}
@@ -135,7 +143,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
             size={size}
             image={image}
           />
-        )
+        ) : null
       }
     >
       <div className="preview--container">

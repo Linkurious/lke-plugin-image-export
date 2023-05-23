@@ -1,17 +1,17 @@
 import { assert } from "chai";
-import Ogma from "@linkurious/ogma";
-
 const { I } = inject();
-const ogma = {} as Ogma;
 
-When(/^image is of size (\d+) (\d+)$/, async (width, height) => {
-  // image-viewer--content
-  const size = await I.getSvgElementSize(".ogma-svg-background");
-  assert.deepEqual(
-    {
-      width: size[0],
-      height: size[1],
-    },
-    { width: +width, height: +height }
-  );
-});
+When(
+  /^image is of size (\d+) (\d+)$/,
+  async (width: string, height: string) => {
+    // image-viewer--content
+    const size = await I.getSvgElementSize(".ogma-svg-background");
+    assert.deepEqual(
+      {
+        width: Math.round(size[0]),
+        height: Math.round(size[1]),
+      },
+      { width: +width, height: +height }
+    );
+  }
+);
