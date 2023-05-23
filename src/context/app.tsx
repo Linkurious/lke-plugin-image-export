@@ -1,7 +1,7 @@
 import { LKOgma } from "@linkurious/ogma-linkurious-parser";
 import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
-import { BoundingBox, StyleRule } from "@linkurious/ogma";
-import React, {
+import { StyleRule } from "@linkurious/ogma";
+import {
   createContext,
   useContext,
   Context,
@@ -11,19 +11,22 @@ import React, {
 } from "react";
 
 import * as api from "../api";
-import { FormatType } from "../types/formats";
+import type { GraphSchema } from "../api";
+import type { FormatType } from "../types/formats";
 import { formats } from "../constants";
+import type { Bounds } from "../utils";
 
 interface IAppContext {
   visualisation: PopulatedVisualization;
   configuration: IOgmaConfig;
+  graphSchema?: GraphSchema;
   format: FormatType;
   setFormat: (format: FormatType) => void;
   loading: boolean;
   ogma: LKOgma;
   setOgma: (ogma: LKOgma) => void;
-  boundingBox: BoundingBox;
-  setBoundingBox: (boundingBox: BoundingBox) => void;
+  boundingBox: Bounds;
+  setBoundingBox: (boundingBox: Bounds) => void;
 
   // scaling to fit the clipping window
   graphScale: number;
@@ -44,13 +47,9 @@ interface IAppContext {
   error: Error | null;
 }
 
-export function createAppContext<ND = unknown, ED = unknown>() {
-  return createContext<IAppContext | null>(null);
-}
-
 export const AppContext = createContext(
   undefined
-) as any as Context<IAppContext>;
+) as unknown as Context<IAppContext>;
 
 export const useAppContext = () => useContext<IAppContext>(AppContext);
 
@@ -66,11 +65,17 @@ export const AppContextProvider = ({ children }: Props) => {
   const [visualisation, setVis] = useState<PopulatedVisualization>();
   const [loading, setLoading] = useState(true);
   const [configuration, setConfig] = useState<IOgmaConfig>();
+  const [graphSchema, setGraphSchema] = useState<GraphSchema>();
   const [format, setFormat] = useState<FormatType>(formats[0]);
   const [error, setError] = useState<Error | null>(null);
 
   const [ogma, setOgma] = useState<LKOgma>();
-  const [boundingBox, setBoundingBox] = useState<BoundingBox>();
+  const [boundingBox, setBoundingBox] = useState<Bounds>([
+    Infinity,
+    Infinity,
+    -Infinity,
+    -Infinity,
+  ]);
   const [textsVisible, setTextsVisible] = useState(true);
   const [background, setBackground] = useState(true);
   const [graphScale, setGraphScale] = useState(1);
@@ -78,10 +83,15 @@ export const AppContextProvider = ({ children }: Props) => {
   const [scalingStyleEnabled, setScalingStyleEnabled] = useState(false);
 
   useEffect(() => {
-    Promise.all([api.getVisualisation(), api.getConfiguration()])
-      .then(([visualisation, configuration]) => {
+    Promise.all([
+      api.getVisualisation(),
+      api.getConfiguration(),
+      api.getGraphSchema(),
+    ])
+      .then(([visualisation, configuration, graphSchema]) => {
         setVis(visualisation);
         setConfig(configuration);
+        setGraphSchema(graphSchema);
         setLoading(false);
       })
       .catch((err) => {
@@ -96,6 +106,7 @@ export const AppContextProvider = ({ children }: Props) => {
         {
           visualisation,
           configuration,
+          graphSchema,
           loading,
           ogma,
           setOgma,

@@ -41,16 +41,13 @@ export async function handleDownload(
       compress: true,
     });
     const margin = 0;
-    // TODO: migrate to more recent version of jsPDF, this one has bad types
-    // @ts-ignore
     const pageWidth = pdf.getPageWidth() - margin * 2;
-    // @ts-ignore
     const pageHeight = pdf.getPageHeight() - margin * 2;
 
     // vertical cursor
-    let y = margin;
+    const y = margin;
     // fitting ratio canvas to page
-    let ratio = 1 / Math.max(svgWidth / pageWidth, svgHeight / pageHeight);
+    const ratio = 1 / Math.max(svgWidth / pageWidth, svgHeight / pageHeight);
     const width = svgWidth * ratio;
     const height = svgHeight * ratio;
     // resize SVG

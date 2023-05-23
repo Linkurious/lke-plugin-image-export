@@ -1,7 +1,7 @@
 import Ogma from "@linkurious/ogma";
-import fs from "fs/promises";
-import mkdir from "mkdirp";
-import path from "path";
+import * as fs from "fs/promises";
+import { mkdirp } from "mkdirp";
+import * as path from "path";
 import BlinkDiff from "blink-diff";
 import { BrowserContext, Page } from "playwright";
 import sharp from "sharp";
@@ -9,14 +9,14 @@ import sharp from "sharp";
 const { I } = inject();
 const ogma = {} as Ogma;
 
-const rootFolder = "../../reports/html/e2e/";
+const rootFolder = path.resolve(__dirname, "../../../reports/html/e2e/");
 const screenshotFolder = path.join(rootFolder, "screenshot/");
 const diffFolder = path.join(rootFolder, "diff/");
-const baseFolder = "./ref-images";
+const baseFolder = path.resolve(__dirname, "../ref-images");
 let foldersCreated = false;
 const results: any[] = [];
 
-const shouldReplace = process.env.REPLACE === "true" ? true : false;
+const shouldReplace = process.env.REPLACE === "true";
 function getPaths(fileName: string) {
   fileName = fileName.trim();
   return {
@@ -41,9 +41,8 @@ function compareImages(
 
   return new Promise((resolve, reject) => {
     diff.run((error, result) => {
-      if (error) {
-        reject(error);
-      } else {
+      if (error) reject(error);
+      else {
         diff.hasPassed(result.code)
           ? resolve(result.differences)
           : reject(result.differences);
@@ -52,7 +51,7 @@ function compareImages(
   });
 }
 
-When(/^I drag the viz (\w+)/, async (shouldDrag) => {
+When(/^I drag the viz (\w+)/, async (shouldDrag: string) => {
   if (shouldDrag === "false") return;
   await I.executeScript(() => {
     ogma.setOptions({ interactions: { drag: { enabled: false } } });
@@ -77,43 +76,46 @@ When(/^I drag the viz (\w+)/, async (shouldDrag) => {
   });
 });
 
-When(/^I set text visibility (\w+)$/, async (shouldShow) => {
+When(/^I set text visibility (\w+)$/, async (shouldShow: string) => {
   if (shouldShow === "true") return;
   I.click(".caption-switch");
 });
 
-When(/^I set text collision removal (\w+)$/, async (shouldRemoveCollision) => {
-  if (shouldRemoveCollision === "true") return;
-  I.click(".collision-switch");
-});
+When(
+  /^I set text collision removal (\w+)$/,
+  async (shouldRemoveCollision: string) => {
+    if (shouldRemoveCollision === "true") return;
+    I.click(".collision-switch");
+  }
+);
 
-When(/^I select output format (.+)$/, async (format) => {
+When(/^I select output format (.+)$/, async (format: string) => {
   if (format === "svg") return;
   await I.click("SVG");
   await I.click(".ant-dropdown-menu-title-content");
 });
 
-When(/^I click download (.+) (.+)$/, async (name, format) => {
-  const [download, downloadPath] = await I.download("text=Download");
+When(/^I click download (.+) (.+)$/, async (name: string, format: string) => {
+  const [, downloadPath] = await I.download("text=Download");
   const { expectedPath, actualPath } = getPaths(name);
-  if (!downloadPath) {
-    throw "download failed";
-  }
+  if (!downloadPath) throw "download failed";
   const outPath = shouldReplace ? expectedPath : actualPath;
-  return await (sharp(downloadPath)
-    .png()
-    .toFile(outPath))
+  return await sharp(downloadPath).png().toFile(outPath);
 });
 
-Then(/^image is nice (.+)$/, (name) => {
+When(/^I download (.+) (.+)$/, async (name: string, format: string) => {
+  const [download, downloadPath] = await I.download("text=Download");
+  const { actualPath } = getPaths(name);
+  if (!downloadPath) throw "download failed";
+  return await download.saveAs(actualPath);
+});
+
+Then(/^image is nice (.+)$/, (name: string) => {
   const { expectedPath, actualPath, diffPath } = getPaths(name);
-  if (shouldReplace) {
-    return;
-  } else {
+  if (shouldReplace) return;
+  else {
     return compareImages(actualPath, expectedPath, diffPath)
-      .then(() => {
-        results.push({ name, path: diffPath, success: true });
-      })
+      .then(() => results.push({ name, path: diffPath, success: true }))
       .catch((e) => {
         results.push({ name, path: diffPath, success: false });
         throw e;
@@ -121,20 +123,22 @@ Then(/^image is nice (.+)$/, (name) => {
   }
 });
 
-When(/^I select background color (\w+)$/, async (background) => {
-  let checked = await I.grabAttributeFrom('.preview-background-selector>button', 'aria-checked');
-  if(background !== checked){
+When(/^I select background color (\w+)$/, async (background: string) => {
+  let checked = await I.grabAttributeFrom(
+    ".preview-background-selector>button",
+    "aria-checked"
+  );
+  if (background !== checked) {
     I.click(".preview-background-selector>button");
   }
 });
 
-
 //@ts-ignore
 Before(async ({ tags }) => {
   if (!tags.includes("@download") || foldersCreated) return;
-  await mkdir(path.resolve(screenshotFolder));
-  await mkdir(path.resolve(diffFolder));
-  await mkdir(path.resolve(baseFolder));
+  await mkdirp(path.resolve(screenshotFolder));
+  await mkdirp(path.resolve(diffFolder));
+  await mkdirp(path.resolve(baseFolder));
   foldersCreated = true;
 });
 
