@@ -58,7 +58,7 @@ type AnnotationAction = {
   payload: Annotation;
 };
 
-const annotatationsReducer = (
+const annotationsReducer = (
   state: AnnotationCollection,
   action: AnnotationAction
 ) => {
@@ -86,7 +86,7 @@ const annotatationsReducer = (
 };
 
 export const AnnotationsContextProvider = ({ children }: Props) => {
-  const [annotations, updateAnnotations] = useReducer(annotatationsReducer, {
+  const [annotations, updateAnnotations] = useReducer(annotationsReducer, {
     type: "FeatureCollection",
     features: [],
   });
