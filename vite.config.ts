@@ -1,17 +1,10 @@
 import path from "path";
-import legacy from "@vitejs/plugin-legacy";
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-/** @type {import('vite').UserConfig} */
-export default {
+export default defineConfig({
   base: "",
-  root: "web",
-  plugins: [
-    react(),
-    // legacy({
-    //   targets: ["defaults", "not IE 11"],
-    // }),
-  ],
+  plugins: [react()],
   server: {
     port: 4001,
     open: true,
@@ -26,11 +19,7 @@ export default {
     IS_DEV: process.env.DEV ? true : false,
   },
   build: {
-    manifest: true,
     outDir: path.join(process.cwd(), "dist", "public"),
-    rollupOptions: {
-      output: { format: "iife" },
-    },
     emptyOutDir: true,
   },
-};
+});
