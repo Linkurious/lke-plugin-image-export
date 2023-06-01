@@ -13,7 +13,7 @@ const rc = new RestClient({
 });
 
 const params = new URLSearchParams(location.search);
-const sourceKey = params.get("key") || "key";
+const sourceKey = params.get("key") || params.get('sourceKey') || "key";
 // 101 is bigger graph, 102 is 5 nodes
 const id = params.get("id") || "101";
 
