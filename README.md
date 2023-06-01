@@ -22,7 +22,7 @@ Plugin is available through a custom action:
 1.  In visualization menu, select "Manage custom actions..."
 2.  "New custom action"
 3.  Custom action name: "Save as image"
-4.  URL template is `{{baseURL}}plugins/image-export/?id={{visualization}}&sourceKey={{sourceKey}}`. This will allow the custom action to access the visualization.
+4.  URL template is `{{baseURL}}plugins/image-export/?id={{visualization}}&key={{sourceKey}}`. This will allow the custom action to access the visualization.
 5.  You can also share the custom action thus making it available for other users of Linkurious Enterprise in your company.
 6.  "Save"
 
