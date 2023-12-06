@@ -15,10 +15,12 @@ import {
   EdgeList,
 } from "@linkurious/ogma-linkurious-parser";
 import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
-import { useAnnotationsContext, useAppContext } from "../context";
-import { getBoundingBox, mergeBounds } from "../utils";
+import { useAppContext } from "../context";
+import { getBoundingBox } from "../utils";
 import { GraphSchema } from "../api";
-import { getAnnotationsBounds } from "@linkurious/annotations-control";
+import rtl from "@mapbox/mapbox-gl-rtl-text";
+
+OgmaLib.libraries["@mapbox/mapbox-gl-rtl-text"] = rtl;
 
 const applyItemFilter = (
   ogma: OgmaLib,
