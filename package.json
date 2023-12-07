@@ -1,6 +1,6 @@
 {
   "name": "@linkurious/lke-plugin-image-export",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "engines": {
     "node": "v18.15.0"
   },
