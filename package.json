@@ -101,7 +101,7 @@
     "@linkurious/ogma-export-stitch": "0.0.32",
     "@linkurious/ogma-linkurious-parser": "lk-develop",
     "@linkurious/ogma-mini-map": "0.0.47",
-    "@linkurious/rest-client": "3.1.13",
+    "@linkurious/rest-client": "3.1.15",
     "@linkurious/svg-font-embedder": "0.0.52",
     "@mapbox/mapbox-gl-rtl-text": "0.2.1",
     "@uiw/color-convert": "^1.1.1",
