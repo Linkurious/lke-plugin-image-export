@@ -57,11 +57,18 @@ interface Props {
   children: ReactElement;
 }
 
+function createBaseElement(){
+  const base = document.createElement('base');
+  base.href = document.location.origin;
+  document.getElementsByTagName('head')[0].appendChild(base);
+}
+
 /**
  * This is the hook that allows you to access the Ogma instance.
  * It should only be used in the context of the `Ogma` component.
  */
 export const AppContextProvider = ({ children }: Props) => {
+  createBaseElement()
   const [visualisation, setVis] = useState<PopulatedVisualization>();
   const [loading, setLoading] = useState(true);
   const [configuration, setConfig] = useState<IOgmaConfig>();
