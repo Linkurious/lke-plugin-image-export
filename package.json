@@ -87,7 +87,7 @@
     "recursive-copy": "2.0.14",
     "serve": "14.2.0",
     "sharp": "^0.32.1",
-    "terser": "5.16.6",
+    "terser": "5.29.1",
     "ts-node": "10.8.1",
     "typescript": "5.0.2",
     "vite": "4.5.2",
