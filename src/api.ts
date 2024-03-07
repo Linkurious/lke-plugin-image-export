@@ -10,7 +10,7 @@ declare let IS_DEV: boolean;
 
 const rc = new RestClient({
   // we take the first part of the url to get the base url (needed in case using baseFolder)
-  baseUrl: IS_DEV ? "http://localhost:3000/" : document.location.href.split('plugins')[0],
+  baseUrl: IS_DEV ? "http://localhost:3000/" : "../../",
 });
 
 const params = new URLSearchParams(location.search);
