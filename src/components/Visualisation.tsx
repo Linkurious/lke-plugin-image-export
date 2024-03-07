@@ -12,9 +12,10 @@ export function Visualisation() {
     <>
       <Ogma
         graph={visualisation}
-        options={configuration}
+        options={configuration.ogmaConfig}
         schema={graphSchema}
         onReady={(ogma) => setOgma(ogma)}
+        baseUrl={configuration.baseUrl}
       >
         <ZoomControl />
         <Minimap />

@@ -22,9 +22,11 @@ export interface GraphSchema {
   edge: GraphSchemaTypeWithAccess[];
 }
 
-export async function getConfiguration(): Promise<IOgmaConfig> {
+export async function getConfiguration(): Promise<{ ogmaConfig?: IOgmaConfig; baseUrl?: string }> {
   const response = await rc.config.getConfiguration();
-  if (response.isSuccess()) return response.body.ogma;
+  if (response.isSuccess()) {
+    return {ogmaConfig: response.body.ogma, baseUrl: response.body.url}
+  }
   return {};
 }
 
