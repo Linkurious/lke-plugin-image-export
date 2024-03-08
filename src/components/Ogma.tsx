@@ -48,6 +48,7 @@ interface OgmaProps {
   graph?: PopulatedVisualization;
   schema?: GraphSchema;
   children?: ReactNode;
+  baseUrl?: string;
 }
 
 const defaultOptions = {};
@@ -56,7 +57,7 @@ const defaultOptions = {};
  * Main component for the Ogma library.
  */
 export const OgmaComponent = (
-  { options = defaultOptions, children, graph, onReady, schema }: OgmaProps,
+  { options = defaultOptions, children, graph, onReady, schema, baseUrl }: OgmaProps,
   ref?: Ref<OgmaLib>
 ) => {
   const [ready, setReady] = useState(false);
@@ -70,7 +71,7 @@ export const OgmaComponent = (
 
   useEffect(() => {
     if (container) {
-      const instance = new OgmaLib(options);
+      const instance = new OgmaLib(options, baseUrl);
       instance.setContainer(container);
 
       instance.setOptions({

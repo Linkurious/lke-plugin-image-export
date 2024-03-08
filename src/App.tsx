@@ -5,7 +5,7 @@ export default function App() {
   return (
     <AppContextProvider>
       <AnnotationsContextProvider>
-        <Dashboard />
+        <Dashboard/>
       </AnnotationsContextProvider>
     </AppContextProvider>
   );
