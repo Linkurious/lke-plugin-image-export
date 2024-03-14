@@ -18,7 +18,7 @@ import type { Bounds } from "../utils";
 
 interface IAppContext {
   visualisation: PopulatedVisualization;
-  configuration: IOgmaConfig;
+  configuration: { ogmaConfig?: IOgmaConfig; baseUrl?: string };
   graphSchema?: GraphSchema;
   format: FormatType;
   setFormat: (format: FormatType) => void;
@@ -57,6 +57,8 @@ interface Props {
   children: ReactElement;
 }
 
+
+
 /**
  * This is the hook that allows you to access the Ogma instance.
  * It should only be used in the context of the `Ogma` component.
@@ -64,7 +66,7 @@ interface Props {
 export const AppContextProvider = ({ children }: Props) => {
   const [visualisation, setVis] = useState<PopulatedVisualization>();
   const [loading, setLoading] = useState(true);
-  const [configuration, setConfig] = useState<IOgmaConfig>();
+  const [configuration, setConfig] = useState<{ ogmaConfig?: IOgmaConfig; baseUrl?: string }>();
   const [graphSchema, setGraphSchema] = useState<GraphSchema>();
   const [format, setFormat] = useState<FormatType>(formats[0]);
   const [error, setError] = useState<Error | null>(null);

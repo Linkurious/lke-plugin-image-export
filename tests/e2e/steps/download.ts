@@ -41,7 +41,9 @@ function compareImages(
 
   return new Promise((resolve, reject) => {
     diff.run((error, result) => {
-      if (error) reject(error);
+      if (error) {
+        reject(error);
+      }
       else {
         diff.hasPassed(result.code)
           ? resolve(result.differences)
@@ -58,7 +60,7 @@ When(/^I drag the viz (\w+)/, async (shouldDrag: string) => {
   });
   await I.usePlaywrightTo(
     "drag the view",
-    async ({ page }: { page: Page; context: BrowserContext }) => {
+    async ({ page }: { page: Page; context: BrowserContext; }) => {
       const view = page.viewportSize();
       if (!view) throw new Error("Could not get viewport size");
       const cx = view.width / 2;

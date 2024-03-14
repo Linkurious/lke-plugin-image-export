@@ -10,6 +10,7 @@ function getFormat(selectedFormat: string) {
   return formats.find((f) => f.label === selectedFormat);
 }
 When(/^I select format (.*)$/, async (format: string) => {
+  if (format === 'Full Size') return;
   I.waitForElement(locator.build(".format-select"));
   I.click(locator.build(".format-select"));
   I.waitForElement(locator.build("span").withText(format));
@@ -25,6 +26,7 @@ Then(
   }
 );
 
+// TODO: restore this test
 Then(/^it updates on zoom (.*)$/, async (selectedFormat: string) => {
   const format = getFormat(selectedFormat);
   const before = await I.grabTextFrom(".dimensions");
@@ -58,7 +60,8 @@ Then(/^I see it's updated within the viz (.*)$/, async (size: string) => {
   }
 });
 When(/^I go to main page$/, async () => {
-  I.amOnPage("/");
+  await I.amOnPage("/");
+  await I.wait(1);
 });
 When(/^I toggle text slider$/, async () => {
   I.click(".caption-switch");

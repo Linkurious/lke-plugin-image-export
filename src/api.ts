@@ -9,6 +9,7 @@ import {
 declare let IS_DEV: boolean;
 
 const rc = new RestClient({
+  // we take the first part of the url to get the base url (needed in case using baseFolder)
   baseUrl: IS_DEV ? "http://localhost:3000/" : "../../",
 });
 
@@ -22,9 +23,11 @@ export interface GraphSchema {
   edge: GraphSchemaTypeWithAccess[];
 }
 
-export async function getConfiguration(): Promise<IOgmaConfig> {
+export async function getConfiguration(): Promise<{ ogmaConfig?: IOgmaConfig; baseUrl?: string }> {
   const response = await rc.config.getConfiguration();
-  if (response.isSuccess()) return response.body.ogma;
+  if (response.isSuccess()) {
+    return {ogmaConfig: response.body.ogma, baseUrl: response.body.url}
+  }
   return {};
 }
 
