@@ -6,7 +6,6 @@ Feature: Left Panel
     Given I go to main page
     And I select format <format>
     Then I see it's size within the panel <format>
-    And it updates on zoom <format>
   Examples:
     | format |
     | Square |

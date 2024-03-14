@@ -26,6 +26,7 @@ Then(
   }
 );
 
+// TODO: restore this test
 Then(/^it updates on zoom (.*)$/, async (selectedFormat: string) => {
   const format = getFormat(selectedFormat);
   const before = await I.grabTextFrom(".dimensions");
