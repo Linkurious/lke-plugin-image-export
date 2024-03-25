@@ -95,7 +95,7 @@
   },
   "dependencies": {
     "@ant-design/colors": "6.0.0",
-    "@ant-design/icons": "5.0.1",
+    "@ant-design/icons": "5.3.5",
     "@linkurious/annotations-control": "0.0.17",
     "@linkurious/ogma": "4.5.5",
     "@linkurious/ogma-export-stitch": "0.0.32",
