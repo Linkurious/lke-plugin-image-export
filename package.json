@@ -99,7 +99,7 @@
     "@linkurious/annotations-control": "0.0.17",
     "@linkurious/ogma": "4.5.5",
     "@linkurious/ogma-export-stitch": "0.0.32",
-    "@linkurious/ogma-linkurious-parser": "4.0.24",
+    "@linkurious/ogma-linkurious-parser": "4.0.25",
     "@linkurious/ogma-mini-map": "0.0.47",
     "@linkurious/rest-client": "4.0.25",
     "@linkurious/svg-font-embedder": "0.0.52",
