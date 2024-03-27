@@ -4,4 +4,5 @@ lkeSubReleaseJob {
   // General
   projectName = "linkurious/lke-plugin-image-export"
 
+  runAssetWaiter = false
 }
