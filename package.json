@@ -102,7 +102,7 @@
     "@linkurious/ogma-linkurious-parser": "4.0.25",
     "@linkurious/ogma-mini-map": "0.0.47",
     "@linkurious/rest-client": "4.0.25",
-    "@linkurious/svg-font-embedder": "0.0.52",
+    "@linkurious/svg-font-embedder": "0.0.74",
     "@mapbox/mapbox-gl-rtl-text": "0.2.3",
     "@uiw/color-convert": "^1.1.1",
     "@uiw/react-color-swatch": "1.4.3",

@@ -10,7 +10,7 @@ function getFormat(selectedFormat: string) {
   return formats.find((f) => f.label === selectedFormat);
 }
 When(/^I select format (.*)$/, async (format: string) => {
-  if (format === 'Full Size') return;
+  if (format === "Full Size") return;
   I.waitForElement(locator.build(".format-select"));
   I.click(locator.build(".format-select"));
   I.waitForElement(locator.build("span").withText(format));
@@ -68,15 +68,15 @@ When(/^I toggle text slider$/, async () => {
 });
 
 Then(/^text disappear$/, async () => {
-  const areTextVisible = await I.executeScript(() => {
-    //@ts-ignore
+  await I.executeScript(() => {
+    // @ts-expect-error internal API
     return ogma.modules.graphics._visibility["nodeTexts"] > 0;
   });
 });
 Then(/^text reapear$/, async () => {
   assert.isTrue(
     await I.executeScript(() => {
-      //@ts-ignore
+      // @ts-expect-error internal API
       return ogma.modules.graphics._visibility["nodeTexts"] <= 0;
     })
   );
