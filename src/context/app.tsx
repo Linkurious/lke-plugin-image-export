@@ -15,6 +15,7 @@ import type { GraphSchema } from "../api";
 import type { FormatType } from "../types/formats";
 import { formats } from "../constants";
 import type { Bounds } from "../utils";
+import {NodeGroupingRule} from "@linkurious/rest-client/dist/src/api/nodeGrouping/types";
 
 interface IAppContext {
   visualisation: PopulatedVisualization;
@@ -27,6 +28,7 @@ interface IAppContext {
   setOgma: (ogma: LKOgma) => void;
   boundingBox: Bounds;
   setBoundingBox: (boundingBox: Bounds) => void;
+  nodeGroupingRules: NodeGroupingRule[];
 
   // scaling to fit the clipping window
   graphScale: number;
@@ -68,6 +70,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [loading, setLoading] = useState(true);
   const [configuration, setConfig] = useState<{ ogmaConfig?: IOgmaConfig; baseUrl?: string }>();
   const [graphSchema, setGraphSchema] = useState<GraphSchema>();
+  const [nodeGroupingRules, setNodeGroupingRules] = useState<NodeGroupingRule[]>();
   const [format, setFormat] = useState<FormatType>(formats[0]);
   const [error, setError] = useState<Error | null>(null);
 
@@ -89,12 +92,14 @@ export const AppContextProvider = ({ children }: Props) => {
       api.getVisualisation(),
       api.getConfiguration(),
       api.getGraphSchema(),
+      api.getNodeGroupingRules()
     ])
-      .then(([visualisation, configuration, graphSchema]) => {
+      .then(([visualisation, configuration, graphSchema, nodeGroupingRules]) => {
         setVis(visualisation);
         setConfig(configuration);
         setGraphSchema(graphSchema);
         setLoading(false);
+        setNodeGroupingRules(nodeGroupingRules)
       })
       .catch((err) => {
         setLoading(false);
@@ -127,6 +132,7 @@ export const AppContextProvider = ({ children }: Props) => {
           scalingStyleEnabled,
           setScalingStyleEnabled,
           error,
+          nodeGroupingRules
         } as IAppContext
       }
     >

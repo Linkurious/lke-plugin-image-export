@@ -5,6 +5,7 @@ import {
   EntityType,
   GraphSchemaTypeWithAccess,
 } from "@linkurious/rest-client";
+import {NodeGroupingRule} from "@linkurious/rest-client/dist/src/api/nodeGrouping/types";
 
 declare let IS_DEV: boolean;
 
@@ -55,4 +56,12 @@ export async function getVisualisation() {
   });
   if (response.isSuccess()) return response.body;
   return {} as PopulatedVisualization;
+}
+
+export async function getNodeGroupingRules() {
+  const response = await rc.nodeGrouping.getNodeGroupingRules({
+    sourceKey: sourceKey, //key as string
+  });
+  if (response.isSuccess()) return response.body;
+  return [] as NodeGroupingRule[];
 }
