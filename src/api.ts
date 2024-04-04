@@ -4,8 +4,8 @@ import {
   PopulatedVisualization,
   EntityType,
   GraphSchemaTypeWithAccess,
+  NodeGroupingRule
 } from "@linkurious/rest-client";
-import {NodeGroupingRule} from "@linkurious/rest-client/dist/src/api/nodeGrouping/types";
 
 declare let IS_DEV: boolean;
 

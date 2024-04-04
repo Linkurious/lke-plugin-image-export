@@ -4,7 +4,7 @@ import { Minimap } from "./Minimap";
 import { Ogma } from "./Ogma";
 import { ZoomControl } from "./ZoomControl";
 import { VersionInfo } from "./VersionInfo";
-import {NodeGroupingRule} from "@linkurious/rest-client/dist/src/api/nodeGrouping/types";
+import {NodeGroupingRule} from "@linkurious/rest-client";
 
 export function Visualisation() {
   const { visualisation, configuration, graphSchema, setOgma, format, nodeGroupingRules } =

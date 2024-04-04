@@ -14,12 +14,11 @@ import {
   NodeList,
   EdgeList,
 } from "@linkurious/ogma-linkurious-parser";
-import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
+import { IOgmaConfig, PopulatedVisualization, NodeGroupingRule } from "@linkurious/rest-client";
 import { useAppContext } from "../context";
 import { getBoundingBox } from "../utils";
 import { GraphSchema } from "../api";
 import rtl from "@mapbox/mapbox-gl-rtl-text";
-import {NodeGroupingRule} from "@linkurious/rest-client/dist/src/api/nodeGrouping/types";
 
 OgmaLib.libraries["@mapbox/mapbox-gl-rtl-text"] = rtl;
 

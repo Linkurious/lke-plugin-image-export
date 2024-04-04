@@ -1,5 +1,5 @@
 import { LKOgma } from "@linkurious/ogma-linkurious-parser";
-import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
+import { IOgmaConfig, PopulatedVisualization, NodeGroupingRule } from "@linkurious/rest-client";
 import { StyleRule } from "@linkurious/ogma";
 import {
   createContext,
@@ -15,7 +15,6 @@ import type { GraphSchema } from "../api";
 import type { FormatType } from "../types/formats";
 import { formats } from "../constants";
 import type { Bounds } from "../utils";
-import {NodeGroupingRule} from "@linkurious/rest-client/dist/src/api/nodeGrouping/types";
 
 interface IAppContext {
   visualisation: PopulatedVisualization;
