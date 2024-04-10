@@ -13,6 +13,7 @@ server.use(
     "/api/key/graph/schema/edge/types\\?_=:time": "/api/edgeTypes",
     "/api/key/graph/schema/node/types\\?_=:time": "/api/nodeTypes",
     "/api/config": "/api/configuration",
+    "/api/key/nodeGroupings\\?_=:time": "/api/nodeGroupings",
   })
 );
 server.use("/api", router);
