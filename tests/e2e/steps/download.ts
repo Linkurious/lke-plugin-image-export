@@ -17,6 +17,7 @@ let foldersCreated = false;
 const results: any[] = [];
 
 const shouldReplace = process.env.REPLACE === "true";
+console.log({ shouldReplace });
 function getPaths(fileName: string) {
   fileName = fileName.trim();
   return {
@@ -42,12 +43,17 @@ function compareImages(
   return new Promise((resolve, reject) => {
     diff.run((error, result) => {
       if (error) {
+        console.log("images are not the same: error");
         reject(error);
-      }
-      else {
-        diff.hasPassed(result.code)
-          ? resolve(result.differences)
-          : reject(result.differences);
+      } else {
+        console.log("images are the same");
+        if (diff.hasPassed(result.code)) {
+          console.log("images are the same: passed");
+          resolve(result.differences);
+        } else {
+          console.log("images are not the same: failed");
+          reject(result.differences);
+        }
       }
     });
   });
@@ -60,7 +66,7 @@ When(/^I drag the viz (\w+)/, async (shouldDrag: string) => {
   });
   await I.usePlaywrightTo(
     "drag the view",
-    async ({ page }: { page: Page; context: BrowserContext; }) => {
+    async ({ page }: { page: Page; context: BrowserContext }) => {
       const view = page.viewportSize();
       if (!view) throw new Error("Could not get viewport size");
       const cx = view.width / 2;
@@ -101,8 +107,13 @@ When(/^I click download (.+) (.+)$/, async (name: string, format: string) => {
   const [, downloadPath] = await I.download("text=Download");
   const { expectedPath, actualPath } = getPaths(name);
   if (!downloadPath) throw "download failed";
+  console.log("download");
   const outPath = shouldReplace ? expectedPath : actualPath;
-  return await sharp(downloadPath).png().toFile(outPath);
+  const png = await sharp(downloadPath).png();
+  console.log({ png: !!png });
+  const file = await png.toFile(outPath);
+  console.log({ file });
+  return file;
 });
 
 When(/^I download (.+) (.+)$/, async (name: string, format: string) => {
@@ -126,7 +137,7 @@ Then(/^image is nice (.+)$/, (name: string) => {
 });
 
 When(/^I select background color (\w+)$/, async (background: string) => {
-  let checked = await I.grabAttributeFrom(
+  const checked = await I.grabAttributeFrom(
     ".preview-background-selector>button",
     "aria-checked"
   );

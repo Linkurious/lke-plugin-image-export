@@ -13,12 +13,11 @@ const emulateOptions = process.env.TEST_RETINA
   ? { isMobile: false, deviceScaleFactor: 2 }
   : { isMobile: false, deviceScaleFactor: 1 };
 
-/** @type {CodeceptJS.MainConfig} */
 export const config: CodeceptJS.MainConfig = {
   // this is irreleavnt by the way
   tests: "./tests/e2e/*_test.ts",
   output: "./reports/html/e2e",
-  timeout: 25,
+  timeout: 15,
   helpers: {
     Playwright: {
       url: baseUrl,
@@ -48,7 +47,7 @@ export const config: CodeceptJS.MainConfig = {
       apiKey: process.env.TESTOMATIO,
     },
     stepByStepReport: {
-      enabled: process.env.CI,
+      //enabled: process.env.CI,
       output: "./reports/html/e2e",
       ignoreSteps: ["grab*", "wait*"],
       fullPageScreenshots: true,

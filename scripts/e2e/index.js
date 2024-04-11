@@ -48,6 +48,12 @@ function runTests(PORT) {
       : process.env.GREP !== undefined
       ? `--grep ${process.env.GREP}`
       : "";
+    console.log(
+      "test command",
+      `TESTOMATIO=${
+        process.env.TESTOMATIO || ""
+      } REPLACE=${!!REPLACE} PORT=${PORT} ./scripts/e2e/run.js ${filter} ${args}`
+    );
     testProcess = exec(
       `TESTOMATIO=${
         process.env.TESTOMATIO || ""
