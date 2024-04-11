@@ -14,10 +14,9 @@ const screenshotFolder = path.join(rootFolder, "screenshot/");
 const diffFolder = path.join(rootFolder, "diff/");
 const baseFolder = path.resolve(__dirname, "../ref-images");
 let foldersCreated = false;
-const results: any[] = [];
+const results: { name: string; path: string; success: boolean }[] = [];
 
 const shouldReplace = process.env.REPLACE === "true";
-console.log({ shouldReplace });
 function getPaths(fileName: string) {
   fileName = fileName.trim();
   return {
@@ -42,18 +41,10 @@ function compareImages(
 
   return new Promise((resolve, reject) => {
     diff.run((error, result) => {
-      if (error) {
-        console.log("images are not the same: error");
-        reject(error);
-      } else {
-        console.log("images are the same");
-        if (diff.hasPassed(result.code)) {
-          console.log("images are the same: passed");
-          resolve(result.differences);
-        } else {
-          console.log("images are not the same: failed");
-          reject(result.differences);
-        }
+      if (error) return reject(error);
+      else {
+        if (diff.hasPassed(result.code)) return resolve(result.differences);
+        reject(result.differences);
       }
     });
   });
@@ -107,12 +98,9 @@ When(/^I click download (.+) (.+)$/, async (name: string, format: string) => {
   const [, downloadPath] = await I.download("text=Download");
   const { expectedPath, actualPath } = getPaths(name);
   if (!downloadPath) throw "download failed";
-  console.log("download");
   const outPath = shouldReplace ? expectedPath : actualPath;
   const png = await sharp(downloadPath).png();
-  console.log({ png: !!png });
   const file = await png.toFile(outPath);
-  console.log({ file });
   return file;
 });
 
@@ -146,7 +134,7 @@ When(/^I select background color (\w+)$/, async (background: string) => {
   }
 });
 
-//@ts-ignore
+// @ts-expect-error Tags are missing
 Before(async ({ tags }) => {
   if (!tags.includes("@download") || foldersCreated) return;
   await mkdirp(path.resolve(screenshotFolder));
@@ -155,8 +143,7 @@ Before(async ({ tags }) => {
   foldersCreated = true;
 });
 
-//@ts-ignore
-After(({ tags }) => {
+After(() => {
   return fs.writeFile(
     path.join(rootFolder, "export-results.json"),
     JSON.stringify(results)
