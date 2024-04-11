@@ -14,7 +14,6 @@ class CustomHelper extends Helper {
       this.page.waitForEvent("download"),
       this.page.locator(button).click(),
     ]).then(([download]) => {
-      console.log("dowmload triggered");
       return Promise.all([download, download.path()]);
     });
   }
