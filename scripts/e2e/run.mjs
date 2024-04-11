@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-const { exec } = require("child_process");
-const argv = require("minimist")(process.argv.slice(2));
+import { exec } from "child_process";
+import minimist from "minimist";
+const argv = minimist(process.argv.slice(2));
 
 const grep = argv.grep || "";
 const TESTOMATIO = process.env.TESTOMATIO || "";

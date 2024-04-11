@@ -13,7 +13,9 @@ class CustomHelper extends Helper {
     return Promise.all([
       this.page.waitForEvent("download"),
       this.page.locator(button).click(),
-    ]).then(([download]) => Promise.all([download, download.path()]));
+    ]).then(([download]) => {
+      return Promise.all([download, download.path()]);
+    });
   }
 
   getImageSize(image: string): Promise<[number, number, number]> {
