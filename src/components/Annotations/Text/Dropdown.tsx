@@ -18,20 +18,15 @@ export const TextDropdown: FC<TextDropdownProps> = () => {
 
   const onClick = useCallback(() => {
     // set button active
-    ogma.events
-      .once("keyup", (evt) => {
-        // if (evt.code === 27) {
-        // }
-      })
-      .once("mousedown", (evt) => {
-        requestAnimationFrame(() => {
-          const { x, y } = ogma.view.screenToGraphCoordinates(evt);
-          const text = createText(x, y, 0, 0, "", textStyle);
-          //control.add(arrow);
-          editor.startText(x, y, text);
-          setCurrentAnnotation(text);
-        });
+    ogma.events.once("mousedown", (evt) => {
+      requestAnimationFrame(() => {
+        const { x, y } = ogma.view.screenToGraphCoordinates(evt);
+        const text = createText(x, y, 0, 0, "", textStyle);
+        //control.add(arrow);
+        editor.startText(x, y, text);
+        setCurrentAnnotation(text);
       });
+    });
   }, [editor, ogma, textStyle]);
 
   return (
