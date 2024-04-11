@@ -5,11 +5,7 @@ import { TextStylePanel } from "./StylePanel";
 import { useAnnotationsContext, useAppContext } from "../../../context";
 import { iconSize } from "../constants";
 import { NavArrowDown } from "iconoir-react";
-import {
-  createArrow,
-  createText,
-  isText,
-} from "@linkurious/annotations-control";
+import { createText, isText } from "@linkurious/annotations-control";
 
 interface TextDropdownProps {}
 
@@ -24,9 +20,8 @@ export const TextDropdown: FC<TextDropdownProps> = () => {
     // set button active
     ogma.events
       .once("keyup", (evt) => {
-        if (evt.code === 27) {
-          console.log("stop text annotation");
-        }
+        // if (evt.code === 27) {
+        // }
       })
       .once("mousedown", (evt) => {
         requestAnimationFrame(() => {

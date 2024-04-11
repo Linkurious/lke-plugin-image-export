@@ -9,14 +9,12 @@ class CustomHelper extends Helper {
     return this.page.mouse.dblclick(coordinate.x, coordinate.y);
   }
 
-  download(button: string): Promise<[Download, string | null]> {
-    return Promise.all([
+  async download(button: string): Promise<[Download, string | null]> {
+    const [download] = await Promise.all([
       this.page.waitForEvent("download"),
       this.page.locator(button).click(),
-    ]).then(([download]) => {
-      console.log("dowmload triggered");
-      return Promise.all([download, download.path()]);
-    });
+    ]);
+    return Promise.all([download, download.path()]);
   }
 
   getImageSize(image: string): Promise<[number, number, number]> {
