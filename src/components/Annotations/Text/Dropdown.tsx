@@ -5,11 +5,7 @@ import { TextStylePanel } from "./StylePanel";
 import { useAnnotationsContext, useAppContext } from "../../../context";
 import { iconSize } from "../constants";
 import { NavArrowDown } from "iconoir-react";
-import {
-  createArrow,
-  createText,
-  isText,
-} from "@linkurious/annotations-control";
+import { createText, isText } from "@linkurious/annotations-control";
 
 interface TextDropdownProps {}
 
@@ -22,21 +18,15 @@ export const TextDropdown: FC<TextDropdownProps> = () => {
 
   const onClick = useCallback(() => {
     // set button active
-    ogma.events
-      .once("keyup", (evt) => {
-        if (evt.code === 27) {
-          console.log("stop text annotation");
-        }
-      })
-      .once("mousedown", (evt) => {
-        requestAnimationFrame(() => {
-          const { x, y } = ogma.view.screenToGraphCoordinates(evt);
-          const text = createText(x, y, 0, 0, "", textStyle);
-          //control.add(arrow);
-          editor.startText(x, y, text);
-          setCurrentAnnotation(text);
-        });
+    ogma.events.once("mousedown", (evt) => {
+      requestAnimationFrame(() => {
+        const { x, y } = ogma.view.screenToGraphCoordinates(evt);
+        const text = createText(x, y, 0, 0, "", textStyle);
+        //control.add(arrow);
+        editor.startText(x, y, text);
+        setCurrentAnnotation(text);
       });
+    });
   }, [editor, ogma, textStyle]);
 
   return (

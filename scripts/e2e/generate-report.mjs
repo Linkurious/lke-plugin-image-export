@@ -1,7 +1,7 @@
-const fs = require("fs/promises");
-const copyDir = require("recursive-copy");
-const rimraf = require("rimraf");
-const path = require("path");
+import fs from "fs/promises";
+import copyDir from "recursive-copy";
+import rimraf from "rimraf";
+import path from "path";
 
 const resultJsonFile = "export-results.json";
 const reportRootDir = "./reports/html/";
@@ -41,7 +41,7 @@ function rm(path) {
   });
 }
 
-function generateReport() {
+export function generateReport() {
   return rm(reportPath)
     .then(() => Promise.all([copyDir(testOutputPath, reportPath)]))
     .then(() =>
@@ -60,5 +60,3 @@ function generateReport() {
     })
     .then((html) => fs.writeFile("./reports/html/exports/index.html", html));
 }
-
-module.exports = generateReport;

@@ -20,7 +20,6 @@ const screenshotFolder = path.join(rootFolder, "screenshot/");
 
 const readSvg = async (fileName: string) => {
   const filePath = path.join(screenshotFolder, fileName);
-  console.log("filePath", filePath);
   const svg = await fs.readFile(filePath, "utf-8");
   const doc = new DOMParser().parseFromString(svg);
   return { doc, svg };
