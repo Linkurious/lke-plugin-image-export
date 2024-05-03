@@ -14,7 +14,9 @@ Feature: Download
     Then image is nice <name>
   Examples:
     | name            | outputFormat | format    | drag   | size | textVisible | collisionRemoval | background |
+    | full-size-1.png |     png      | Full size | false  | 200% |  true       |   false          |  false     |
     | square-1.png    |     png      |  Square   | false  | 50%  |  true       |   true           |  true      |
+    | full-size-2.png |     png      | Full size | true   | 50%  |  true       |   true           |  true      |
     | square-2.png    |     png      |  Square   | true   | 200% |  true       |   false          |  false     |
     | square-3.png    |     png      |  Square   | false  | 100% |  false      |   true           |  true      |
 
@@ -34,6 +36,8 @@ Feature: Download
       Then image is nice <name>
   Examples:
     | name                | outputFormat | format    | drag   | size | textVisible | collisionRemoval | background |
+    | full-size-1-svg.png |     svg      | Full size | false  | 200% |  true       |   false          |  false     |
     | square-1-svg.png    |     svg      |  Square   | false  | 50%  |  true       |   true           |  true      |
+    | full-size-2-svg.png |     svg      | Full size | true   | 50%  |  true       |   true           |  true      |
     | square-2-svg.png    |     svg      |  Square   | true   | 200% |  true       |   false          |  false     |
     | square-3-svg.png    |     svg      |  Square   | false  | 100% |  false      |   true           |  true      |
