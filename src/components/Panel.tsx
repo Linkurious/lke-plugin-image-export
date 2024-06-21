@@ -33,7 +33,6 @@ const fontSize = { ratio: 1 };
 export function Panel() {
   const { ogma, format, setFormat, textsVisible, setTextsVisible } =
     useAppContext();
-  const [collapsed, setCollapsed] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [componentSize, setComponentSize] = useState<SizeType | "default">(
     "default"
@@ -86,22 +85,8 @@ export function Panel() {
     };
   }, [ogma]);
 
-  const panelClassName = `panel${collapsed ? " panel--collapsed" : ""}`;
-
   return (
-    <div className={panelClassName}>
-      <Collapse
-        collapsible="header"
-        defaultActiveKey={[1]}
-        ghost
-        onChange={(e) => setCollapsed(e.length === 0)}
-      >
-        <Collapse.Panel
-          collapsible="header"
-          header="Options"
-          key="1"
-          className="panel--settings"
-        >
+    <div className="panel">
           <Form
             labelCol={{ span: 12 }}
             wrapperCol={{ span: 12 }}
@@ -192,8 +177,6 @@ export function Panel() {
             </Form.Item>
             <FormatInfo {...format} />
           </Form>
-        </Collapse.Panel>
-      </Collapse>
       <div className="panel--controls">
         <Button type="primary" onClick={showModal} className="preview--button">
           Preview
