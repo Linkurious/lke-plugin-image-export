@@ -56,6 +56,7 @@ export async function getGraphSchema(): Promise<GraphSchema | undefined> {
 function getVisualizationFromParentContext(): PopulatedVisualization {
   // Here we could also use the channel messaging api https://developer.mozilla.org/en-US/docs/Web/API/Channel_Messaging_API
   // Whichever strategy works best, and is more secure
+  // @ts-ignore
   return window.parent.visualization as PopulatedVisualization;
 }
 
