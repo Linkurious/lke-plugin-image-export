@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Progress from "antd/es/progress";
 import UIModal, { ModalFuncProps } from "antd/es/modal";
-
 import { FormatType, ExportType } from "../../types/formats";
 import { useAnnotationsContext, useAppContext } from "../../context";
 import { svgElementToString } from "@linkurious/ogma-export-stitch";
@@ -138,7 +137,6 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
     />
   ) : null;
 
-  console.log(open, image);
   const className = open ? "preview--screen open" : "preview--screen";
   return createPortal(
     <div className={className}>

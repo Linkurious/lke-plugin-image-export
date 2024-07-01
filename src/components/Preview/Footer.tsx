@@ -58,37 +58,39 @@ export const Footer: FC<FooterProps> = ({
         />
       </span>
       <ExportInfo key="info" loading={loading} result={image} size={size} />
-      <Button
-        key="ok"
-        type="primary"
-        onClick={() => onDownload(currentFormat)}
-        disabled={loading}
-        className="download--button"
-        //icon={<DownloadOutlined />}
-      >
-        Download
-      </Button>
-      <Dropdown
-        disabled={loading}
-        key="type"
-        menu={{
-          onClick: ({ key }) => {
-            setCurrentFormat(ExportTypes.find(({ key: k }) => k === key)!);
-          },
-          items: ExportTypes.filter(
-            ({ label }) => label !== currentFormat.label
-          ),
-        }}
-        trigger={["click"]}
-      >
+      <span className="preview--controls">
         <Button
+          key="ok"
           type="primary"
+          onClick={() => onDownload(currentFormat)}
           disabled={loading}
-          className="download--dropdown-trigger"
+          className="download--button"
+          //icon={<DownloadOutlined />}
         >
-          {currentFormat.label} <DownOutlined />
+          Download
         </Button>
-      </Dropdown>
+        <Dropdown
+          disabled={loading}
+          key="type"
+          menu={{
+            onClick: ({ key }) => {
+              setCurrentFormat(ExportTypes.find(({ key: k }) => k === key)!);
+            },
+            items: ExportTypes.filter(
+              ({ label }) => label !== currentFormat.label
+            ),
+          }}
+          trigger={["click"]}
+        >
+          <Button
+            type="primary"
+            disabled={loading}
+            className="download--dropdown-trigger"
+          >
+            {currentFormat.label} <DownOutlined />
+          </Button>
+        </Dropdown>
+      </span>
     </div>
   );
 };
