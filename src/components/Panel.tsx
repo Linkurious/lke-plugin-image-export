@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import Button from "antd/es/button/button";
 import Divider from "antd/es/divider";
-import Collapse from "antd/es/collapse";
 import Form from "antd/es/form";
 import Slider from "antd/es/slider";
 import Switch from "antd/es/switch";
@@ -87,96 +86,96 @@ export function Panel() {
 
   return (
     <div className="panel">
-          <Form
-            labelCol={{ span: 12 }}
-            wrapperCol={{ span: 12 }}
-            layout="horizontal"
-            labelWrap={true}
-            labelAlign="left"
-            initialValues={{ size: componentSize }}
-            onValuesChange={onFormLayoutChange}
+      <Form
+        labelCol={{ span: 12 }}
+        wrapperCol={{ span: 12 }}
+        layout="horizontal"
+        labelWrap={true}
+        labelAlign="left"
+        initialValues={{ size: componentSize }}
+        onValuesChange={onFormLayoutChange}
+        size="small"
+      >
+        <Typography.Title level={5}>Captions</Typography.Title>
+        <Form.Item label="Visibility" valuePropName="checked">
+          <Switch
             size="small"
+            checked={textsVisible}
+            className="caption-switch"
+            onChange={() => {
+              ogma.styles.setEdgeTextsVisibility(!textsVisible);
+              ogma.styles.setNodeTextsVisibility(!textsVisible);
+              setTextsVisible(!textsVisible);
+            }}
+          />
+        </Form.Item>
+        <Form.Item label="Collision removal" valuePropName="checked">
+          <Switch
+            size="small"
+            checked={overlapRemoval}
+            className="collision-switch"
+            disabled={!textsVisible}
+            onChange={() => {
+              ogma.setOptions({
+                texts: { preventOverlap: !overlapRemoval },
+              });
+              setOverlapRemoval(!overlapRemoval);
+            }}
+          />
+        </Form.Item>
+        <div>
+          <span>Text size</span>
+          <Slider
+            tooltip={{ formatter: (value) => `${value}%` }}
+            marks={marks}
+            included={false}
+            min={1}
+            max={300}
+            defaultValue={100}
+            disabled={!textsVisible}
+            onChange={(value) => {
+              fontSize.ratio = value / 100;
+              if (fontSizeRule) fontSizeRule.refresh();
+            }}
+          />
+        </div>
+        <Divider />
+        <Form.Item label="Snapping" valuePropName="checked">
+          <Switch
+            size="small"
+            className="snap-switch"
+            onChange={() => {
+              if (!snapping)
+                ogma.tools.snapping.enable({
+                  neighbours: {},
+                });
+              else ogma.tools.snapping.disable();
+              setSnapping(!snapping);
+            }}
+          />
+        </Form.Item>
+        <Divider />
+        <Typography.Title level={5}>Format</Typography.Title>
+        <Form.Item label="Size">
+          <Dropdown
+            trigger={["click"]}
+            menu={{
+              selectable: true,
+              defaultSelectedKeys: ["0"],
+              onSelect: ({ key }) => setFormat(formats[Number(key)]),
+              items: formats.map((item, index) => ({
+                key: index,
+                label: item.label,
+              })),
+            }}
+            placement="bottom"
+            className="format-select"
           >
-            <Typography.Title level={5}>Captions</Typography.Title>
-            <Form.Item label="Visibility" valuePropName="checked">
-              <Switch
-                size="small"
-                checked={textsVisible}
-                className="caption-switch"
-                onChange={() => {
-                  ogma.styles.setEdgeTextsVisibility(!textsVisible);
-                  ogma.styles.setNodeTextsVisibility(!textsVisible);
-                  setTextsVisible(!textsVisible);
-                }}
-              />
-            </Form.Item>
-            <Form.Item label="Collision removal" valuePropName="checked">
-              <Switch
-                size="small"
-                checked={overlapRemoval}
-                className="collision-switch"
-                disabled={!textsVisible}
-                onChange={() => {
-                  ogma.setOptions({
-                    texts: { preventOverlap: !overlapRemoval },
-                  });
-                  setOverlapRemoval(!overlapRemoval);
-                }}
-              />
-            </Form.Item>
-            <div>
-              <span>Text size</span>
-              <Slider
-                tooltip={{ formatter: (value) => `${value}%` }}
-                marks={marks}
-                included={false}
-                min={1}
-                max={300}
-                defaultValue={100}
-                disabled={!textsVisible}
-                onChange={(value) => {
-                  fontSize.ratio = value / 100;
-                  if (fontSizeRule) fontSizeRule.refresh();
-                }}
-              />
-            </div>
-            <Divider />
-            <Form.Item label="Snapping" valuePropName="checked">
-              <Switch
-                size="small"
-                className="snap-switch"
-                onChange={() => {
-                  if (!snapping)
-                    ogma.tools.snapping.enable({
-                      neighbours: {},
-                    });
-                  else ogma.tools.snapping.disable();
-                  setSnapping(!snapping);
-                }}
-              />
-            </Form.Item>
-            <Divider />
-            <Typography.Title level={5}>Format</Typography.Title>
-            <Form.Item label="Size">
-              <Dropdown
-                trigger={["click"]}
-                menu={{
-                  selectable: true,
-                  defaultSelectedKeys: ["0"],
-                  onSelect: ({ key }) => setFormat(formats[Number(key)]),
-                  items: formats.map((item, index) => ({
-                    key: index,
-                    label: item.label,
-                  })),
-                }}
-                placement="bottom"
-                className="format-select"
-              >
-                <Button icon={<DownOutlined />}>{format.label}</Button>
-              </Dropdown>
-            </Form.Item>
-            <FormatInfo {...format} />
-          </Form>
+            <Button icon={<DownOutlined />}>{format.label}</Button>
+          </Dropdown>
+        </Form.Item>
+        <FormatInfo {...format} />
+      </Form>
       <div className="panel--controls">
         <Button type="primary" onClick={showModal} className="preview--button">
           Preview
