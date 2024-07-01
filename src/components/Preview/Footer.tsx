@@ -45,7 +45,7 @@ export const Footer: FC<FooterProps> = ({
     label: "SVG",
   });
   return (
-    <>
+    <div className="preview-screen-footer">
       <span className="preview-background-selector" key="background">
         <span className="preview-background-selector--label">background</span>
         <Switch
@@ -89,6 +89,6 @@ export const Footer: FC<FooterProps> = ({
           {currentFormat.label} <DownOutlined />
         </Button>
       </Dropdown>
-    </>
+    </div>
   );
 };

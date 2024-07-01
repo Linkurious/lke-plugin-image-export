@@ -1,0 +1,45 @@
+.preview--screen {
+  width: 100vw;
+  height: 100vh;
+  /* transition animation when opened */
+  transform: translate(100%, 0);
+  transition: transform 300ms;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fff;
+  z-index: 100;
+}
+
+.preview--screen.open {
+  transform: translate(0, 0);
+}
+
+.image-viewer--container {
+  height: 90vh;
+}
+
+.preview-screen-footer {
+  height: 10vh;
+}
+
+.preview--screen .close--button {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  color: #1677ff;
+  font-size: 2.5em;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  line-height: 1em;
+}
+
+.preview--screen .close--button:hover {
+  color: #0e5aee;
+  background-color: rgba(255, 255, 255, 1);
+}
