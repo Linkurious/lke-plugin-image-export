@@ -1,6 +1,6 @@
 import { MenuProps } from "antd";
 import { RgbaColor } from "@uiw/color-convert";
-import { ArrowStyles, TextStyle } from "@linkurious/annotations-control";
+import { ArrowStyles, TextStyle } from "@linkurious/ogma-annotations";
 
 export const iconSize = 16;
 export const arrowIconSize = 12;
