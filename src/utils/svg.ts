@@ -1,7 +1,7 @@
 import {
   AnnotationCollection,
   getAnnotationsBounds,
-} from "@linkurious/annotations-control";
+} from "@linkurious/ogma-annotations";
 import Ogma, { SVGExportOptions } from "@linkurious/ogma";
 import { getBoundingBox, mergeBounds } from ".";
 
