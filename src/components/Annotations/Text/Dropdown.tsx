@@ -5,7 +5,7 @@ import { TextStylePanel } from "./StylePanel";
 import { useAnnotationsContext, useAppContext } from "../../../context";
 import { iconSize } from "../constants";
 import { NavArrowDown } from "iconoir-react";
-import { createText, isText } from "@linkurious/annotations-control";
+import { createText, isText } from "@linkurious/ogma-annotations";
 
 interface TextDropdownProps {}
 

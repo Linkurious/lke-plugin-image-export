@@ -5,8 +5,8 @@ import { NavArrowDown } from "iconoir-react";
 import { ArrowRight as RightArrowIcon } from "iconoir-react";
 import { useAnnotationsContext, useAppContext } from "../../../context";
 import { ArrowStylePanel } from "./StylePanel";
-import { createArrow, isArrow } from "@linkurious/annotations-control";
-import { MouseButtonEvent, MouseOutEvent } from "@linkurious/ogma/dev";
+import { createArrow, isArrow } from "@linkurious/ogma-annotations";
+import { MouseButtonEvent } from "@linkurious/ogma/dev";
 import { LkEdgeData, LkNodeData } from "@linkurious/rest-client";
 
 interface ArrowDropdownProps {}
