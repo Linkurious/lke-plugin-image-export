@@ -54,7 +54,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       ogma.getSelectedNodes().setSelected(false);
 
       editor.unselect();
-      await scaleGraph(ogma, 1 / graphScale);
+      await scaleGraph(ogma, 1 / graphScale, editor);
       const scaleStyleDef = scalingStyleRule.getDefinition();
 
       await destroyRule(scalingStyleRule, ogma);
@@ -100,7 +100,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       // replace the rule with the original one
       const rule = ogma.styles.addRule(scaleStyleDef);
       setScalingStyleRule(rule);
-      scaleGraph(ogma, graphScale);
+      await scaleGraph(ogma, graphScale, editor);
     };
 
     prepareDownload();
@@ -108,7 +108,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
     return () => {
       if (open) setImage("");
     };
-  }, [open, editor, ogma, annotations]);
+  }, [open, editor, ogma]);
 
   // apply the background color to the SVG
   useEffect(() => {

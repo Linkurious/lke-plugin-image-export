@@ -13,7 +13,7 @@ import {
   TextStyle,
   Control as AnnotationsEditor,
   Annotation,
-} from "@linkurious/annotations-control";
+} from "@linkurious/ogma-annotations";
 import {
   defaultArrowStyle,
   defaultTextStyle,
@@ -53,7 +53,7 @@ interface Props {
 }
 
 type AnnotationActionType = "add" | "remove" | "update";
-type AnnotationAction = {
+export type AnnotationAction = {
   type: AnnotationActionType;
   payload: Annotation;
 };
