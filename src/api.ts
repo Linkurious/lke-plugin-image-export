@@ -54,9 +54,7 @@ export async function getGraphSchema(): Promise<GraphSchema | undefined> {
 }
 
 function getVisualizationFromParentContext(): Promise<PopulatedVisualization> {
-  // @ts-ignore
   console.log(window.parent.visualization as PopulatedVisualization)
-  // @ts-ignore
   return Promise.resolve(window.parent.visualization as PopulatedVisualization);
 }
 
