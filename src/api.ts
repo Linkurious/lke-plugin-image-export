@@ -53,10 +53,11 @@ export async function getGraphSchema(): Promise<GraphSchema | undefined> {
   }
 }
 
-function getVisualizationFromParentContext(): PopulatedVisualization {
-  // Here we could also use the channel messaging api https://developer.mozilla.org/en-US/docs/Web/API/Channel_Messaging_API
-  // Whichever strategy works best, and is more secure
-  return window.parent.visualization as PopulatedVisualization;
+function getVisualizationFromParentContext(): Promise<PopulatedVisualization> {
+  // @ts-ignore
+  console.log(window.parent.visualization as PopulatedVisualization)
+  // @ts-ignore
+  return Promise.resolve(window.parent.visualization as PopulatedVisualization);
 }
 
 async function getVisualizationFromBackend(
@@ -67,6 +68,7 @@ async function getVisualizationFromBackend(
     id: parseInt(id, 10), //parseInt(visualisationId as string, 10),
     sourceKey: sourceKey, //key as string
   });
+  console.log(response.body)
   if (response.isSuccess()) return response.body;
   return {} as PopulatedVisualization;
 }
