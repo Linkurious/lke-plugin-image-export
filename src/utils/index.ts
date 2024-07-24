@@ -1,3 +1,4 @@
+import { Control } from "@linkurious/ogma-annotations";
 import Ogma, { Size, Color, StyleRule } from "@linkurious/ogma";
 
 export const formatSize = ({ width, height }: Size, suffix = "px") => {
@@ -24,10 +25,18 @@ export const stringToSVGElement = (svg: string) => {
   return doc.documentElement as unknown as SVGSVGElement;
 };
 
-export function scaleGraph(ogma: Ogma, scale: number) {
+export function scaleGraph(ogma: Ogma, scale: number, editor: Control) {
   const { x, y } = ogma.view.getCenter();
-  const positions = ogma.getNodes().getPosition();
-  return ogma.getNodes().setAttributes(
+  const nodes = ogma.getNodes();
+  const positions = nodes.getPosition();
+
+  if (scale === 1) return Promise.resolve(nodes);
+
+  editor.getAnnotations().features.forEach((feature) => {
+    editor.setScale(feature.id, scale, x, y);
+  });
+
+  return nodes.setAttributes(
     positions.map((pos) => {
       const dx = pos.x - x;
       const dy = pos.y - y;

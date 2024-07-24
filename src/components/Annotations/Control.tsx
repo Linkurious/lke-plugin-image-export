@@ -3,8 +3,8 @@ import {
   Control as AnnotationsEditor,
   isArrow,
   isText,
-} from "@linkurious/annotations-control";
-import "@linkurious/annotations-control/style.css";
+} from "@linkurious/ogma-annotations";
+import "@linkurious/ogma-annotations/style.css";
 import "./Control.css";
 import { useAppContext, useAnnotationsContext } from "../../context";
 
