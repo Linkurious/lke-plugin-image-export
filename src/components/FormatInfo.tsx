@@ -3,7 +3,7 @@ import { fullSizeMargin } from "../constants";
 import { useAnnotationsContext, useAppContext } from "../context";
 import { FormatType } from "../types/formats";
 import { formatSize, mergeBounds } from "../utils";
-import { getAnnotationsBounds } from "@linkurious/annotations-control";
+import { getAnnotationsBounds } from "@linkurious/ogma-annotations";
 
 export const FormatInfo: FC<FormatType> = ({ value }) => {
   const { ogma, boundingBox, format, textsVisible } = useAppContext();

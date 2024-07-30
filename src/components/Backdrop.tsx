@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useLayoutEffect, useState } from "react";
 import { Point, Size } from "@linkurious/ogma";
 import { FormatType } from "../types/formats";
-import { useAppContext } from "../context";
+import { useAnnotationsContext, useAppContext } from "../context";
 import { destroyRule, scaleGraph } from "../utils";
 import { backdropMargin } from "../constants";
 
@@ -85,6 +85,7 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
     right: 0,
     bottom: 0,
   });
+  const { annotations, updateAnnotations, editor } = useAnnotationsContext();
 
   useEffect(() => {
     if (!ogma) return;
@@ -123,10 +124,10 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
 
       if (ogma) {
         // first drop to initial scale
-        if (graphScale !== 1) scaleGraph(ogma, 1 / graphScale);
+        if (graphScale !== 1) scaleGraph(ogma, 1 / graphScale, editor);
         // then apply the scale
         setGraphScale(scale);
-        scaleGraph(ogma, scale);
+        scaleGraph(ogma, scale, editor);
       }
     };
     updateSize();
@@ -134,7 +135,7 @@ export const Backdrop: FC<BackdropProps> = ({ format }) => {
     window.addEventListener("resize", updateSize);
 
     return () => window.removeEventListener("resize", updateSize);
-  }, [format, scalingStyleRule]);
+  }, [format, scalingStyleRule, editor]);
 
   useEffect(() => {
     globalScale = graphScale;
