@@ -26,6 +26,7 @@ import "./Modal.css";
 
 interface Props extends ModalFuncProps {
   format: FormatType;
+  onCancel: () => void;
 }
 
 export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
@@ -131,6 +132,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
       setBackground={setBackground}
       background={background}
       onDownload={onDownload}
+      onCancel={onCancel}
       loading={loading}
       size={size}
       image={image}
@@ -140,9 +142,6 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
   const className = open ? "preview--screen open" : "preview--screen";
   return createPortal(
     <div className={className}>
-      <div className="close--button" onClick={onCancel}>
-        &times;
-      </div>
       <div className="preview--container">
         {loading && (
           <Progress

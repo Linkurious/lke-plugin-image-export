@@ -4,7 +4,11 @@ import Button from "antd/es/button/button";
 import Switch from "antd/es/switch";
 import Dropdown from "antd/es/dropdown";
 
-import { DownOutlined } from "@ant-design/icons";
+import {
+  DownOutlined,
+  LeftOutlined,
+  DownloadOutlined,
+} from "@ant-design/icons";
 import { formatSize } from "../../utils";
 import { Size } from "@linkurious/ogma";
 import { ExportTypes } from "../../constants";
@@ -27,6 +31,7 @@ interface FooterProps {
   background: boolean;
   setBackground: (background: boolean) => void;
   onDownload: (type: ExportType) => void;
+  onCancel: () => void;
   loading: boolean;
   image: string;
   size: Size;
@@ -36,6 +41,7 @@ export const Footer: FC<FooterProps> = ({
   background,
   setBackground,
   onDownload,
+  onCancel,
   loading,
   image,
   size,
@@ -46,6 +52,9 @@ export const Footer: FC<FooterProps> = ({
   });
   return (
     <div className="preview-screen-footer">
+      <Button type="primary" onClick={onCancel} className="cancel--button">
+        <LeftOutlined />
+      </Button>
       <span className="preview-background-selector" key="background">
         <span className="preview-background-selector--label">background</span>
         <Switch
@@ -65,7 +74,7 @@ export const Footer: FC<FooterProps> = ({
           onClick={() => onDownload(currentFormat)}
           disabled={loading}
           className="download--button"
-          //icon={<DownloadOutlined />}
+          icon={<DownloadOutlined />}
         >
           Download
         </Button>

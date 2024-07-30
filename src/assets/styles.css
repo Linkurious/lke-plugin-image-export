@@ -208,9 +208,15 @@ body {
   margin-right: 2em;
 }
 
-.download--button {
+.download--button,
+.cancel--button {
   border-radius: 2px 0 0 2px;
   margin-right: 1px;
+}
+
+.cancel--button {
+  align-self: center;
+  margin-left: 1em;
 }
 
 .download--dropdown-trigger {

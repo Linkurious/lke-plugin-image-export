@@ -22,7 +22,7 @@
   height: 10vh;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .preview-screen-footer > span {
