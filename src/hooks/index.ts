@@ -1,1 +1,1 @@
-export * from "./useDimentsions";
+export * from "./useDimensions";
