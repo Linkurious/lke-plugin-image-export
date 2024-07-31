@@ -52,7 +52,12 @@ export const Footer: FC<FooterProps> = ({
   });
   return (
     <div className="preview-screen-footer">
-      <Button type="primary" onClick={onCancel} className="cancel--button">
+      <Button
+        type="primary"
+        onClick={onCancel}
+        className="cancel--button"
+        title="Back"
+      >
         <LeftOutlined />
       </Button>
       <span className="preview-background-selector" key="background">
@@ -74,6 +79,7 @@ export const Footer: FC<FooterProps> = ({
           onClick={() => onDownload(currentFormat)}
           disabled={loading}
           className="download--button"
+          title="Download"
           icon={<DownloadOutlined />}
         >
           Download
