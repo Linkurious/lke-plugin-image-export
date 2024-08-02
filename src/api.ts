@@ -4,7 +4,7 @@ import {
   PopulatedVisualization,
   EntityType,
   GraphSchemaTypeWithAccess,
-  NodeGroupingRule,
+  NodeGroupingRule
 } from "@linkurious/rest-client";
 
 declare let IS_DEV: boolean;
@@ -53,9 +53,13 @@ export async function getGraphSchema(): Promise<GraphSchema | undefined> {
   }
 }
 
-function getVisualizationFromParentContext(): Promise<PopulatedVisualization> {
-  console.log(window.parent.visualization as PopulatedVisualization)
-  return Promise.resolve(window.parent.visualization as PopulatedVisualization);
+async function getVisualizationFromLocalStorge(): Promise<PopulatedVisualization> {
+  const storeVisualizationData = localStorage.getItem('visualization');
+  if (storeVisualizationData !== undefined) {
+    localStorage.removeItem('visualization');
+    return JSON.parse(storeVisualizationData!) as PopulatedVisualization;
+  }
+  return {} as PopulatedVisualization;
 }
 
 async function getVisualizationFromBackend(
@@ -72,8 +76,8 @@ async function getVisualizationFromBackend(
 }
 
 export async function getVisualisation(): Promise<PopulatedVisualization> {
-  if (source === "parent") {
-    return getVisualizationFromParentContext();
+  if (source === "local") {
+    return getVisualizationFromLocalStorge();
   }
   return getVisualizationFromBackend(sourceKey, id);
 }
