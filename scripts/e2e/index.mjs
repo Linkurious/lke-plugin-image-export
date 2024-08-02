@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-const { green, red } = require("nanocolors");
-const { spawn, exec } = require("child_process");
-const generateReport = require("./generate-report");
+import { green, red } from "nanocolors";
+import { spawn, exec } from "child_process";
+import { generateReport } from "./generate-report.mjs";
 const REPLACE = process.env.REPLACE;
 
 function startServer() {
@@ -9,7 +9,7 @@ function startServer() {
   return new Promise((resolve, reject) => {
     server.stdout.on("data", (data) => {
       const message = data.toString();
-      const matches = message.match(/http\:\/\/localhost\:(\d+)/);
+      const matches = message.match(/http:\/\/localhost:(\d+)/);
       if (!matches || matches.length < 2) return;
       console.log(" - web server is running on port", matches[1]);
       resolve({ server, port: matches[1] });
@@ -22,7 +22,7 @@ function startServer() {
 }
 
 function startMockServer() {
-  const mockServer = spawn("node", ["scripts/mock-server.js"]);
+  const mockServer = spawn("node", ["scripts/mock-server.mjs"]);
   return new Promise((resolve, reject) => {
     mockServer.stdout.on("data", (data) => {
       const message = data.toString();
@@ -48,10 +48,16 @@ function runTests(PORT) {
       : process.env.GREP !== undefined
       ? `--grep ${process.env.GREP}`
       : "";
+    console.log(
+      "test command",
+      `TESTOMATIO=${
+        process.env.TESTOMATIO || ""
+      } REPLACE=${!!REPLACE} PORT=${PORT} ./scripts/e2e/run.mjs ${filter} ${args}`
+    );
     testProcess = exec(
       `TESTOMATIO=${
         process.env.TESTOMATIO || ""
-      } REPLACE=${!!REPLACE} PORT=${PORT} ./scripts/e2e/run.js ${filter} ${args}`,
+      } REPLACE=${!!REPLACE} PORT=${PORT} ./scripts/e2e/run.mjs ${filter} ${args}`,
       { maxBuffer: 1024 * 5000 },
       (error) => {
         if (error) return reject(error);

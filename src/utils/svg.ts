@@ -1,7 +1,7 @@
 import {
   AnnotationCollection,
   getAnnotationsBounds,
-} from "@linkurious/annotations-control";
+} from "@linkurious/ogma-annotations";
 import Ogma, { SVGExportOptions } from "@linkurious/ogma";
 import { getBoundingBox, mergeBounds } from ".";
 
@@ -155,9 +155,7 @@ export async function exportOrginalSize(
   const tl = ogma.view.graphToScreenCoordinates({ x: minX, y: minY });
   const br = ogma.view.graphToScreenCoordinates({ x: maxX, y: maxY });
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const width = br.x - tl.x + 2 * options.margin!;
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const height = br.y - tl.y + 2 * options.margin!;
 
   // resize canvas

@@ -14,7 +14,7 @@ import {
   NodeList,
   EdgeList,
 } from "@linkurious/ogma-linkurious-parser";
-import { IOgmaConfig, PopulatedVisualization } from "@linkurious/rest-client";
+import { IOgmaConfig, PopulatedVisualization, NodeGroupingRule } from "@linkurious/rest-client";
 import { useAppContext } from "../context";
 import { getBoundingBox } from "../utils";
 import { GraphSchema } from "../api";
@@ -42,12 +42,23 @@ const applySchema = async (ogma: OgmaLib, graphSchema?: GraphSchema) => {
   }
 };
 
+const applyNodeGrouping = async (ogma: OgmaLib, groupingRule?: NodeGroupingRule) => {
+  if(groupingRule !== undefined){
+    ogma.LkNodeGroupingTransformation.initNodeGroupingStyle();
+    await ogma.LkNodeGroupingTransformation.initTransformation();
+    ogma.LkNodeGroupingTransformation.setGroupingRule(groupingRule);
+    await ogma.LkNodeGroupingTransformation.refreshTransformation();
+  }
+};
+
 interface OgmaProps {
   options?: Partial<IOgmaConfig>;
   onReady?: (ogma: OgmaLib) => void;
   graph?: PopulatedVisualization;
   schema?: GraphSchema;
   children?: ReactNode;
+  baseUrl?: string;
+  appliedNodeGroupingRules?: NodeGroupingRule[];
 }
 
 const defaultOptions = {};
@@ -56,7 +67,7 @@ const defaultOptions = {};
  * Main component for the Ogma library.
  */
 export const OgmaComponent = (
-  { options = defaultOptions, children, graph, onReady, schema }: OgmaProps,
+  { options = defaultOptions, children, graph, onReady, schema, baseUrl, appliedNodeGroupingRules }: OgmaProps,
   ref?: Ref<OgmaLib>
 ) => {
   const [ready, setReady] = useState(false);
@@ -70,7 +81,7 @@ export const OgmaComponent = (
 
   useEffect(() => {
     if (container) {
-      const instance = new OgmaLib(options);
+      const instance = new OgmaLib(options, baseUrl);
       instance.setContainer(container);
 
       instance.setOptions({
@@ -116,7 +127,9 @@ export const OgmaComponent = (
           .then(() => applyItemFilter(ogma, graph, true))
           // set up the schema
           .then(() => ogma.view.locateGraph())
-          .then(() => ogma.view.forceResize());
+          .then(() => ogma.view.forceResize())
+          // set up node grouping transformation
+          .then(() => applyNodeGrouping(ogma, appliedNodeGroupingRules?.[0]));
       }
     }
   }, [graph, options, ogma, schema]);

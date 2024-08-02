@@ -14,7 +14,7 @@ const screenshotFolder = path.join(rootFolder, "screenshot/");
 const diffFolder = path.join(rootFolder, "diff/");
 const baseFolder = path.resolve(__dirname, "../ref-images");
 let foldersCreated = false;
-const results: any[] = [];
+const results: { name: string; path: string; success: boolean }[] = [];
 
 const shouldReplace = process.env.REPLACE === "true";
 function getPaths(fileName: string) {
@@ -41,11 +41,10 @@ function compareImages(
 
   return new Promise((resolve, reject) => {
     diff.run((error, result) => {
-      if (error) reject(error);
+      if (error) return reject(error);
       else {
-        diff.hasPassed(result.code)
-          ? resolve(result.differences)
-          : reject(result.differences);
+        if (diff.hasPassed(result.code)) return resolve(result.differences);
+        reject(result.differences);
       }
     });
   });
@@ -100,7 +99,9 @@ When(/^I click download (.+) (.+)$/, async (name: string, format: string) => {
   const { expectedPath, actualPath } = getPaths(name);
   if (!downloadPath) throw "download failed";
   const outPath = shouldReplace ? expectedPath : actualPath;
-  return await sharp(downloadPath).png().toFile(outPath);
+  const png = await sharp(downloadPath).png();
+  const file = await png.toFile(outPath);
+  return file;
 });
 
 When(/^I download (.+) (.+)$/, async (name: string, format: string) => {
@@ -124,7 +125,7 @@ Then(/^image is nice (.+)$/, (name: string) => {
 });
 
 When(/^I select background color (\w+)$/, async (background: string) => {
-  let checked = await I.grabAttributeFrom(
+  const checked = await I.grabAttributeFrom(
     ".preview-background-selector>button",
     "aria-checked"
   );
@@ -133,7 +134,7 @@ When(/^I select background color (\w+)$/, async (background: string) => {
   }
 });
 
-//@ts-ignore
+// @ts-expect-error Tags are missing
 Before(async ({ tags }) => {
   if (!tags.includes("@download") || foldersCreated) return;
   await mkdirp(path.resolve(screenshotFolder));
@@ -142,8 +143,7 @@ Before(async ({ tags }) => {
   foldersCreated = true;
 });
 
-//@ts-ignore
-After(({ tags }) => {
+After(() => {
   return fs.writeFile(
     path.join(rootFolder, "export-results.json"),
     JSON.stringify(results)
