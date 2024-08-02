@@ -70,15 +70,16 @@ async function getVisualizationFromBackend(
     id: parseInt(id, 10), //parseInt(visualisationId as string, 10),
     sourceKey: sourceKey, //key as string
   });
-  console.log(response.body)
   if (response.isSuccess()) return response.body;
   return {} as PopulatedVisualization;
 }
 
 export async function getVisualisation(): Promise<PopulatedVisualization> {
+  // If source is local, we get the visualization from local storage
   if (source === "local") {
     return getVisualizationFromLocalStorge();
   }
+  // Otherwise, we get the visualization from the backend
   return getVisualizationFromBackend(sourceKey, id);
 }
 
