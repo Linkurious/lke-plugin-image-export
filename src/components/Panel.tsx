@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import Button from "antd/es/button/button";
 import Divider from "antd/es/divider";
-import Collapse from "antd/es/collapse";
 import Form from "antd/es/form";
 import Slider from "antd/es/slider";
 import Switch from "antd/es/switch";
