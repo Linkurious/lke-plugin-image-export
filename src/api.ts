@@ -102,8 +102,5 @@ export async function sendTelemetryEvent(
     event,
     properties
   }
- const response =  await rc.linkurious.sendAnalytics(trackingEvent);
-  if (response.isSuccess()) {
-    console.log("Telemetry event is successfully sent");
-  }
+  await rc.linkurious.sendAnalytics(trackingEvent)
 }
