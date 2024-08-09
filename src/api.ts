@@ -4,7 +4,8 @@ import {
   PopulatedVisualization,
   EntityType,
   GraphSchemaTypeWithAccess,
-  NodeGroupingRule
+  NodeGroupingRule,
+  ISendAnalyticsParams
 } from "@linkurious/rest-client";
 
 declare let IS_DEV: boolean;
@@ -89,4 +90,17 @@ export async function getNodeGroupingRules() {
   });
   if (response.isSuccess()) return response.body;
   return [] as NodeGroupingRule[];
+}
+
+export async function sendTelemetryEvent(
+  event: string,
+  properties?: Record<string, unknown>
+): Promise<void> {
+  const trackingEvent: ISendAnalyticsParams & { timestamp: string } = {
+    type: 'track',
+    timestamp: new Date().toISOString(),
+    event,
+    properties
+  }
+  await rc.linkurious.sendAnalytics(trackingEvent)
 }
