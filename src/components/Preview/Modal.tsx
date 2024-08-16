@@ -19,8 +19,9 @@ import {
   exportClipped,
   exportOrginalSize,
 } from "../../utils/svg";
-import { handleDownload } from "../../utils/download";
+import { handleDownload, sendExportImageTelemetryEvent } from "../../utils/download";
 import "./Modal.css";
+
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
 
@@ -119,11 +120,16 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
     setImage(svgElementToString(el));
   }, [background, image]);
 
-  const onDownload = async (format: ExportType) => {
+  const onDownload = async (exportType: ExportType) => {
     const el = stringToSVGElement(image as string);
     const bg = el.querySelector(".ogma-svg-background") as SVGRectElement;
     bg!.setAttribute("fill-opacity", background ? "1" : "0");
-    await handleDownload(el, format, visualisation.title);
+    // We send a telemetry event if the access to this app is as an LKE module and not as a plugin
+    const accessFromModules = window.location.pathname.includes("modules");
+    if (accessFromModules) {
+      sendExportImageTelemetryEvent(exportType.label, format.label)
+    }
+    await handleDownload(el, exportType, visualisation.title);
     if (onOk) onOk();
   };
 
