@@ -119,8 +119,8 @@ When(/^I click download (.+) (.+)$/, async (name: string, format: string) => {
     return;
   }
 
-  const file = await Jimp.read(downloadPath);
-  await file.write(outPath as `${string}.${string}`);
+  const file = await fs.readFile(downloadPath);
+  await fs.writeFile(outPath as `${string}.${string}`, file);
   return file;
 });
 
