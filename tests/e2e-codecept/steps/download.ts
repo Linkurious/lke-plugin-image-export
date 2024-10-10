@@ -4,7 +4,8 @@ import { mkdirp } from "mkdirp";
 import * as path from "path";
 import BlinkDiff from "blink-diff";
 import { BrowserContext, Page } from "playwright";
-import sharp from "sharp";
+import { Jimp } from "jimp";
+import { svg2png, initialize } from "svg2png-wasm";
 
 const { I } = inject();
 const ogma = {} as Ogma;
@@ -94,13 +95,32 @@ When(/^I select output format (.+)$/, async (format: string) => {
   await I.click(".ant-dropdown-menu-title-content");
 });
 
+let initialized = false;
+
 When(/^I click download (.+) (.+)$/, async (name: string, format: string) => {
   const [, downloadPath] = await I.download("text=Download");
   const { expectedPath, actualPath } = getPaths(name);
   if (!downloadPath) throw "download failed";
   const outPath = shouldReplace ? expectedPath : actualPath;
-  const png = await sharp(downloadPath).png();
-  const file = await png.toFile(outPath);
+  console.log({ downloadPath, format });
+  if (format === "svg") {
+    if (!initialized) {
+      const wasm = await fs.readFile(
+        path.resolve(
+          __dirname,
+          "../../../node_modules/svg2png-wasm/svg2png_wasm_bg.wasm"
+        )
+      );
+      await initialize(wasm);
+      initialized = true;
+    }
+    const svg = await svg2png(await fs.readFile(downloadPath, "utf-8"));
+    await fs.writeFile(outPath, svg);
+    return;
+  }
+
+  const file = await fs.readFile(downloadPath);
+  await fs.writeFile(outPath as `${string}.${string}`, file);
   return file;
 });
 

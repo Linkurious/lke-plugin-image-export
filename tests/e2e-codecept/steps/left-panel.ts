@@ -11,7 +11,9 @@ function getFormat(selectedFormat: string) {
 }
 When(/^I select format (.*)$/, async (format: string) => {
   if (format === "Full Size") return;
-  I.waitForElement(locator.build(".format-select"));
+  console.log("trying to save screenshot", format);
+  I.saveScreenshot(`debug--${format}.png`);
+  I.waitForElement(locator.build(".format-select"), 25);
   I.click(locator.build(".format-select"));
   I.waitForElement(locator.build("span").withText(format));
   I.click(locator.build("span").withText(format), undefined, { force: true });
@@ -61,8 +63,9 @@ Then(/^I see it's updated within the viz (.*)$/, async (size: string) => {
 });
 When(/^I go to main page$/, async () => {
   await I.amOnPage("/");
-  await I.wait(1);
+  await I.wait(15);
 });
+
 When(/^I toggle text slider$/, async () => {
   I.click(".caption-switch");
 });
