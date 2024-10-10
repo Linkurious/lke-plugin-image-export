@@ -88,7 +88,7 @@
     "terser": "5.29.2",
     "ts-node": "10.9.2",
     "typescript": "5.4.3",
-    "vite": "4.5.3",
+    "vite": "4.5.5",
     "xmldom-qsa": "^1.1.3-gamma"
   },
   "dependencies": {
@@ -116,7 +116,7 @@
     "svg2pdf.js": "2.2.3",
     "svgo": "2.8.0",
     "typescript": "5.4.3",
-    "vite": "4.2.0",
+    "vite": "4.5.5",
     "vitest": "0.29.3"
   },
   "bundleDependencies": [
