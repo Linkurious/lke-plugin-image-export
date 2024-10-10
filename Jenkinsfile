@@ -19,7 +19,6 @@ nodeJob {
   runBookeeping = true
 
   //static asset upload
-  runPrivateNpmPublish = false
   binaries = ["lke-plugin-image-export.lke"]
   groupId = 'com.linkurious.plugins'
 
