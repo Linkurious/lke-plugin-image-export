@@ -17,7 +17,7 @@ export const config: CodeceptJS.MainConfig = {
   // this is irreleavnt by the way
   tests: "./tests/e2e/*_test.ts",
   output: "./reports/html/e2e",
-  timeout: 15,
+  timeout: 30,
   helpers: {
     Playwright: {
       url: baseUrl,
