@@ -6,7 +6,7 @@ export const VersionInfo = () => {
   return (
     <div className="version-info">
       <Button
-        href="https://github.com/linkurious/lke-plugin-image-export"
+        href="https://doc.linkurious.com/user-manual/latest/visualization-export/#export-visualization-as-image"
         title={`Image export plugin @ v${version}`}
         size="small"
         target="_blank"
