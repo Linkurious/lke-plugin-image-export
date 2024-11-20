@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Progress from "antd/es/progress";
 import UIModal, { ModalFuncProps } from "antd/es/modal";
-
 import { FormatType, ExportType } from "../../types/formats";
 import { useAnnotationsContext, useAppContext } from "../../context";
 import { svgElementToString } from "@linkurious/ogma-export-stitch";
@@ -20,11 +20,14 @@ import {
   exportOrginalSize,
 } from "../../utils/svg";
 import { handleDownload, sendExportImageTelemetryEvent } from "../../utils/download";
+import "./Modal.css";
+
 // TODO: add that, and through the webworker
 //import { optimize } from "svgo/dist/svgo.browser";
 
 interface Props extends ModalFuncProps {
   format: FormatType;
+  onCancel: () => void;
 }
 
 export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
@@ -130,27 +133,21 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
     if (onOk) onOk();
   };
 
-  return (
-    <UIModal
-      title="Preview"
-      className="preview--modal"
-      open={open}
-      onOk={onOk}
+  const footer = image ? (
+    <Footer
+      setBackground={setBackground}
+      background={background}
+      onDownload={onDownload}
       onCancel={onCancel}
-      width={"80vw"}
-      footer={
-        image ? (
-          <Footer
-            setBackground={setBackground}
-            background={background}
-            onDownload={onDownload}
-            loading={loading}
-            size={size}
-            image={image}
-          />
-        ) : null
-      }
-    >
+      loading={loading}
+      size={size}
+      image={image}
+    />
+  ) : null;
+
+  const className = open ? "preview--screen open" : "preview--screen";
+  return createPortal(
+    <div className={className}>
       <div className="preview--container">
         {loading && (
           <Progress
@@ -162,7 +159,9 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
         {image && (
           <ImageViewer svg={image} size={size} background={background} />
         )}
+        {footer}
       </div>
-    </UIModal>
+    </div>,
+    document.body
   );
 };
