@@ -108,7 +108,7 @@
     "express": "4.20.0",
     "express-async-handler": "1.2.0",
     "iconoir-react": "5.5.2",
-    "jspdf": "2.5.1",
+    "jspdf": "2.5.2",
     "panzoom": "9.4.3",
     "qs": "6.12.0",
     "react": "18.3.1",
