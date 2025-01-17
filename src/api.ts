@@ -5,8 +5,12 @@ import {
   EntityType,
   GraphSchemaTypeWithAccess,
   NodeGroupingRule,
-  ISendAnalyticsParams
+  ISendAnalyticsParams,
+  VizNode,
+  VizEdge,
+  Visualization
 } from "@linkurious/rest-client";
+import {LKOgma} from "@linkurious/ogma-linkurious-parser";
 
 declare let IS_DEV: boolean;
 
@@ -54,11 +58,34 @@ export async function getGraphSchema(): Promise<GraphSchema | undefined> {
   }
 }
 
-async function getVisualizationFromLocalStorge(): Promise<PopulatedVisualization> {
+function getVisualizationFromLocalStorage(): PopulatedVisualization {
   const storeVisualizationData = localStorage.getItem('visualization');
   if (storeVisualizationData !== undefined) {
     localStorage.removeItem('visualization');
-    return JSON.parse(storeVisualizationData!) as PopulatedVisualization;
+
+    // Get nodes and edges from the ogma global object of the parent window
+    // to avoid a quota exceeded error when there is a lot of data (see LKE-12691)
+    // and the rest of the config form the localStorage
+    const parentWindowOgma = (window.parent as unknown as {ogma: LKOgma}).ogma;
+    const nonFilteredNodes = parentWindowOgma.getNonFilteredNodes();
+    const nonFilteredEdges = parentWindowOgma.getNonFilteredEdges();
+
+    const nodes = nonFilteredNodes.toJSON().map((n, index) => ({
+      ...n,
+      attributes: nonFilteredNodes.getAttributes()[index]
+    })) as VizNode[];
+
+    const edges = nonFilteredEdges.toJSON().map((e, index) => ({
+      ...e,
+      attributes: nonFilteredEdges.getAttributes()[index]
+    })) as VizEdge[];
+
+    const visualization = JSON.parse(storeVisualizationData!) as Visualization;
+    return {
+      ...visualization,
+      nodes,
+      edges
+    };
   }
   return {} as PopulatedVisualization;
 }
@@ -75,10 +102,10 @@ async function getVisualizationFromBackend(
   return {} as PopulatedVisualization;
 }
 
-export async function getVisualisation(): Promise<PopulatedVisualization> {
+export function getVisualisation(): Promise<PopulatedVisualization> {
   // If source is local, we get the visualization from local storage
   if (source === "local") {
-    return getVisualizationFromLocalStorge();
+    return Promise.resolve(getVisualizationFromLocalStorage());
   }
   // Otherwise, we get the visualization from the backend
   return getVisualizationFromBackend(sourceKey, id);
