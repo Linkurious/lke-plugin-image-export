@@ -65,7 +65,7 @@ function getVisualizationFromLocalStorage(): PopulatedVisualization {
 
     // Get nodes and edges from the ogma global object of the parent window
     // to avoid a quota exceeded error when there is a lot of data (see LKE-12691)
-    // and the rest of the config form the localStorage
+    // and the rest of the config from the localStorage
     const parentWindowOgma = (window.parent as unknown as {ogma: LKOgma}).ogma;
     const nonFilteredNodes = parentWindowOgma.getNonFilteredNodes();
     const nonFilteredEdges = parentWindowOgma.getNonFilteredEdges();
