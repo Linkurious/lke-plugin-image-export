@@ -60,7 +60,7 @@ export async function getGraphSchema(): Promise<GraphSchema | undefined> {
 
 function getVisualizationFromLocalStorage(): PopulatedVisualization {
   const storeVisualizationData = localStorage.getItem('visualization');
-  if (storeVisualizationData !== undefined) {
+  if (storeVisualizationData !== null) {
     localStorage.removeItem('visualization');
 
     // Get nodes and edges from the ogma global object of the parent window
