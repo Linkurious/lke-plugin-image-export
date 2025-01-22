@@ -70,14 +70,18 @@ function getVisualizationFromLocalStorage(): PopulatedVisualization {
     const nonFilteredNodes = parentWindowOgma.getNonFilteredNodes();
     const nonFilteredEdges = parentWindowOgma.getNonFilteredEdges();
 
+    // getAttributes call is expensive, do the call only once for nodes and edges
+    const nonFilteredNodesAttributes = nonFilteredNodes.getAttributes();
+    const nonFilteredEdgesAttributes = nonFilteredEdges.getAttributes();
+
     const nodes = nonFilteredNodes.toJSON().map((n, index) => ({
       ...n,
-      attributes: nonFilteredNodes.getAttributes()[index]
+      attributes: nonFilteredNodesAttributes[index]
     })) as VizNode[];
 
     const edges = nonFilteredEdges.toJSON().map((e, index) => ({
       ...e,
-      attributes: nonFilteredEdges.getAttributes()[index]
+      attributes: nonFilteredEdgesAttributes[index]
     })) as VizEdge[];
 
     const visualization = JSON.parse(storeVisualizationData!) as Visualization;
