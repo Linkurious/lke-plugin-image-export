@@ -81,11 +81,13 @@ function getVisualizationFromLocalStorage(): PopulatedVisualization {
     })) as VizEdge[];
 
     const visualization = JSON.parse(storeVisualizationData!) as Visualization;
-    return {
+
+    // We need to clone the object because attributes get mutated by the parent ogma
+    return structuredClone({
       ...visualization,
       nodes,
       edges
-    };
+    });
   }
   return {} as PopulatedVisualization;
 }
