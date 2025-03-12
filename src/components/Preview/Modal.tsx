@@ -19,7 +19,10 @@ import {
   exportClipped,
   exportOrginalSize,
 } from "../../utils/svg";
-import { handleDownload, sendExportImageTelemetryEvent } from "../../utils/download";
+import {
+  handleDownload,
+  sendExportImageTelemetryEvent,
+} from "../../utils/download";
 import "./Modal.css";
 
 // TODO: add that, and through the webworker
@@ -127,7 +130,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
     // We send a telemetry event if the access to this app is as an LKE module and not as a plugin
     const accessFromModules = window.location.pathname.includes("modules");
     if (accessFromModules) {
-      sendExportImageTelemetryEvent(exportType.label, format.label)
+      sendExportImageTelemetryEvent(exportType.label, format.label);
     }
     await handleDownload(el, exportType, visualisation.title);
     if (onOk) onOk();
