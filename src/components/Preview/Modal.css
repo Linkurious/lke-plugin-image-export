@@ -1,8 +1,7 @@
 .preview--screen {
   width: 100vw;
   height: 100vh;
-  /* transition animation when opened */
-  transform: translate(100%, 0);
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -11,7 +10,7 @@
 }
 
 .preview--screen.open {
-  transform: translate(0, 0);
+  display: block;
 }
 
 .image-viewer--container {
