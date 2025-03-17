@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Progress from "antd/es/progress";
-import UIModal, { ModalFuncProps } from "antd/es/modal";
+import { ModalFuncProps } from "antd/es/modal";
 import { FormatType, ExportType } from "../../types/formats";
 import { useAnnotationsContext, useAppContext } from "../../context";
 import { svgElementToString } from "@linkurious/ogma-export-stitch";
@@ -111,8 +111,15 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
 
     prepareDownload();
 
+    // listen to escape key to cancel
+    const onKeyUp = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onCancel();
+    };
+    window.addEventListener("keyup", onKeyUp);
+
     return () => {
       if (open) setImage("");
+      window.removeEventListener("keyup", onKeyUp);
     };
   }, [open, editor, ogma]);
 
