@@ -1,6 +1,6 @@
 {
   "name": "image-export",
-  "version": "2.1.17",
+  "version": "2.1.18",
   "pluginApiVersion": "1.0.0",
   "publicRoute": "public",
   "singlePageAppIndex": "index.html",
