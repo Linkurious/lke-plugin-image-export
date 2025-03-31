@@ -109,7 +109,7 @@ export function embedImages(svg: SVGSVGElement) {
     .then(() => svg);
 }
 
-const defaultOptions: SVGExportOptions = {
+export const defaultOptions: SVGExportOptions = {
   groupSemantically: true,
   embedFonts: true,
   download: false,
@@ -137,16 +137,11 @@ export async function exportClipped(
   });
 }
 
-export async function exportOrginalSize(
+export function getExportSize(
   ogma: Ogma,
   annotations: AnnotationCollection,
-  exportOptions: SVGExportOptions = {}
+  options: SVGExportOptions = {}
 ) {
-  const options: SVGExportOptions = {
-    ...defaultOptions,
-    ...exportOptions,
-  };
-  const view = ogma.view.get();
   // include annotations in the bounds
   const annotationBounds = getAnnotationsBounds(annotations);
   const graphBounds = getBoundingBox(ogma, !!options.texts);
@@ -157,6 +152,23 @@ export async function exportOrginalSize(
 
   const width = br.x - tl.x + 2 * options.margin!;
   const height = br.y - tl.y + 2 * options.margin!;
+  return { width, height, minX, minY, maxX, maxY };
+}
+export async function exportOrginalSize(
+  ogma: Ogma,
+  annotations: AnnotationCollection,
+  exportOptions: SVGExportOptions = {}
+) {
+  const options: SVGExportOptions = {
+    ...defaultOptions,
+    ...exportOptions,
+  };
+  const view = ogma.view.get();
+  const { width, height, minX, minY, maxX, maxY } = getExportSize(
+    ogma,
+    annotations,
+    options
+  );
 
   // resize canvas
   await ogma.view.setSize({ width, height });

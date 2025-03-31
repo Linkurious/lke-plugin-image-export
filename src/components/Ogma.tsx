@@ -14,7 +14,11 @@ import {
   NodeList,
   EdgeList,
 } from "@linkurious/ogma-linkurious-parser";
-import { IOgmaConfig, PopulatedVisualization, NodeGroupingRule } from "@linkurious/rest-client";
+import {
+  IOgmaConfig,
+  PopulatedVisualization,
+  NodeGroupingRule,
+} from "@linkurious/rest-client";
 import { useAppContext } from "../context";
 import { getBoundingBox } from "../utils";
 import { GraphSchema } from "../api";
@@ -42,8 +46,11 @@ const applySchema = async (ogma: OgmaLib, graphSchema?: GraphSchema) => {
   }
 };
 
-const applyNodeGrouping = async (ogma: OgmaLib, groupingRule?: NodeGroupingRule) => {
-  if(groupingRule !== undefined){
+const applyNodeGrouping = async (
+  ogma: OgmaLib,
+  groupingRule?: NodeGroupingRule
+) => {
+  if (groupingRule !== undefined) {
     ogma.LkNodeGroupingTransformation.initNodeGroupingStyle();
     await ogma.LkNodeGroupingTransformation.initTransformation();
     ogma.LkNodeGroupingTransformation.setGroupingRule(groupingRule);
@@ -67,7 +74,15 @@ const defaultOptions = {};
  * Main component for the Ogma library.
  */
 export const OgmaComponent = (
-  { options = defaultOptions, children, graph, onReady, schema, baseUrl, appliedNodeGroupingRules }: OgmaProps,
+  {
+    options = defaultOptions,
+    children,
+    graph,
+    onReady,
+    schema,
+    baseUrl,
+    appliedNodeGroupingRules,
+  }: OgmaProps,
   ref?: Ref<OgmaLib>
 ) => {
   const [ready, setReady] = useState(false);
