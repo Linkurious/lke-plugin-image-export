@@ -99,7 +99,7 @@
     "@linkurious/ogma-export-stitch": "0.0.32",
     "@linkurious/ogma-linkurious-parser": "4.1.9",
     "@linkurious/ogma-mini-map": "0.0.73",
-    "@linkurious/rest-client": "4.1.9",
+    "@linkurious/rest-client": "4.2.0",
     "@linkurious/svg-font-embedder": "0.0.76",
     "@mapbox/mapbox-gl-rtl-text": "0.2.3",
     "@uiw/color-convert": "^1.1.1",
