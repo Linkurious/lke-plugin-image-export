@@ -94,7 +94,6 @@
   "dependencies": {
     "@ant-design/colors": "6.0.0",
     "@ant-design/icons": "5.3.5",
-    "@linkurious/ogma": "5.2.6",
     "@linkurious/ogma-annotations": "1.1.19",
     "@linkurious/ogma-export-stitch": "0.0.32",
     "@linkurious/ogma-linkurious-parser": "4.2.0",
@@ -119,5 +118,8 @@
   "bundleDependencies": [
     "@linkurious/rest-client",
     "express-async-handler"
-  ]
+  ],
+  "overrides": {
+    "@linkurious/ogma": "5.2.6"
+  }
 }
