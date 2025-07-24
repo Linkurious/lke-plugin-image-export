@@ -1,6 +1,6 @@
 {
   "name": "@linkurious/lke-plugin-image-export",
-  "version": "2.1.19",
+  "version": "2.1.20",
   "engines": {
     "node": "20.19.2"
   },
@@ -97,7 +97,7 @@
     "@linkurious/ogma-annotations": "1.1.19",
     "@linkurious/ogma-export-stitch": "0.0.32",
     "@linkurious/ogma-linkurious-parser": "4.2.0",
-    "@linkurious/ogma-mini-map": "0.0.76",
+    "@linkurious/ogma-mini-map": "0.0.79",
     "@linkurious/rest-client": "4.2.0",
     "@linkurious/svg-font-embedder": "0.0.76",
     "@mapbox/mapbox-gl-rtl-text": "0.2.3",
