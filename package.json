@@ -2,7 +2,7 @@
   "name": "@linkurious/lke-plugin-image-export",
   "version": "2.1.20",
   "engines": {
-    "node": "22.17.1"
+    "node": "20.19.2"
   },
   "files": [
     "backend/**/**.js",
