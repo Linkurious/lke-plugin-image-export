@@ -115,7 +115,7 @@ async function getVisualizationFromBackend(
 }
 
 export function getVisualisation(): Promise<PopulatedVisualization> {
-  // If source is local, we get the visualization from local storage
+  // If source is local, we get the visualization from the parent window
   if (source === "local") {
     return Promise.resolve(getVisualizationFromParentWindow());
   }
