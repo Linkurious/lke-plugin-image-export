@@ -10039,9 +10039,1087 @@
       },
       "lastLockedAt": "2023-05-22T15:27:27.289Z",
       "widgetKey": null
+    },
+    {
+      "id": 488,
+      "sourceKey": "finc0100",
+      "sandbox": false,
+      "title": "LKE-13871",
+      "description": "",
+      "folder": -1,
+      "nodes": [
+        {
+          "id": "897172",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "ADDRESS"
+            ],
+            "properties": {
+              "number": 1,
+              "country": "FRANCE",
+              "component": 273397,
+              "partition": 273397,
+              "pagerank_g": 0.21375000000000002,
+              "city": "MONTPELLIER",
+              "street": "RUE ANATOLE FRANCE",
+              "latitude": 43,
+              "hash": "6df3b188b67836a1",
+              "longitude": 3
+            },
+            "geo": {
+              "original": {
+                "latitude": 43,
+                "longitude": 3
+              },
+              "current": {
+                "latitude": 43,
+                "longitude": 3
+              }
+            },
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 1
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 70.68909760484584,
+            "y": -85.26957360795944
+          }
+        },
+        {
+          "id": "897053",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "ADDRESS"
+            ],
+            "properties": {
+              "number": 10,
+              "country": "FRANCE",
+              "component": 273278,
+              "partition": 273278,
+              "pagerank_g": 0.21375000000000002,
+              "city": "MONTPELLIER",
+              "street": "RUE ANATOLE FRANCE",
+              "latitude": 43,
+              "hash": "af90f4e81fd68a0d",
+              "longitude": 3
+            },
+            "geo": {
+              "original": {
+                "latitude": 43,
+                "longitude": 3
+              },
+              "current": {
+                "latitude": 43,
+                "longitude": 3
+              }
+            },
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 1
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 70.68909760484584,
+            "y": -85.26957360795944
+          }
+        },
+        {
+          "id": "897055",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "ADDRESS"
+            ],
+            "properties": {
+              "number": 3,
+              "country": "FRANCE",
+              "component": 273280,
+              "partition": 273280,
+              "pagerank_g": 0.21375000000000002,
+              "city": "MONTPELLIER",
+              "street": "RUE ANATOLE FRANCE",
+              "latitude": 43,
+              "hash": "793a834ae0dfb8be",
+              "longitude": 3
+            },
+            "geo": {
+              "original": {
+                "latitude": 43,
+                "longitude": 3
+              },
+              "current": {
+                "latitude": 43,
+                "longitude": 3
+              }
+            },
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 1
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 70.68909760484584,
+            "y": -85.26957360795944
+          }
+        },
+        {
+          "id": "897054",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "ADDRESS"
+            ],
+            "properties": {
+              "number": 5,
+              "country": "FRANCE",
+              "component": 273279,
+              "partition": 273279,
+              "pagerank_g": 0.21375000000000002,
+              "city": "MONTPELLIER",
+              "street": "RUE ANATOLE FRANCE",
+              "latitude": 43,
+              "hash": "d67008c1572bdb06",
+              "longitude": 3
+            },
+            "geo": {
+              "original": {
+                "latitude": 43,
+                "longitude": 3
+              },
+              "current": {
+                "latitude": 43,
+                "longitude": 3
+              }
+            },
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 1
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 70.68909760484584,
+            "y": -85.26957360795944
+          }
+        },
+        {
+          "id": "33866",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "PERSON"
+            ],
+            "properties": {
+              "country": "Panama",
+              "component": 33866,
+              "partition": 132137,
+              "pagerank_g": 0.15000000000000002,
+              "full_name": "Miles Crooks",
+              "last_name": "Crooks",
+              "community": 33866,
+              "first_name": "Miles",
+              "email": "Einar@cleve.tv"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 4
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": -8.159932511905925,
+            "y": 37.54059548739551
+          }
+        },
+        {
+          "id": "40768",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "PERSON"
+            ],
+            "properties": {
+              "country": "Panama",
+              "component": 40768,
+              "partition": 139039,
+              "pagerank_g": 0.15000000000000002,
+              "full_name": "Olga Zulauf",
+              "last_name": "Zulauf",
+              "community": 40768,
+              "first_name": "Olga",
+              "email": "Bill@kyler.biz"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 4
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": -10.922260659794109,
+            "y": 0.07606072787403306
+          }
+        },
+        {
+          "id": "14383",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "PERSON"
+            ],
+            "properties": {
+              "country": "Panama",
+              "component": 14383,
+              "pagerank_g": 0.15000000000000002,
+              "partition": 382198,
+              "full_name": "Russel Johnson",
+              "last_name": "Johnson",
+              "community": 14383,
+              "first_name": "Russel",
+              "email": "Felipa@dayton.tv"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 5
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": -41.98605193481852,
+            "y": 21.200730756560557
+          }
+        },
+        {
+          "id": "10472",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "PERSON"
+            ],
+            "properties": {
+              "country": "Switzerland",
+              "component": 10472,
+              "pagerank_g": 0.15000000000000002,
+              "partition": 279673,
+              "full_name": "Frances Sipes",
+              "last_name": "Sipes",
+              "community": 10472,
+              "first_name": "Frances",
+              "email": "Sienna@abigale.ca"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 4
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 35.03383027743314,
+            "y": -101.02789426339443
+          }
+        },
+        {
+          "id": "43931",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "PERSON"
+            ],
+            "properties": {
+              "country": "Hungary",
+              "component": 43931,
+              "partition": 328235,
+              "pagerank_g": 0.15000000000000002,
+              "full_name": "Frances Gaylord",
+              "last_name": "Gaylord",
+              "community": 43931,
+              "first_name": "Frances",
+              "email": "Yasmeen.Stiedemann@serena.co.uk"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 4
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 81.53871189045947,
+            "y": 37.6683315745671
+          }
+        },
+        {
+          "id": "19231",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "PERSON"
+            ],
+            "properties": {
+              "country": "Congo - Brazzaville",
+              "component": 19231,
+              "pagerank_g": 0.15000000000000002,
+              "partition": 293473,
+              "full_name": "Frances Mann",
+              "last_name": "Mann",
+              "community": 19231,
+              "first_name": "Frances",
+              "email": "Darwin@brady.ca"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 4
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": -0.7831977006362317,
+            "y": -100.04317091815179
+          }
+        },
+        {
+          "id": "4283",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "PERSON"
+            ],
+            "properties": {
+              "country": "French Polynesia",
+              "component": 4283,
+              "pagerank_g": 0.15000000000000002,
+              "partition": 372098,
+              "full_name": "Frances Williamson",
+              "last_name": "Williamson",
+              "community": 4283,
+              "first_name": "Frances",
+              "email": "Juana@otilia.net"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 5
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 95.0401276919444,
+            "y": -13.162532176857402
+          }
+        },
+        {
+          "id": "12247",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "PERSON"
+            ],
+            "properties": {
+              "country": "France",
+              "component": 12247,
+              "pagerank_g": 0.15000000000000002,
+              "partition": 380062,
+              "full_name": "Dameon Howell",
+              "last_name": "Howell",
+              "community": 12247,
+              "first_name": "Dameon",
+              "email": "Dameon_Quigley@brayan.org"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 4
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 70.68909760484584,
+            "y": -85.26957360795944
+          }
+        },
+        {
+          "id": "44910",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "PERSON"
+            ],
+            "properties": {
+              "country": "France",
+              "component": 44910,
+              "pagerank_g": 0.15000000000000002,
+              "partition": 412725,
+              "full_name": "Edgar Roob",
+              "last_name": "Roob",
+              "community": 44910,
+              "first_name": "Edgar",
+              "email": "Candelario_Okuneva@mitchel.biz"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 4
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 70.68909760484584,
+            "y": -85.26957360795944
+          }
+        },
+        {
+          "id": "29433",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "PERSON"
+            ],
+            "properties": {
+              "country": "France",
+              "component": 29433,
+              "pagerank_g": 0.15000000000000002,
+              "partition": 127704,
+              "full_name": "Haley Ratke",
+              "last_name": "Ratke",
+              "community": 29433,
+              "first_name": "Haley",
+              "email": "Kurtis_Bogan@maci.biz"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 4
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 70.68909760484584,
+            "y": -85.26957360795944
+          }
+        },
+        {
+          "id": "23060",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "PERSON"
+            ],
+            "properties": {
+              "country": "France",
+              "component": 23060,
+              "pagerank_g": 0.15000000000000002,
+              "partition": 219578,
+              "full_name": "Lucio Johnson",
+              "last_name": "Johnson",
+              "community": 23060,
+              "first_name": "Lucio",
+              "email": "Terence@sabina.com"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 5
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 70.68909760484584,
+            "y": -85.26957360795944
+          }
+        },
+        {
+          "id": "26270",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "PERSON"
+            ],
+            "properties": {
+              "country": "France",
+              "component": 26270,
+              "partition": 222788,
+              "pagerank_g": 0.15000000000000002,
+              "full_name": "Maiya Breitenberg",
+              "last_name": "Breitenberg",
+              "community": 26270,
+              "first_name": "Maiya",
+              "email": "Vallie_Ledner@ashton.info"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 4
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 70.68909760484584,
+            "y": -85.26957360795944
+          }
+        },
+        {
+          "id": "905028",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "ADDRESS"
+            ],
+            "properties": {
+              "number": 3,
+              "country": "FRANCE",
+              "component": 281253,
+              "partition": 281253,
+              "pagerank_g": 0.181875,
+              "city": "MONTPELLIER",
+              "street": "RUE DES TRESORIERS DE FRANCE",
+              "latitude": 43,
+              "hash": "f7f7357b85bf8744",
+              "longitude": 3
+            },
+            "geo": {
+              "original": {
+                "latitude": 43,
+                "longitude": 3
+              },
+              "current": {
+                "latitude": 43,
+                "longitude": 3
+              }
+            },
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 1
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 70.68909760484584,
+            "y": -85.26957360795944
+          }
+        },
+        {
+          "id": "917893",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "ADDRESS"
+            ],
+            "properties": {
+              "number": 1160,
+              "country": "FRANCE",
+              "component": 294118,
+              "partition": 294118,
+              "pagerank_g": 0.181875,
+              "city": "MONTPELLIER",
+              "street": "AV PRESIDENT PIERRE MENDES FRANCE",
+              "latitude": 43,
+              "hash": "e97e543509d1041d",
+              "longitude": 3
+            },
+            "geo": {
+              "original": {
+                "latitude": 43,
+                "longitude": 3
+              },
+              "current": {
+                "latitude": 43,
+                "longitude": 3
+              }
+            },
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 1
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 70.68909760484584,
+            "y": -85.26957360795944
+          }
+        },
+        {
+          "id": "49175",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "COMPANY"
+            ],
+            "properties": {
+              "component": 49175,
+              "pagerank_g": 0.17550000000000002,
+              "partition": 147446,
+              "name": "ab inventore adipisci"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 3
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 91.10123524008432,
+            "y": -55.58828723352934
+          }
+        },
+        {
+          "id": "49263",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "COMPANY"
+            ],
+            "properties": {
+              "component": 49263,
+              "partition": 147534,
+              "pagerank_g": 0.15000000000000002,
+              "name": "aut ab itaque"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 2
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 41.17565132860532,
+            "y": 60.02950193752469
+          }
+        },
+        {
+          "id": "49291",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "COMPANY"
+            ],
+            "properties": {
+              "component": 49291,
+              "partition": 147562,
+              "pagerank_g": 0.15000000000000002,
+              "name": "ab mollitia quis"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 3
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 52.63260233222158,
+            "y": 6.428039199311697
+          }
+        },
+        {
+          "id": "49380",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "COMPANY"
+            ],
+            "properties": {
+              "component": 49380,
+              "pagerank_g": 0.15000000000000002,
+              "partition": 147651,
+              "name": "facilis ab corporis"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 2
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": 34.36149819799815,
+            "y": -48.83052738881674
+          }
+        },
+        {
+          "id": "49453",
+          "data": {
+            "readAt": 1760433554394,
+            "categories": [
+              "COMPANY"
+            ],
+            "properties": {
+              "component": 49453,
+              "pagerank_g": 0.15000000000000002,
+              "partition": 251071,
+              "name": "necessitatibus ab inventore"
+            },
+            "geo": {},
+            "isVirtual": false,
+            "statistics": {
+              "supernode": false,
+              "degree": 2
+            }
+          },
+          "attributes": {
+            "layoutable": true,
+            "selected": false,
+            "x": -39.94592297534342,
+            "y": -60.06366938416613
+          }
+        }
+      ],
+      "edges": [],
+      "nodeGroups": [
+        {
+          "attributes": {
+            "collapsed": true,
+            "layoutable": true
+          },
+          "id": "45f819ce05ac39fabe48441c241831c8d2578043"
+        },
+        {
+          "attributes": {
+            "collapsed": false,
+            "layoutable": true
+          },
+          "id": "a0bfbd73a09cfef5f21046da64c0ed04cd2fed16"
+        },
+        {
+          "attributes": {
+            "collapsed": true,
+            "layoutable": true
+          },
+          "id": "0d32d64718b3355155a5d3812ca5254bb1029fd6"
+        },
+        {
+          "attributes": {
+            "collapsed": true,
+            "layoutable": true
+          },
+          "id": "04d5e60ab289e39bcd0792a51e24912d6731a4b8"
+        },
+        {
+          "attributes": {
+            "collapsed": true,
+            "layoutable": true
+          },
+          "id": "645f58b8e1d65400499fb7464b4a4b3e5fb93ef0"
+        },
+        {
+          "attributes": {
+            "collapsed": false,
+            "layoutable": true
+          },
+          "id": "62ce57004f24f7ed64c2f8f3c7552bfffff7a279"
+        }
+      ],
+      "nodeFields": {
+        "captions": {
+          "ADDRESS": {
+            "active": true,
+            "displayName": false,
+            "properties": [
+              "country"
+            ]
+          },
+          "BANK_ACCOUNT": {
+            "active": true,
+            "displayName": false,
+            "properties": [
+              "name"
+            ]
+          },
+          "COMPANY": {
+            "active": true,
+            "displayName": false,
+            "properties": []
+          },
+          "IP_ADDRESS": {
+            "active": true,
+            "displayName": false,
+            "properties": [
+              "name"
+            ]
+          },
+          "LOAN": {
+            "active": true,
+            "displayName": false,
+            "properties": []
+          },
+          "PERSON": {
+            "active": true,
+            "displayName": false,
+            "properties": []
+          },
+          "PHONE_NUMBER": {
+            "active": true,
+            "displayName": false,
+            "properties": [
+              "name"
+            ]
+          }
+        },
+        "types": {}
+      },
+      "nodeGroupingRuleIds": [
+        8
+      ],
+      "edgeFields": {
+        "captions": {
+          "HAS_ADDRESS": {
+            "active": true,
+            "displayName": true,
+            "properties": []
+          },
+          "HAS_BANK_ACCOUNT": {
+            "active": true,
+            "displayName": true,
+            "properties": []
+          },
+          "HAS_IP_ADDRESS": {
+            "active": true,
+            "displayName": true,
+            "properties": []
+          },
+          "HAS_LOAN": {
+            "active": true,
+            "displayName": true,
+            "properties": []
+          },
+          "HAS_PHONE_NUMBER": {
+            "active": true,
+            "displayName": true,
+            "properties": []
+          },
+          "HAS_TRANSFERED": {
+            "active": true,
+            "displayName": true,
+            "properties": []
+          },
+          "HAS_TRANSFERED_AGG": {
+            "active": true,
+            "displayName": true,
+            "properties": []
+          },
+          "undefined": {
+            "active": true,
+            "displayName": true,
+            "properties": []
+          }
+        },
+        "types": {}
+      },
+      "design": {
+        "palette": {
+          "default": [
+            "#9467bd",
+            "#e377c2",
+            "#1f77b4",
+            "#17becf",
+            "#2ca02c",
+            "#bcbd22",
+            "#d62728",
+            "#ff7f0e",
+            "#8c564b",
+            "#7f7f7f",
+            "#c5b0d5",
+            "#f7b6d2",
+            "#aec7e8",
+            "#9edae5",
+            "#98df8a",
+            "#dbdb8d",
+            "#ff9896",
+            "#ffbb78",
+            "#c49c94",
+            "#c7c7c7"
+          ]
+        },
+        "styles": {
+          "edge": [
+            {
+              "index": 5,
+              "itemType": "HAS_IP_ADDRESS",
+              "style": {
+                "color": "#dbdb8d"
+              },
+              "type": "any"
+            },
+            {
+              "index": 6,
+              "itemType": "HAS_TRANSFERED",
+              "style": {
+                "width": {
+                  "input": [
+                    "properties",
+                    "amount"
+                  ],
+                  "scale": "linear",
+                  "type": "autoRange"
+                }
+              },
+              "type": "any"
+            }
+          ],
+          "node": [
+            {
+              "index": 0,
+              "style": {
+                "color": {
+                  "input": [
+                    "categories"
+                  ],
+                  "type": "auto"
+                }
+              },
+              "type": "any"
+            },
+            {
+              "index": 1,
+              "itemType": "ResolvedPersonEntity",
+              "style": {
+                "icon": {
+                  "content": "",
+                  "font": "FontAwesome"
+                }
+              },
+              "type": "any"
+            },
+            {
+              "index": 2,
+              "itemType": "ResolvedOrganizationEntity",
+              "style": {
+                "icon": {
+                  "content": "",
+                  "font": "FontAwesome"
+                }
+              },
+              "type": "any"
+            },
+            {
+              "index": 3,
+              "itemType": "ADDRESS",
+              "style": {
+                "color": "#ff7f0e",
+                "icon": {
+                  "content": "",
+                  "font": "FontAwesome"
+                }
+              },
+              "type": "any"
+            },
+            {
+              "index": 4,
+              "itemType": "COMPANY",
+              "style": {
+                "size": {
+                  "input": [
+                    "properties",
+                    "component"
+                  ],
+                  "max": 49453,
+                  "min": 49175,
+                  "scale": "logarithmic",
+                  "type": "autoRange"
+                }
+              },
+              "type": "any"
+            }
+          ]
+        }
+      },
+      "filters": {
+        "node": [],
+        "edge": []
+      },
+      "edgeGrouping": {},
+      "createdAt": "2025-10-10T08:05:51.510Z",
+      "updatedAt": "2025-10-14T09:19:09.749Z",
+      "alternativeIds": {},
+      "mode": "nodelink",
+      "layout": {
+        "algorithm": "force",
+        "mode": "fast"
+      },
+      "geo": {
+        "layers": []
+      },
+      "timeline": {
+        "node": {},
+        "edge": {}
+      },
+      "right": "owner",
+      "userId": 15,
+      "user": {
+        "id": 15,
+        "username": "Justin Marsan",
+        "email": "justin.marsan@linkurio.us"
+      },
+      "locked": false,
+      "lastLockedByUserId": 15,
+      "lastLockedByUser": {
+        "email": "justin.marsan@linkurio.us",
+        "username": "Justin Marsan"
+      },
+      "lastEditedByUser": {
+        "username": "Justin Marsan",
+        "email": "justin.marsan@linkurio.us"
+      },
+      "lastLockedAt": null,
+      "widgetKey": null
     }
   ],
-
   "graph": {
     "schema": {
       "node": {
@@ -10051,7 +11129,7 @@
       }
     }
   },
-
+  
   "edgeTypes": {
     "any": {
       "access": "write"
@@ -10570,5 +11648,5 @@
       }
     ]
   },
-  "nodeGroupings": []
+  "nodeGroupings": [{"id":1,"uuid":"0f36ebb9-218c-4d5d-8941-b38ffedb11bd","name":"Duplicates","sourceKey":"finc0100","groupingType":"edgeType","groupingOptions":{"centralNodeIs":"source","edgeType":"RESOLVED","itemTypes":["RESOLVED"]},"right":"read"},{"id":27,"uuid":"4adcaeb5-3165-4c61-9eea-aff1fd981cd6","name":"Funding total","sourceKey":"finc0100","groupingType":"propertyKey","groupingOptions":{"itemTypes":["ADDRESS","BANK_ACCOUNT","COMPANY","IP_ADDRESS","LOAN","PERSON","PHONE_NUMBER"],"propertyKey":"partition"},"right":"manage"},{"id":19,"uuid":"c638c46a-942b-4413-aa77-9bac3b97abe1","name":"LKE-13539","sourceKey":"finc0100","groupingType":"propertyKey","groupingOptions":{"itemTypes":["ADDRESS"],"propertyKey":"country"},"right":"manage"},{"id":8,"uuid":"368ef376-4ea4-4481-8566-113fc825ca09","name":"country","sourceKey":"finc0100","groupingType":"propertyKey","groupingOptions":{"itemTypes":["ADDRESS","PERSON"],"propertyKey":"country"},"right":"manage"},{"id":12,"uuid":"591bca60-162f-4fcc-a1b3-6272622c853f","name":"loan amount","sourceKey":"finc0100","groupingType":"propertyKey","groupingOptions":{"itemTypes":["LOAN"],"propertyKey":"amount"},"right":"manage"},{"id":34,"uuid":"64ca87d5-8e56-459a-9562-1880e0dff022","name":"name","sourceKey":"finc0100","groupingType":"propertyKey","groupingOptions":{"itemTypes":["BANK_ACCOUNT","COMPANY","IP_ADDRESS","PHONE_NUMBER"],"propertyKey":"name"},"right":"manage"}]
 }
