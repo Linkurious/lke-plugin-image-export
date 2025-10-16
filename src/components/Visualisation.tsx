@@ -20,7 +20,7 @@ export function Visualisation() {
         schema={graphSchema}
         onReady={(ogma) => setOgma(ogma)}
         baseUrl={configuration.baseUrl}
-        appliedNodeGroupingRules={getAppliedNodeGroupingRule(nodeGroupingRules, visualisation.nodeGroupingRuleIds)}
+        appliedNodeGroupingRules={getAppliedNodeGroupingRule(nodeGroupingRules, visualisation.nodeGroupingRuleIds || [])}
       >
         <ZoomControl />
         <Minimap />

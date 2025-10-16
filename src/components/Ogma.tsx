@@ -48,13 +48,22 @@ const applySchema = async (ogma: OgmaLib, graphSchema?: GraphSchema) => {
 
 const applyNodeGrouping = async (
   ogma: OgmaLib,
+  graph: PopulatedVisualization,
   groupingRule?: NodeGroupingRule
 ) => {
   if (groupingRule !== undefined) {
-    ogma.LkNodeGroupingTransformation.initNodeGroupingStyle();
-    await ogma.LkNodeGroupingTransformation.initTransformation();
+    /**
+     - Set all the information regarding node grouping
+     - Then set the transformation
+     - Style node groups
+     */
     ogma.LkNodeGroupingTransformation.setGroupingRule(groupingRule);
-    await ogma.LkNodeGroupingTransformation.refreshTransformation();
+    ogma.LkNodeGroupingTransformation.initNodeGroupingStyle();
+    if(graph.nodeGroups !== undefined) {
+      ogma.LkNodeGroupingTransformation.setNodeGroupingAttributes(graph.nodeGroups);
+    }
+    await ogma.LkNodeGroupingTransformation.initTransformation();
+    ogma.LkNodeGroupingTransformation.refreshNodeGroupingStyle();
   }
 };
 
@@ -144,7 +153,7 @@ export const OgmaComponent = (
           .then(() => ogma.view.locateGraph())
           .then(() => ogma.view.forceResize())
           // set up node grouping transformation
-          .then(() => applyNodeGrouping(ogma, appliedNodeGroupingRules?.[0]));
+          .then(() => applyNodeGrouping(ogma, graph, appliedNodeGroupingRules?.[0]));
       }
     }
   }, [graph, options, ogma, schema]);
