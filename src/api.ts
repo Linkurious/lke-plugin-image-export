@@ -28,8 +28,12 @@ const rc = new RestClient({
 
 const params = new URLSearchParams(location.search);
 const sourceKey = params.get("key") || params.get("sourceKey") || "key";
-// 101 is bigger graph, 102 is 5 nodes
-const id = params.get("id") || "101";
+/* Mocks
+- 101 : bigger graph
+- 102 : 5 nodes
+- 488 : node grouping (collapsed/expanded, multi-category)
+*/
+const id = params.get("id") || "488";
 const source: unknown = params.get("source");
 
 export interface GraphSchema {
@@ -123,7 +127,7 @@ export function getVisualisation(): Promise<PopulatedVisualization> {
   return getVisualizationFromBackend(sourceKey, id);
 }
 
-export async function getNodeGroupingRules() {
+export async function getNodeGroupingRules(): Promise<NodeGroupingRule[]> {
   const response = await rc.nodeGrouping.getNodeGroupingRules({
     sourceKey: sourceKey, //key as string
   });

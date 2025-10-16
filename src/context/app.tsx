@@ -1,5 +1,5 @@
 import { LKOgma } from "@linkurious/ogma-linkurious-parser";
-import { IOgmaConfig, PopulatedVisualization, NodeGroupingRule } from "@linkurious/rest-client";
+import { IOgmaConfig, PopulatedVisualization, NodeGroupingRule, IVizNodeGroupInfo } from "@linkurious/rest-client";
 import { StyleRule } from "@linkurious/ogma";
 import {
   createContext,
@@ -98,7 +98,7 @@ export const AppContextProvider = ({ children }: Props) => {
         setConfig(configuration);
         setGraphSchema(graphSchema);
         setLoading(false);
-        setNodeGroupingRules(nodeGroupingRules)
+        setNodeGroupingRules(nodeGroupingRules);
       })
       .catch((err) => {
         setLoading(false);
