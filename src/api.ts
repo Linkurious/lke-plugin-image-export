@@ -12,6 +12,13 @@ import {
 } from "@linkurious/rest-client";
 import {LKOgma} from "@linkurious/ogma-linkurious-parser";
 
+declare global {
+  interface Window {
+    __visualizationToExport?: Visualization, // The exact type is VisualizationObjectState from frontend
+    ogma: LKOgma
+  }
+}
+
 declare let IS_DEV: boolean;
 
 const rc = new RestClient({
@@ -62,15 +69,15 @@ export async function getGraphSchema(): Promise<GraphSchema | undefined> {
   }
 }
 
-function getVisualizationFromLocalStorage(): PopulatedVisualization {
-  const storeVisualizationData = localStorage.getItem('visualization');
-  if (storeVisualizationData !== null) {
-    localStorage.removeItem('visualization');
+function getVisualizationFromParentWindow(): PopulatedVisualization {
+  const visualization = window.parent.__visualizationToExport;
+  if (visualization != null) {
+    delete window.parent.__visualizationToExport;
 
     // Get nodes and edges from the ogma global object of the parent window
     // to avoid a quota exceeded error when there is a lot of data (see LKE-12691)
     // and the rest of the config from the localStorage
-    const parentWindowOgma = (window.parent as unknown as {ogma: LKOgma}).ogma;
+    const parentWindowOgma = window.parent.ogma;
     const nonFilteredNodes = parentWindowOgma.getNonFilteredNodes();
     const nonFilteredEdges = parentWindowOgma.getNonFilteredEdges();
 
@@ -88,7 +95,6 @@ function getVisualizationFromLocalStorage(): PopulatedVisualization {
       attributes: nonFilteredEdgesAttributes[index]
     })) as VizEdge[];
 
-    const visualization = JSON.parse(storeVisualizationData!) as Visualization;
 
     // We need to clone the object because attributes get mutated by the parent ogma
     return structuredClone({
@@ -113,9 +119,9 @@ async function getVisualizationFromBackend(
 }
 
 export function getVisualisation(): Promise<PopulatedVisualization> {
-  // If source is local, we get the visualization from local storage
+  // If source is local, we get the visualization from the parent window
   if (source === "local") {
-    return Promise.resolve(getVisualizationFromLocalStorage());
+    return Promise.resolve(getVisualizationFromParentWindow());
   }
   // Otherwise, we get the visualization from the backend
   return getVisualizationFromBackend(sourceKey, id);
