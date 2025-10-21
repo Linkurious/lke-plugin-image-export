@@ -60,6 +60,7 @@ interface Props {
 export const AppContextProvider = ({ children }: Props) => {
   const [visualisation, setVis] = useState<PopulatedVisualization>();
   const [loading, setLoading] = useState(true);
+  const [nodeGroupingRules, setNodeGroupingRules] = useState<NodeGroupingRule[]>();
   const [format, setFormat] = useState<FormatType>(formats[0]);
   const [error, setError] = useState<Error | null>(null);
 
@@ -79,10 +80,12 @@ export const AppContextProvider = ({ children }: Props) => {
   useEffect(() => {
     Promise.all([
       api.getVisualisation(),
+      api.getNodeGroupingRules()
     ])
-      .then(([visualisation]) => {
+      .then(([visualisation, nodeGroupingRules]) => {
         setVis(visualisation);
         setLoading(false);
+        setNodeGroupingRules(nodeGroupingRules);
       })
       .catch((err) => {
         setLoading(false);
@@ -113,6 +116,7 @@ export const AppContextProvider = ({ children }: Props) => {
           scalingStyleEnabled,
           setScalingStyleEnabled,
           error,
+          nodeGroupingRules
         } as IAppContext
       }
     >

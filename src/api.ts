@@ -1,5 +1,5 @@
 import {
-  GraphSchemaTypeWithAccess,
+  GraphSchemaTypeWithAccess, NodeGroupingRule,
   PopulatedVisualization,
   Visualization,
   VizEdge,
@@ -60,4 +60,9 @@ export function getVisualisation(): Promise<PopulatedVisualization> {
   // If source is local, we get the visualization from the parent window
   return Promise.resolve(getVisualizationFromParentWindow());
   // Otherwise, we get the visualization from the backend
+}
+
+export async function getNodeGroupingRules(): Promise<NodeGroupingRule[]> {
+  const groupingRule = window.parent.ogma.LkNodeGroupingTransformation.groupRule
+  return  Promise.resolve(groupingRule? [groupingRule]: [])
 }
