@@ -1,5 +1,5 @@
 import {
-  GraphSchemaTypeWithAccess, NodeGroupingRule,
+  GraphSchemaTypeWithAccess, IOgmaConfig, NodeGroupingRule,
   PopulatedVisualization,
   Visualization,
   VizEdge,
@@ -17,6 +17,13 @@ declare global {
 export interface GraphSchema {
   node: GraphSchemaTypeWithAccess[];
   edge: GraphSchemaTypeWithAccess[];
+}
+
+export async function getConfiguration(): Promise<IOgmaConfig> {
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore _configuration is private in Ogma instance
+  return window.parent.ogma._configuration ?? {};
 }
 
 function getVisualizationFromParentWindow(): PopulatedVisualization {

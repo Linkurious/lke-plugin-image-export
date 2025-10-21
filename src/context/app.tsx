@@ -11,7 +11,7 @@ import type {Bounds} from "../utils";
 
 interface IAppContext {
   visualisation: PopulatedVisualization;
-  configuration: { ogmaConfig?: IOgmaConfig; baseUrl?: string };
+  ogmaConfig: IOgmaConfig;
   graphSchema?: GraphSchema;
   format: FormatType;
   setFormat: (format: FormatType) => void;
@@ -60,6 +60,7 @@ interface Props {
 export const AppContextProvider = ({ children }: Props) => {
   const [visualisation, setVis] = useState<PopulatedVisualization>();
   const [loading, setLoading] = useState(true);
+  const [ogmaConfig, setConfig] = useState<IOgmaConfig>();
   const [nodeGroupingRules, setNodeGroupingRules] = useState<NodeGroupingRule[]>();
   const [format, setFormat] = useState<FormatType>(formats[0]);
   const [error, setError] = useState<Error | null>(null);
@@ -80,10 +81,12 @@ export const AppContextProvider = ({ children }: Props) => {
   useEffect(() => {
     Promise.all([
       api.getVisualisation(),
+      api.getConfiguration(),
       api.getNodeGroupingRules()
     ])
-      .then(([visualisation, nodeGroupingRules]) => {
+      .then(([visualisation, configuration, nodeGroupingRules]) => {
         setVis(visualisation);
+        setConfig(configuration);
         setLoading(false);
         setNodeGroupingRules(nodeGroupingRules);
       })
@@ -98,6 +101,7 @@ export const AppContextProvider = ({ children }: Props) => {
       value={
         {
           visualisation,
+          ogmaConfig,
           loading,
           ogma,
           setOgma,

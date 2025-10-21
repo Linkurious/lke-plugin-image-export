@@ -76,6 +76,7 @@ interface OgmaProps {
  */
 export const OgmaComponent = (
   {
+    options,
     children,
     graph,
     onReady,
@@ -94,7 +95,7 @@ export const OgmaComponent = (
 
   useEffect(() => {
     if (container) {
-      const instance = new OgmaLib({});
+      const instance = new OgmaLib(options??{});
       instance.setContainer(container);
 
       instance.setOptions({

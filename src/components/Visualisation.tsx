@@ -6,13 +6,14 @@ import { ZoomControl } from "./ZoomControl";
 import { VersionInfo } from "./VersionInfo";
 
 export function Visualisation() {
-  const { visualisation, setOgma, format, nodeGroupingRules } =
+  const { visualisation, setOgma, format, nodeGroupingRules, ogmaConfig } =
     useAppContext();
-
+  console.log("visualisation", visualisation);
   return (
     <>
       <Ogma
         graph={visualisation}
+        options={ogmaConfig}
         onReady={(ogma) => setOgma(ogma)}
         appliedNodeGroupingRules={nodeGroupingRules}
       >
