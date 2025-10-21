@@ -77,7 +77,7 @@ export const AppContextProvider = ({ children }: Props) => {
   const [graphScale, setGraphScale] = useState(1);
   const [scalingStyleRule, setScalingStyleRule] = useState<StyleRule>();
   const [scalingStyleEnabled, setScalingStyleEnabled] = useState(false);
-
+console.log("starting");
   useEffect(() => {
     Promise.all([
       api.getVisualisation(),
@@ -89,6 +89,7 @@ export const AppContextProvider = ({ children }: Props) => {
         setConfig(configuration);
         setLoading(false);
         setNodeGroupingRules(nodeGroupingRules);
+        console.dir({visualisation, configuration, nodeGroupingRules});
       })
       .catch((err) => {
         setLoading(false);
