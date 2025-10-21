@@ -1,15 +1,15 @@
-import { FC, useEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import {FC, useEffect, useState} from "react";
+import {createPortal} from "react-dom";
 import Progress from "antd/es/progress";
-import { ModalFuncProps } from "antd/es/modal";
-import { FormatType, ExportType } from "../../types/formats";
-import { useAnnotationsContext, useAppContext } from "../../context";
-import { svgElementToString } from "@linkurious/ogma-export-stitch";
-import { Size } from "@linkurious/ogma";
+import {ModalFuncProps} from "antd/es/modal";
+import {ExportType, FormatType} from "../../types/formats";
+import {useAnnotationsContext, useAppContext} from "../../context";
+import {svgElementToString} from "@linkurious/ogma-export-stitch";
+import {Size} from "@linkurious/ogma";
 import embedFonts from "@linkurious/svg-font-embedder";
-import { ImageViewer } from "../ImageViewer";
-import { Footer } from "./Footer";
-import { destroyRule, scaleGraph, stringToSVGElement } from "../../utils";
+import {ImageViewer} from "../ImageViewer";
+import {Footer} from "./Footer";
+import {destroyRule, scaleGraph, stringToSVGElement} from "../../utils";
 import {
   addCheckerboard,
   addClipShape,
@@ -19,10 +19,7 @@ import {
   exportClipped,
   exportOrginalSize,
 } from "../../utils/svg";
-import {
-  handleDownload,
-  sendExportImageTelemetryEvent,
-} from "../../utils/download";
+import {handleDownload,} from "../../utils/download";
 import "./Modal.css";
 
 // TODO: add that, and through the webworker
@@ -134,11 +131,7 @@ export const Modal: FC<Props> = ({ open, onCancel, onOk }) => {
     const el = stringToSVGElement(image as string);
     const bg = el.querySelector(".ogma-svg-background") as SVGRectElement;
     bg!.setAttribute("fill-opacity", background ? "1" : "0");
-    // We send a telemetry event if the access to this app is as an LKE module and not as a plugin
-    const accessFromModules = window.location.pathname.includes("modules");
-    if (accessFromModules) {
-      sendExportImageTelemetryEvent(exportType.label, format.label);
-    }
+
     await handleDownload(el, exportType, visualisation.title);
     if (onOk) onOk();
   };

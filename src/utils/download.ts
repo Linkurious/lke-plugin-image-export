@@ -1,8 +1,7 @@
-import { svgElementToString, svgToPng } from "@linkurious/ogma-export-stitch";
-import { jsPDF } from "jspdf";
+import {svgElementToString, svgToPng} from "@linkurious/ogma-export-stitch";
+import {jsPDF} from "jspdf";
 import "svg2pdf.js";
-import { sendTelemetryEvent } from "../api";
-import { ExportType } from "../types/formats";
+import {ExportType} from "../types/formats";
 
 export function downloadBlob(
   data: string | Uint8Array,
@@ -23,16 +22,6 @@ function downloadURL(data: string, fileName: string) {
   a.style.display = "none";
   a.click();
   a.remove();
-}
-
-export async function sendExportImageTelemetryEvent(
-  extension: string,
-  sizeFormat: string
-) {
-  await sendTelemetryEvent("workspace.export", {
-    type: extension,
-    sizeFormat
-  })
 }
 
 export async function handleDownload(

@@ -1,20 +1,13 @@
-import { LKOgma } from "@linkurious/ogma-linkurious-parser";
-import { IOgmaConfig, PopulatedVisualization, NodeGroupingRule, IVizNodeGroupInfo } from "@linkurious/rest-client";
-import { StyleRule } from "@linkurious/ogma";
-import {
-  createContext,
-  useContext,
-  Context,
-  useEffect,
-  useState,
-  ReactElement,
-} from "react";
+import {LKOgma} from "@linkurious/ogma-linkurious-parser";
+import {IOgmaConfig, NodeGroupingRule, PopulatedVisualization} from "@linkurious/rest-client";
+import {StyleRule} from "@linkurious/ogma";
+import {Context, createContext, ReactElement, useContext, useEffect, useState,} from "react";
 
+import type {GraphSchema} from "../api";
 import * as api from "../api";
-import type { GraphSchema } from "../api";
-import type { FormatType } from "../types/formats";
-import { formats } from "../constants";
-import type { Bounds } from "../utils";
+import type {FormatType} from "../types/formats";
+import {formats} from "../constants";
+import type {Bounds} from "../utils";
 
 interface IAppContext {
   visualisation: PopulatedVisualization;
@@ -67,9 +60,6 @@ interface Props {
 export const AppContextProvider = ({ children }: Props) => {
   const [visualisation, setVis] = useState<PopulatedVisualization>();
   const [loading, setLoading] = useState(true);
-  const [configuration, setConfig] = useState<{ ogmaConfig?: IOgmaConfig; baseUrl?: string }>();
-  const [graphSchema, setGraphSchema] = useState<GraphSchema>();
-  const [nodeGroupingRules, setNodeGroupingRules] = useState<NodeGroupingRule[]>();
   const [format, setFormat] = useState<FormatType>(formats[0]);
   const [error, setError] = useState<Error | null>(null);
 
@@ -89,16 +79,10 @@ export const AppContextProvider = ({ children }: Props) => {
   useEffect(() => {
     Promise.all([
       api.getVisualisation(),
-      api.getConfiguration(),
-      api.getGraphSchema(),
-      api.getNodeGroupingRules()
     ])
-      .then(([visualisation, configuration, graphSchema, nodeGroupingRules]) => {
+      .then(([visualisation]) => {
         setVis(visualisation);
-        setConfig(configuration);
-        setGraphSchema(graphSchema);
         setLoading(false);
-        setNodeGroupingRules(nodeGroupingRules);
       })
       .catch((err) => {
         setLoading(false);
@@ -111,8 +95,6 @@ export const AppContextProvider = ({ children }: Props) => {
       value={
         {
           visualisation,
-          configuration,
-          graphSchema,
           loading,
           ogma,
           setOgma,
@@ -131,7 +113,6 @@ export const AppContextProvider = ({ children }: Props) => {
           scalingStyleEnabled,
           setScalingStyleEnabled,
           error,
-          nodeGroupingRules
         } as IAppContext
       }
     >
