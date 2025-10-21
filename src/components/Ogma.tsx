@@ -40,12 +40,6 @@ const applyItemFilter = (
   return ogma.removeEdges(items as EdgeList);
 };
 
-const applySchema = async (ogma: OgmaLib, graphSchema?: GraphSchema) => {
-  if (graphSchema) {
-    ogma.LKCaptions.graphSchema = graphSchema;
-  }
-};
-
 const applyNodeGrouping = async (
   ogma: OgmaLib,
   graph: PopulatedVisualization,
@@ -77,19 +71,14 @@ interface OgmaProps {
   appliedNodeGroupingRules?: NodeGroupingRule[];
 }
 
-const defaultOptions = {};
-
 /**
  * Main component for the Ogma library.
  */
 export const OgmaComponent = (
   {
-    options = defaultOptions,
     children,
     graph,
     onReady,
-    schema,
-    baseUrl,
     appliedNodeGroupingRules,
   }: OgmaProps,
   ref?: Ref<OgmaLib>
@@ -105,7 +94,7 @@ export const OgmaComponent = (
 
   useEffect(() => {
     if (container) {
-      const instance = new OgmaLib(options, baseUrl);
+      const instance = new OgmaLib({});
       instance.setContainer(container);
 
       instance.setOptions({
@@ -144,19 +133,16 @@ export const OgmaComponent = (
         setGraphData(graph);
         ogma
           .initVisualization(graph)
-          // apply caption schema
-          .then(() => applySchema(ogma, schema))
           // apply filters
           .then(() => applyItemFilter(ogma, graph, false))
           .then(() => applyItemFilter(ogma, graph, true))
-          // set up the schema
           .then(() => ogma.view.locateGraph())
           .then(() => ogma.view.forceResize())
           // set up node grouping transformation
           .then(() => applyNodeGrouping(ogma, graph, appliedNodeGroupingRules?.[0]));
       }
     }
-  }, [graph, options, ogma, schema]);
+  }, [graph, ogma]);
 
   const updateBbox = useCallback(() => {
     if (ogma) {
