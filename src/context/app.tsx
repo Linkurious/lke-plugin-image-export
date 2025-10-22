@@ -88,7 +88,6 @@ export const AppContextProvider = ({ children }: Props) => {
         setConfig(configuration);
         setLoading(false);
         setNodeGroupingRules(nodeGroupingRules);
-        console.dir({visualisation, configuration, nodeGroupingRules});
       })
       .catch((err) => {
         setLoading(false);

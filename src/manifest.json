@@ -3,6 +3,5 @@
   "version": "2.1.24",
   "pluginApiVersion": "1.0.0",
   "publicRoute": "public",
-  "singlePageAppIndex": "index.html",
-  "backendFiles": ["backend/routeHandler.js"]
+  "singlePageAppIndex": "index.html"
 }

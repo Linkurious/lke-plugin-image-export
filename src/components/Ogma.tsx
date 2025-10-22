@@ -95,7 +95,7 @@ export const OgmaComponent = (
 
   useEffect(() => {
     if (container) {
-      const instance = new OgmaLib(options??{});
+      const instance = new OgmaLib(options ?? {});
       instance.setContainer(container);
 
       instance.setOptions({

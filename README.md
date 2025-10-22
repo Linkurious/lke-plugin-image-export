@@ -6,7 +6,6 @@ This plugin allows you to export the visualization with better quality and more 
 
 ## Table of contents
 
-- [Configuarion](#configuration)
 - [Export settings](#export-settings)
 - [Snapping](#snapping)
 - [Full-size export](#full-size-export)
@@ -14,23 +13,6 @@ This plugin allows you to export the visualization with better quality and more 
 - [Background Export](#background-export)
 - [Choosing format](#choosing-format)
 - [Annotations](#annotations)
-
-## Configuration
-
-Plugin is available through a custom action:
-
-1.  In visualization menu, select "Manage custom actions..."
-2.  "New custom action"
-3.  Custom action name: "Save as image"
-4.  URL template is `{{baseURL}}plugins/image-export/?id={{visualization}}&key={{sourceKey}}`. This will allow the custom action to access the visualization.
-5.  You can also share the custom action thus making it available for other users of Linkurious Enterprise in your company.
-6.  "Save"
-
-Now, once the visualization is saved, you will have a custom action in your context menu that will allow you to export the visualization as an image. To call it, right-click anywhere on your visualization, "Custom actions" &rarr; "Save as image".
-
-![Custom action](./images/custom-action.png)
-
-This will open the plugin in another tab in your browser. In the plugin, you can select the format and the size of the image. Available formats are <abbr title="Scalable Vector Graphics">SVG</abbr> and <abbr title="Portable Network Graphics">PNG</abbr>.
 
 ## Export settings
 
