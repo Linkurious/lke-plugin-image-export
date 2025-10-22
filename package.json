@@ -96,9 +96,9 @@
     "@ant-design/icons": "5.3.5",
     "@linkurious/ogma-annotations": "1.1.27",
     "@linkurious/ogma-export-stitch": "0.0.32",
-    "@linkurious/ogma-linkurious-parser": "4.2.5",
+    "@linkurious/ogma-linkurious-parser": "4.2.6-develop-stable.452",
     "@linkurious/ogma-mini-map": "0.0.79",
-    "@linkurious/rest-client": "4.2.5",
+    "@linkurious/rest-client": "4.2.6-develop-stable.298",
     "@linkurious/svg-font-embedder": "0.0.76",
     "@mapbox/mapbox-gl-rtl-text": "0.2.3",
     "@uiw/color-convert": "^1.1.1",
@@ -120,6 +120,6 @@
     "express-async-handler"
   ],
   "overrides": {
-    "@linkurious/ogma": "5.3.2"
+    "@linkurious/ogma": "5.3.5"
   }
 }
