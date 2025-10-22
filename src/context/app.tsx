@@ -77,7 +77,6 @@ export const AppContextProvider = ({ children }: Props) => {
   const [graphScale, setGraphScale] = useState(1);
   const [scalingStyleRule, setScalingStyleRule] = useState<StyleRule>();
   const [scalingStyleEnabled, setScalingStyleEnabled] = useState(false);
-console.log("starting");
   useEffect(() => {
     Promise.all([
       api.getVisualisation(),

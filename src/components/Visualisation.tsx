@@ -8,7 +8,6 @@ import { VersionInfo } from "./VersionInfo";
 export function Visualisation() {
   const { visualisation, setOgma, format, nodeGroupingRules, ogmaConfig } =
     useAppContext();
-  console.log("visualisation", visualisation);
   return (
     <>
       <Ogma
