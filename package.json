@@ -120,6 +120,6 @@
     "express-async-handler"
   ],
   "overrides": {
-    "@linkurious/ogma": "5.3.2"
+    "@linkurious/ogma": "5.3.5"
   }
 }
